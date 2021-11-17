@@ -97,32 +97,7 @@
 	</header>
 	<section>
 		<div class="empty_div"></div>
-		<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="/images/프리픽스1.jpg" class="d-block w-100" alt="메인사진1">
-					</div>
-					<div class="carousel-item">
-						<img src="/images/프리빅스2.jpg" class="d-block w-100" alt="메인사진2">
-					</div>
-					<div class="carousel-item">
-						<img src="/images/프리빅스3.jpg" class="d-block w-100" alt="메인사진3">
-					</div>
-					<div class="carousel-item">
-						<img src="/images/프리빅스4.jpg" class="d-block w-100" alt="메인사진4">
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-		</div>
+		
 	</section>
 	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 	<footer class="footer">

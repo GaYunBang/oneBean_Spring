@@ -48,7 +48,7 @@
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
-						<li><a href="/Product/allList.do">모든상품</a></li>
+						<li><a href="/Product/proListAll.do">모든상품</a></li>
 						<li><a href="/Regular/list.do">정기구독</a></li>
 						<li><a href="/Product/goods.do">커피용품</a>
 							<hr class="line"></li>
@@ -133,7 +133,6 @@
 						구매안전 서비스를 이용하실 수 있습니다</div>
 				</div>
 			</div>
-		</div>
 	</footer>
 	<!--끝-->
 	<script

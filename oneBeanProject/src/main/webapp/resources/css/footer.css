@@ -1,0 +1,22 @@
+footer{
+	clear:both;
+    font-size: small;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.cs_title{
+    letter-spacing: 5px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+.comnum{
+    font-size: 25px;
+}
+.frist_footer{
+    padding: 50px 0px 30px 0px;
+    border-top: solid lightgray 1px;
+    border-bottom: solid lightgray 1px;
+}
+
+

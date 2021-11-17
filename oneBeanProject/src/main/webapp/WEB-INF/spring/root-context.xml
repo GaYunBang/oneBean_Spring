@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"  value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<!-- 오라클 사용자 이름 -->
+		<property name="username" value="system" />
+		<!-- 오라클 사용자 비밀번호 -->
+		<property name="password" value="1234" />
+	</bean>  
+	
+	<!-- MyBatis 객체 등록 -->
+	<!-- getconnetion 해주고 close까지 해주는애 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+		<property name="dataSource" ref="dataSource" /> <!-- 위에 선언해놓은 datasource를 참조 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />  <!-- classpath: = resources를 바라봄. -->
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/> <!-- 쿼리문 작성하는곳 -->
+	</bean>
+	<!-- 쿼리실행하는 객체. -->
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+    </bean>	
+</beans>

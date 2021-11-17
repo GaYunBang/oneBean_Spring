@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.ezen.mapper.MemberMapper"> <!-- 호출할떄 사용할 mapper이름. -->
+
+
+	<insert id="join" parameterType="memberVO">
+     <![CDATA[
+    	INSERT INTO shop_member(
+    		  midx
+    		, memberId
+    		, memberPwd
+    		, memberName
+    		, memberBirth
+    		, memberGender
+    		, memberPhone
+    		, memberTel
+    		, memberEmail
+    		, memberJoinDay
+    		, memberGrade
+    		, memberUnJoin
+    		, memberSpam
+    	)VALUES(
+    		 springSEQ.nextval
+    		, #{memberId}
+    		, #{memberPwd}
+    		, #{memberName}
+    		, #{memberBirth}
+    		, #{memberGender}
+    		, #{memberPhone}
+    		, #{memberTel}
+    		, #{memberEmail}
+    		, sysdate
+    		, 1
+    		, #{memberUnJoin}
+    		, #{memberSpam}
+    	)
+     ]]>	
+    </insert>
+    
+</mapper>

@@ -126,7 +126,7 @@
 					</div>
 					<!--상품 끝-->
 		</c:forEach>
-		
+		바꿈
 	</section>
 	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 	<footer class="footer">

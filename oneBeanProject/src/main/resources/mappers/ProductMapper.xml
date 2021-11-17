@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.ezen.mapper.ProductMapper"> <!-- 호출할떄 사용할 mapper이름. -->
+	<select id="proListAll" resultType="productVO">
+		SELECT
+			PROIDX,
+			PROTYPE,
+			PRONAME,
+			PROPRICE,
+			PROPRICE2,
+			PROCONTENTS,
+			PROSTOCK,
+			PRODEL,
+			COL
+		FROM SHOP_PRODUCT
+		ORDER BY 
+			PROIDX DESC
+	</select>
+
+	
+    
+</mapper>

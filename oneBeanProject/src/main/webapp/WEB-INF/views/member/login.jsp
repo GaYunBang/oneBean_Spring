@@ -19,30 +19,6 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
 
-<!--햄버거 css-->
-<style>
-	.loginFrm {
-		text-align: center;
-	}
-	
-	.login {
-		width: 400px;
-		height: 50px;
-		border-style: none;
-		border-bottom: 1px solid black;
-	}
-	
-	.login:focus {
-		outline: none;
-		border-bottom: 3px solid black;
-	}
-	
-	
-	section form {
-		padding: 150px 0px;
-	}
-</style>
-
 <script src="https://kit.fontawesome.com/be3783bb1d.js"
 	crossorigin="anonymous">
 	
@@ -55,6 +31,7 @@
 <!-- 스타일 -->
 <link href="/css/header.css" rel="stylesheet" />
 <link href="/css/footer.css" rel="stylesheet" />
+<link href="/css/login.css" rel="stylesheet" />
 </head>
 <body>
 <header class="fixed-top">

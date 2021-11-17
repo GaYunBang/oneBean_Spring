@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.ezen.vo.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -35,7 +37,7 @@
 			<a href=".do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
 		</div>
 		<div class="titleLogo">
-			<a href="/Index.do"><img src="/images/maintitle2.png" /></a>
+			<a href="/Index.do"><img src="/images/maintitle.png" /></a>
 		</div>
 		<nav class="navigation">
 			<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
@@ -96,7 +98,34 @@
 		</nav>
 	</header>
 	<section>
-		<div class="empty_div"></div>
+		<c:forEach var = "list" items="${list}">
+		<!-- 상품시작 -->
+			<div class="col mb-5">
+						<div class="card h-100">
+							<!-- Product image-->
+							<a href="view.do?prIdx=${list.proIdx}"> 
+							<img src="" class="card-img-top" height="250px">
+							</a>
+							<!-- Product details-->
+							<div class="card-body p-4">
+									<!-- Product name-->
+									<a href="view.do?prIdx=${list.proIdx}">
+									<span style="font-size:15px; font-weight:bold;">
+									<c:out value="${list.proName}" /></span></a>
+									<hr>
+									<!-- Product price-->
+									<span style="font-size:13px; font-weight:bold; color:green;">
+									<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
+									</span><br>
+									<span style="font-size:12px; font-weight:bold;">
+									${list.proContents}</span><br>
+									<span style="font-size:12px; font-weight:bold;">
+									결제기준 3일 이내 로스팅 후 배송</span>
+							</div>
+						</div>
+					</div>
+					<!--상품 끝-->
+		</c:forEach>
 		
 	</section>
 	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

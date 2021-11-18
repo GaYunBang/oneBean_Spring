@@ -37,7 +37,7 @@
 			<a href=".do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
 		</div>
 		<div class="titleLogo">
-			<a href="/.do"><img src="/images/maintitle2.png" /></a>
+			<a href="/.do"><img src="/images/maintitle.png" /></a>
 		</div>
 		<nav class="navigation">
 			<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
@@ -92,8 +92,8 @@
 							<li><a href="" title="">주문조회</a></li>
 						</c:if>
 					</ul></li>
-				<li class="icons"><a href=".do"><i class="bi bi-search"></i></a></li>
 				<li class="icons"><a href=".do"><i class="bi bi-cart3"></i></a></li>
+				<li class="icons"><a href=".do"><i class="bi bi-search"></i></a></li>
 			</ul>
 		</nav>
 	</header>

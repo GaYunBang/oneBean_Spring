@@ -160,6 +160,7 @@ ul, li {
 	right: 50px;
 	top: 2px;
 	padding: 0px;
+	width: 180px;
 }
 
 .icon {
@@ -172,19 +173,19 @@ ul, li {
 	padding: 6px;
 }
 
-#right_nav>.icons {
+#right_nav .icons {
 	position: relative;
 	bottom: 7px;
 	font-size: 25px;
 }
 
-#right_nav>li {
-	float: left;
-	width: 50px;
-	text-align: center;
-	font-size: 17px;
-	margin-left: 15px;
-}
+.icon, .icons{
+    float: left;
+    width: 50px;
+    text-align: center;
+    font-size: 17px;
+    margin-left: 15px;
+  }
 
 #right_nav>li:hover>ul {
 	display: block;

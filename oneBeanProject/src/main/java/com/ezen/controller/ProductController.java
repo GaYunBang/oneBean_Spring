@@ -26,4 +26,9 @@ public class ProductController {
 		mav.addObject("list", list);
 		return mav;
 	}
+	
+	@RequestMapping(value=".do")
+	public String product() throws Exception{
+		return "product/product";
+	}
 }

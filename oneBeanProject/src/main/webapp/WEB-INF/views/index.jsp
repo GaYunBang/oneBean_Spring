@@ -22,13 +22,13 @@
 
 <script src="https://kit.fontawesome.com/be3783bb1d.js"
 	crossorigin="anonymous"></script>
-<!--햄버거 제이쿼리-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
-<!-- 스타일 -->
+<!-- 스타일css 링크추가 -->
 <link href="/css/header.css" rel="stylesheet" />
 <link href="/css/footer.css" rel="stylesheet" />
+<link href="/css/search.css" rel="stylesheet" />
 </head>
 <body>
 	<header class="fixed-top">
@@ -48,7 +48,7 @@
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
-						<li><a href="/Product/proListAll.do">모든상품</a></li>
+						<li><a href="/Product/.do">모든상품</a></li>
 						<li><a href="/Regular/list.do">정기구독</a></li>
 						<li><a href="/Product/goods.do">커피용품</a>
 							<hr class="line"></li>
@@ -75,6 +75,7 @@
 							<hr class="line"></li>
 					</ul></li>
 			</ul>
+			<form class="search_form" name="frm" action="" method="get">
 			<ul id="right_nav">
 				<li class="icon"><a href="#none"><i class="bi bi-person" style="font-size: 30px;"></i></a>
 					<ul class="under_view">
@@ -91,9 +92,13 @@
 							<li><a href="" title="">주문조회</a></li>
 						</c:if>
 					</ul></li>
-				<li class="icons"><a href=".do"><i class="bi bi-search"></i></a></li>
 				<li class="icons"><a href=".do"><i class="bi bi-cart3"></i></a></li>
+				<li class="search_box">
+                    <input type="text" class="search_txt" name="keyword" placeholder="Type to search" maxlength="20">
+				    <button class="icons search_btn"><i class="bi bi-search"></i></button>
+                </li>
 			</ul>
+			</form>
 		</nav>
 	</header>
 	<section>
@@ -125,7 +130,7 @@
 			</div>
 		</div>
 	</section>
-	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
+	<!--footer-->
 	<footer class="footer">
 			<div class="row text-center">
 				<div>

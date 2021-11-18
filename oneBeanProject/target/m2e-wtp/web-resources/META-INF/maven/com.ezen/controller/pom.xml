@@ -178,11 +178,7 @@
 		</dependency>    
 		
 		<!-- 문자열 암호화를 위한 라이브러리 -->
-		<dependency>
-			<groupId>org.mindrot</groupId>
-			<artifactId>jbcrypt</artifactId>
-			<version>0.4</version>
-		</dependency>      
+		      
 	</dependencies>
 	<repositories>
 			<repository>

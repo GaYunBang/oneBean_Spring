@@ -1,9 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.ezen.vo.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
-<html>
+<html lang="kr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,15 +17,12 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
-<title>로그인</title>
+<title>ONEBEAN</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
 
 <script src="https://kit.fontawesome.com/be3783bb1d.js"
-	crossorigin="anonymous">
-	
-</script>
-
+	crossorigin="anonymous"></script>
 <!--햄버거 제이쿼리-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
@@ -31,15 +30,14 @@
 <!-- 스타일 -->
 <link href="/css/header.css" rel="stylesheet" />
 <link href="/css/footer.css" rel="stylesheet" />
-<link href="/css/login.css" rel="stylesheet" />
 </head>
 <body>
-<header class="fixed-top">
+	<header class="fixed-top">
 		<div class="top__banner">
 			<a href=".do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
 		</div>
 		<div class="titleLogo">
-			<a href="/.do"><img src="/images/maintitle.png" /></a>
+			<a href="/Index.do"><img src="/images/maintitle.png" /></a>
 		</div>
 		<nav class="navigation">
 			<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
@@ -48,30 +46,30 @@
 			<ul class="first_nav">
 				<li class="change"><a class="eng" href="/Index/about.do">ABOUT</a>
 					<a class="kor" href="/Index/about.do">회사소개</a></li>
-				<li class="change"><a class="eng" href="#none">SHOP</a>
-					<a class="kor" href="#none">상품</a>
+				<li class="change"><a class="eng" href="#">SHOP</a>
+					<a class="kor" href="#">상품</a>
 					<ul class="under_view">
 						<li><a href="/Product/allList.do">모든상품</a></li>
 						<li><a href="/Regular/list.do">정기구독</a></li>
 						<li><a href="/Product/goods.do">커피용품</a>
 							<hr class="line"></li>
 					</ul></li>
-				<li class="change"><a class="eng" href="#none">EVENT</a>
-					<a class="kor" href="#none">이벤트</a>
+				<li class="change"><a class="eng" href="#">EVENT</a>
+					<a class="kor" href="#">이벤트</a>
 					<ul class="under_view">
-						<li><a href="/Product/newProduct.do">새상품</a></li>
+						<li><a href="/Product/new.do">새상품</a></li>
 						<li><a href="/Product/sampleBoxList.do">샘플BOX</a>
 							<hr class="line"></li>
 					</ul></li>
-				<li class="change"><a class="eng" href="#none">WHOLESALE</a>
-					<a class="kor" href="#none">도매</a>
+				<li class="change"><a class="eng" href="#">WHOLESALE</a>
+					<a class="kor" href="#">도매</a>
 					<ul class="under_view">
 						<li><a href=".do">납품신청</a></li>
 						<li><a href=".do">창업문의</a></li>
 						<li><a href=".do">커피용품</a>
 							<hr class="line"></li>
 					</ul></li>
-				<li><a href="#none">고객센터</a>
+				<li><a href="#">고객센터</a>
 					<ul class="under_view">
 						<li><a href=".do">Q&A</a></li>
 						<li><a href=".do">문의사항</a>
@@ -79,7 +77,7 @@
 					</ul></li>
 			</ul>
 			<ul id="right_nav">
-				<li class="icon"><a href="#none"><i class="bi bi-person" style="font-size: 30px;"></i></a>
+				<li><a href=""><i class="far fa-user-circle fa-lg"></i></a>
 					<ul class="under_view">
 						<!-- 로그인 안했을때 -->
 						<c:if test="${member == null}">
@@ -89,46 +87,47 @@
 						<!-- 로그인 했을때 -->
 						<c:if test="${member != null}">
 							<li>${member.memId}님</li>
-							<li><a href="/.do" title="">로그아웃</a></li>
+							<li><a href="/Index.do" title="">로그아웃</a></li>
 							<li><a href="" title="">마이페이지</a></li>
 							<li><a href="" title="">주문조회</a></li>
 						</c:if>
 					</ul></li>
-				<li class="icons"><a href=".do"><i class="bi bi-search"></i></a></li>
-				<li class="icons"><a href=".do"><i class="bi bi-cart3"></i></a></li>
+				<li><a href=""><i class="fas fa-search fa-lg"></i></a></li>
+				<li><a href=""><i class="fas fa-shopping-cart fa-lg"></i></a></li>
 			</ul>
 		</nav>
 	</header>
-	<div class="empty_div"></div>
-	<hr>
-	
-	
 	<section>
-		<div class="frmbox">
-			<form method="post" action="login.do" class="loginFrm" name="login">
-				<div class="form-group">
-					<input type="text" class="login" name="userId" id="userID" placeholder="아이디를 입력하세요" />
-				</div>
-		 		<br>
-				<div class="form-group">
-					<input type="password" class="login" name="userPwd" id="userPwd" placeholder="비밀번호를 입력하세요" />
-				</div>
-				<br>
-				<div class="form-group">
-					<input type="submit" class="login" value="로그인" />
-				</div><br>
-				<c:if test="${msg == false}">
-					<p class="text-warning">로그인 실패. 아이디, 비밀번호를 확인해주세요.</p>
-				</c:if>
-				<input type="checkbox">&nbsp;&nbsp;아이디 기억하기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox">&nbsp;&nbsp;로그인 상태 유지<br><br>
-				<a href="/co/join.do" title="">회원가입</a><br><br>
-				아이디 / 비밀번호 찾기
-			</form>
-		</div>
+		<c:forEach var = "list" items="${list}">
+		<!-- 상품시작 -->
+			<div class="col mb-5">
+						<div class="card h-100">
+							<!-- Product image-->
+							<a href="view.do?prIdx=${list.proIdx}"> 
+							<img src="" class="card-img-top" height="250px">
+							</a>
+							<!-- Product details-->
+							<div class="card-body p-4">
+									<!-- Product name-->
+									<a href="view.do?prIdx=${list.proIdx}">
+									<span style="font-size:15px; font-weight:bold;">
+									<c:out value="${list.proName}" /></span></a>
+									<hr>
+									<!-- Product price-->
+									<span style="font-size:13px; font-weight:bold; color:green;">
+									<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
+									</span><br>
+									<span style="font-size:12px; font-weight:bold;">
+									${list.proContents}</span><br>
+									<span style="font-size:12px; font-weight:bold;">
+									결제기준 3일 이내 로스팅 후 배송</span>
+							</div>
+						</div>
+					</div>
+					<!--상품 끝-->
+		</c:forEach>
+		바꿈
 	</section>
-	<br><br><br>
-	
 	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 	<footer class="footer">
 
@@ -168,7 +167,6 @@
 			</div>
 		</div>
 	</footer>
-	<!-- Bootstrap core JS-->
 	<!--끝-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -183,8 +181,6 @@
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
 	<script src="../resources/js/hamber.js"></script>
-	<!-- Core theme JS-->
-	<script src="../resources/js/scripts.js"></script>
-	
+
 </body>
 </html>

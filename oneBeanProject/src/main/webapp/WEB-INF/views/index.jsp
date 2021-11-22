@@ -26,9 +26,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 <!-- 스타일css 링크추가 -->
-<link href="/css/header.css" rel="stylesheet" />
-<link href="/css/footer.css" rel="stylesheet" />
-<link href="/css/search.css" rel="stylesheet" />
+<link href="/css/index/header.css" rel="stylesheet" />
+<link href="/css/index/footer.css" rel="stylesheet" />
+<link href="/css/index/search.css" rel="stylesheet" />
 </head>
 <body>
 	<header class="fixed-top">
@@ -40,7 +40,7 @@
 		</div>
 		<nav class="navigation">
 			<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
-			<a href="#" class="navbar_toggleBtn"> <span></span>
+			<a href="#none" class="navbar_toggleBtn"> <span></span>
 			</a>
 			<ul class="first_nav">
 				<li class="change"><a class="eng" href="/Index/about.do">ABOUT</a>
@@ -48,9 +48,9 @@
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
-						<li><a href="/Product/.do">모든상품</a></li>
-						<li><a href="/Regular/list.do">정기구독</a></li>
-						<li><a href="/Product/goods.do">커피용품</a>
+						<li><a href="/Product/allProductList.do">모든상품</a></li>
+						<li><a href="/Regular/regularList.do">정기구독</a></li>
+						<li><a href="/Product/coffeeProductList.do">커피용품</a>
 							<hr class="line"></li>
 					</ul></li>
 				<li class="change"><a class="eng" href="#none">EVENT</a>

@@ -19,4 +19,14 @@ public class ProductServiceImpl implements ProductService{
 		return dao.proListAll();
 	}
 
+	@Override
+	public ProductVO proDetail(int proIdx) throws Exception {
+		return dao.proDetail(proIdx);
+	}
+
+	@Override
+	public void proWrite(ProductVO vo) throws Exception {
+		dao.proWrite(vo);
+	}
+
 }

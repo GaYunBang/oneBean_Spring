@@ -29,21 +29,22 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 <!-- 스타일 -->
-<link href="/css/header.css" rel="stylesheet" />
-<link href="/css/footer.css" rel="stylesheet" />
-<link href="/css/login.css" rel="stylesheet" />
+<link href="/css/index/header.css" rel="stylesheet" />
+<link href="/css/index/footer.css" rel="stylesheet" />
+<link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/member/login.css" rel="stylesheet" />
 </head>
 <body>
 <header class="fixed-top">
 		<div class="top__banner">
-			<a href=".do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
+			<a href="/Regular/regularList.do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
 		</div>
 		<div class="titleLogo">
-			<a href="/.do"><img src="/images/maintitle.png" /></a>
+			<a href="/"><img src="/images/maintitle.png" /></a>
 		</div>
 		<nav class="navigation">
 			<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
-			<a href="#" class="navbar_toggleBtn"> <span></span>
+			<a href="#none" class="navbar_toggleBtn"> <span></span>
 			</a>
 			<ul class="first_nav">
 				<li class="change"><a class="eng" href="/Index/about.do">ABOUT</a>
@@ -51,9 +52,9 @@
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
-						<li><a href="/Product/allList.do">모든상품</a></li>
-						<li><a href="/Regular/list.do">정기구독</a></li>
-						<li><a href="/Product/goods.do">커피용품</a>
+						<li><a href="/Product/proListAll.do">모든상품</a></li>
+						<li><a href="/Regular/regularList.do">정기구독</a></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a>
 							<hr class="line"></li>
 					</ul></li>
 				<li class="change"><a class="eng" href="#none">EVENT</a>
@@ -78,6 +79,7 @@
 							<hr class="line"></li>
 					</ul></li>
 			</ul>
+			<form class="search_form" name="frm" action="" method="get">
 			<ul id="right_nav">
 				<li class="icon"><a href="#none"><i class="bi bi-person" style="font-size: 30px;"></i></a>
 					<ul class="under_view">
@@ -89,20 +91,20 @@
 						<!-- 로그인 했을때 -->
 						<c:if test="${member != null}">
 							<li>${member.memId}님</li>
-							<li><a href="/.do" title="">로그아웃</a></li>
+							<li><a href="/" title="">로그아웃</a></li>
 							<li><a href="" title="">마이페이지</a></li>
 							<li><a href="" title="">주문조회</a></li>
 						</c:if>
 					</ul></li>
-				<li class="icons"><a href=".do"><i class="bi bi-search"></i></a></li>
 				<li class="icons"><a href=".do"><i class="bi bi-cart3"></i></a></li>
+				<li class="search_box">
+                    <input type="text" class="search_txt" name="keyword" placeholder="Type to search" maxlength="20">
+				    <button class="icons search_btn"><i class="bi bi-search"></i></button>
+                </li>
 			</ul>
+			</form>
 		</nav>
 	</header>
-	<div class="empty_div"></div>
-	<hr>
-	
-	
 	<section>
 		<div class="frmbox">
 			<form method="post" action="login.do" class="loginFrm" name="login">

@@ -6,20 +6,48 @@
 <mapper namespace="com.ezen.mapper.ProductMapper"> <!-- 호출할떄 사용할 mapper이름. -->
 	<select id="proListAll" resultType="productVO">
 		SELECT
-			PROIDX,
-			PROTYPE,
-			PRONAME,
-			PROPRICE,
-			PROPRICE2,
-			PROCONTENTS,
-			PROSTOCK,
-			PRODEL,
-			COL
+			proIdx,
+			proType,
+			proName,
+			proPrice,
+			proPrice2,
+			proContents,
+			proStock,
+			proDate,
+			proDel,
+			proImg,
+			proImgThumb
 		FROM SHOP_PRODUCT
 		ORDER BY 
 			PROIDX DESC
 	</select>
-
+	
+	<!-- 게시글 상세보기 -->
+	<select id="proDetail" resultType="productVO">
+		SELECT * FROM SHOP_PRODUCT
+		WHERE proIdx = #{proIdx}
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO SHOP_PRODUCT (
+			proIdx,
+			proType,
+			proName,
+			proPrice,
+			proContents,
+			proImg,
+			proImgThumb
+		) VALUES (
+			#{proIdx},
+			#{proType},
+			#{proName},
+			#{proPrice},
+			#{proContents},
+			#{proImg},
+			#{proImgThumb}
+		)
+	</insert>
 	
     
 </mapper>

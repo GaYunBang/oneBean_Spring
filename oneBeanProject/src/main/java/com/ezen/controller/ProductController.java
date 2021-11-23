@@ -29,6 +29,6 @@ public class ProductController {
 	
 	@RequestMapping(value=".do")
 	public String product() throws Exception{
-		return "product/product";
+		return "product/product2";
 	}
 }

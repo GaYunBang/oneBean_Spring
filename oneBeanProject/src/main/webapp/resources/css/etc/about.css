@@ -1,5 +1,5 @@
 section{
-	height: 1300px;
+	margin-bottom: 150px;
 }
 .im1{
 	display: block;
@@ -30,9 +30,11 @@ section{
 }
 
 @media screen and (max-width:1300px){
-    section{
+/*
+	section{
 		height: inherit;
 	}
+	*/
     .about{
         margin: 30px auto;
         width: 50%;

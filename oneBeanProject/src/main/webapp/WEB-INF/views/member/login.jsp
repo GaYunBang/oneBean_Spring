@@ -47,8 +47,8 @@
 			<a href="#none" class="navbar_toggleBtn"> <span></span>
 			</a>
 			<ul class="first_nav">
-				<li class="change"><a class="eng" href="/Index/about.do">ABOUT</a>
-					<a class="kor" href="/Index/about.do">회사소개</a></li>
+				<li class="change"><a class="eng" href="/Etc/about.do">ABOUT</a>
+					<a class="kor" href="/Etc/about.do">회사소개</a></li>
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
@@ -74,7 +74,7 @@
 					</ul></li>
 				<li><a href="#none">고객센터</a>
 					<ul class="under_view">
-						<li><a href=".do">Q&A</a></li>
+						<li><a href="/Etc/faq.do">Q&A</a></li>
 						<li><a href=".do">문의사항</a>
 							<hr class="line"></li>
 					</ul></li>
@@ -164,7 +164,7 @@
 			</div>
 			<div class="row text-center">
 				<div>
-					<div class="copyright-content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한
+					<div class="copyright_content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한
 						구매안전 서비스를 이용하실 수 있습니다</div>
 				</div>
 			</div>
@@ -184,9 +184,9 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
-	<script src="../resources/js/hamber.js"></script>
+	<script src="/js/hamber.js"></script>
 	<!-- Core theme JS-->
-	<script src="../resources/js/scripts.js"></script>
+	<script src="/js/scripts.js"></script>
 	
 </body>
 </html>

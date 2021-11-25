@@ -18,7 +18,7 @@ import com.ezen.service.MemberService;
 import com.ezen.vo.MemberVO;
 
 
-@RequestMapping(value="/Member")
+@RequestMapping(value="/Member/")
 @Controller
 public class MemberController {
 
@@ -26,28 +26,28 @@ public class MemberController {
 	MemberService memberService;
 	
 		
-	@RequestMapping(value="/join.do", method = RequestMethod.GET)
-	public String joinOK(Locale locale, Model model) throws Exception {
+	@RequestMapping(value="join.do", method = RequestMethod.GET)
+	public String join(Locale locale, Model model) throws Exception {
 		
 		return "member/join";
 	}
 	
-	@RequestMapping(value="/join.do", method = RequestMethod.POST)
+	@RequestMapping(value="join.do", method = RequestMethod.POST)
 	public String joinOK(Locale locale, Model model, MemberVO vo) throws Exception {
+		//memberService.joinOK(vo);
+		System.out.println("////////////////////////////"+vo.getMemberSpam());
+		
+		if(vo.getMemberSpam() == null) {
+			vo.setMemberSpam("N");
+		}
 		
 		return "redirect:login.do";
 	}
 	
-	@RequestMapping(value="/login.do", method = RequestMethod.GET)
+	@RequestMapping(value="login.do", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) throws Exception {
 		
 		return "member/login";
 	}
-	
-	
-	@RequestMapping(value="/main.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String main() throws Exception {
-		
-		return "index";
-	}
+
 }

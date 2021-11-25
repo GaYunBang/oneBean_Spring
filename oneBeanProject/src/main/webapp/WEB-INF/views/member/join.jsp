@@ -12,22 +12,207 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
-<title>회원가입</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+
+<title>ONEBEAN</title>
 <link rel="shortcut icon" type="image/x-icon"
-	href="images/titlelogo.png" />
+	href="/images/titlelogo.png" />
 
 <script src="https://kit.fontawesome.com/be3783bb1d.js"
-	crossorigin="anonymous">
-	
-</script>
-
-<!--햄버거 제이쿼리-->
+	crossorigin="anonymous"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script>
+	 $(document).ready(function() {
+		//체크박스 모두 체크
+		$("#AgreeCheckAll").click(function() {
+			if($("#AgreeCheckAll").prop("checked"))
+				$(".check_item").prop("checked", true);
+			else $(".check_item").prop("checked", false);
+		});
+		
+		$(".check_item").click(function() {
+			var total = $(".check_item").length;
+			var checked = $(".check_item:checked").length;
+			
+			if(total != checked) $("#AgreeCheckAll").prop("checked", false);
+			else $("#AgreeCheckAll").prop("checked", true); 
+		});
+		
+		//col1 색변환
+		$(".check").blur(function(){
+			
+			//정규식
+			var checkId = /^[a-z]+[a-z0-9]{5,15}/g;
+			var checkPwd = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+			var checkName = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+			var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/g;
+			var checkPhone1 = /^[0-9]{3,4}/g;
+			var checkPhone2 = /^[0-9]{3,4}/g;
+			var checkYear = /^[0-9]{4}/g;
+			var checkDay = /^[0-9]{1,2}/g;
+			
+            var value = $(this).val();
+            var col1 = $(this).parent().prev();
+            if(value == ("" |0)){
+            	col1.css("color","red");
+            }else{
+            	var name = $(this).attr("name");
+            	if(name == "memberName"){
+            		var test = checkName.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}else if(name == "memberId"){
+            		var test = checkId.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}else if(name == "memberPwd"){
+            		var test = checkPwd.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}else if(name == "memberPwdCheck"){
+            		if(value != $("#memberPwd").val()){
+            			alert("비밀번호가 다릅니다");
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}else if(name == "birth1"){
+            		var test = checkYear.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            		col1.css("color","black");
+            		}
+            	}else if(name == "memberEmail"){
+            		var test = checkEmail.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}else if(name == ("phone2")){
+            		var test = checkPhone1.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}else if(name == ("phone3")){
+            		var test = checkPhone2.test(value);
+            		if(!test){
+            			col1.css("color","red");
+            		}else{
+            			col1.css("color","black");
+            		}
+            	}
+            }
+        });
+		
+		//submit버튼 눌렀을때 focus
+		$("form").submit(function(){
+			var checkId = /^[a-z]+[a-z0-9]{5,15}/g;
+			var checkPwd = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+			var checkName = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+			var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/g;
+			var checkPhone1 = /^[0-9]{3,4}/g;
+			var checkPhone2 = /^[0-9]{3,4}/g;
+			var checkYear = /^[0-9]{4}/g;
+			var checkDay = /^[0-9]{1,2}/g;
+			
+			var useCheck = $("#useCheck").is(":checked");
+			if( useCheck ==true){
+				alert("체크");
+			}else if(useCheck==false){
+				alert("이용약관을 체크해야 함");
+				return false;
+			}
+			
+			var memberSpam = $("#memberSpam").is(":checked");
+			if( memberSpam ==true){
+				alert("spamy");
+			}else if(memberSpam==false){
+				alert("spamN");
+				alert($('#memberSpam').val());
+			}			
+			
+			var check=true;
+			var first;
+			$(".check").each(function(index){
+				var value = $(this).val();
+				var col1 = $(this).parent().prev();
+				if(value==""){
+					check = false;
+					if(first===undefined){
+						first = index;
+					}
+				}else{
+					var name = $(this).attr("name");
+					if(name == "memberName"){
+						var test = checkName.test(value);
+						if(!test){
+							col1.css("color","red");
+							check = false;
+						}
+					}else if(name == "memberId"){
+						var test = checkId.test(value);
+						if(!test){
+							col1.css("color","red");
+							check = false;
+						}
+					}else if(name == "memberPwd"){
+						var test = checkPwd.test(value);
+						if(!test){
+							col1.css("color","red");
+							check = false;
+						}
+					}else if(name == "birth1"){
+						var test = checkYear.test(value);
+						if(!test){
+							col1.css("color","red");
+							check = false;
+						}
+					}else if(name == "memberEmail"){
+						var test = checkEmail.test(value);
+						if(!test){
+							col1.css("color","red");
+							check = false;
+						}
+					}else if(name == "phone2"){
+						var test = checkPhone1.test(value);
+						if(!test){
+							col1.css("color","red");
+							//console.log("1");
+							check = false;
+						}
+					}else if(name == "phone3" ){
+						var test = checkPhone2.test(value);
+						if(!test){
+							col1.css("color","red");
+							//console.log("2");
+							check = false;
+						}
+					}
+				}
+			});
+			$(".check").eq(first).focus();
+			return check;
+		});
+	});
+</script>
 
-<!-- 스타일 -->
+<!-- 스타일css 링크추가 -->
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
@@ -46,8 +231,8 @@
 			<a href="#none" class="navbar_toggleBtn"> <span></span>
 			</a>
 			<ul class="first_nav">
-				<li class="change"><a class="eng" href="/Index/about.do">ABOUT</a>
-					<a class="kor" href="/Index/about.do">회사소개</a></li>
+				<li class="change"><a class="eng" href="/Etc/about.do">ABOUT</a>
+					<a class="kor" href="/Etc/about.do">회사소개</a></li>
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
@@ -73,7 +258,7 @@
 					</ul></li>
 				<li><a href="#none">고객센터</a>
 					<ul class="under_view">
-						<li><a href=".do">Q&A</a></li>
+						<li><a href="/Etc/faq.do">Q&A</a></li>
 						<li><a href=".do">문의사항</a>
 							<hr class="line"></li>
 					</ul></li>
@@ -105,102 +290,166 @@
 		</nav>
 	</header>
 	<section>
-	 <form method="post" action="">
-      <div class="container">
-      <div class="insert">
-      
-      <table>
-      <caption><h2>회원가입 양식</h2></caption>
-      <tr>
-          <td class="col1">이름</td>
-          <td class="col2"><input type="text" name="name" maxlength="5"></td>
-      </tr>
-      <tr>
-          <td class="col1">아이디</td>
-          <td class="col2">
-              <input type="text" name="id" maxlength="10">
-              <input class='but1' type="button" value="중복확인" onclick="">
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">비밀번호</td>
-          <td class="col2">
-              <input type="password" name="pwd" maxlength="16">
-              <p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
-              10 ~ 16자리</span>로 입력이 가능합니다.</p>
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">비밀번호 확인</td>
-          <td class="col2"><input type="password" name="pwdCheck" maxlength="16"></td>
-      </tr>
-      <tr>
-          <td class="col1">성별</td>
-          <td class="col2">
-            <input type="radio" name="gender" value="m">남자
-            <input type="radio" name="gender" value="f">여자
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">생년월일</td>
-          <td class="col2">
-            <input type="text" class="birth1" name="birth1" placeholder="년(4자)" maxlength="4">년&nbsp;
-                <select class="birth2" name="birth2">
-                    <option value="0">월</option>
-                    <option value="1">1월</option>
-                    <option value="2">2월</option>
-                    <option value="3">3월</option>
-                    <option value="4">4월</option>
-                    <option value="5">5월</option>
-                    <option value="6">6월</option>
-                    <option value="7">7월</option>
-                    <option value="8">8월</option>
-                    <option value="9">9월</option>
-                    <option value="10">10월</option>
-                    <option value="11">11월</option>
-                    <option value="12">12월</option>
-                </select>&nbsp;
-                <input type="text" class="birth3" name="birth3" placeholder="일">일
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">이메일</td>
-          <td class="col2">
-              <input type="text" name="mailid">
-              <span class="a">@</span>
-              <input type="text" name="email">
-              <select name="mailslc">
-                  <option value="self" selected>직접입력</option>
-                  <option value="naver">naver.com</option>
-                  <option value="gm">gmail.com</option>
-                  <option value="da">daum.com</option>
-                  <option value="yah">yahoo.com</option>
-              </select>
-              <input class='but2' type="button" value="이메일 중복확인" onclick="">
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">전화번호</td>
-          <td class="col2"><select name="phone">
-              <option value="slc1" selected>선택</option>
-              <option value="g1">010</option>
-              <option value="g2">016</option>
-              <option value="g3">011</option>
-              <option value="g4">018</option>
-          </select>
-            <input type="text" class="phone2" name="phone2" maxlength="4">
-            <input type="text" class="phone3" name="phone3" maxlength="4">                                 
-          </td>   
-      </tr>
-      </table>      
-    </div>   
-    <div class="create">      
-      <input class="but3" type="button" value="가입취소" onclick="">
-      <input class="but4" type="button" value="회원가입" onclick="formCheck(this.form)">      
-    </div>
-    </div>
-    </form>
-    </section>
+		<form method="post" name="frm" action="join.do">
+			<div class="container">
+				<div class="insert">
+			      <table>
+			      <caption><h2>회원가입 양식</h2></caption>
+			      <tr>
+			          <td class="col1">이름<span class="red"> *</span></td>
+			          <td class="col2"><input type="text" name="memberName" id="memberName" maxlength="5" class="name check"></td>
+			      </tr>
+			      <tr>
+			          <td class="col1">아이디<span class="red"> *</span></td>
+			          <td class="col2">
+			              <input type="text" name="memberId" maxlength="10" class="id check">
+			              <input class='but1' type="button" value="중복확인" onclick="">
+			          </td>
+			      </tr>
+			      <tr>
+			          <td class="col1">비밀번호<span class="red"> *</span></td>
+			          <td class="col2">
+			              <input type="password" name="memberPwd" id="memberPwd" maxlength="16" class="pwd check">
+			              <p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
+			              10 ~ 16자리</span>로 입력이 가능합니다.</p>
+			          </td>
+			      </tr>
+			      <tr>
+			          <td class="col1">비밀번호 확인<span class="red"> *</span></td>
+			          <td class="col2"><input type="password" name="memberPwdCheck" maxlength="16" class="pwdCheck check"></td>
+			      </tr>
+			      <tr>
+			          <td class="col1">성별</td>
+			          <td class="col2">
+			            <input type="radio" name="memberGender" value="m" checked>남자
+			            <input type="radio" name="memberGender" value="f">여자
+			          </td>
+			      </tr>
+			      <tr>
+			          <td class="col1">생년월일<span class="red"> *</span></td>
+			          <td class="col2">
+			            <input type="text" name="birth1" placeholder="년(4자)" maxlength="4" class="birth1 check">년&nbsp;
+			                <select name="birth2" class="birth2 check">
+			                    <option value="0">월</option>
+			                    <option value="01">1월</option>
+			                    <option value="02">2월</option>
+			                    <option value="03">3월</option>
+			                    <option value="04">4월</option>
+			                    <option value="05">5월</option>
+			                    <option value="06">6월</option>
+			                    <option value="07">7월</option>
+			                    <option value="08">8월</option>
+			                    <option value="09">9월</option>
+			                    <option value="10">10월</option>
+			                    <option value="11">11월</option>
+			                    <option value="12">12월</option>
+			                </select>&nbsp;
+			                <select name="birth3" class="birth3 check">
+			                    <option value="0">일</option>
+			                    <option value="01">1일</option>
+			                    <option value="02">2일</option>
+			                    <option value="03">3일</option>
+			                    <option value="04">4일</option>
+			                    <option value="05">5일</option>
+			                    <option value="06">6일</option>
+			                    <option value="07">7일</option>
+			                    <option value="08">8일</option>
+			                    <option value="09">9일</option>
+			                    <option value="10">10일</option>
+			                    <option value="11">11일</option>
+			                    <option value="12">12일</option>
+			                    <option value="13">13일</option>
+			                    <option value="14">14일</option>
+			                    <option value="15">15일</option>
+			                    <option value="16">16일</option>
+			                    <option value="17">17일</option>
+			                    <option value="18">18일</option>
+			                    <option value="19">19일</option>
+			                    <option value="20">20일</option>
+			                    <option value="21">21일</option>
+			                    <option value="22">22일</option>
+			                    <option value="23">23일</option>
+			                    <option value="24">24일</option>
+			                    <option value="25">25일</option>
+			                    <option value="26">26일</option>
+			                    <option value="27">27일</option>
+			                    <option value="28">28일</option>
+			                    <option value="29">29일</option>
+			                    <option value="30">30일</option>
+			                    <option value="31">31일</option>
+			                </select>
+			          </td>
+			      </tr>
+			      <tr>
+			          <td class="col1">이메일<span class="red"> *</span></td>
+			          <td class="col2">
+			              <input type="text" name="memberEmail" class="mail check">
+			          </td>
+			      </tr>
+			      <tr>
+			          <td class="col1">휴대폰<span class="red"> *</span></td>
+			          <td class="col2"><select name="phone1" class="phone1 check">
+			              <option value="0" selected>선택</option>
+			              <option value="010">010</option>
+			              <option value="011">011</option>
+			              <option value="016">016</option>
+			              <option value="018">018</option>
+			          </select>
+			            <input type="text" class="phone2 check" name="phone2" maxlength="4">
+			            <input type="text" class="phone3 check" name="phone3" maxlength="4">                                 
+			          </td>   
+			      </tr>
+			      <tr>
+			          <td class="col1">전화번호</td>
+			          <td class="col2"><select name="tel1" class="tel1">
+			              <option value="0" selected>선택</option>
+			              <option value="02">02</option>
+			              <option value="051">051</option>
+			              <option value="053">053</option>
+			              <option value="063">063</option>
+			              <option value="062">062</option>
+			              <option value="070">070</option>
+			          </select>
+			            <input type="text" class="phone2" name="tel2" maxlength="4">
+			            <input type="text" class="phone2" name="tel3" maxlength="4">                                 
+			          </td>   
+			      </tr>
+			     </table>
+			     <div class="agree_box">
+			     	회원가입 이용약관<br>
+			     	<span class="basecheck"><input type="checkbox" id="AgreeCheckAll">
+			     	이용약관 및 쇼핑정보 수신(선택)에 모두 동의합니다.</span>
+			     	<div class="op1">
+			     		<span class="agree_title">[필수]이용약관 동의</span>
+			     		<p class ="agree">
+			     		<strong>제 1조 Lorem ipsum dolor sit amet</strong><br>
+			     		이 약관은 (0)0000(전자거래 사업자)이 운영하는 홈페이지(이하 "쇼핑몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 (0)0000와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.<br>
+			     		※ 「PC통신 등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」<br>
+			     		제2조(정의) ① "쇼핑몰" 이란 사업자가 재화 또는 용역을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 또는 용역을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 쇼핑몰을 운영하는 사업자의 의미로도 사용합니다.<br>
+			     		② "이용자"란 "쇼핑몰"에 접속하여 이 약관에 따라 "쇼핑몰"이 제공하는 서비스를 받는 회원 및 비회원을 말합니다.<br>
+			     		③ "회원"이라 함은 "쇼핑몰"에 개인정보를 제공하여 회원등록을 한 자로서, "쇼핑몰"의 정보를 지속적으로 제공받으며, "쇼핑몰"이 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br>
+			     		④ "비회원"이라 함은 회원에 가입하지 않고 "쇼핑몰"이 제공하는 서비스를 이용하는 자를 말합니다.
+			     		</p>
+			     		<span class="basecheck"><input type="checkbox" class="check_item" id="useCheck"> 이용약관에 동의합니다.</span>
+			     	</div>
+			     	<div class="op1">
+			     		<span class="agree_title">[선택] 쇼핑정보 수신 동의</span>
+			     		<p class ="agree">
+			     		할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.<br>
+			     		단, 주문/거래 정보 및 주요 정책과 관련된 내용은 수신동의 여부와 관계없이 발송됩니다.<br>
+			     		선택 약관에 동의하지 않으셔도 회원가입은 가능하며, 회원가입 후 회원정보수정 페이지에서 언제든지 수신여부를 변경하실 수 있습니다.
+			     		</p>
+			     		<span class="basecheck"><input type="checkbox" class="check_item" name="memberSpam" id="memberSpam" value="Y"> 수신동의에 동의합니다.</span>
+			     	</div>
+			     </div>
+			    </div>   
+			    <div class="create">      
+			      <input class="but3" type="button" value="가입취소" onclick="location.href='<%=request.getContextPath()%>/'">
+			      <input class="but4" type="submit" value="회원가입">      
+				</div>
+			</div>
+		</form>
+	</section>
 	<!--메인 하단-->
 	<footer class="footer">
 		<div class="container">
@@ -234,7 +483,7 @@
 			</div>
 			<div class="row text-center">
 				<div>
-					<div class="copyright-content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한
+					<div class="copyright_content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한
 						구매안전 서비스를 이용하실 수 있습니다</div>
 				</div>
 			</div>
@@ -253,8 +502,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
-	<script src="js/hamber.js"></script>
-	<script src="js/join.js"></script>
+	<script src="/js/hamber.js"></script>
 
 </body>
 </html>

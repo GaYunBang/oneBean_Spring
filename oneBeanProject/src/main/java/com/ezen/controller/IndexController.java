@@ -13,16 +13,21 @@ public class IndexController {
 	
 	
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "index";
 	}
 	
-	@RequestMapping(value = "/Index/about", method = RequestMethod.GET)
+	@RequestMapping(value="/Etc/about.do", method = RequestMethod.GET)
 	public String about(Locale locale, Model model) {
 		
-		return "info/about";
+		return "etc/about";
 	}
 	
+	@RequestMapping(value="/Etc/faq.do", method = RequestMethod.GET)
+	public String faq(Locale locale, Model model) {
+		
+		return "etc/faq";
+	}
 }

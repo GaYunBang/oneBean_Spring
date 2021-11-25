@@ -44,8 +44,8 @@
 			<a href="#none" class="navbar_toggleBtn"> <span></span>
 			</a>
 			<ul class="first_nav">
-				<li class="change"><a class="eng" href="/Index/about.do">ABOUT</a>
-					<a class="kor" href="/Index/about.do">회사소개</a></li>
+				<li class="change"><a class="eng" href="/Etc/about.do">ABOUT</a>
+					<a class="kor" href="/Etc/about.do">회사소개</a></li>
 				<li class="change"><a class="eng" href="#none">SHOP</a>
 					<a class="kor" href="#none">상품</a>
 					<ul class="under_view">
@@ -71,7 +71,7 @@
 					</ul></li>
 				<li><a href="#none">고객센터</a>
 					<ul class="under_view">
-						<li><a href=".do">Q&A</a></li>
+						<li><a href="/Etc/faq.do">Q&A</a></li>
 						<li><a href=".do">문의사항</a>
 							<hr class="line"></li>
 					</ul></li>
@@ -147,7 +147,7 @@
 			</div>
 			<div class="row text-center">
 				<div>
-					<div class="copyright-content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한 구매안전 서비스를 이용하실 수 있습니다</div>
+					<div class="copyright_content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한 구매안전 서비스를 이용하실 수 있습니다</div>
 				</div>
 			</div>
 		</div>

@@ -1,10 +1,10 @@
 /*색 바꾸는 곳*/
 :root {
-	/*   --nav_col: #ffffff;  */ -
-	-top_banner_col: #ececec; -
-	-top_banner_span: #2417df; -
-	-top_logo_col: white; -
-	-ul_col: white;
+	/*   --nav_col: #ffffff;  */
+	--top_banner_col: #ececec;
+	--top_banner_span: #2417df;
+	--top_logo_col: white;
+	--ul_col: white;
 }
 
 /*햄버거 css*/
@@ -14,6 +14,7 @@
 
 body {
 	margin: 0;
+	overflow-x: hidden;
 }
 
 a {
@@ -29,7 +30,6 @@ ul, li {
 	list-style-type: none;
 }
 header{
-	background-color: white;
 	border-bottom: solid 1px lightgray;
 }
 section{
@@ -41,16 +41,16 @@ section{
 	text-align: center;
 	font-size: small;
 	font-weight: bold;
-	background-color: var(- -top_banner_col);
+	background-color: var(--top_banner_col);
 	padding: 10px 0px;
 }
 
 .colchange {
-	color: var(- -top_banner_span);;
+	color: var(--top_banner_span);;
 }
 
 .fixed-top {
-	background-color: var(- -top_logo_col);
+	background-color: var(--top_logo_col);
 	padding-bottom: 50px;
 }
 
@@ -209,7 +209,7 @@ section{
 	display: none;
 	padding: 0px;
 	right: 33px;
-	background-color: var(- -ul_col);
+	background-color: var(--ul_col);
 }
 
 .line {

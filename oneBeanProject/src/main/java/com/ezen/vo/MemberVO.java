@@ -14,8 +14,16 @@ public class MemberVO {
 	private String memberJoinDay;
 	private String memberGrade;
 	private char memberUnJoin;
-	private char memberSpam;
+	private String memberSpam;
 	
+	//DB에 없는 값
+	private String birth1;
+	private String birth2;
+	private String birth3;
+	
+	private String phone1;
+	private String phone2;
+	private String phone3;
 	
 	public int getMidx() {
 		return midx;
@@ -89,10 +97,10 @@ public class MemberVO {
 	public void setMemberUnJoin(char memberUnJoin) {
 		this.memberUnJoin = memberUnJoin;
 	}
-	public char getMemberSpam() {
+	public String getMemberSpam() {
 		return memberSpam;
 	}
-	public void setMemberSpam(char memberSpam) {
+	public void setMemberSpam(String memberSpam) {
 		this.memberSpam = memberSpam;
 	}
 }

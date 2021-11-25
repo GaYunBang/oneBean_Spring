@@ -29,6 +29,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/etc/seller_num.css" rel="stylesheet" />
 </head>
 <body>
 	<header class="fixed-top">
@@ -92,7 +93,7 @@
 							<li><a href="" title="">주문조회</a></li>
 						</c:if>
 					</ul></li>
-				<li class="icons"><a href="/Purchase/cartList.do"><i class="bi bi-cart3"></i></a></li>
+				<li class="icons"><a href=".do"><i class="bi bi-cart3"></i></a></li>
 				<li class="search_box">
                     <input type="text" class="search_txt" name="keyword" placeholder="Type to search" maxlength="20">
 				    <button class="icons search_btn"><i class="bi bi-search"></i></button>
@@ -102,36 +103,43 @@
 		</nav>
 	</header>
 	<section>
-		<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="/images/index_image1.jpg" class="d-block w-100" alt="메인사진1">
-					</div>
-					<div class="carousel-item">
-						<img src="/images/index_image2.jpg" class="d-block w-100" alt="메인사진2">
-					</div>
-					<div class="carousel-item">
-						<img src="/images/index_image3.jpg" class="d-block w-100" alt="메인사진3">
-					</div>
-					<div class="carousel-item">
-						<img src="/images/index_image4.jpg" class="d-block w-100" alt="메인사진4">
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-		</div>
+		<div class="subject1">사업자 번호 등록</div>
+    <img src="/images/필독.jpg"><br><br>
+    <div class="contents1">COFFEE BEANS FREE SAMPLE</div>
+    <span class="var">-</span>
+    
+    <div class="contents2">
+    사업자대상 원두커피<br>
+    <strong>무료샘플</strong>
+    </br>
+    </div>
+    <div class="contents3">
+        <strong>'개인 카페/프렌차이즈/예비창업자'</strong>에 한해서 무료샘플을 보내드립니다.<br>
+        <strong>커피 관련 사업자</strong>분들은 누구나 부담없이 신청하실 수 있습니다.
+    </div>
+    <div class="contents4">
+        *업체 확인 후 <span id="p1">대표 블랜딩 3종류x200g, 카달로그를 함께 발송</span>해 드리고 있습니다.<br>
+        *샘플원두는 <span id="p1">착불로 배송</span>되며, 제주/도서산간 지역은 추가 배송비가 발생할 수 있습니다.
+    </div>
+    <img class="image1" src="/images/박스.jpg">
+    <br>
+    <span class="subject2">#대표_블랜딩_3종</span>
+	<div>
+	    <img src="/images/샘플3종.jpg">
+	</div>
+    <form class="seller_form">
+        <input type="text" name="sellnum" class="sellnum" style="width:300px;height:50px;" placeholder="사업자 번호를 입력하세요.">
+        <input type="submit" value="등록" action="" method="get" class="submit1" style="width:100px;height:50px">
+    </form>
 	</section>
 	<!--footer-->
 	<footer class="footer">
-			
+			<div class="row text-center">
+				<div>
+					<div class="copyright_content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한
+						구매안전 서비스를 이용하실 수 있습니다</div>
+				</div>
+			</div>
 	</footer>
 	<!--끝-->
 	<script

@@ -7,4 +7,8 @@ import com.ezen.vo.ProductVO;
 public interface ProductService {
 
 	public List<ProductVO> proListAll() throws Exception;
+	
+	public ProductVO proDetail(int proIdx) throws Exception;
+	
+	public void proWrite(ProductVO vo) throws Exception;
 }

@@ -1,7 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.ezen.vo.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +17,7 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
-<title>로그인</title>
+<title>상품 상세페이지</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
 
@@ -32,7 +34,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/member/login.css" rel="stylesheet" />
+<link href="/css/product/proDetail.css" rel="stylesheet" />
 </head>
 <body>
 <header class="fixed-top">
@@ -105,32 +107,76 @@
 			</form>
 		</nav>
 	</header>
-	<section>
-		<div class="frmbox">
-			<form method="post" action="login.do" class="loginFrm" name="login">
-				<div class="form-group">
-					<input type="text" class="login" name="userId" id="userID" placeholder="아이디를 입력하세요" />
-				</div>
-		 		<br>
-				<div class="form-group">
-					<input type="password" class="login" name="userPwd" id="userPwd" placeholder="비밀번호를 입력하세요" />
-				</div>
-				<br>
-				<div class="form-group">
-					<input type="submit" class="login" value="로그인" />
-				</div><br>
-				<c:if test="${msg == false}">
-					<p class="text-warning">로그인 실패. 아이디, 비밀번호를 확인해주세요.</p>
-				</c:if>
-				<input type="checkbox">&nbsp;&nbsp;아이디 기억하기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox">&nbsp;&nbsp;로그인 상태 유지<br><br>
-				<a href="/co/join.do" title="">회원가입</a><br><br>
-				아이디 / 비밀번호 찾기
-			</form>
-		</div>
-	</section>
-	<br><br><br>
 	
+<%-- <form name="form1" method="post">
+		<div>
+			작성일 :
+			<fmt:formatDate value="${dto.proDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+		</div>
+		<div>
+			<img src="/images/커피.jpg" width="300px" height="300px">
+		</div>
+			<p>상품명  : ${dto.proName}</p>
+			<p>가격 : ${dto.proPrice} 원</p>
+			<p>내용 : ${dto.proContents}</p>
+		<div>
+			<input type="hidden" name="proIdx" value="${dto.proIdx}">
+		</div>
+	</form>
+	<button><a href="">장바구니 담기</a></button>
+	<br><br>
+	
+
+		
+	</section> --%>
+	<section>
+      <div class="content pt-4">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <img class="pt-0 p-sm-4" src="/images/커피.jpg" width="100%">
+                </div>
+                <div class="col-12 col-md-7">
+                    <div>
+                        <form name="list_to_orderAction" method="post">
+                            <span class="goods_subject p-4">${dto.proName}</span>
+                            <div class="price_box p-4">
+                                <span class="price">판매가격 : ${dto.proPrice} 원</span>
+                                <span class="discount-rate"><span class="discount-rate2"></span><span>10%</span></span>
+                                <span><span class="price">${dto.proPrice} 원</span></span>
+                                <span class="consumer">${dto.proPrice} 원</span>
+                            </div>
+                            <div class="op_box">
+                                <div class="">
+	                                  <div class="row col-12 p-4">
+	                                    <div class="op_title">커핑노트 : 견과류, 초콜렛의 향미를 가진 묵직한 바디감</div>	                                    
+                                    </div>
+                                    <div class="row col-12 p-4">
+	                                    <div class="op_title">로스팅일자 : 결제기준 3일 이내 로스팅 후 배송</div>	                                    
+                                    </div>
+                                </div>                                
+                            </div>                                                        
+                            <div class="btn_box">
+                            <div class="row d-flex pt-3 justify-content-center">
+                                <select class="select_option">
+                                    <option>수량 : 옵션</option>
+                                    <option>1 : 콜롬비아</option>
+                                    <option>2 : 브라질</option>
+                                    <option>3 : 중국</option>
+                                </select>
+                            </div>
+                            <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
+                                <a href="basket.html" class="btn_ship">장바구니</a>
+                                <button type="submit" class="btn_shop">주문하기</button>                                
+                            </div>
+                            </div>                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
 	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 	<footer class="footer">
 

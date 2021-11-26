@@ -23,7 +23,7 @@
     		, memberUnJoin
     		, memberSpam
     	)VALUES(
-    		 springSEQ.nextval
+    		 memberSEQ.nextval
     		, #{memberId}
     		, #{memberPwd}
     		, #{memberName}
@@ -34,10 +34,16 @@
     		, #{memberEmail}
     		, sysdate
     		, 1
-    		, #{memberUnJoin}
+    		, 'N'
     		, #{memberSpam}
     	)
      ]]>	
     </insert>
-    
+    <select id="login" parameterType="memberVO" resultType="memberVO">
+    	SELECT
+    		*
+    	FROM shop_member
+    	WHERE memberId = #{memberId}
+    	AND memberPwd = #{memberPwd}
+    </select>
 </mapper>

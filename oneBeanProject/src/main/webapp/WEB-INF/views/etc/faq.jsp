@@ -87,7 +87,7 @@
 						</c:if>
 						<!-- 로그인 했을때 -->
 						<c:if test="${member != null}">
-							<li>${member.memId}님</li>
+							<li>${member.memberId}님</li>
 							<li><a href="/" title="">로그아웃</a></li>
 							<li><a href="" title="">마이페이지</a></li>
 							<li><a href="" title="">주문조회</a></li>

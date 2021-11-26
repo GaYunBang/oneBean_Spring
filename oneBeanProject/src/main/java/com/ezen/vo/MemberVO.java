@@ -25,6 +25,10 @@ public class MemberVO {
 	private String phone2;
 	private String phone3;
 	
+	private String tel1;
+	private String tel2;
+	private String tel3;
+	
 	public int getMidx() {
 		return midx;
 	}
@@ -102,5 +106,61 @@ public class MemberVO {
 	}
 	public void setMemberSpam(String memberSpam) {
 		this.memberSpam = memberSpam;
+	}
+	
+	//합치기 용
+	public String getBirth1() {
+		return birth1;
+	}
+	public void setBirth1(String birth1) {
+		this.birth1 = birth1;
+	}
+	public String getBirth2() {
+		return birth2;
+	}
+	public void setBirth2(String birth2) {
+		this.birth2 = birth2;
+	}
+	public String getBirth3() {
+		return birth3;
+	}
+	public void setBirth3(String birth3) {
+		this.birth3 = birth3;
+	}
+	public String getPhone1() {
+		return phone1;
+	}
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+	public String getPhone2() {
+		return phone2;
+	}
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+	public String getPhone3() {
+		return phone3;
+	}
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
+	}
+	public String getTel1() {
+		return tel1;
+	}
+	public void setTel1(String tel1) {
+		this.tel1 = tel1;
+	}
+	public String getTel2() {
+		return tel2;
+	}
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
+	}
+	public String getTel3() {
+		return tel3;
+	}
+	public void setTel3(String tel3) {
+		this.tel3 = tel3;
 	}
 }

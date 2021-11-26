@@ -37,6 +37,7 @@ public class ProductController {
 		return mav;
 	}
 
+
 	// 상세페이지
 	@RequestMapping(value = "proDetail.do")
 	public ModelAndView proDetail(int proIdx, ModelAndView mav) throws Exception {

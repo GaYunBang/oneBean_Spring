@@ -19,5 +19,10 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.joinOk(vo);
 	}
 
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+		return memberDao.login(vo);
+	}
+
 
 }

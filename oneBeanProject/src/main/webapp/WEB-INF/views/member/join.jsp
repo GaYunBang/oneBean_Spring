@@ -247,11 +247,20 @@
 						<li><a href="/Member/login.do">납품신청</a></li>
 					</c:if>
 					<c:if test="${member != null}">
-						<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
+						<c:if test="${memberGrade == 1}">
+							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
+						</c:if>
+						<c:if test="${memberGrade == 0||memberGrade == 2}">
+							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
+						</c:if>
 					</c:if>
 					<li><a href="/Buisness/newShopQuestion.do">창업문의</a></li>
-					<li><a href="/Product/coffeeList.do">커피용품</a>
-					<hr class="line"></li>
+					<c:if test="${member == null }">
+						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
+					</c:if>
+					<c:if test="${member != null }">
+						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+					</c:if>
 				</ul>
 			</li>
 			<li><a href="#none">고객센터</a>

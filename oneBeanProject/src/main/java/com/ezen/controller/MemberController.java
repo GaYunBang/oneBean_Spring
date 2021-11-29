@@ -78,7 +78,11 @@ public class MemberController {
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/";
-		
+	}
+	
+	@RequestMapping(value="myPage.do")
+	public String myPage() {
+		return "member/myPage";
 	}
 
 }

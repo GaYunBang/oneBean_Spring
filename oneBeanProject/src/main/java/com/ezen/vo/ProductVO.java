@@ -14,7 +14,7 @@ public class ProductVO {
 	private Date proDate;
 	private String proDel;
 	private String proImg;
-	private String proImgThumb;
+	private String proDetailImg;
 
 	public int getProIdx() {
 		return proIdx;
@@ -76,18 +76,18 @@ public class ProductVO {
 	public void setProImg(String proImg) {
 		this.proImg = proImg;
 	}
-	public String getProImgThumb() {
-		return proImgThumb;
+	public String getProDetailImg() {
+		return proDetailImg;
 	}
-	public void setProImgThumb(String proImgThumb) {
-		this.proImgThumb = proImgThumb;
+	public void setProDetailImg(String proDetailImg) {
+		this.proDetailImg = proDetailImg;
 	}
 	
 	@Override
 	public String toString() {
 		return "ProductVO [proIdx=" + proIdx + ", proType=" + proType + ", proName=" + proName + ", proPrice="
 				+ proPrice + ", proPrice2=" + proPrice2 + ", proContents=" + proContents + ", proStock=" + proStock
-				+ ", proDate=" + proDate + ", proDel=" + proDel + ", proImg=" + proImg + ", proImgThumb=" + proImgThumb +"]";
+				+ ", proDate=" + proDate + ", proDel=" + proDel + ", proImg=" + proImg + ", proDetailImg=" + proDetailImg +"]";
 	}
 	
 	

@@ -12,21 +12,15 @@ import com.ezen.vo.ProductVO;
 public class ProductServiceImpl implements ProductService{
 
 	@Autowired
-	ProductDAO dao;
+	ProductDAO productDao;
 	
 	@Override
 	public List<ProductVO> proListAll() throws Exception {
-		return dao.proListAll();
+		return productDao.proListAll();
 	}
 
 	@Override
 	public ProductVO proDetail(int proIdx) throws Exception {
-		return dao.proDetail(proIdx);
+		return productDao.proDetail(proIdx);
 	}
-
-	@Override
-	public void proWrite(ProductVO vo) throws Exception {
-		dao.proWrite(vo);
-	}
-
 }

@@ -16,14 +16,14 @@
 			proDate,
 			proDel,
 			proImg,
-			proImgThumb
+			proDetailImg
 		FROM SHOP_PRODUCT
 		ORDER BY 
 			PROIDX DESC
 	</select>
 	
 	<!-- 게시글 상세보기 -->
-	<select id="proDetail" resultType="productVO">
+	<select id="proDetail" resultType="productVO" parameterType="int">
 		SELECT * FROM SHOP_PRODUCT
 		WHERE proIdx = #{proIdx}
 	</select>
@@ -36,18 +36,27 @@
 			proName,
 			proPrice,
 			proContents,
+			proDel,
 			proImg,
-			proImgThumb
+			proDetailImg
 		) VALUES (
-			#{proIdx},
+			productSEQ.nextVal,
 			#{proType},
 			#{proName},
 			#{proPrice},
 			#{proContents},
+			'N',
 			#{proImg},
-			#{proImgThumb}
+			#{proDetailImg}
 		)
 	</insert>
-	
+	<update id="modify" parameterType="productVO">
+		UPDATE SHOP_PRODUCT
+		SET
+			proName = #{proName},
+			proPrice = #{proPrice}
+		WHERE
+			proIdx = #{proIdx}
+	</update>
     
 </mapper>

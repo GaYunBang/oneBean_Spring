@@ -21,8 +21,4 @@ public class ProductDAO {
 	public ProductVO proDetail(int proIdx) throws Exception{
 		return sql.selectOne("com.ezen.mapper.ProductMapper.proDetail",proIdx);
 	}
-	
-	public void proWrite(ProductVO vo) throws Exception {
-		sql.insert("com.ezen.mapper.ProductMapper.insert", vo);
-	}
 }

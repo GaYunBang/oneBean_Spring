@@ -18,7 +18,7 @@ import com.ezen.service.MemberService;
 import com.ezen.vo.MemberVO;
 
 
-@RequestMapping(value="/Member")
+@RequestMapping(value="/Member/")
 @Controller
 public class MemberController {
 
@@ -26,28 +26,59 @@ public class MemberController {
 	MemberService memberService;
 	
 		
-	@RequestMapping(value="/join.do", method = RequestMethod.GET)
-	public String joinOK(Locale locale, Model model) throws Exception {
+	@RequestMapping(value="join.do", method = RequestMethod.GET)
+	public String join(Locale locale, Model model) throws Exception {
 		
 		return "member/join";
 	}
 	
-	@RequestMapping(value="/join.do", method = RequestMethod.POST)
+	@RequestMapping(value="join.do", method = RequestMethod.POST)
 	public String joinOK(Locale locale, Model model, MemberVO vo) throws Exception {
+		vo.setMemberBirth(vo.getBirth1()+vo.getBirth2()+vo.getBirth3());
+		vo.setMemberPhone(vo.getPhone1()+vo.getPhone2()+vo.getPhone3());
+		vo.setMemberTel(vo.getTel1()+vo.getTel2()+vo.getTel3());	
+		if(vo.getMemberSpam() == null) {
+			vo.setMemberSpam("N");
+		}
+		memberService.joinOK(vo);
 		
 		return "redirect:login.do";
 	}
 	
-	@RequestMapping(value="/login.do", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) throws Exception {
-		
+	@RequestMapping(value="login.do", method = RequestMethod.GET)
+	public String login() throws Exception {
 		return "member/login";
 	}
 	
-	
-	@RequestMapping(value="/main.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String main() throws Exception {
+	@RequestMapping(value="login.do", method = RequestMethod.POST)
+	public String login(Locale locale, Model model, MemberVO vo, HttpSession session, RedirectAttributes ra) throws Exception {
+		MemberVO login = memberService.login(vo);
+		String memberName = (String)session.getAttribute("memberName");
+		String memberId = (String)session.getAttribute("memberId");
+		String memberGrade = (String)session.getAttribute("memberGrade");
 		
-		return "index";
+		if(login == null) {
+			session.setAttribute("member", null);
+			ra.addFlashAttribute("msg", false);
+			return "redirect:login.do"; 
+		}else {
+			memberName = login.getMemberName();
+			memberId = login.getMemberId();
+			memberGrade = login.getMemberGrade();
+			session.setAttribute("memberName", memberName);
+			session.setAttribute("memberId", memberId);
+			session.setAttribute("memberGrade", memberGrade);
+			System.out.println(memberGrade);
+			session.setAttribute("member", login);
+			return "redirect:/";
+		}
 	}
+	
+	@RequestMapping(value="logout.do")
+	public String logout(HttpSession session) throws Exception {
+		session.invalidate();
+		return "redirect:/";
+		
+	}
+
 }

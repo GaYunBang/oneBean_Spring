@@ -12,7 +12,13 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	private static final String Namespace = "com.ezen.mapper.MemberMapper";
+	
 	public void joinOk(MemberVO vo) throws Exception {
-		sqlSession.insert("com.ezen.mapper.MemberMapper.join",vo); //mapper.xml의 쿼리가 실행된다. 
+		sqlSession.insert(Namespace+".join",vo); //mapper.xml의 쿼리가 실행된다. 
+	}
+	
+	public MemberVO login(MemberVO vo) throws Exception {
+		return sqlSession.selectOne(Namespace+".login", vo);
 	}
 }

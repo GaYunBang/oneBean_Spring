@@ -11,18 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 	
-	
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "index";
 	}
-	
-	@RequestMapping(value = "/Index/about", method = RequestMethod.GET)
-	public String about(Locale locale, Model model) {
-		
-		return "info/about";
-	}
-	
 }

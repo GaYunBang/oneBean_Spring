@@ -135,7 +135,7 @@
 	</nav>
 </header>
 <section>
-	 <form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
            
            <input type="hidden" name="cmd" value="order">
            <div class="basketdiv" id="basket">
@@ -249,8 +249,7 @@
        </form>
 </section>
 <br><br><br>
-
-	<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
+<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

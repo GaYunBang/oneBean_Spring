@@ -1,16 +1,11 @@
 @charset "UTF-8";
-body{
-        margin:0px;
-        background:#ffffff;    
-}
-    
+
 section{
         margin-top: 350px;
-        margin-bottom: 200px;
         padding-left: 320px;        
 }
-form{
-	width :80%;
+.orderform{
+	width :100%;
 }
 .basketdiv {
     width: 100%;    

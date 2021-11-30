@@ -11,17 +11,16 @@
 <!-- 
 D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources
  -->
-	<form name="form1" method="post" action="proWrite.do"
-		enctype="multipart/form-data">
+ 	<form name="form1" method="post" action="proWrite.do" enctype="multipart/form-data">
 		<div>
 			상품명 <input name="proName" id="proName">
 		</div>
 		<div>상품타입
 			<select name="proType">
-				<option value="01product">일반상품</option>
-				<option value="02busiProduct">사업자상품</option>
-				<option value="03sampleProduct">샘플박스상품</option>
-				<option value="04event">이벤트</option>
+				<option value="일반">일반상품</option>
+				<option value="사업자">사업자상품</option>
+				<option value="샘플박스">샘플박스상품</option>
+				<option value="이벤트">이벤트</option>
 			</select>
 		</div>
 		<div>
@@ -35,12 +34,12 @@ D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources
 		<div class="inputArea">
 			<label for="proImg">상품이미지</label> 
 			<input type="file" id="file" name="file" />
-			<div class="select_img2">
+			<div class="select_img">
 				<img src="" />
 			</div>
 			<label for="proDetailImg">상세이미지</label> 
 			<input type="file" id="detailFile" name="detailFile" />
-			<div class="select_img">
+			<div class="select_img2">
 				<img src="" />
 			</div>
 
@@ -50,7 +49,7 @@ D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources
 							if (this.files && this.files[0]) {
 								var reader = new FileReader;
 								reader.onload = function(data) {
-									$(".select_img2 img").attr("src",
+									$(".select_img img").attr("src",
 											data.target.result).width(500);
 								}
 								reader.readAsDataURL(this.files[0]);
@@ -61,7 +60,7 @@ D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources
 							if (this.files && this.files[0]) {
 								var reader = new FileReader;
 								reader.onload = function(data) {
-									$(".select_img img").attr("src",
+									$(".select_img2 img").attr("src",
 											data.target.result).width(500);
 								}
 								reader.readAsDataURL(this.files[0]);
@@ -73,7 +72,6 @@ D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources
 			<input type="submit" value="확인!">
 			<button type="reset">취소</button>
 		</div>
-	</form>
-	
+	</form>	
 </body>
 </html>

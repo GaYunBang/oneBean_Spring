@@ -53,8 +53,16 @@
 	<update id="modify" parameterType="productVO">
 		UPDATE SHOP_PRODUCT
 		SET
-			proName = #{proName},
-			proPrice = #{proPrice}
+			proName = #{proName}
+			,proPrice = #{proPrice}
+			,proType = #{proType}
+			,proContents = #{proContents}
+			<if test="!proImg.equals('')">
+				,proImg = #{proImg}
+			</if>
+			<if test="!proDetailImg.equals('')">
+				,proDetailImg = #{proDetailImg}
+			</if>
 		WHERE
 			proIdx = #{proIdx}
 	</update>

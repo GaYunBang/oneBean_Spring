@@ -11,5 +11,10 @@ public class PurchaseController {
 	public String cartList() {
 		return "purchase/cart";
 	}
+	
+	@RequestMapping(value="orderList.do")
+	public String orderList() {
+		return "purchase/orderList";
+	}
 
 }

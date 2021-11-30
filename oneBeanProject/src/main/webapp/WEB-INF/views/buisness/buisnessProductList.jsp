@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -17,10 +16,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/buisness/seller_num.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>모든상품</title>
+<title>회사소개</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -28,15 +28,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function deleteCheck(){
-		if(confirm("삭제?")){
-			
-		}else{
-			return;
-		}
-	}
-</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -143,49 +134,36 @@
 		</form>
 	</nav>
 </header>
-<section class="py-5">
-	<div class="container px-4 px-lg-5 mt-5">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-		
-		<!--상품 시작-->
-			<c:forEach var="list" items="${list}">
-				<div class="col mb-5">
-					<div class="card h-100">
-						<!-- Product image-->
-						<a href="proDetail.do?proIdx=${list.proIdx}">
-						<img src="${list.proImg}" class="card-img-top" height="250px"></a>
-						<!-- Product details-->
-						<div class="card-body p-4">
-							<!-- Product name-->
-							<a href="view.do?proIdx=${list.proIdx}">
-							<span style="font-size:15px; font-weight:bold;">
-								<c:out value="${list.proName}" /></span>
-							</a><hr>
-							<!-- Product price-->
-							<span style="font-size:13px; font-weight:bold; color:green;">
-							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
-							</span><br>
-							<span style="font-size:12px; font-weight:bold;">
-							${list.proContents}</span><br>
-							<span style="font-size:12px; font-weight:bold;">
-							결제기준 3일 이내 로스팅 후 배송</span>
-							<c:if test="${member.memberGrade == 0}">
-								<button onclick="location.href='/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
-								<button onclick="deleteCheck()">삭제하기</button>
-							</c:if>
-						</div>
-					</div>
-				</div>
-				<!--상품 끝-->
-			</c:forEach>
-		</div>
+<section>
+		<div class="subject1">사업자 번호 등록</div>
+    <img src="/images/필독.jpg"><br><br>
+    <div class="contents1">COFFEE BEANS FREE SAMPLE</div>
+    <span class="var">-</span>
+    
+    <div class="contents2">
+    사업자대상 원두커피<br>
+    <strong>무료샘플</strong>
+    </br>
+    </div>
+    <div class="contents3">
+        <strong>'개인 카페/프렌차이즈/예비창업자'</strong>에 한해서 무료샘플을 보내드립니다.<br>
+        <strong>커피 관련 사업자</strong>분들은 누구나 부담없이 신청하실 수 있습니다.
+    </div>
+    <div class="contents4">
+        *업체 확인 후 <span id="p1">대표 블랜딩 3종류x200g, 카달로그를 함께 발송</span>해 드리고 있습니다.<br>
+        *샘플원두는 <span id="p1">착불로 배송</span>되며, 제주/도서산간 지역은 추가 배송비가 발생할 수 있습니다.
+    </div>
+    <img class="image1" src="/images/박스.jpg">
+    <br>
+    <span class="subject2">#대표_블랜딩_3종</span>
+	<div>
+	    <img src="/images/샘플3종.jpg">
 	</div>
-	<c:if test="${member.memberGrade == 0}">
-		<button onclick="location.href='/Manager/proWrite.do'">상품등록</button>
-	</c:if>
-	<!--  <a href="/Manager/proWrite.do">상품등록</a>-->
-</section>
-<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
+    <form class="seller_form">
+        <input type="text" name="sellnum" class="sellnum" style="width:300px;height:50px;" placeholder="사업자 번호를 입력하세요.">
+        <input type="submit" value="등록" action="" method="get" class="submit1" style="width:100px;height:50px">
+    </form>
+	</section>
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

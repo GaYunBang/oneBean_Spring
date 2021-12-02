@@ -60,7 +60,7 @@ public class ManagerController {
 		return "redirect:/Product/proListAll.do";
 	}
 	
-	//게시글 작성 화면으로 이동
+	//게시글 수정 화면으로 이동
 	@RequestMapping(value="proModify.do", method=RequestMethod.GET)
 	public String modify(Locale locale, Model model, int proIdx) throws Exception {
 		ProductVO product = managerService.proDetail(proIdx);
@@ -100,6 +100,12 @@ public class ManagerController {
 			vo.setProDetailImg("");
 		}
 		managerService.proModify(vo);
+		return "redirect:/Product/proListAll.do";
+	}
+	
+	@RequestMapping(value="proDelete.do")
+	public String delete(int proIdx) throws Exception {
+		managerService.proDelete(proIdx);
 		return "redirect:/Product/proListAll.do";
 	}
 }

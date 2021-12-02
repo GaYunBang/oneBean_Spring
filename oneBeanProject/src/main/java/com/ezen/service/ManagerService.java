@@ -8,4 +8,6 @@ public interface ManagerService {
 	public ProductVO proDetail(int proIdx) throws Exception;
 	
 	public void proModify(ProductVO vo) throws Exception;
+	
+	public void proDelete(int proIdx) throws Exception;
 }

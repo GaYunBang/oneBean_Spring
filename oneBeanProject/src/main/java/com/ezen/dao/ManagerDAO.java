@@ -21,6 +21,10 @@ public class ManagerDAO {
 	}
 	
 	public void proModify(ProductVO vo) throws Exception {
-		sql.insert("com.ezen.mapper.ProductMapper.modify", vo);
+		sql.update("com.ezen.mapper.ProductMapper.modify", vo);
+	}
+	
+	public void proDelete(int proIdx) throws Exception {
+		sql.update("com.ezen.mapper.ProductMapper.delete",proIdx);
 	}
 }

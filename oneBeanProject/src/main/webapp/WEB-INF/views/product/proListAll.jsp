@@ -29,8 +29,11 @@
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	function deleteCheck(){
+	function deleteCheck(item){
 		if(confirm("삭제?")){
+			alert(item);
+			location.href="/Manager/proDelete.do?proIdx="+item;
+			
 			
 		}else{
 			return;
@@ -157,7 +160,7 @@
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<!-- Product name-->
-							<a href="view.do?proIdx=${list.proIdx}">
+							<a href="proDetail.do?proIdx=${list.proIdx}">
 							<span style="font-size:15px; font-weight:bold;">
 								<c:out value="${list.proName}" /></span>
 							</a><hr>
@@ -170,8 +173,8 @@
 							<span style="font-size:12px; font-weight:bold;">
 							결제기준 3일 이내 로스팅 후 배송</span>
 							<c:if test="${member.memberGrade == 0}">
-								<button onclick="location.href='/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
-								<button onclick="deleteCheck()">삭제하기</button>
+								<button class="btn btn-light" onclick="location.href='/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
+								<button class="btn btn-light" onclick="deleteCheck(${list.proIdx})">삭제하기</button>
 							</c:if>
 						</div>
 					</div>
@@ -179,10 +182,10 @@
 				<!--상품 끝-->
 			</c:forEach>
 		</div>
+		<c:if test="${member.memberGrade == 0}">
+			<button class="btn btn-light" onclick="location.href='/Manager/proWrite.do'">상품등록</button>
+		</c:if>
 	</div>
-	<c:if test="${member.memberGrade == 0}">
-		<button onclick="location.href='/Manager/proWrite.do'">상품등록</button>
-	</c:if>
 	<!--  <a href="/Manager/proWrite.do">상품등록</a>-->
 </section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

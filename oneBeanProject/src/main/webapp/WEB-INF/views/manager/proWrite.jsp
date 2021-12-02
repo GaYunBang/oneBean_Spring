@@ -24,7 +24,9 @@ D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources
 			</select>
 		</div>
 		<div>
-			가격 <input name="proPrice" id="proPrice">
+			가격 <input name="proPrice" id="proPrice"><br>
+			사업자 가격 <input name="proPrice2" id="proPrice2"><br>
+			재고<input name="proStock" id="proStock">
 		</div>
 		<div>
 			내용

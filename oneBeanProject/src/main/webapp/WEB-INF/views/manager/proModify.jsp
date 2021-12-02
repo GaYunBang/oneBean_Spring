@@ -20,13 +20,15 @@
 <input type="hidden" value="${product.proIdx}" name="proIdx">
 상품이름 : <input type="text" value="${product.proName}" name="proName"><br>
 상품가격 : <input type="text" value="${product.proPrice}" name="proPrice"><br>
+사업자 상품 가격 : <input type="text" value="${product.proPrice2}" name="proPrice2"><br>
+재고 : <input type="text" value="${product.proStock}" name="proStock"><br>
 <div>상품타입
 	<select name="proType">
 		<option value="${proType}" selected>${product.proType}</option>
-		<option value="01product">일반상품</option>
-		<option value="02busiProduct">사업자상품</option>
-		<option value="03sampleProduct">샘플박스상품</option>
-		<option value="04event">이벤트</option>
+		<option value="일반">일반상품</option>
+		<option value="사업자">사업자상품</option>
+		<option value="샘플박스">샘플박스상품</option>
+		<option value="이벤트">이벤트</option>
 	</select>
 </div>
 내용 <textarea name="proContents" id="proContents">${product.proContents}</textarea><br>

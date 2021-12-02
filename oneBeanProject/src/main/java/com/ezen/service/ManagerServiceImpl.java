@@ -27,4 +27,9 @@ public class ManagerServiceImpl implements ManagerService{
 	public void proModify(ProductVO vo) throws Exception {
 		managerDao.proModify(vo);
 	}
+
+	@Override
+	public void proDelete(int proIdx) throws Exception {
+		managerDao.proDelete(proIdx);
+	}
 }

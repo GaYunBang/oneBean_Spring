@@ -214,7 +214,7 @@
 				
 				
 				<tr style="height:10px;"></tr>
-				<tr>
+				<tr>  
 					<td colspan="7">
 						<div>
 							<form method="post" action="/Question/commentWrite.do">		

@@ -74,7 +74,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>

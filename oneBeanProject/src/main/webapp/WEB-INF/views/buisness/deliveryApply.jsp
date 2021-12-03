@@ -75,7 +75,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -157,10 +157,11 @@
 	<div>
 	    <img class="img1" src="/images/샘플3종.jpg">
 	</div>
-    <form name="frm" action="" method="post" class="b-frm">
-        <input type="text" name="sellnum" class="sellnum" style="width:300px;height:50px;" placeholder=" 사업자 번호를 입력하세요.">
-        <input type="submit" value="등록" action="" method="get" class="submit1" style="width:100px;height:50px">
-    </form>
+    <form name="frm" action="deliveryApply.do" method="post" class="b-frm">
+    	<input type="hidden" value="${member.midx}" name="midx">
+        <input type="text" name="memberBusinessNumber" class="sellnum" style="width:300px;height:50px;" placeholder=" 사업자 번호를 입력하세요.">
+        <button class="submit1" style="width:100px;height:50px">등록</button>
+        </form>
 </section>
 <footer class="footer">
 	<div class="container">

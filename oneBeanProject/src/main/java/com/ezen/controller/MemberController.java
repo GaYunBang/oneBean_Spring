@@ -35,7 +35,7 @@ public class MemberController {
 	@RequestMapping(value="join.do", method = RequestMethod.POST)
 	public String joinOK(Locale locale, Model model, MemberVO vo) throws Exception {
 		vo.setMemberBirth(vo.getBirth1()+vo.getBirth2()+vo.getBirth3());
-		vo.setMemberPhone(vo.getPhone1()+vo.getPhone2()+vo.getPhone3());
+		vo.setMemberPhone(vo.getPhone1()+vo.getPhone2()+vo.getPhone3()); 
 		vo.setMemberTel(vo.getTel1()+vo.getTel2()+vo.getTel3());	
 		if(vo.getMemberSpam() == null) {
 			vo.setMemberSpam("N");
@@ -71,7 +71,7 @@ public class MemberController {
 			session.setAttribute("memberId", memberId);
 			session.setAttribute("memberGrade", memberGrade);
 			session.setAttribute("midx", midx);
-			System.out.println(memberId);
+			System.out.println(login.getMemberBirth());
 			session.setAttribute("member", login);
 			return "redirect:/";
 		}

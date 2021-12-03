@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -142,20 +143,26 @@
       <caption><h2>회원정보 수정</h2></caption>
       <tr>
           <td class="col1">이름</td>
-          <td class="col2"><input type="text" class="deco1" name="name" maxlength="5"></td>
+          <td class="col2"><input type="text" class="deco1" name="memberName" maxlength="5" value="${member.memberName }"></td>
       </tr>
       <tr>
           <td class="col1">아이디</td>
           <td class="col2">
-              <input type="text" class="deco1" name="id" maxlength="10">              
+              <input type="text" class="deco1" name="id" maxlength="10" value="${member.memberId }">              
           </td>
       </tr>
       <tr>
         <td class="col1">생년월일</td>
         <td class="col2">
-          <input type="text" class="birth1" name="birth1">년&nbsp;
-          <input type="text" class="birth2" name="birth2">월&nbsp;
-          <input type="text" class="birth3" name="birth3">일
+        	<c:set var="yearNum" value="${member.memberBirth }"/>
+	    	<c:set var="year" value="${fn:substring(yearNum,0,4) }"/>
+	    		<input type="text" class="birth1" name="birth1" value="${year }" >년&nbsp;
+	        <c:set var="monthNum" value="${member.memberBirth }"/>
+	        <c:set var="month" value="${fn:substring(monthNum,4,6) }"/>
+	            <input type="text" class="birth2" name="birth2" value="${month }" >월&nbsp;
+	        <c:set var="dayNum" value="${member.memberBirth }"/>
+	        <c:set var="day" value="${fn:substring(dayNum,6,8) }"/>
+	            <input type="text" class="birth3" name="birth3" value="${day }" >일
         </td>
       </tr>
       <tr>
@@ -174,9 +181,7 @@
       <tr>
           <td class="col1">이메일</td>
           <td class="col2">
-              <input type="text" class="deco" name="mailid">
-              <span class="a">@</span>
-              <input type="text" class="deco" name="email">              
+              <input type="text" class="deco" name="mailid" value="${member.memberEmail }" >          
               <input class='but1' type="button" value="수정하기" onclick="">
           </td>
       </tr>
@@ -189,8 +194,12 @@
               <option value="g3">011</option>
               <option value="g4">018</option>
           </select>
-            <input type="text" class="phone2" name="phone2" maxlength="4">
-            <input type="text" class="phone3" name="phone3" maxlength="4">
+            	<c:set var="Num2" value="${member.memberPhone }"/>
+	            <c:set var="pNum2" value="${fn:substring(Num2,3,7) }"/>
+                  <input type="text" class="phone2" name="phone2" maxlength="4" value="${pNum2 }" >
+                <c:set var="Num3" value="${member.memberPhone }"/>
+	            <c:set var="pNum3" value="${fn:substring(Num3,7,11) }"/>
+                  <input type="text" class="phone3" name="phone3" maxlength="4" value="${pNum3 }" >
             <input class='but1' type="button" value="수정하기" onclick="">                                 
           </td>   
       </tr>

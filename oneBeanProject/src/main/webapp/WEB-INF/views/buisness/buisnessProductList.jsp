@@ -135,35 +135,8 @@
 	</nav>
 </header>
 <section>
-		<div class="subject1">사업자 번호 등록</div>
-    <img src="/images/필독.jpg"><br><br>
-    <div class="contents1">COFFEE BEANS FREE SAMPLE</div>
-    <span class="var">-</span>
-    
-    <div class="contents2">
-    사업자대상 원두커피<br>
-    <strong>무료샘플</strong>
-    </br>
-    </div>
-    <div class="contents3">
-        <strong>'개인 카페/프렌차이즈/예비창업자'</strong>에 한해서 무료샘플을 보내드립니다.<br>
-        <strong>커피 관련 사업자</strong>분들은 누구나 부담없이 신청하실 수 있습니다.
-    </div>
-    <div class="contents4">
-        *업체 확인 후 <span id="p1">대표 블랜딩 3종류x200g, 카달로그를 함께 발송</span>해 드리고 있습니다.<br>
-        *샘플원두는 <span id="p1">착불로 배송</span>되며, 제주/도서산간 지역은 추가 배송비가 발생할 수 있습니다.
-    </div>
-    <img class="image1" src="/images/박스.jpg">
-    <br>
-    <span class="subject2">#대표_블랜딩_3종</span>
-	<div>
-	    <img src="/images/샘플3종.jpg">
-	</div>
-    <form class="seller_form">
-        <input type="text" name="sellnum" class="sellnum" style="width:300px;height:50px;" placeholder="사업자 번호를 입력하세요.">
-        <input type="submit" value="등록" action="" method="get" class="submit1" style="width:100px;height:50px">
-    </form>
-	</section>
+리스트 만들기	
+</section>
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

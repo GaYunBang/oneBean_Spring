@@ -46,4 +46,12 @@
     	WHERE memberId = #{memberId}
     	AND memberPwd = #{memberPwd}
     </select>
+    <update id="gradeUP" parameterType="memberVO">
+    	UPDATE SHOP_MEMBER
+    	SET
+    		memberBusinessNumber = #{memberBusinessNumber},
+    		memberGrade = 2
+    	WHERE
+    		midx = #{midx}
+    </update>
 </mapper>

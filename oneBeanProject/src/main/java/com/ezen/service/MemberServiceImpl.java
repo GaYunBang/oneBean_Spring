@@ -24,5 +24,8 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.login(vo);
 	}
 
-
+	@Override
+	public void gradeUP(MemberVO vo) throws Exception {
+		memberDao.gradeUP(vo);
+	}
 }

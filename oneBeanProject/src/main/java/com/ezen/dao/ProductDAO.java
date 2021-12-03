@@ -14,11 +14,17 @@ public class ProductDAO {
 	@Autowired
 	SqlSession sql;
 	
+	private static final String Namespace = "com.ezen.mapper.ProductMapper";
+	
 	public List<ProductVO> proListAll() throws Exception {
-		return sql.selectList("com.ezen.mapper.ProductMapper.proListAll");
+		return sql.selectList(Namespace+".proListAll");
 	}
 	
-	public ProductVO proDetail(int proIdx) throws Exception{
-		return sql.selectOne("com.ezen.mapper.ProductMapper.proDetail",proIdx);
+	public ProductVO proDetail(int proIdx) throws Exception {
+		return sql.selectOne(Namespace+".proDetail",proIdx);
+	}
+	
+	public int proListAllCount() throws Exception {
+		return sql.selectOne(Namespace+".proListAllCount");
 	}
 }

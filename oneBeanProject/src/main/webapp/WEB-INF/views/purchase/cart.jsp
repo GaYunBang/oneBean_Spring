@@ -206,20 +206,26 @@
 		</div>
 
 		<div class="right_align">
-			<h class="font_st">상품 갯수 : </h><span class="val1" id="allCount">${count }</span>
+			<span><b style="font-size: 15px">상품 갯수 : </b></span><span class="val1" id="allCount">${count }</span>
 		</div><br>
+		<table class="totalBox">
+			<tr>
+				<th class="font_st">합계</th>
+				<th></th>
+				<th class="font_st">배송비</th>
+				<th></th>
+				<th class="font_st">결제금액</th>
+			</tr>
+			<tr>
+				<td>상품가격 란<span class="val1">1111</span></td>
+				<td><i class="fas fa-plus-circle"></i></td>
+				<td>배송비 란<span class="val1">1111</span></td>
+				<td><i class="fas fa-pause-circle aa"></i></td>
+				<td>합계<span class="val2">11111</span></td>
+			</tr>
+		</table>
 		<div class="center_align">
-			<h class="font_st">합계</h><span class="val1">1111</span>
-		    <i class="fas fa-plus-circle"></i>
-		    <h class="font_st">배송비 : </h><span class="val1">1111</span>
-		    <i class="fas fa-pause-circle aa"></i> <h class="font_st">결제금액</h><span class="val2">11111</span>
-		</div>
-
-
-
-
-		<div class="center_align">
-			<button class="buttongroup1 but_col1 cmd">선택 상품 주문</button>
+			<button class="buttongroup1 but_col1 cmd" onclick="location.href='order.do'">선택 상품 주문</button>
 			<button class="buttongroup1 but_col2 cmd1">계속 쇼핑하기</button>
 		</div>
 	</form>

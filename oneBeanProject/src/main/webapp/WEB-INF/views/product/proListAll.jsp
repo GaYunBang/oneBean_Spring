@@ -186,6 +186,25 @@
 			<button class="btn btn-light" onclick="location.href='/Manager/proWrite.do'">상품등록</button>
 		</c:if>
 	</div>
+	<div style="display:block; text-align:center;">
+        	<c:if test="${paging.startPage != 1 }">
+        		<a href="/Question/question.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+        	</c:if>
+        	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+        		<c:choose>
+        			<c:when test="${p == paging.nowPage }">
+        				<b>${p }</b>
+        			</c:when>
+        			<c:when test="${p != paging.nowPage }">
+        				<a href="/Question/question.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+        			</c:when>
+        		</c:choose>
+        	</c:forEach>
+        	<c:if test="${paging.endPage != paging.lastPage }">
+        		<a href="/Question/question.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
+        	</c:if><br><br>
+        	
+        </div>
 	<!--  <a href="/Manager/proWrite.do">상품등록</a>-->
 </section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

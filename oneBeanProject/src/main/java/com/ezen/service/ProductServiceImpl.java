@@ -23,4 +23,9 @@ public class ProductServiceImpl implements ProductService{
 	public ProductVO proDetail(int proIdx) throws Exception {
 		return productDao.proDetail(proIdx);
 	}
+
+	@Override
+	public int proListAllCount() throws Exception {
+		return productDao.proListAllCount();
+	}
 }

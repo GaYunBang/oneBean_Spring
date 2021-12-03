@@ -88,14 +88,25 @@ section{
 .center_align{
     text-align: center;
 }
+
+/*
 .val1{
     color:blue;
 }
 .val2{
     color:red;
 }
+*/
+.totalBox{
+    width: 85%;
+    margin: 15px auto;
+    text-align: center;
+}
+
 .font_st{
-    font-weight: bold;
+    font-size: 25px;
+    width: 33%;
+    max-width: 250px;
 }
 
 .aa{

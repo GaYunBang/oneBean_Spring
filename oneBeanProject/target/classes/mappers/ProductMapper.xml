@@ -23,6 +23,11 @@
 			proIdx DESC
 	</select>
 	
+	<select id="proListAllCount" resultType="int">
+		SELECT COUNT(*) FROM SHOP_PRODUCT
+		WHERE proDel = 'N'
+	</select>
+	
 	<!-- 게시글 상세보기 -->
 	<select id="proDetail" resultType="productVO" parameterType="int">
 		SELECT * FROM SHOP_PRODUCT

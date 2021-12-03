@@ -183,8 +183,7 @@
 		</form>
 	</nav>
 </header>
-<div class="emmm"></div>
-	<section>
+<section>
 			<h3>1:1 문의 게시판</h3>
       
       <div class="outter">

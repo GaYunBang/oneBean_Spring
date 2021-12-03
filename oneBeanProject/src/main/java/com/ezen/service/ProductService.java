@@ -9,4 +9,6 @@ public interface ProductService {
 	public List<ProductVO> proListAll() throws Exception;
 	
 	public ProductVO proDetail(int proIdx) throws Exception;
+	
+	public int proListAllCount() throws Exception;
 }

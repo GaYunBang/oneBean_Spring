@@ -68,7 +68,7 @@
 		width: 100%;
 	}
 	.select {
-		width : 100px;
+		width : 150px;
 		padding-right: 20px;
 	}
 	h1 {
@@ -127,7 +127,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -150,7 +150,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>

@@ -41,7 +41,7 @@ public class ProductController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product/proListAll");
 		mav.addObject("list", list);
-		model.addAttribute("vo", vo);
+		model.addAttribute("paging", vo);
 		return mav;
 	}
 

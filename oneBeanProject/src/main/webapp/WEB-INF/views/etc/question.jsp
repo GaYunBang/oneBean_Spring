@@ -32,7 +32,8 @@
 <style>
 	section {
         width: 100%;
-        height: 100vh;
+        margin-top: 350px;
+        margin-bottom: 200px;
       }
       .selectBox {
         margin-left: 10%;
@@ -187,13 +188,14 @@
 			<h3>1:1 문의 게시판</h3>
       
       <div class="outter">
+      <!-- 
         <div style="float:left; width:100%;">
           <select class="selectBox">
             <option>전체보기</option>
             <option>상품문의</option>
             <option>기타문의</option>
           </select>
-        </div>
+        </div> -->
         <table>
           <tr>
           	<th width="5%"></th>
@@ -239,7 +241,7 @@
         </table><br>
         <c:if test="${member != null}">
 	        <div style="padding-left:85%;">
-	        	<button><a href="/Question/write.do">문의하기</a></button>
+	        	<button class="btn btn-light" onclick="location.href='/Question/write.do'">문의하기</button>
 	        </div>
         </c:if>
         <div style="display:block; text-align:center;">

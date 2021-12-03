@@ -110,7 +110,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -196,12 +196,12 @@
         				<b>${p }</b>
         			</c:when>
         			<c:when test="${p != paging.nowPage }">
-        				<a href="/Question/question.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+        				<a href="/Product/proListAll.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
         			</c:when>
         		</c:choose>
         	</c:forEach>
         	<c:if test="${paging.endPage != paging.lastPage }">
-        		<a href="/Question/question.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
+        		<a href="/Product/proListAll.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
         	</c:if><br><br>
         	
         </div>

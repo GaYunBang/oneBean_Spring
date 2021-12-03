@@ -16,11 +16,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/member/myPage.css" rel="stylesheet" />
+<link href="/css/member/orderList.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>MyPage</title>
+<title>주문조회</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -135,50 +135,61 @@
 	</nav>
 </header>
 <section>
-    <div class="page_box">
-        <!--  주문내역 -->
-        <ul class="box_list">
-            <a href="/Purchase/orderList.do">
-                <li class="far fa-file-alt fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Order</span><br>
-                <span class="txt_2">주문내역</span>
-                </li>
-            </a>
-        </ul>
-        <!-- 회원정보 -->
-        <ul class="box_list">
-            <a href="memInfo.do">
-                <li class="far fa-address-card fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Profile</span>
-                <p class="txt_2">회원정보</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 배송지목록 -->
-        <ul class="box_list">
-            <a href="addrList.do">
-                <li class="fas fa-truck fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Address</span>
-                <p class="txt_2">배송 주소록</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 정기구독관리 -->
-        <ul class="box_list">
-            <a href="">
-                <li class="far fa-calendar-check fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Subscription</span>
-                <p class="txt_2">정기구독관리</p>
-                </li>
-            </a>
-        </ul>
-    </div>
+	<div id="backbody">
+		<div id="frame">
+			<form class="frm_under">
+				<div id="frame2">
+					<span class="title_1">주문조회</span>
+					<span class="home">Home > order</span>
+					<span> </span>
+				</div><br>
+				<div class="title_2">주문내역조회</div><br>
+				<div id="search">
+					<div class="title_3">
+						<select class="sel">
+							<option>전체 주문처리상태</option>
+							<option>입금전</option>
+							<option>배송준비중</option>
+							<option>배송중</option>
+							<option>배송완료</option>
+							<option>취소</option>
+							<option>교환</option>
+							<option>반품</option>
+						</select>&nbsp;
+						<input type="date" class="txt_wd" style="padding:3px;"/> ~ 
+						<input type="date" class="txt_wd" style="padding:3px;"/>&nbsp;
+						<button class="title_4" onclick="">조회</button>
+					</div>
+					<ol style="padding:10px 20px; font-size:10pt; color:gray;">
+						<li>*기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+						<li>*취소/교환/반품 신청은 주문완료일 기준 30일까지 가능합니다.</li>
+					</ol>
+				</div><br><br>
+				<span class="title_5">주문 상품 정보</span>
+				<table id="productInfo">
+					<thead>
+						<tr>
+							<th>주문일자[주문번호]</th>
+							<th>이미지</th>
+							<th class="pr_info">상품정보</th>
+							<th>수량</th>
+							<th>상품구매금액</th>
+							<th>주문처리상태</th>
+							<th>취소/교환/반품</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+				<div align="center">
+					<span class="title_6">주문 내역이 없습니다.</span>
+				</div>
+			</form>
+		</div>
+	</div>
 </section>
-<!--메인 하단-->
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

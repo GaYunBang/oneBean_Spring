@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -17,11 +16,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/purchase/cart.css" rel="stylesheet" />
+<link href="/css/etc/about.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>장바구니</title>
+<title>회사소개</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -29,38 +28,53 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#cartAllCheck").click(function(){
-			if($("#cartAllCheck").prop("checked"))
-				$(".check_item").prop("checked", true);
-			else $(".check_item").prop("checked", false);
-		});
-		
-		$(".check_item").click(function() {
-			var total = $(".check_item").length;
-			var checked = $(".check_item:checked").length;
-			
-			if(total != checked) $("#cartAllCheck").prop("checked", false);
-			else $("#cartAllCheck").prop("checked", true); 
-		});
-	});
-	function cartButtonDelete(cartIdx,obj) {
-		$.ajax({
-			url:"cartButtonDelete.do",
-			data:"cartIdx="+cartIdx,
-			success:function(data){
-				var test = $(obj);
-				test.parent().parent().remove();
-				var allCount = $("#allCount").text();
-				$("#allCount").text(allCount-1);
-			},
-			error:function(){
-				alert("error");
-			}
-		});
+<style>
+	table {
+		width : 60%;
+		margin: auto;
 	}
-</script>
+	tr, td {
+		border-style: none;
+		border-bottom: 1px solid #aca9a996; 
+		height: 50px;
+	}
+	.board_subject {
+		background-color: rgba(212, 208, 208, 0.199);
+		font-size: 20px;
+		border-radius: 5px;
+	}
+	.board_sub_date {
+		padding-left: 50px;
+	}
+	.detail {
+		min-height: 40vh; 
+	}
+	h3 {
+		text-align: center;
+		margin-bottom: 100px;
+	}
+	.bottom-hr {
+		margin:100px 0 80px 0;
+	}
+	.board_sub_text {
+		font-size: 12px;
+	}
+	input[type=text], input[type=password] {
+		border-style: none;
+		border-bottom: 1px solid #aca9a996;
+	}
+	textarea {
+		resize :none;
+		width: 100%;
+	}
+	.select {
+		width : 100px;
+		padding-right: 20px;
+	}
+	h1 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 <header class="fixed-top">
@@ -167,64 +181,52 @@
 		</form>
 	</nav>
 </header>
-<section>
-<h2 class="cart_header">장바구니</h2>
-	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-		<input type="hidden" name="cmd" value="order">
-		<table class="cart_table">
-			<tr>
-				<th style="width: 8%;" class="check"><input id="cartAllCheck" type="checkbox"></th>
-				<th style="width: 20%;">이미지</th>
-				<th style="width: 21%;">상품명</th>
-				<th style="width: 18%;">수량</th>
-				<th style="width: 24%;">가격</th>
-				<th style="width: 9%;">삭제</th>
-			</tr>
-			<c:forEach var="list" items="${list}">
+	<section>
+			<form action="/Question/modify.do?qidx=${view.qidx}" method="post">
+		<table>
+			<caption style="display:none;">게시판 글쓰기</caption>
+			<tbody>
 				<tr>
-					<td class="check"><input class="check_item" type="checkbox"></td>
-					<td class="cartImg"><img src="${list.proImg}"/></td>
-					<td>${list.proName}</td>
-					<td>
-						<select class="select_option" name="cartCount">
-							<option value="${list.cartCount}" selected>${list.cartCount}</option>
-							<option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+					<td class="board_subject" colspan="2">
+					<div style="margin-left:20px;">
+						<select name="quesCate" class="select">
+							<option value="${view.quesCate }">${view.quesCate }</option>
+							<option value="ㅡㅡㅡㅡ" disabled>ㅡㅡㅡㅡ</option>
+							<option value="일반문의">일반문의</option>
+							<option value="상품문의">상품문의</option>
+							<option value="기타문의">기타문의</option>
 						</select>
+						<input type="text" name="quesSubject" value="${view.quesSubject }" style="width:50%;">
+					</div>
 					</td>
-					<td><span style="font-size:13px; font-weight:bold;">
-							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
-							</span></td>
-					<td><button class="cartSmallButton" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
 				</tr>
-			</c:forEach>
+				<tr>
+					<td class="board_sub_text" colspan="2">작성자 : 
+						<input type="text" name="quesWriter" value="${memberName }" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="detail">
+							<textarea rows="30" name="quesContents" spellcheck="false">${view.quesContents }</textarea>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="board_sub_text" colspan="2">비밀번호 : 
+						<input type="password" name="quesPwd">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" name="memberId" value="${memberId}">
+						<input type="submit" value="확인">
+					</td>
+				</tr>
+			</tbody>
 		</table>
-		<div class="right_align">
-			<button class="buttongroup cmd1">선택 상품 삭제</button>
-			<button class="buttongroup cmd">장바구니 비우기</button>
-		</div>
-
-		<div class="right_align">
-			<h class="font_st">상품 갯수 : </h><span class="val1" id="allCount">${count }</span>
-		</div><br>
-		<div class="center_align">
-			<h class="font_st">합계</h><span class="val1">1111</span>
-		    <i class="fas fa-plus-circle"></i>
-		    <h class="font_st">배송비 : </h><span class="val1">1111</span>
-		    <i class="fas fa-pause-circle aa"></i> <h class="font_st">결제금액</h><span class="val2">11111</span>
-		</div>
-
-
-
-
-		<div class="center_align">
-			<button class="buttongroup1 but_col1 cmd">선택 상품 주문</button>
-			<button class="buttongroup1 but_col2 cmd1">계속 쇼핑하기</button>
-		</div>
 	</form>
-</section>
-<br><br><br>
+	</section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">

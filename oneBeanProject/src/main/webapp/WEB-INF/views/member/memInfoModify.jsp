@@ -12,21 +12,20 @@
 	  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
-<!-- 스타일css 링크추가 -->
+<!-- 스타일 -->
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/etc/about.css" rel="stylesheet" />
+<link href="/css/member/memInfoModify.css" rel="stylesheet" />
 
-<link rel="shortcut icon" type="image/x-icon"
-	href="/images/titlelogo.png" />
-<title>주문조회</title>
+<link rel="shortcut icon" type="image/x-icon" href="/images/titlelogo.png" />
+<title>회원정보 수정</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
+
 <!--햄버거 제이쿼리-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -135,8 +134,76 @@
 	</nav>
 </header>
 <section>
-주문 조회 목록 리스트 불러오기기기ㅣ기이
-</section>
+      <form method="post" action="">
+      <div class="container">
+      <div class="insert">
+      
+      <table>
+      <caption><h2>회원정보 수정</h2></caption>
+      <tr>
+          <td class="col1">이름</td>
+          <td class="col2"><input type="text" class="deco1" name="name" maxlength="5"></td>
+      </tr>
+      <tr>
+          <td class="col1">아이디</td>
+          <td class="col2">
+              <input type="text" class="deco1" name="id" maxlength="10">              
+          </td>
+      </tr>
+      <tr>
+        <td class="col1">생년월일</td>
+        <td class="col2">
+          <input type="text" class="birth1" name="birth1">년&nbsp;
+          <input type="text" class="birth2" name="birth2">월&nbsp;
+          <input type="text" class="birth3" name="birth3">일
+        </td>
+      </tr>
+      <tr>
+          <td class="col1">비밀번호</td>
+          <td class="col2">
+              <input type="password" class="deco" name="pwd" maxlength="16">
+              <input class='but1' type="button" value="수정하기" onclick="">
+              <p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
+              8 ~ 15자리</span>로 입력이 가능합니다.</p>
+          </td>
+      </tr>
+      <tr>
+          <td class="col1">비밀번호 확인</td>
+          <td class="col2"><input type="password" class="deco" name="pwdCheck" maxlength="16"></td>
+      </tr>            
+      <tr>
+          <td class="col1">이메일</td>
+          <td class="col2">
+              <input type="text" class="deco" name="mailid">
+              <span class="a">@</span>
+              <input type="text" class="deco" name="email">              
+              <input class='but1' type="button" value="수정하기" onclick="">
+          </td>
+      </tr>
+      <tr>
+          <td class="col1">전화번호</td>
+          <td class="col2"><select name="phone">
+              <option value="slc1" selected>선택</option>
+              <option value="g1">010</option>
+              <option value="g2">016</option>
+              <option value="g3">011</option>
+              <option value="g4">018</option>
+          </select>
+            <input type="text" class="phone2" name="phone2" maxlength="4">
+            <input type="text" class="phone3" name="phone3" maxlength="4">
+            <input class='but1' type="button" value="수정하기" onclick="">                                 
+          </td>   
+      </tr>
+      </table>      
+    </div>   
+    <div class="create">      
+      <input class="but3" type="button" value="수정취소" onclick="history.back()">
+      <input class="but4" type="button" value="수정완료" onclick="formCheck(this.form)">      
+    </div>
+    </div>
+    </form>
+    </section>
+<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

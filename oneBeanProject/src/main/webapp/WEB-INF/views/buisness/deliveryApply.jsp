@@ -16,7 +16,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/etc/about.css" rel="stylesheet" />
+<link href="/css/buisness/deliveryApply.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
@@ -135,7 +135,32 @@
 	</nav>
 </header>
 <section>
-납품문의 페이지
+	<div class="subject1">사업자 번호 등록</div>
+    <img class="img1" src="/images/필독.jpg"><br><br>
+    <div class="contents1">COFFEE BEANS FREE SAMPLE</div>
+    <span class="var">-</span>
+    
+    <div class="contents2">
+    	사업자대상 원두커피<br>
+    	<strong>무료샘플</strong></br>
+    </div>
+    <div class="contents3">
+        <strong>'개인 카페/프렌차이즈/예비창업자'</strong>에 한해서 무료샘플을 보내드립니다.<br>
+        <strong>커피 관련 사업자</strong>분들은 누구나 부담없이 신청하실 수 있습니다.
+    </div>
+    <div class="contents4">
+        *업체 확인 후 <span id="p1">대표 블랜딩 3종류x200g, 카달로그를 함께 발송</span>해 드리고 있습니다.<br>
+        *샘플원두는 <span id="p1">착불로 배송</span>되며, 제주/도서산간 지역은 추가 배송비가 발생할 수 있습니다.
+    </div>
+    <img class="image1" src="/images/박스.jpg"><br>
+    <span class="subject2">#대표_블랜딩_3종</span>
+	<div>
+	    <img class="img1" src="/images/샘플3종.jpg">
+	</div>
+    <form name="frm" action="" method="post" class="b-frm">
+        <input type="text" name="sellnum" class="sellnum" style="width:300px;height:50px;" placeholder=" 사업자 번호를 입력하세요.">
+        <input type="submit" value="등록" action="" method="get" class="submit1" style="width:100px;height:50px">
+    </form>
 </section>
 <footer class="footer">
 	<div class="container">

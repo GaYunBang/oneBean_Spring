@@ -12,21 +12,20 @@
 	  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
-<!-- 스타일css 링크추가 -->
+<!-- 스타일 -->
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/member/myPage.css" rel="stylesheet" />
+<link href="/css/member/memAddr.css" rel="stylesheet" />
 
-<link rel="shortcut icon" type="image/x-icon"
-	href="/images/titlelogo.png" />
-<title>MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href="/images/titlelogo.png" />
+<title>로그인</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
+
 <!--햄버거 제이쿼리-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -135,50 +134,38 @@
 	</nav>
 </header>
 <section>
-    <div class="page_box">
-        <!--  주문내역 -->
-        <ul class="box_list">
-            <a href="/Purchase/orderList.do">
-                <li class="far fa-file-alt fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Order</span><br>
-                <span class="txt_2">주문내역</span>
-                </li>
-            </a>
-        </ul>
-        <!-- 회원정보 -->
-        <ul class="box_list">
-            <a href="memInfo.do">
-                <li class="far fa-address-card fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Profile</span>
-                <p class="txt_2">회원정보</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 배송지목록 -->
-        <ul class="box_list">
-            <a href="addrList.do">
-                <li class="fas fa-truck fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Address</span>
-                <p class="txt_2">배송 주소록</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 정기구독관리 -->
-        <ul class="box_list">
-            <a href="">
-                <li class="far fa-calendar-check fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Subscription</span>
-                <p class="txt_2">정기구독관리</p>
-                </li>
-            </a>
-        </ul>
-    </div>
-</section>
-<!--메인 하단-->
+        <form method="post" action="">
+            <div class="container">
+            <div class="insert">
+            
+            <table>
+            <caption><h2>배송 주소록 수정</h2></caption>
+            <tr>
+                <td class="col1">우편번호</td>
+                <td class="col2"><input type="text" class="deco1" name="roadAddrPart1" maxlength="5"></td>
+            </tr>
+            <tr>
+                <td class="col1">도로명 주소</td>
+                <td class="col2">
+                    <input type="text" class="deco1" name="roadAddrPart2" maxlength="10">              
+                </td>
+            </tr>
+            <tr>
+                <td class="col1">상세 주소</td>
+                <td class="col2">
+                    <input type="text" class="deco1" name="addrDetail" maxlength="10">              
+                </td>
+            </tr>                                    
+            </table>
+          </div>   
+          <div class="create">
+            <input class="but3" type="button" value="수정취소" onclick="history.back();">
+            <input class="but4" type="button" value="수정완료" onclick="formCheck(this.form)">      
+          </div>
+          </div>
+          </form>
+    </section>
+<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

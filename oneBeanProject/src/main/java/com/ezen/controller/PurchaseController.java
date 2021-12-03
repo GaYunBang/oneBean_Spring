@@ -48,7 +48,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value="orderList.do")
 	public String orderList() {
-		return "purchase/orderList";
+		return "member/orderList";
 	}
 
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -17,11 +17,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/purchase/cart.css" rel="stylesheet" />
+<link href="/css/etc/about.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>장바구니</title>
+<title>회사소개</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -29,38 +29,44 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#cartAllCheck").click(function(){
-			if($("#cartAllCheck").prop("checked"))
-				$(".check_item").prop("checked", true);
-			else $(".check_item").prop("checked", false);
-		});
-		
-		$(".check_item").click(function() {
-			var total = $(".check_item").length;
-			var checked = $(".check_item:checked").length;
-			
-			if(total != checked) $("#cartAllCheck").prop("checked", false);
-			else $("#cartAllCheck").prop("checked", true); 
-		});
-	});
-	function cartButtonDelete(cartIdx,obj) {
-		$.ajax({
-			url:"cartButtonDelete.do",
-			data:"cartIdx="+cartIdx,
-			success:function(data){
-				var test = $(obj);
-				test.parent().parent().remove();
-				var allCount = $("#allCount").text();
-				$("#allCount").text(allCount-1);
-			},
-			error:function(){
-				alert("error");
-			}
-		});
+<style>
+	table {
+		width : 60%;
+		margin: auto;
+		table-layout : fixed;
 	}
-</script>
+	tr, td {
+		border-style: none;
+		border-bottom: 1px solid #aca9a996; 
+		height: 50px;
+	}
+	.board_subject {
+		background-color: rgba(212, 208, 208, 0.199);
+		font-weight: bold;
+		font-size: 20px;
+		border-radius: 5px;
+	}
+	.board_sub_date {
+		padding-left: 50px;
+	}
+	.detail {
+		min-height: 40vh; 
+	}
+	h3 {
+		text-align: center;
+		margin-bottom: 100px;
+	}
+	.bottom-hr {
+		margin:100px 0 80px 0;
+	}
+	.board_sub_text {
+		font-size: 12px;
+	}
+	pre {
+		word-wrap: break-word;
+  		white-space: pre-wrap; 
+	}
+</style>
 </head>
 <body>
 <header class="fixed-top">
@@ -167,64 +173,65 @@
 		</form>
 	</nav>
 </header>
-<section>
-<h2 class="cart_header">장바구니</h2>
-	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-		<input type="hidden" name="cmd" value="order">
-		<table class="cart_table">
-			<tr>
-				<th style="width: 8%;" class="check"><input id="cartAllCheck" type="checkbox"></th>
-				<th style="width: 20%;">이미지</th>
-				<th style="width: 21%;">상품명</th>
-				<th style="width: 18%;">수량</th>
-				<th style="width: 24%;">가격</th>
-				<th style="width: 9%;">삭제</th>
-			</tr>
-			<c:forEach var="list" items="${list}">
+		<div class="emmm"></div>
+	<hr>
+	<section class="py-5">
+		<h3>1:1 문의 게시판</h3>
+		<table>
+			<caption style="display:none;">게시판 상세</caption>
+			<tbody>
 				<tr>
-					<td class="check"><input class="check_item" type="checkbox"></td>
-					<td class="cartImg"><img src="${list.proImg}"/></td>
-					<td>${list.proName}</td>
-					<td>
-						<select class="select_option" name="cartCount">
-							<option value="${list.cartCount}" selected>${list.cartCount}</option>
-							<option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-						</select>
-					</td>
-					<td><span style="font-size:13px; font-weight:bold;">
-							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
-							</span></td>
-					<td><button class="cartSmallButton" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
+					<td class="board_subject" colspan="7">(${view.quesCate}) ${view.quesSubject }</td>
 				</tr>
-			</c:forEach>
+				<tr>
+					<td class="board_sub_text" colspan="7">작성자 : ${view.quesWriter }
+						<span class="board_sub_date"> 
+							작성일 : <fmt:formatDate value="${view.quesDate }" pattern="yyyy-MM-dd" /> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="7">
+						<div class="detail">
+							<pre>${view.quesContents }</pre>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="7">
+						<input type="button" value="수정" onclick="location.href='/Question/modify.do?qidx=${view.qidx}'">
+						<input type="button" value="삭제" onclick="location.href='/Question/Del.do?qidx=${view.qidx}'">
+					</td>
+				</tr>
+				
+				<c:forEach items="${commentList }" var="cList">
+					<tr>
+						<td>${cList.comWriter }</td>
+						<td colspan="5">${cList.comContents }</td>
+						<td><fmt:formatDate value="${cList.comDate }" pattern="yyyy-MM-dd" /> </td>
+					</tr>
+				</c:forEach>
+				
+				
+				<tr style="height:10px;"></tr>
+				<tr>  
+					<td colspan="7">
+						<div>
+							<form method="post" action="/Question/commentWrite.do">		
+							<input type="hidden" name="qidx" value="${view.qidx }">					
+							<textarea name="comContents" rows="3" style="width:100%; resize:none;" spellcheck="false"></textarea>
+								댓글 작성자 : <input type="text" value="${memberName }" name="comWriter" readonly> 
+								<button type="submit">댓글 작성</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+			</tbody>
 		</table>
-		<div class="right_align">
-			<button class="buttongroup cmd1">선택 상품 삭제</button>
-			<button class="buttongroup cmd">장바구니 비우기</button>
-		</div>
-
-		<div class="right_align">
-			<h class="font_st">상품 갯수 : </h><span class="val1" id="allCount">${count }</span>
-		</div><br>
-		<div class="center_align">
-			<h class="font_st">합계</h><span class="val1">1111</span>
-		    <i class="fas fa-plus-circle"></i>
-		    <h class="font_st">배송비 : </h><span class="val1">1111</span>
-		    <i class="fas fa-pause-circle aa"></i> <h class="font_st">결제금액</h><span class="val2">11111</span>
-		</div>
-
-
-
-
-		<div class="center_align">
-			<button class="buttongroup1 but_col1 cmd">선택 상품 주문</button>
-			<button class="buttongroup1 but_col2 cmd1">계속 쇼핑하기</button>
-		</div>
-	</form>
-</section>
-<br><br><br>
+		<!-- 댓글 시작 -->
+		
+		<!-- 댓글 끝 -->
+	</section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">

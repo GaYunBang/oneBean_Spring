@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -28,6 +29,38 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#cartAllCheck").click(function(){
+			if($("#cartAllCheck").prop("checked"))
+				$(".check_item").prop("checked", true);
+			else $(".check_item").prop("checked", false);
+		});
+		
+		$(".check_item").click(function() {
+			var total = $(".check_item").length;
+			var checked = $(".check_item:checked").length;
+			
+			if(total != checked) $("#cartAllCheck").prop("checked", false);
+			else $("#cartAllCheck").prop("checked", true); 
+		});
+	});
+	function cartButtonDelete(cartIdx,obj) {
+		$.ajax({
+			url:"cartButtonDelete.do",
+			data:"cartIdx="+cartIdx,
+			success:function(data){
+				var test = $(obj);
+				test.parent().parent().remove();
+				var allCount = $("#allCount").text();
+				$("#allCount").text(allCount-1);
+			},
+			error:function(){
+				alert("error");
+			}
+		});
+	}
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -135,118 +168,61 @@
 	</nav>
 </header>
 <section>
-<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-           
-           <input type="hidden" name="cmd" value="order">
-           <div class="basketdiv" id="basket">
-               <div id="mark_area">Home > Basket</div>
-               <div class="row head">
-                   <div class="subdiv">
-                       <div class="check">선택</div>
-                       <div class="img">이미지</div>
-                       <div class="pname">상품명</div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketprice">가격</div>
-                       <div class="num">수량</div>
-                       <div class="sum">합계</div>
-                   </div>
-                   <div class="subdiv">
-   
-                       <div class="basketcmd">삭제</div>
-                   </div>
-                   <div class="split"></div>
-               </div>
-       
-               <div class="row data">
-                   <div class="subdiv">
-                       <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>    
-                       <div class="img"><img src="/images/상품1.png" width="60"></div>
-                       <div class="pname">
-                           <span>커피용품</span>
-                       </div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketprice"><input type="hidden" name="p_price" id="p_price1" class="p_price" value="20000">20,000원</div>
-                       <div class="num">
-                           <div class="updown">
-                               <input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="2" onkeyup="javascript:basket.changePNum(1);">
-                               <span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-                               <span onclick="javascript:basket.changePNum(1);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
-                           </div>
-                       </div>
-                       <div class="sum">40,000원</div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
-                   </div>
-               </div>
-               <div class="row data">
-                   <div class="subdiv">
-                       <div class="check"><input type="checkbox" name="buy" value="261" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
-                       <div class="img"><img src="/images/상품1.png" width="60"></div>
-                       <div class="pname">
-                           <span>커피콩</span>
-                       </div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" value="19000">19,000원</div>
-                       <div class="num">
-                           <div class="updown">
-                               <input type="text" name="p_num2" id="p_num2" size="2" maxlength="4" class="p_num" value="1" onkeyup="javascript:basket.changePNum(2);">
-                               <span onclick="javascript:basket.changePNum(2);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-                               <span onclick="javascript:basket.changePNum(2);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
-                           </div>
-                       </div>
-                       <div class="sum">19,000원</div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
-                   </div>
-               </div>
-               <div class="row data">
-                   <div class="subdiv">
-                       <div class="check"><input type="checkbox" name="buy" value="262" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
-                       <div class="img"><img src="/images/상품1.png" width="60"></div>
-                       <div class="pname">
-                           <span>커피포트</span>
-                       </div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketprice"><input type="hidden" name="p_price" id="p_price3" class="p_price" value="15200">15,200원</div>
-                       <div class="num">
-                           <div class="updown">
-                               <input type="text" name="p_num3" id="p_num3" size="2" maxlength="4" class="p_num" value="1" onkeyup="javascript:basket.changePNum(3);">
-                               <span onclick="javascript:basket.changePNum(3);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-                               <span onclick="javascript:basket.changePNum(3);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
-                           </div>
-                       </div>
-                       <div class="sum">15,200원</div>
-                   </div>
-                   <div class="subdiv">
-                       <div class="basketcmd"><a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delItem();">삭제</a></div>
-                   </div>
-               </div>
-       
-           </div>
-           
-           <div class="right-align basketrowcmd">
-               <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delCheckedItem();">선택상품삭제</a>
-               <a href="javascript:void(0)" class="abutton" onclick="javascript:basket.delAllItem();">장바구니비우기</a>
-           </div>
-   
-           <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: 4개</div>
-           <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: 74,200원</div>
-   
-           <div id="goorder" class="">                
-               <div class="buttongroup1 right-align cmd1">
-                 <a href="#">계속 쇼핑하기</a>
-               </div>
-               <div class="buttongroup center-align cmd">
-                   <a href="#">선택한 상품 주문</a>
-               </div>
-           </div>
-       </form>
+<h2 class="cart_header">장바구니</h2>
+	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
+		<input type="hidden" name="cmd" value="order">
+		<table class="cart_table">
+			<tr>
+				<th style="width: 8%;" class="check"><input id="cartAllCheck" type="checkbox"></th>
+				<th style="width: 20%;">이미지</th>
+				<th style="width: 21%;">상품명</th>
+				<th style="width: 18%;">수량</th>
+				<th style="width: 24%;">가격</th>
+				<th style="width: 9%;">삭제</th>
+			</tr>
+			<c:forEach var="list" items="${list}">
+				<tr>
+					<td class="check"><input class="check_item" type="checkbox"></td>
+					<td class="cartImg"><img src="${list.proImg}"/></td>
+					<td>${list.proName}</td>
+					<td>
+						<select class="select_option" name="cartCount">
+							<option value="${list.cartCount}" selected>${list.cartCount}</option>
+							<option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+						</select>
+					</td>
+					<td><span style="font-size:13px; font-weight:bold;">
+							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
+							</span></td>
+					<td><button class="cartSmallButton" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="right_align">
+			<button class="buttongroup cmd1">선택 상품 삭제</button>
+			<button class="buttongroup cmd">장바구니 비우기</button>
+		</div>
+
+		<div class="right_align">
+			<h class="font_st">상품 갯수 : </h><span class="val1" id="allCount">${count }</span>
+		</div>
+		<div class="center_align">
+			<h class="font_st">합계 : </h><span class="val1">1111</span>
+		    <i class="fas fa-plus-circle"></i>
+		    <h class="font_st">배송비 : </h><span class="val1">1111</span>
+		    <i class="fas fa-pause-circle aa"></i> <h class="font_st">결제금액</h><span class="val2">11111</span>
+		</div>
+
+
+
+
+		<div class="center_align">
+			<button class="buttongroup1 but_col1 cmd">선택 상품 주문</button>
+			<button class="buttongroup1 but_col2 cmd1">계속 쇼핑하기</button>
+		</div>
+	</form>
 </section>
 <br><br><br>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

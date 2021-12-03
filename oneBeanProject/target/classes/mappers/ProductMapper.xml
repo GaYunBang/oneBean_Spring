@@ -18,8 +18,9 @@
 			proImg,
 			proDetailImg
 		FROM SHOP_PRODUCT
+		WHERE proDel = 'N'
 		ORDER BY 
-			PROIDX DESC
+			proIdx DESC
 	</select>
 	
 	<!-- 게시글 상세보기 -->
@@ -63,6 +64,14 @@
 			<if test="!proDetailImg.equals('')">
 				,proDetailImg = #{proDetailImg}
 			</if>
+		WHERE
+			proIdx = #{proIdx}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		UPDATE SHOP_PRODUCT
+		SET
+		 	proDel = 'Y'
 		WHERE
 			proIdx = #{proIdx}
 	</update>

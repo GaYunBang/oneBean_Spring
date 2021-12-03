@@ -12,5 +12,6 @@
         <typeAlias type="com.ezen.vo.ProductVO" alias="productVO"/>
         <typeAlias type="com.ezen.vo.QuestionVO" alias="questionVO"/>
         <typeAlias type="com.ezen.vo.CommentVO" alias="commentVO"/>
+        <typeAlias type="com.ezen.vo.CartVO" alias="cartVO"/>
     </typeAliases>
 </configuration>

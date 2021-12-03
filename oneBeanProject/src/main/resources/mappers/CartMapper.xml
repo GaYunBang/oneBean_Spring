@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ezen.mapper.CartMapper">
+  	
+  	<!-- 카트 추가 -->
+  	<insert id="addCart">
+  		INSERT INTO shop_cart(
+  			cartIdx
+  			,midx
+  			,proIdx
+  			,cartCount
+  		)VALUES(
+  			cartSEQ.nextval
+  			,#{midx}
+  			,#{proIdx}
+  			,#{cartCount}
+  		)
+  	</insert>
+  	
+  	<!-- 카트 목록 확인 -->
+  	<select id="cartList" resultType="cartVO" parameterType="int">
+  		SELECT
+  			 a.cartIdx
+  			,a.midx
+  			,a.proIdx
+  			,a.cartCount
+  			,b.proName
+  			,b.proPrice
+  			,b.proImg
+  		FROM shop_cart a LEFT OUTER JOIN shop_product b
+  		ON a.proIdx = b.proIdx
+  		WHERE midx = #{midx}
+  	</select>
+  	
+  	<!-- 카트 리스트 갯수 -->
+  	<select id="cartAllCount" resultType="int" parameterType="int">
+  		SELECT
+  			count(*)
+  		FROM shop_cart a LEFT OUTER JOIN shop_product b
+  		ON a.proIdx = b.proIdx
+  		WHERE midx = #{midx}
+  	</select>
+  	
+  	<!-- 카트 전부 삭제 -->
+  	<delete id="cartAllDelete" parameterType="int">
+  		DELETE FROM shop_cart
+  		WHERE midx=#{midx}
+  	</delete>
+  	<!-- 카드 버튼(하나) 삭제 -->
+  	<delete id="cartButtonDelete" parameterType="int">
+  		DELETE FROM shop_cart
+  		WHERE cartIdx=#{cartIdx}
+  	</delete>
+  </mapper>

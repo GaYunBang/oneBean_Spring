@@ -16,10 +16,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/etc/about.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>ONEBEAN</title>
+<title>회사소개</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -27,6 +28,53 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<style>
+	table {
+		width : 60%;
+		margin: auto;
+	}
+	tr, td {
+		border-style: none;
+		border-bottom: 1px solid #aca9a996; 
+		height: 50px;
+	}
+	.board_subject {
+		background-color: rgba(212, 208, 208, 0.199);
+		font-size: 20px;
+		border-radius: 5px;
+	}
+	.board_sub_date {
+		padding-left: 50px;
+	}
+	.detail {
+		min-height: 40vh; 
+	}
+	h3 {
+		text-align: center;
+		margin-bottom: 100px;
+	}
+	.bottom-hr {
+		margin:100px 0 80px 0;
+	}
+	.board_sub_text {
+		font-size: 12px;
+	}
+	input[type=text], input[type=password] {
+		border-style: none;
+		border-bottom: 1px solid #aca9a996;
+	}
+	textarea {
+		resize :none;
+		width: 100%;
+	}
+	.select {
+		width : 100px;
+		padding-right: 20px;
+	}
+	h1 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 <header class="fixed-top">
@@ -97,7 +145,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -133,38 +181,89 @@
 		</form>
 	</nav>
 </header>
-<section>
-	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="/images/index_image1.jpg" class="d-block w-100" alt="메인사진1">
-				</div>
-				<div class="carousel-item">
-					<img src="/images/index_image2.jpg" class="d-block w-100" alt="메인사진2">
-				</div>
-				<div class="carousel-item">
-					<img src="/images/index_image3.jpg" class="d-block w-100" alt="메인사진3">
-				</div>
-				<div class="carousel-item">
-					<img src="/images/index_image4.jpg" class="d-block w-100" alt="메인사진4">
+	<section>
+			<form action="/Question/modify.do?qidx=${view.qidx}" method="post">
+		<table>
+			<caption style="display:none;">게시판 글쓰기</caption>
+			<tbody>
+				<tr>
+					<td class="board_subject" colspan="2">
+					<div style="margin-left:20px;">
+						<select name="quesCate" class="select">
+							<option value="${view.quesCate }">${view.quesCate }</option>
+							<option value="ㅡㅡㅡㅡ" disabled>ㅡㅡㅡㅡ</option>
+							<option value="일반문의">일반문의</option>
+							<option value="상품문의">상품문의</option>
+							<option value="기타문의">기타문의</option>
+						</select>
+						<input type="text" name="quesSubject" value="${view.quesSubject }" style="width:50%;">
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="board_sub_text" colspan="2">작성자 : 
+						<input type="text" name="quesWriter" value="${memberName }" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="detail">
+							<textarea rows="30" name="quesContents" spellcheck="false">${view.quesContents }</textarea>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="board_sub_text" colspan="2">비밀번호 : 
+						<input type="password" name="quesPwd">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" name="memberId" value="${memberId}">
+						<input type="submit" value="확인">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	</section>
+<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
+<footer class="footer">
+	<div class="container">
+		<div class="row text-center frist_footer">
+			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+				<div>
+					<p class="cs_title">C/S</p>
+					<p class="comnum">063.245.1324</p>
+					<p>AM 09:00 - PM 17:00</p>
 				</div>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+				<div>
+					<p class="cs_title">COMPANY</p>
+					<p>상호 (주)원빈커피&nbsp;&nbsp;&nbsp; 대표 홍길동&nbsp;&nbsp;&nbsp; 사업자등록번호 11111111<br>
+					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#">[사업자정보확인]</a><br>
+					       주소 전라북도 전주시 덕진구 백제대로 572 5층 503호<br>
+					       개인정보관리책임자 아무개 (ezen@ezen.com)<br>
+					       전화 063.245.1324
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<div>
+					<p class="cs_title">BANK</p>
+					<p>카카오뱅크 333-44444444-12-45</p>
+					<p>예금주 원빈커피</p>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div>
+				<div class="copyright_content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한 구매안전 서비스를 이용하실 수 있습니다</div>
+			</div>
 		</div>
 	</div>
-</section>
-<!--footer-->
-<footer class="footer"></footer>
-<!--끝-->
-
+</footer>
 <!-- 위치 옮기지 않기 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

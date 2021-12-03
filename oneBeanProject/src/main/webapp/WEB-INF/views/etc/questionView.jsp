@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -16,10 +17,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/etc/about.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>ONEBEAN</title>
+<title>회사소개</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -27,6 +29,44 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<style>
+	table {
+		width : 60%;
+		margin: auto;
+		table-layout : fixed;
+	}
+	tr, td {
+		border-style: none;
+		border-bottom: 1px solid #aca9a996; 
+		height: 50px;
+	}
+	.board_subject {
+		background-color: rgba(212, 208, 208, 0.199);
+		font-weight: bold;
+		font-size: 20px;
+		border-radius: 5px;
+	}
+	.board_sub_date {
+		padding-left: 50px;
+	}
+	.detail {
+		min-height: 40vh; 
+	}
+	h3 {
+		text-align: center;
+		margin-bottom: 100px;
+	}
+	.bottom-hr {
+		margin:100px 0 80px 0;
+	}
+	.board_sub_text {
+		font-size: 12px;
+	}
+	pre {
+		word-wrap: break-word;
+  		white-space: pre-wrap; 
+	}
+</style>
 </head>
 <body>
 <header class="fixed-top">
@@ -97,7 +137,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -133,38 +173,102 @@
 		</form>
 	</nav>
 </header>
-<section>
-	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="/images/index_image1.jpg" class="d-block w-100" alt="메인사진1">
-				</div>
-				<div class="carousel-item">
-					<img src="/images/index_image2.jpg" class="d-block w-100" alt="메인사진2">
-				</div>
-				<div class="carousel-item">
-					<img src="/images/index_image3.jpg" class="d-block w-100" alt="메인사진3">
-				</div>
-				<div class="carousel-item">
-					<img src="/images/index_image4.jpg" class="d-block w-100" alt="메인사진4">
+		<div class="emmm"></div>
+	<hr>
+	<section class="py-5">
+		<h3>1:1 문의 게시판</h3>
+		<table>
+			<caption style="display:none;">게시판 상세</caption>
+			<tbody>
+				<tr>
+					<td class="board_subject" colspan="7">(${view.quesCate}) ${view.quesSubject }</td>
+				</tr>
+				<tr>
+					<td class="board_sub_text" colspan="7">작성자 : ${view.quesWriter }
+						<span class="board_sub_date"> 
+							작성일 : <fmt:formatDate value="${view.quesDate }" pattern="yyyy-MM-dd" /> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="7">
+						<div class="detail">
+							<pre>${view.quesContents }</pre>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="7">
+						<input type="button" value="수정" onclick="location.href='/Question/modify.do?qidx=${view.qidx}'">
+						<input type="button" value="삭제" onclick="location.href='/Question/Del.do?qidx=${view.qidx}'">
+					</td>
+				</tr>
+				
+				<c:forEach items="${commentList }" var="cList">
+					<tr>
+						<td>${cList.comWriter }</td>
+						<td colspan="5">${cList.comContents }</td>
+						<td><fmt:formatDate value="${cList.comDate }" pattern="yyyy-MM-dd" /> </td>
+					</tr>
+				</c:forEach>
+				
+				
+				<tr style="height:10px;"></tr>
+				<tr>  
+					<td colspan="7">
+						<div>
+							<form method="post" action="/Question/commentWrite.do">		
+							<input type="hidden" name="qidx" value="${view.qidx }">					
+							<textarea name="comContents" rows="3" style="width:100%; resize:none;" spellcheck="false"></textarea>
+								댓글 작성자 : <input type="text" value="${memberName }" name="comWriter" readonly> 
+								<button type="submit">댓글 작성</button>
+							</form>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 댓글 시작 -->
+		
+		<!-- 댓글 끝 -->
+	</section>
+<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
+<footer class="footer">
+	<div class="container">
+		<div class="row text-center frist_footer">
+			<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+				<div>
+					<p class="cs_title">C/S</p>
+					<p class="comnum">063.245.1324</p>
+					<p>AM 09:00 - PM 17:00</p>
 				</div>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+				<div>
+					<p class="cs_title">COMPANY</p>
+					<p>상호 (주)원빈커피&nbsp;&nbsp;&nbsp; 대표 홍길동&nbsp;&nbsp;&nbsp; 사업자등록번호 11111111<br>
+					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#">[사업자정보확인]</a><br>
+					       주소 전라북도 전주시 덕진구 백제대로 572 5층 503호<br>
+					       개인정보관리책임자 아무개 (ezen@ezen.com)<br>
+					       전화 063.245.1324
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<div>
+					<p class="cs_title">BANK</p>
+					<p>카카오뱅크 333-44444444-12-45</p>
+					<p>예금주 원빈커피</p>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div>
+				<div class="copyright_content">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에서 가입한 구매안전 서비스를 이용하실 수 있습니다</div>
+			</div>
 		</div>
 	</div>
-</section>
-<!--footer-->
-<footer class="footer"></footer>
-<!--끝-->
-
+</footer>
 <!-- 위치 옮기지 않기 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

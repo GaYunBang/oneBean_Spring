@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.mapper.questionMapper">
+
+	<!-- 게시글 전체 목록 조회 
+	<select id="listAll" resultType="boardVO" parameterType="Criteria">
+		select* 
+			from test_question
+	</select>
+	-->
+
+	<select id="listCount" resultType="int">
+		SELECT COUNT(*) FROM SHOP_MEMBER_QUESTION
+	</select>
+	
+	<select id="listAll" resultType="questionVO">
+	<![CDATA[
+		select * from (
+			select rowNum rn, a.* from (
+				select * from SHOP_MEMBER_QUESTION order by qidx desc) a
+			)where rn between #{start} and #{end}
+			]]>
+	</select>
+	
+	<select id="list" parameterType="HashMap" resultType="questionVO">
+	<![CDATA[
+		select * from (
+			select rowNum rn, a.* from (
+				select * from SHOP_MEMBER_QUESTION where memberId = #{memberId}) a
+			)where rn between #{start} and #{end}
+			]]>
+		
+	</select>
+
+	<insert id="write">
+		INSERT INTO SHOP_MEMBER_QUESTION(
+			qidx,
+			memberId,
+			quesCate,
+			quesSubject,
+			quesWriter,
+			quesContents
+		) VALUES (
+			questionSEQ.nextval,
+			#{memberId},
+			#{quesCate},
+			#{quesSubject},
+			#{quesWriter},
+			#{quesContents}
+		)
+	</insert>	
+	
+	<select id="view" resultType="questionVO">
+		SELECT * FROM SHOP_MEMBER_QUESTION WHERE
+		QIDX = #{QIDX}
+	</select>
+	
+	<update id="modify">
+		update SHOP_MEMBER_QUESTION 
+		set 
+			quesCate = #{quesCate}, 
+			quesSubject = #{quesSubject}, 
+			quesContents = #{quesContents}, 
+			quesDate = sysdate
+		where qidx = #{qidx}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from SHOP_MEMBER_QUESTION
+			where qidx = #{qidx}
+	</delete>
+	
+</mapper>

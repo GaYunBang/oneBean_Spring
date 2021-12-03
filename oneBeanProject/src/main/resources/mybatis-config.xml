@@ -10,6 +10,8 @@
 	<typeAliases>
         <typeAlias type="com.ezen.vo.MemberVO" alias="memberVO"/> <!-- DB에서 as는 alias의 약자. type의 별칭을 alias로 정하겠다. -->
         <typeAlias type="com.ezen.vo.ProductVO" alias="productVO"/>
+        <typeAlias type="com.ezen.vo.QuestionVO" alias="questionVO"/>
+        <typeAlias type="com.ezen.vo.CommentVO" alias="commentVO"/>
         <typeAlias type="com.ezen.vo.CartVO" alias="cartVO"/>
     </typeAliases>
 </configuration>

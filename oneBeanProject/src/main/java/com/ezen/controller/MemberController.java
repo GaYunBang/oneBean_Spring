@@ -56,6 +56,7 @@ public class MemberController {
 		String memberName = (String)session.getAttribute("memberName");
 		String memberId = (String)session.getAttribute("memberId");
 		String memberGrade = (String)session.getAttribute("memberGrade");
+		Integer midx = (Integer) session.getAttribute("midx");
 		
 		if(login == null) {
 			session.setAttribute("member", null);
@@ -65,10 +66,12 @@ public class MemberController {
 			memberName = login.getMemberName();
 			memberId = login.getMemberId();
 			memberGrade = login.getMemberGrade();
+			midx = login.getMidx();
 			session.setAttribute("memberName", memberName);
 			session.setAttribute("memberId", memberId);
 			session.setAttribute("memberGrade", memberGrade);
-			System.out.println(memberGrade);
+			session.setAttribute("midx", midx);
+			System.out.println(memberId);
 			session.setAttribute("member", login);
 			return "redirect:/";
 		}

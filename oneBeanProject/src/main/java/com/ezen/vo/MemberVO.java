@@ -15,6 +15,7 @@ public class MemberVO {
 	private String memberGrade;
 	private char memberUnJoin;
 	private String memberSpam;
+	private String memberBusinessNumber;
 	
 	//DB에 없는 값
 	private String birth1;
@@ -106,6 +107,12 @@ public class MemberVO {
 	}
 	public void setMemberSpam(String memberSpam) {
 		this.memberSpam = memberSpam;
+	}
+	public String getMemberBusinessNumber() {
+		return memberBusinessNumber;
+	}
+	public void setMemberBusinessNumber(String memberBusinessNumber) {
+		this.memberBusinessNumber = memberBusinessNumber;
 	}
 	
 	//합치기 용

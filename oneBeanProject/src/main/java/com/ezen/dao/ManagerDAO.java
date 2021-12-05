@@ -12,8 +12,10 @@ public class ManagerDAO {
 	@Autowired
 	SqlSession sql;
 
+	private static final String Namespace = "com.ezen.mapper.ManagerMapper";
+	
 	public void proWrite(ProductVO vo) throws Exception {
-		sql.insert("com.ezen.mapper.ProductMapper.insert", vo);
+		sql.insert(Namespace+".insert", vo);
 	}
 	
 	public ProductVO proDetail(int proIdx) throws Exception {
@@ -21,10 +23,10 @@ public class ManagerDAO {
 	}
 	
 	public void proModify(ProductVO vo) throws Exception {
-		sql.update("com.ezen.mapper.ProductMapper.modify", vo);
+		sql.update(Namespace+".modify", vo);
 	}
 	
 	public void proDelete(int proIdx) throws Exception {
-		sql.update("com.ezen.mapper.ProductMapper.delete",proIdx);
+		sql.update(Namespace+"delete",proIdx);
 	}
 }

@@ -87,7 +87,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -110,7 +110,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -186,6 +186,25 @@
 			<button class="btn btn-light" onclick="location.href='/Manager/proWrite.do'">상품등록</button>
 		</c:if>
 	</div>
+	<div style="display:block; text-align:center;">
+        	<c:if test="${paging.startPage != 1 }">
+        		<a href="/Question/question.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+        	</c:if>
+        	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+        		<c:choose>
+        			<c:when test="${p == paging.nowPage }">
+        				<b>${p }</b>
+        			</c:when>
+        			<c:when test="${p != paging.nowPage }">
+        				<a href="/Product/proListAll.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+        			</c:when>
+        		</c:choose>
+        	</c:forEach>
+        	<c:if test="${paging.endPage != paging.lastPage }">
+        		<a href="/Product/proListAll.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
+        	</c:if><br><br>
+        	
+        </div>
 	<!--  <a href="/Manager/proWrite.do">상품등록</a>-->
 </section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

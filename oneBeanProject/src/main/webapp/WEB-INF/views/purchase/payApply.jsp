@@ -101,7 +101,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -124,7 +124,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -162,125 +162,119 @@
 </header>
 <section>
 	<form name="order_form" method="post" action ="" onsubmit="return check2();">
-     <div class="content pt-4">
-         <div class="container-xxl">                                            
-                     <!-- 제목 -->
-                     <div class="d-flex align-items-center">
-                         <span class="shop_bow_subject">주문/결제</span>
-                     </div>
-                         <span class="d-flex shop_bow_subject2 mt-5 mb-3">주문 상품</span>
-                         <!-- 주문상품 상단 -->
-                         <div class="shop_box mt-2 py-3 d-flex align-items-center">
-                             <div class="d-flex align-items-center top_1 justify-content-center ps-3"><span>상품/옵션 정보</span></div>
-                             <div class="d-flex align-items-center top_3 justify-content-center"><span>수량</span></div>
-                             <div class="d-flex align-items-center top_3 justify-content-center mb_hide"><span>상품금액</span></div>
-                             <div class="d-flex align-items-center top_2 justify-content-center"><span>합계금액</span></div>
-                             <div class="d-flex align-items-center top_3 justify-content-center"><span>배송비</span></div>
-                         </div>                                
-                         <!-- 상품 부분 -->
-                         <div class="shop_box2 d-flex align-items-center">
-                             <div class="d-flex align-self-start top_1 py-3">
-                                 <div class="d-flex align-items-center ps-1 ps-lg-3 sum_box">
-                                     <img src="" width="80px">
-                                 </div>
-                                 <div class="d-flex align-items-center con_box">
-                                     <span class="pro"></span>
-                                     <input type="hidden" name="pidx" value="">
-                                 </div>
-                             </div>
-                             <div class="d-flex align-items-center justify-content-center flex-column top_3">
-                                 <span class="pro d-flex align-items-center"></span>
-                                     <input type="hidden" name="cvol" value="">
-                             </div>
-                             <div class="d-flex align-items-center justify-content-center flex-column top_3 mb_hide">
-                                 <span class="pro d-flex align-items-center"></span>
-                             </div>
-                             <div class="d-flex align-items-center justify-content-center flex-column top_2">
-                                 <span class="pro d-flex align-items-center"></span>
-                                     <input type="hidden" name="omoney" value="">
-                             </div>
-                             <div class="d-flex align-items-center justify-content-center flex-column top_3">
-                                 <span class="pro d-flex align-items-center">0원</span>
-                             </div>
-                         </div>                                        
-                         <span class="d-flex shop_bow_subject2 mt-5 mb-3">주문자 정보</span>
-                         <!-- 주문자 정보 -->
-                         <div class="shop_box mt-2 py-3">
-                             <div class="d-flex align-items-center pb-4"><span class="px-3 name_subject">주문자<span class="color_red">*</span></span><input type="text" name="oname" value=""></div>
-                             <div class="d-flex align-items-center pb-4"><span class="px-3 name_subject">휴대폰<span class="color_red">*</span></span><input type="text" name="otell" value=""></div>
-                             <div class="d-flex align-items-center"><span class="px-3 name_subject">이메일<span class="color_red">*</span></span><input type="text" name="omail" value=""></div>
-                         </div>
- 
-                         <span class="d-flex shop_bow_subject2 mt-5 mb-3">배송 정보</span>
-                         <!-- 배송 정보 -->
-                         <div class="shop_box mt-2 py-3">
-                             <div class="d-flex align-items-center pb-0 pb-sm-4 ms-sm-1 ms-0 row" style="position: relative;">
-                                 <span class="px-4 px-sm-3 pb-2 px-sm-0 name_subject">[배송지 선택]</span>
-                                 <div class="d-flex py-3 pt-0 pt-sm-3">
-                                     <label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="기본배송지" class="mx-2">
-                                     기본 배송지</label>
-                                     <label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="최근배송지" class="mx-2">최근 배송지</label>
-                                     <label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="직접입력" class="mx-2">
-                                     직접 입력</label>
-                                     <a class="ship_btn">배송지 관리</a>
-                                 </div>
-                             </div>
-                             <div class="d-flex align-items-center pb-4"><span class="px-3 name_subject">받으실 분<span class="color_red">*</span></span>
-                             <input type="text" name="ooname" value=""></div>
-                             <div class="d-flex align-items-center pb-4"><span class="px-2 ms-1 px-sm-3 ms-sm-0  name_subject">휴대폰번호<span class="color_red">*</span></span>
-                             <input type="text" name="ootell" value=""></div>
-                             <div class="d-flex align-items-center pb-4 row"><span class="px-4 ms-sm-3 ms-0 px-sm-3 name_subject pb-2 pb-sm-0 onesell">받으실 곳<span class="color_red">*</span></span>
-                                 <div class="d-flex justify-content-center flex-column mb_address">
-                                     <div class="d-flex">                                                
-                                         <input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
-                                     </div>                                            
-                                         <input id="member_post"  name="roadAddrPart1" type="text" placeholder="우편 번호" readonly value="">
-                                         <input id="member_addr" name="roadAddrPart2" type="text" placeholder="도로명주소/지번주소" readonly value=""> <br>
-                                         <input id="member_detail_addr" name="addrDetail" type="text" placeholder="상세 주소를 입력해주세요." value="">                       
-                                 </div>
-                             </div>                                    
-                         </div>        
-                         <span class="d-flex shop_bow_subject2 mt-5 mb-3">배송 선택</span>
-                         <!-- 배송 선택 -->
-                         <div class="shop_box mt-2 py-3">
-                             <div class="d-flex align-items-center pb-4">
-                                 <span class="px-3 name_subject">배송방법<span class="color_red">*</span></span>                                   
-                                 <span class="dv_ment1">배송비 3,000원 | 5만원 이상 무료배송</span>
-                             </div>
-                             <div class="d-flex align-items-center"><span class="px-3 name_subject">배송메세지</span>
-                                 <input type="text" name="dv_ment" placeholder="배송 메시지를 선택해 주세요.">
-                             </div>
-                         </div>
- 
-                         <span class="d-flex shop_bow_subject2 mt-5 mb-3">결제수단 선택</span>
-                         <!-- 배송 선택 -->
-                         <div class="shop_box mt-2 py-3 mb-3">
-                             <div class="d-flex align-items-center">
-                                 <span class="px-1 px-sm-3 name_subject">일반결제</span>
-                                 <label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 무통장 입금</label>
-                                 <label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 신용카드</label>
-                                 <label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 계좌이체</label>
-                             </div>
-                         </div>
-                         <div class="d-flex align-items-center">
-                             <input type="checkbox" name="payCheck1" class="mx-3"> 전체 동의합니다.
-                         </div>
-                         <div class="d-flex align-items-center">
-                           <input type="checkbox" name="payCheck2" class="mx-3"> (필수) 개인정보 제공 동의
-                       </div>
-                         <div class="d-flex align-items-center">
-                             <input type="checkbox" name="payCheck3" class="mx-3"> (필수) 주문 상품정보에 동의
-                         </div>
-                         <div class="d-flex align-items-center pb-3">
-                             <input type="checkbox" name="payCheck4" class="mx-3"> (필수) 결제대행 서비스 이용을 위한 개인정보 제3자 제공 및 위탁동의
-                         </div>
-                         <button class="order_main_btn" type="button"  onclick="requestPay()">
-                             <span id="totalSettlePrice"></span>원 결제하기
-                         </button>
-                 </div>                                                
-             </div>                            
- </form>
-</section>
+            <div class="content pt-4">
+                <div class="container-xxl">                                            
+                            <!-- 제목 -->
+                            <div class="d-flex align-items-center">
+                                <span class="shop_bow_subject">주문/결제</span>
+                            </div>
+                                <span class="d-flex shop_bow_subject2 mt-5 mb-3">주문 상품</span>
+                                <!-- 주문상품 상단 -->
+                                <div class="shop_box mt-2 py-3 d-flex align-items-center">
+                                    <div class="d-flex align-items-center top_1 justify-content-center ps-3"><span>상품/옵션 정보</span></div>
+                                    <div class="d-flex align-items-center top_3 justify-content-center"><span>수량</span></div>
+                                    <div class="d-flex align-items-center top_3 justify-content-center mb_hide"><span>상품금액</span></div>
+                                    <div class="d-flex align-items-center top_2 justify-content-center"><span>합계금액</span></div>
+                                    <div class="d-flex align-items-center top_3 justify-content-center"><span>배송비</span></div>
+                                </div>                                
+                                <!-- 상품 부분 -->
+                                <div class="shop_box2 d-flex align-items-center">
+                                    <div class="d-flex align-self-start top_1 py-3">
+                                        <div class="d-flex align-items-center ps-1 ps-lg-3 sum_box">
+                                            <img src="" width="80px">
+                                        </div>
+                                        <div class="d-flex align-items-center con_box">
+                                            <span class="pro"></span>
+                                            <input type="hidden" name="pidx" value="">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center flex-column top_3">
+                                        <span class="pro d-flex align-items-center"></span>
+                                            <input type="hidden" name="cvol" value="">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center flex-column top_3 mb_hide">
+                                        <span class="pro d-flex align-items-center"></span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center flex-column top_2">
+                                        <span class="pro d-flex align-items-center"></span>
+                                            <input type="hidden" name="omoney" value="">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center flex-column top_3">
+                                        <span class="pro d-flex align-items-center">0원</span>
+                                    </div>
+                                </div>                                        
+                                <span class="d-flex shop_bow_subject2 mt-5 mb-3">주문자 정보</span>
+                                <!-- 주문자 정보 -->
+                                <div class="shop_box mt-2 py-3">
+                                    <div class="d-flex align-items-center pb-4"><span class="px-3 name_subject">주문자<span class="color_red">*</span></span><input type="text" name="oname" value=""></div>
+                                    <div class="d-flex align-items-center pb-4"><span class="px-3 name_subject">휴대폰<span class="color_red">*</span></span><input type="text" name="otell" value=""></div>
+                                    <div class="d-flex align-items-center"><span class="px-3 name_subject">이메일<span class="color_red">*</span></span><input type="text" name="omail" value=""></div>
+                                </div>
+        
+                                <span class="d-flex shop_bow_subject2 mt-5 mb-3">배송 정보</span>
+                                <!-- 배송 정보 -->
+                                <div class="shop_box mt-2 py-3">
+                                    <div class="d-flex align-items-center pb-0 pb-sm-4 ms-sm-1 ms-0 row" style="position: relative;">
+                                        <span class="px-4 px-sm-3 pb-2 px-sm-0 name_subject">[배송지 선택]</span>
+                                        <div class="d-flex py-3 pt-0 pt-sm-3">
+                                            <label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="기본배송지" class="mx-2">
+                                            기본 배송지</label>
+                                            <label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="최근배송지" class="mx-2">최근 배송지</label>
+                                            <label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="직접입력" class="mx-2">
+                                            직접 입력</label>
+                                            <a class="ship_btn">배송지 관리</a>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center pb-4"><span class="px-3 name_subject">받으실 분<span class="color_red">*</span></span>
+                                    <input type="text" name="ooname" value=""></div>
+                                    <div class="d-flex align-items-center pb-4"><span class="px-2 ms-1 px-sm-3 ms-sm-0  name_subject">휴대폰번호<span class="color_red">*</span></span>
+                                    <input type="text" name="ootell" value=""></div>
+                                    <div class="d-flex align-items-center pb-4 row"><span class="px-4 ms-sm-3 ms-0 px-sm-3 name_subject pb-2 pb-sm-0 onesell">받으실 곳<span class="color_red">*</span></span>
+                                        <div class="d-flex justify-content-center flex-column mb_address">
+                                            <div class="d-flex">                                                
+                                                <input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
+                                            </div>                                            
+                                                <input id="member_post"  name="roadAddrPart1" type="text" placeholder="우편 번호" readonly value="">
+                                                <input id="member_addr" name="roadAddrPart2" type="text" placeholder="도로명주소/지번주소" readonly value=""> <br>
+                                                <input id="member_detail_addr" name="addrDetail" type="text" placeholder="상세 주소를 입력해주세요." value="">                       
+                                        </div>
+                                    </div>                                    
+                                </div>        
+                                <span class="d-flex shop_bow_subject2 mt-5 mb-3">배송 선택</span>
+                                <!-- 배송 선택 -->
+                                <div class="shop_box mt-2 py-3">
+                                    <div class="d-flex align-items-center pb-4">
+                                        <span class="px-3 name_subject">배송방법<span class="color_red">*</span></span>                                   
+                                        <span class="dv_ment1">배송비 3,000원 | 5만원 이상 무료배송</span>
+                                    </div>
+                                    <div class="d-flex align-items-center"><span class="px-3 name_subject">배송메세지</span>
+                                        <input type="text" name="dv_ment" placeholder="배송 메시지를 선택해 주세요.">
+                                    </div>
+                                </div>
+        
+                                <span class="d-flex shop_bow_subject2 mt-5 mb-3">결제수단 선택</span>
+                                <!-- 배송 선택 -->
+                                <div class="shop_box mt-2 py-3 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <span class="px-1 px-sm-3 name_subject">일반결제</span>
+                                        <label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 무통장 입금</label>
+                                        <label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 신용카드</label>
+                                        <label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 계좌이체</label>
+                                    </div>
+                                </div>                                
+                                <div id="checkWrap">
+                                  <label for="cheeck01"><input type="checkbox" id="cheeck01" />전체 동의합니다.</label>
+                                  <label for="cheeck02"><input type="checkbox" id="cheeck02" />(필수) 개인정보 제공 동의</label>
+                                  <label for="cheeck03"><input type="checkbox" id="cheeck03" />(필수) 주문 상품정보에 동의</label>
+                                  <label for="cheeck04"><input type="checkbox" id="cheeck04" />(필수) 결제대행 서비스 이용을 위한 개인정보 제3자 제공 및 위탁동의</label>
+                                </div>                                
+                                <button class="order_main_btn" type="button"  onclick="requestPay()">
+                                    <span id="totalSettlePrice"></span>원 결제하기
+                                </button>
+                        </div>                                                
+                    </div>                            
+        </form>
+    </section>
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">
@@ -328,5 +322,6 @@
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
 <script src="/js/hamber.js"></script>
+<script src="/js/payApply.js"></script>
 </body>
 </html>

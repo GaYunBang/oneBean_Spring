@@ -9,4 +9,6 @@ public interface MemberService {
 	void joinOK(MemberVO vo) throws Exception;
 	
 	MemberVO login(MemberVO vo) throws Exception;
+	
+	public void gradeUP(MemberVO vo) throws Exception;
 }

@@ -75,7 +75,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -98,7 +98,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -138,7 +138,7 @@
     <div class="page_box">
         <!--  주문내역 -->
         <ul class="box_list">
-            <a href="">
+            <a href="/Purchase/orderList.do">
                 <li class="far fa-file-alt fa-4x m_icon"></li>
                 <li>
                 <span class="txt_1">Order</span><br>
@@ -148,7 +148,7 @@
         </ul>
         <!-- 회원정보 -->
         <ul class="box_list">
-            <a href="">
+            <a href="memInfo.do">
                 <li class="far fa-address-card fa-4x m_icon"></li>
                 <li>
                 <span class="txt_1">Profile</span>
@@ -158,7 +158,7 @@
         </ul>
         <!-- 배송지목록 -->
         <ul class="box_list">
-            <a href="">
+            <a href="addrList.do">
                 <li class="fas fa-truck fa-4x m_icon"></li>
                 <li>
                 <span class="txt_1">Address</span>

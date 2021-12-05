@@ -46,9 +46,14 @@ public class PurchaseController {
 		return "";
 	}
 	
+	@RequestMapping(value="order.do")
+	public String order() {
+		return "purchase/payApply";
+	}
+	
 	@RequestMapping(value="orderList.do")
 	public String orderList() {
-		return "purchase/orderList";
+		return "member/orderList";
 	}
 
 }

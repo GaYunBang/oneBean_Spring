@@ -16,7 +16,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/etc/about.css" rel="stylesheet" />
+<link href="/css/member/orderList.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
@@ -75,7 +75,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -98,7 +98,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -135,7 +135,60 @@
 	</nav>
 </header>
 <section>
-주문 조회 목록 리스트 불러오기기기ㅣ기이
+	<div id="backbody">
+		<div id="frame">
+			<form class="frm_under">
+				<div id="frame2">
+					<span class="title_1">주문조회</span>
+					<span class="home">Home > order</span>
+					<span> </span>
+				</div><br>
+				<div class="title_2">주문내역조회</div><br>
+				<div id="search">
+					<div class="title_3">
+						<select class="sel">
+							<option>전체 주문처리상태</option>
+							<option>입금전</option>
+							<option>배송준비중</option>
+							<option>배송중</option>
+							<option>배송완료</option>
+							<option>취소</option>
+							<option>교환</option>
+							<option>반품</option>
+						</select>&nbsp;
+						<input type="date" class="txt_wd" style="padding:3px;"/> ~ 
+						<input type="date" class="txt_wd" style="padding:3px;"/>&nbsp;
+						<button class="title_4" onclick="">조회</button>
+					</div>
+					<ol style="padding:10px 20px; font-size:10pt; color:gray;">
+						<li>*기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+						<li>*취소/교환/반품 신청은 주문완료일 기준 30일까지 가능합니다.</li>
+					</ol>
+				</div><br><br>
+				<span class="title_5">주문 상품 정보</span>
+				<table id="productInfo">
+					<thead>
+						<tr>
+							<th>주문일자[주문번호]</th>
+							<th>이미지</th>
+							<th class="pr_info">상품정보</th>
+							<th>수량</th>
+							<th>상품구매금액</th>
+							<th>주문처리상태</th>
+							<th>취소/교환/반품</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+				<div align="center">
+					<span class="title_6">주문 내역이 없습니다.</span>
+				</div>
+			</form>
+		</div>
+	</div>
 </section>
 <footer class="footer">
 	<div class="container">

@@ -85,7 +85,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade !=1 }">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -108,7 +108,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -144,12 +144,12 @@
 		</form>
 	</nav>
 </header>
-	<section>
-      <div class="content pt-4">
+<section>
+	<div class="content pt-4 mb-5">
         <div class="container-xxl">
             <div class="row">
                 <div class="col-12 col-md-4">
-                    <img class="pt-0 p-sm-4" src="/images/커피.jpg" width="100%">
+                    <img class="pt-0 p-sm-4" src="${dto.proImg}" width="100%">
                 </div>
                 <div class="col-12 col-md-7">
                     <div>
@@ -157,17 +157,15 @@
                         <input type="hidden" name="proIdx" value="${dto.proIdx}">
                             <span class="goods_subject p-4">${dto.proName}</span>
                             <div class="price_box p-4">
-                            	
-                                <span class="price">판매가격 : <fmt:formatNumber value="${dto.proPrice}" pattern="###,###,### 원" /></span>
+                                <span class="price">판매가격 : </span>
                                 <span class="discount-rate"><span class="discount-rate2"></span><span>10%</span></span>
+                                <span><span class="price"><fmt:formatNumber value="${dto.proPrice}" pattern="###,###,### 원" /></span></span>
                                 <span class="consumer"><fmt:formatNumber value="${dto.proPrice+10000}" pattern="###,###,### 원" /></span>
                             </div>
                             <div class="op_box">
                                 <div class="">
 	                                  <div class="row col-12 p-4">
-	                                    <div class="op_title">커핑노트 : 견과류, 초콜렛의 향미를 가진 묵직한 바디감
-	                                    ${dto.proContents}
-	                                    </div>	                                    
+	                                    <div class="op_title">${dto.proContents}</div>	                                    
                                     </div>
                                     <div class="row col-12 p-4">
 	                                    <div class="op_title">로스팅일자 : 결제기준 3일 이내 로스팅 후 배송</div>	                                    
@@ -177,10 +175,10 @@
                             <div class="btn_box">
                             <div class="row d-flex pt-3 justify-content-center">
                                 <select class="select_option" name="cartCount">
-                                    <option>수량 : 옵션</option>
-                                    <option value="1">1 : 콜롬비아</option>
-                                    <option value="2">2 : 브라질</option>
-                                    <option value="3">3 : 중국</option>
+                                    <option value="0">수량</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
                             <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
@@ -192,14 +190,15 @@
                                	</c:if>
                                 <button type="submit" class="btn_shop">주문하기</button>                                
                             </div>
-                            </div>                            
+                            </div>                          
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </section>
+    <img class="foot_img" src="${dto.proDetailImg}">
+</section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">

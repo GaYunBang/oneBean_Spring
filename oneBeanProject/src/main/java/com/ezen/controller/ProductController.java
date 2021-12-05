@@ -2,11 +2,14 @@ package com.ezen.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.service.*;
@@ -21,11 +24,24 @@ public class ProductController {
 
 	// 게시글 목록
 	@RequestMapping(value = "proListAll.do")
-	public ModelAndView proListAll() throws Exception {
+	public ModelAndView proListAll(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage,HttpSession session) throws Exception{
+		int total = productService.proListAllCount();
+		if(nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "12";
+		}else if(nowPage == null) {
+			nowPage = "1";
+		}else if(cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		List<ProductVO> list = productService.proListAll();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product/proListAll");
 		mav.addObject("list", list);
+		model.addAttribute("paging", vo);
 		return mav;
 	}
 

@@ -21,7 +21,7 @@
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>회사소개</title>
+<title>문의사항</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -114,7 +114,7 @@
 						<c:if test="${memberGrade == 1}">
 							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
-						<c:if test="${memberGrade == 0||memberGrade == 2}">
+						<c:if test="${memberGrade != 1}">
 							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
@@ -137,7 +137,7 @@
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
 						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Etc/question.do">문의사항</a><hr class="line"></li>
+						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>

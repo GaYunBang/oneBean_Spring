@@ -20,7 +20,7 @@
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>회사소개</title>
+<title>문의작성</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>

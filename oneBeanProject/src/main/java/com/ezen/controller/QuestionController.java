@@ -49,12 +49,12 @@ public class QuestionController {
 		model.addAttribute("listAll", service.listAll(vo));
 		model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
 		
-		return "etc/question";
+		return "question/questionList";
 	}
 	
 	@RequestMapping(value="write.do", method= RequestMethod.GET)
 	public String write() throws Exception {
-		return "etc/questionWrite";
+		return "question/questionWrite";
 	}
 	
 	@RequestMapping(value="write.do", method = RequestMethod.POST)
@@ -65,7 +65,7 @@ public class QuestionController {
 	
 	@RequestMapping(value="view.do")
 	public ModelAndView view(int qidx,  QuestionVO qvo, ModelAndView mav, Model model) throws Exception{
-		mav.setViewName("etc/questionView");
+		mav.setViewName("question/questionView");
 		mav.addObject("view", service.view(qidx));
 		
 		List<CommentVO> commentList = cService.commentList(qvo.getQidx());
@@ -75,7 +75,7 @@ public class QuestionController {
 	
 	@RequestMapping(value="modify.do", method = RequestMethod.GET)
 	public ModelAndView modify(int qidx, ModelAndView mav) throws Exception{
-		mav.setViewName("etc/questionModify");
+		mav.setViewName("question/questionModify");
 		mav.addObject("view", service.view(qidx));
 		return mav;
 	}

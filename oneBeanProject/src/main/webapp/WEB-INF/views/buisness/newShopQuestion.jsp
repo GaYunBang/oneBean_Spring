@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+창업 문의 페이지
 </body>
 </html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.ezen.mapper.ManagerMapper"> <!-- 호출할떄 사용할 mapper이름. -->
+	<!-- 상품 작성 -->
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO SHOP_PRODUCT (
+			proIdx,
+			proType,
+			proName,
+			proPrice,
+			proContents,
+			proDel,
+			proImg,
+			proDetailImg
+		) VALUES (
+			productSEQ.nextVal,
+			#{proType},
+			#{proName},
+			#{proPrice},
+			#{proContents},
+			'N',
+			#{proImg},
+			#{proDetailImg}
+		)
+	</insert>
+	<!-- 상품 수정 -->
+	<update id="modify" parameterType="productVO">
+		UPDATE SHOP_PRODUCT
+		SET
+			proName = #{proName}
+			,proPrice = #{proPrice}
+			,proType = #{proType}
+			,proContents = #{proContents}
+			<if test="!proImg.equals('')">
+				,proImg = #{proImg}
+			</if>
+			<if test="!proDetailImg.equals('')">
+				,proDetailImg = #{proDetailImg}
+			</if>
+		WHERE
+			proIdx = #{proIdx}
+	</update>
+	<!-- 상품 삭제 -->
+	<update id="delete" parameterType="int">
+		UPDATE SHOP_PRODUCT
+		SET
+		 	proDel = 'Y'
+		WHERE
+			proIdx = #{proIdx}
+	</update>
+    
+</mapper>

@@ -181,7 +181,16 @@
 			<caption style="display:none;">게시판 상세</caption>
 			<tbody>
 				<tr>
-					<td class="board_subject" colspan="7">(${view.quesCate}) ${view.quesSubject }</td>
+					<td class="board_subject" colspan="7">
+						(${view.quesCate}) ${view.quesSubject } 
+						<c:if test="${view.commentCnt == 0}">
+							
+						</c:if>
+						<c:if test="${view.commentCnt != 0}">
+							[${view.commentCnt}]
+						</c:if>
+						
+					</td>
 				</tr>
 				<tr>
 					<td class="board_sub_text" colspan="7">작성자 : ${view.quesWriter }
@@ -201,6 +210,7 @@
 					<td colspan="7">
 						<input type="button" value="수정" onclick="location.href='/Question/modify.do?qidx=${view.qidx}'">
 						<input type="button" value="삭제" onclick="location.href='/Question/Del.do?qidx=${view.qidx}'">
+						<input type="button" value="목록" onclick="location.href='/Question/list.do'">
 					</td>
 				</tr>
 				

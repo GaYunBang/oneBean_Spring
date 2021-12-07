@@ -203,7 +203,6 @@
             <th width="50%">제목</th>
             <th width="10%">작성자</th>
             <th>작성일</th>
-            <th width="8%">조회수</th>
           </tr>
           
           <c:if test="${member == null}">
@@ -218,10 +217,16 @@
 			          <tr onclick="location.href='/Question/view.do?qidx=${listAll.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${listAll.qidx }</td>
 			            <td>${listAll.quesCate }</td>
-			            <td>${listAll.quesSubject }</td>
+			            <td>${listAll.quesSubject }
+			            	<c:if test="${listAll.commentCnt == 0}">
+							
+							</c:if>
+							<c:if test="${listAll.commentCnt != 0}">
+								[${listAll.commentCnt}]
+							</c:if>
+			            </td>
 			            <td>${listAll.quesWriter }</td>
 			            <td><fmt:formatDate value="${listAll.quesDate }" pattern="yyyy-MM-dd" /></td>
-			            <td>1</td>
 			          </tr>
 		          </c:forEach>
 	          </c:if>
@@ -230,10 +235,16 @@
 			          <tr onclick="location.href='/Question/view.do?qidx=${list2.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${list2.qidx }</td>
 			            <td>${list2.quesCate }</td>
-			            <td>${list2.quesSubject }</td>
+			            <td>${list2.quesSubject }
+			            	<c:if test="${list2.commentCnt == 0}">
+							
+							</c:if>
+							<c:if test="${list2.commentCnt != 0}">
+								[${list2.commentCnt}]
+							</c:if>
+			            </td>
 			            <td>${list2.quesWriter }</td>
 			            <td><fmt:formatDate value="${list2.quesDate }" pattern="yyyy-MM-dd" /></td>
-			            <td>1</td>
 			          </tr>
 		        </c:forEach>
       	</c:if>

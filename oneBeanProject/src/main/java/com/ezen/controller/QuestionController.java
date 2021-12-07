@@ -34,6 +34,7 @@ public class QuestionController {
 	public String list(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage,HttpSession session) throws Exception{
+		
 		int total = service.listCount();
 		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -51,6 +52,7 @@ public class QuestionController {
 		
 		return "question/questionList";
 	}
+	
 	
 	@RequestMapping(value="write.do", method= RequestMethod.GET)
 	public String write() throws Exception {
@@ -70,6 +72,7 @@ public class QuestionController {
 		
 		List<CommentVO> commentList = cService.commentList(qvo.getQidx());
 		model.addAttribute("commentList", commentList);
+		
 		return mav;
 	}
 	
@@ -93,11 +96,14 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value="commentWrite.do", method = RequestMethod.POST)
-	public String commentWrite(CommentVO vo, RedirectAttributes rttr) throws Exception {
+	public String commentWrite(CommentVO vo, QuestionVO qvo,Model model, RedirectAttributes rttr) throws Exception {
 		cService.commentWrite(vo);
+		service.commentCnt(qvo);
 		
 		return "redirect:/Question/view.do?qidx=" + vo.getQidx();
 	}
+	
+	
 	
 	
 }

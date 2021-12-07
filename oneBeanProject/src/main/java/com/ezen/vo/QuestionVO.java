@@ -11,8 +11,16 @@ public class QuestionVO {
 	private Date quesDate;
 	private String quesContents;
 	private String memberId;
+	private int commentCnt;
 	
 	
+	
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

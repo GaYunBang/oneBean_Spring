@@ -31,9 +31,14 @@
 				select * from SHOP_MEMBER_QUESTION where memberId = #{memberId}) a
 			)where rn between #{start} and #{end}
 			]]>
-		
 	</select>
 
+	<update id="commentCount" parameterType="questionVO">
+		update shop_member_question set commentCnt = 
+		(select count(comidx) from shop_question_comment where qidx= #{qidx})
+		where qidx = #{qidx}
+	</update>
+	
 	<insert id="write">
 		INSERT INTO SHOP_MEMBER_QUESTION(
 			qidx,

@@ -58,12 +58,17 @@ public class ProductController {
 
 	@RequestMapping(value = "coffeeProList.do")
 	public String coffeeProductList() throws Exception {
-		return "product/coffeeProductList";
+		return "product/coffeeProList";
 	}
 
 	@RequestMapping(value = "sampleBoxList.do")
 	public String sampleBoxList() throws Exception {
 		return "product/sampleBoxList";
+	}
+	
+	@RequestMapping(value = "newProduct.do")
+	public String newProduct() throws Exception {
+		return "product/newProduct";
 	}
 	
 	@RequestMapping(value = ".do")

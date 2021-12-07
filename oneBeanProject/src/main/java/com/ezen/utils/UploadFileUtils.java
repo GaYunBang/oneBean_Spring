@@ -52,6 +52,15 @@ public class UploadFileUtils {
 		*/
 		return newProductDetailImageFileName;
 	}
+	public static String eventImageUpload(String uploadPath, String fileName, byte[] fileData, String yearPath)
+			throws Exception {
+		String imgPath = uploadPath + yearPath + "/event";
+		makeDir(uploadPath + yearPath , "/event");  
+
+		File target = new File(imgPath, fileName);
+		FileCopyUtils.copy(fileData, target);
+		return fileName;
+	}
 	
 	/*
 	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath)

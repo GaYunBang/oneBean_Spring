@@ -13,4 +13,6 @@ public interface PurchaseService {
 	public int cartAllCount(int midx) throws Exception;
 	
 	public void cartButtonDelete(int cartIdx) throws Exception;
+	
+	public void cartAllDelete(int midx) throws Exception;
 }

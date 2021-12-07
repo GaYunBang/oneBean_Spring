@@ -16,6 +16,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/product/newProduct.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
@@ -27,6 +28,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function goDetail(idx) {
+		location.href="/Product/proDetail.do?proIdx="+idx;
+	}
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -58,7 +64,7 @@
 				<a class="eng" href="#none">EVENT</a>
 				<a class="kor" href="#none">이벤트</a>
 				<ul class="under_view">
-					<li><a href="/Product/newProduct.do">새상품</a></li>
+					<li><a href="/Etc/newProduct.do">새상품</a></li>
 					<li><a href="/Product/sampleBoxList.do">샘플BOX</a>
 					<hr class="line"></li>
 				</ul>
@@ -134,7 +140,7 @@
 	</nav>
 </header>
 <section>
-	<img alt="" src="/images/newPro.jpg">
+	<img class="newImg" alt="" src="${vo.newProThumb}" onclick="goDetail(${vo.proIdx})">
 </section>
 <footer class="footer">
 	<div class="container">

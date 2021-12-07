@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.ezen.mapper.RegularMapper"> <!-- 호출할떄 사용할 mapper이름. -->
+	<select id="regularList" resultType="regularVO">
+		SELECT
+			regIdx,
+			regName,
+			regPrice,
+			regStock,
+			regDate,
+			regDel,
+			regImg,
+			regDetailImg
+		FROM SHOP_REGULAR
+		WHERE regDel = 'N'
+		ORDER BY 
+			regIdx DESC
+	</select>
+	
+	<select id="regularCount" resultType="int">
+		SELECT COUNT(*) FROM SHOP_REGULAR
+		WHERE regDel = 'N'
+	</select>
+	
+	<!-- 상품 상세보기 -->
+	<select id="regDetail" resultType="regularVO" parameterType="int">
+		SELECT * FROM SHOP_REGULAR
+		WHERE regIdx = #{regIdx}
+	</select>
+	
+	
+</mapper>

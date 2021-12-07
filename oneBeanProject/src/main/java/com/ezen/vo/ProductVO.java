@@ -15,6 +15,8 @@ public class ProductVO {
 	private String proDel;
 	private String proImg;
 	private String proDetailImg;
+	private String newProYN;
+	private String newProThumb;
 
 	public int getProIdx() {
 		return proIdx;
@@ -82,13 +84,25 @@ public class ProductVO {
 	public void setProDetailImg(String proDetailImg) {
 		this.proDetailImg = proDetailImg;
 	}
-	
+	public String getNewProYN() {
+		return newProYN;
+	}
+	public void setNewProYN(String newProYN) {
+		this.newProYN = newProYN;
+	}
+	public String getNewProThumb() {
+		return newProThumb;
+	}
+	public void setNewProThumb(String newProThumb) {
+		this.newProThumb = newProThumb;
+	}
+	/*
 	@Override
 	public String toString() {
 		return "ProductVO [proIdx=" + proIdx + ", proType=" + proType + ", proName=" + proName + ", proPrice="
 				+ proPrice + ", proPrice2=" + proPrice2 + ", proContents=" + proContents + ", proStock=" + proStock
 				+ ", proDate=" + proDate + ", proDel=" + proDel + ", proImg=" + proImg + ", proDetailImg=" + proDetailImg +"]";
-	}
+	}*/
 	
 	
 }

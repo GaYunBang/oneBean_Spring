@@ -44,4 +44,8 @@ public class QuestionDAO {
 	public void delete(int qidx) throws Exception {
 		sql.delete("com.ezen.mapper.questionMapper.delete", qidx);
 	}
+	
+	public int commentCnt(QuestionVO vo) throws Exception {
+		return sql.update("com.ezen.mapper.questionMapper.commentCount", vo);
+	}
 }

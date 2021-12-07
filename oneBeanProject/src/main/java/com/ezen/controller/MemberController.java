@@ -28,7 +28,6 @@ public class MemberController {
 		
 	@RequestMapping(value="join.do", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) throws Exception {
-		
 		return "member/join";
 	}
 	

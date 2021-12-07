@@ -57,4 +57,9 @@ public class QuestionServiceImpl implements QuestionService{
 		dao.delete(qidx);
 	}
 
+	@Override
+	public int commentCnt(QuestionVO vo) throws Exception {
+		return dao.commentCnt(vo);
+	}
+
 }

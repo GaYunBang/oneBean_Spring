@@ -21,4 +21,7 @@ public interface QuestionService {
 	public void Modify(QuestionVO vo) throws Exception;
 	
 	public void delete(int qidx) throws Exception;
+	
+	public int commentCnt(QuestionVO vo) throws Exception;
+	
 }

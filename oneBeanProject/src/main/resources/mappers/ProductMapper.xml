@@ -82,6 +82,11 @@
 		ORDER BY 
 			proIdx DESC
 	</select>
+	<!-- 검색기능 -->
+	<select id="search" parameterType="productVO" resultType="productVO">
+		SELECT * FROM SHOP_PRODUCT
+		WHERE proName = {proName}
+	</select>
 	
 	<!-- 모든 상품 리스트 숫자 -->
 	<select id="proListAllCount" resultType="int">

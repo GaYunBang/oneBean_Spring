@@ -211,16 +211,16 @@
           	</tr>
           </c:if>
           
+          
           <c:if test="${member != null}">
 	          <c:if test="${memberGrade eq 0 }">
 		          <c:forEach var="listAll" items="${listAll}">
+		          	<c:if test="${listAll.delYN eq 'N'}">
 			          <tr onclick="location.href='/Question/view.do?qidx=${listAll.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${listAll.qidx }</td>
 			            <td>${listAll.quesCate }</td>
 			            <td>${listAll.quesSubject }
-			            	<c:if test="${listAll.commentCnt == 0}">
-							
-							</c:if>
+			            	<c:if test="${listAll.commentCnt == 0}"></c:if>
 							<c:if test="${listAll.commentCnt != 0}">
 								[${listAll.commentCnt}]
 							</c:if>
@@ -228,17 +228,17 @@
 			            <td>${listAll.quesWriter }</td>
 			            <td><fmt:formatDate value="${listAll.quesDate }" pattern="yyyy-MM-dd" /></td>
 			          </tr>
+			          </c:if>
 		          </c:forEach>
 	          </c:if>
 	          
 	          	<c:forEach var="list2" items="${list}">
+	          		<c:if test="${list2.delYN eq 'N'}">
 			          <tr onclick="location.href='/Question/view.do?qidx=${list2.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${list2.qidx }</td>
 			            <td>${list2.quesCate }</td>
 			            <td>${list2.quesSubject }
-			            	<c:if test="${list2.commentCnt == 0}">
-							
-							</c:if>
+			            	<c:if test="${list2.commentCnt == 0}"></c:if>
 							<c:if test="${list2.commentCnt != 0}">
 								[${list2.commentCnt}]
 							</c:if>
@@ -246,13 +246,18 @@
 			            <td>${list2.quesWriter }</td>
 			            <td><fmt:formatDate value="${list2.quesDate }" pattern="yyyy-MM-dd" /></td>
 			          </tr>
+			          </c:if>
 		        </c:forEach>
       	</c:if>
            
         </table><br>
+        
         <c:if test="${member != null}">
 	        <div style="padding-left:85%;">
 	        	<button class="btn btn-light" onclick="location.href='/Question/write.do'">문의하기</button>
+	        	<c:if test="${memberGrade eq 0 }">
+	        	<button class="btn btn-light" onclick="location.href='/Question/deleteBoard.do'">삭제게시판</button>
+	        	</c:if>
 	        </div>
         </c:if>
         <div style="display:block; text-align:center;">

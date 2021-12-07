@@ -53,6 +53,29 @@ public class QuestionController {
 		return "question/questionList";
 	}
 	
+	@RequestMapping(value="deleteBoard.do")
+	public String deleteBoard(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage,HttpSession session) throws Exception{
+		
+		int total = service.listCount();
+		if(nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		}else if(nowPage == null) {
+			nowPage = "1";
+		}else if(cntPerPage == null) {
+			cntPerPage = "10";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		model.addAttribute("paging", vo);
+		model.addAttribute("listAll", service.listAll(vo));
+		model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
+		
+		return "question/deleteBoard";
+	}
+	
 	
 	@RequestMapping(value="write.do", method= RequestMethod.GET)
 	public String write() throws Exception {

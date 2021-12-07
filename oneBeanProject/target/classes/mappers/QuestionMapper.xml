@@ -73,8 +73,7 @@
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		delete from SHOP_MEMBER_QUESTION
-			where qidx = #{qidx}
+		update SHOP_MEMBER_QUESTION set delyn = 'Y' where qidx = #{qidx}
 	</delete>
 	
 </mapper>

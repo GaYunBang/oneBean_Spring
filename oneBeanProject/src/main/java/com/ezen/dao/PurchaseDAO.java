@@ -26,7 +26,11 @@ public class PurchaseDAO {
 	public int cartAllCount(int midx) throws Exception {
 		return sql.selectOne(Namespace+".cartAllCount", midx);
 	}
-
+	
+	public void cartAllDelete(int midx) {
+		sql.delete(Namespace+".cartAllDelete", midx);
+	}
+	
 	public void cartButtonDelete(int cartIdx) {
 		sql.delete(Namespace+".cartButtonDelete", cartIdx);
 	}

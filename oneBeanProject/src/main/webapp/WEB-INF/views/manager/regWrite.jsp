@@ -19,7 +19,7 @@
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>정기구독</title>
+<title>ONEBEAN</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -133,67 +133,65 @@
 		</form>
 	</nav>
 </header>
-<section class="py-5">
-	<div class="container px-4 px-lg-5 mt-5">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-		
-		<!--상품 시작-->
-			<c:forEach var="list" items="${list}">
-				<div class="col mb-5">
-					<div class="card h-100">
-						<!-- Product image-->
-						<a href="regDetail.do?proIdx=${list.regIdx}">
-						<img src="${list.proImg}" class="card-img-top" height="250px"></a>
-						<!-- Product details-->
-						<div class="card-body p-4">
-							<!-- Product name-->
-							<a href="regDetail.do?proIdx=${list.regIdx}">
-							<span style="font-size:15px; font-weight:bold;">
-								<c:out value="${list.proName}" /></span>
-							</a><hr>
-							<!-- Product price-->
-							<span style="font-size:13px; font-weight:bold; color:green;">
-							<fmt:formatNumber value="${list.regPrice}" pattern="###,###,### 원" />
-							</span><br>
-							<span style="font-size:12px; font-weight:bold;">
-							${list.regContents}</span><br>
-							<span style="font-size:12px; font-weight:bold;">
-							결제기준 3일 이내 로스팅 후 배송</span>
-							<c:if test="${member.memberGrade == 0}">
-								<button class="btn btn-light" onclick="location.href='/Manager/regModify.do?regIdx=${list.regIdx}'">수정하기</button>
-								<button class="btn btn-light" onclick="deleteCheck(${list.regIdx})">삭제하기</button>
-							</c:if>
-						</div>
-					</div>
-				</div>
-				<!--상품 끝-->
-			</c:forEach>
+<section>
+	<!-- D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources-->
+ 	<form name="form1" method="post" action="proWrite.do" enctype="multipart/form-data">
+		<div>
+			상품명 <input name="regName" id="regName">
 		</div>
-		<c:if test="${member.memberGrade == 0}">
-			<button class="btn btn-light" onclick="location.href='/Manager/regWrite.do'">상품등록</button>
-		</c:if>
-	</div>
-	<div style="display:block; text-align:center;">
-        	<c:if test="${paging.startPage != 1 }">
-        		<a href="/Question/question.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-        	</c:if>
-        	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-        		<c:choose>
-        			<c:when test="${p == paging.nowPage }">
-        				<b>${p }</b>
-        			</c:when>
-        			<c:when test="${p != paging.nowPage }">
-        				<a href="/Product/proListAll.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-        			</c:when>
-        		</c:choose>
-        	</c:forEach>
-        	<c:if test="${paging.endPage != paging.lastPage }">
-        		<a href="/Product/proListAll.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
-        	</c:if><br><br>
-        	
-        </div>
-	<!--  <a href="/Manager/proWrite.do">상품등록</a>-->
+		<div>
+			가격 <input name="regPrice" id="regPrice"><br>
+			재고<input name="regStock" id="regStock">
+		</div>
+		<div>
+			내용
+			<textarea name="regContents" id="regContents"></textarea>
+		</div>
+		
+		<div class="inputArea">
+			<label for="regImg">상품이미지</label> 
+			<input type="file" id="file" name="file" />
+			<div class="select_img">
+				<img src="" />
+			</div>
+			<label for="regDetailImg">상세이미지</label> 
+			<input type="file" id="detailFile" name="detailFile" />
+			<div class="select_img2">
+				<img src="" />
+			</div>
+
+			<script>
+				$("#file").change(
+						function() {
+							if (this.files && this.files[0]) {
+								var reader = new FileReader;
+								reader.onload = function(data) {
+									$(".select_img img").attr("src",
+											data.target.result).width(500);
+								}
+								reader.readAsDataURL(this.files[0]);
+							}
+						});
+				$("#detailFile").change(
+						function() {
+							if (this.files && this.files[0]) {
+								var reader = new FileReader;
+								reader.onload = function(data) {
+									$(".select_img2 img").attr("src",
+											data.target.result).width(500);
+								}
+								reader.readAsDataURL(this.files[0]);
+							}
+						});
+			</script>
+		</div>
+		<div>
+			<input type="submit" value="확인!">
+			<input type="button" value="취소" onclick="history.back()">
+		</div>
+	</form>	
 </section>
+<!--footer-->
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">
@@ -230,6 +228,8 @@
 		</div>
 	</div>
 </footer>
+<!--끝-->
+
 <!-- 위치 옮기지 않기 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

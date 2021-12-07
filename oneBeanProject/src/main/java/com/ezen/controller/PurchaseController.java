@@ -22,11 +22,12 @@ public class PurchaseController {
 	PurchaseService purchaseService;
 	
 	@RequestMapping(value="addCart.do")
-	public String addCart(int proIdx, CartVO cart, HttpSession session) throws Exception {
+	@ResponseBody
+	public String addCart(CartVO cart, HttpSession session) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		cart.setMidx(vo.getMidx());
 		purchaseService.addCart(cart);
-		return "redirect:cartList.do";
+		return "";
 	}
 	
 	@RequestMapping(value="cartList.do")
@@ -43,6 +44,13 @@ public class PurchaseController {
 	@ResponseBody
 	public String cartButtonDelete(int cartIdx) throws Exception {
 		purchaseService.cartButtonDelete(cartIdx);
+		return "";
+	}
+	
+	@RequestMapping(value="cartAllDelete.do")
+	@ResponseBody
+	public String cartAllDelete(int midx) throws Exception {
+		purchaseService.cartAllDelete(midx);
 		return "";
 	}
 	

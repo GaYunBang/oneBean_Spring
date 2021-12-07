@@ -22,5 +22,4 @@ public class EtcController {
 		
 		return "etc/faq";
 	}
-	
 }

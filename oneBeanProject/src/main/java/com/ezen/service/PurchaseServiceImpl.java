@@ -33,4 +33,9 @@ public class PurchaseServiceImpl implements PurchaseService{
 	public void cartButtonDelete(int cartIdx) throws Exception {
 		purchaseDAO.cartButtonDelete(cartIdx);
 	}
+
+	@Override
+	public void cartAllDelete(int midx) throws Exception {
+		purchaseDAO.cartAllDelete(midx);
+	}
 }

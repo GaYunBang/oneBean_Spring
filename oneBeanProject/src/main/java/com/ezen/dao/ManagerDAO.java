@@ -27,6 +27,6 @@ public class ManagerDAO {
 	}
 	
 	public void proDelete(int proIdx) throws Exception {
-		sql.update(Namespace+"delete",proIdx);
+		sql.delete(Namespace+".delete",proIdx);
 	}
 }

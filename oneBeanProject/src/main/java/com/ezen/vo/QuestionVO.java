@@ -11,8 +11,23 @@ public class QuestionVO {
 	private Date quesDate;
 	private String quesContents;
 	private String memberId;
+	private int commentCnt;
+	private String delYN;
 	
 	
+	
+	public String getDelYN() {
+		return delYN;
+	}
+	public void setDelYN(String delYN) {
+		this.delYN = delYN;
+	}
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

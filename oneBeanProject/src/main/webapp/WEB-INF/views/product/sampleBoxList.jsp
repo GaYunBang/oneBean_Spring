@@ -16,7 +16,6 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/product/sampleBoxList.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
@@ -134,8 +133,66 @@
 		</form>
 	</nav>
 </header>
-<section>
-	샘플박스 리스트 만들기이이ㅣㅇ
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+		
+		<!--상품 시작-->
+			<c:forEach var="list" items="${list}">
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- Product image-->
+						<a href="proDetail.do?proIdx=${list.proIdx}">
+						<img src="${list.proImg}" class="card-img-top" height="250px"></a>
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<!-- Product name-->
+							<a href="proDetail.do?proIdx=${list.proIdx}">
+							<span style="font-size:15px; font-weight:bold;">
+								<c:out value="${list.proName}" /></span>
+							</a><hr>
+							<!-- Product price-->
+							<span style="font-size:13px; font-weight:bold; color:green;">
+							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
+							</span><br>
+							<span style="font-size:12px; font-weight:bold;">
+							${list.proContents}</span><br>
+							<span style="font-size:12px; font-weight:bold;">
+							결제기준 3일 이내 로스팅 후 배송</span>
+							<c:if test="${member.memberGrade == 0}">
+								<button class="btn btn-light" onclick="location.href='/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
+								<button class="btn btn-light" onclick="deleteCheck(${list.proIdx})">삭제하기</button>
+							</c:if>
+						</div>
+					</div>
+				</div>
+				<!--상품 끝-->
+			</c:forEach>
+		</div>
+		<c:if test="${member.memberGrade == 0}">
+			<button class="btn btn-light" onclick="location.href='/Manager/proWrite.do'">상품등록</button>
+		</c:if>
+	</div>
+	<div style="display:block; text-align:center;">
+        	<c:if test="${paging.startPage != 1 }">
+        		<a href="/Product/sampleBoxList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+        	</c:if>
+        	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+        		<c:choose>
+        			<c:when test="${p == paging.nowPage }">
+        				<b>${p }</b>
+        			</c:when>
+        			<c:when test="${p != paging.nowPage }">
+        				<a href="/Product/sampleBoxList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+        			</c:when>
+        		</c:choose>
+        	</c:forEach>
+        	<c:if test="${paging.endPage != paging.lastPage }">
+        		<a href="/Product/sampleBoxList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
+        	</c:if><br><br>
+        	
+        </div>
+	<!--  <a href="/Manager/proWrite.do">상품등록</a>-->
 </section>
 <footer class="footer">
 	<div class="container">

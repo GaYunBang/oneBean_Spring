@@ -5,37 +5,28 @@
  
 <mapper namespace="com.ezen.mapper.MemberMapper"> <!-- 호출할떄 사용할 mapper이름. -->
 
-
 	<insert id="join" parameterType="memberVO">
      <![CDATA[
     	INSERT INTO shop_member(
-    		  midx
-    		, memberId
-    		, memberPwd
-    		, memberName
-    		, memberBirth
-    		, memberGender
-    		, memberPhone
-    		, memberTel
-    		, memberEmail
-    		, memberJoinDay
-    		, memberGrade
-    		, memberUnJoin
-    		, memberSpam
+    		memberId,
+    		memberPwd,
+    		memberName,
+    		memberBirth,
+    		memberGender,
+    		memberPhone,
+    		memberTel,
+    		memberEmail,
+    		memberSpam
     	)VALUES(
-    		 memberSEQ.nextval
-    		, #{memberId}
-    		, #{memberPwd}
-    		, #{memberName}
-    		, #{memberBirth}
-    		, #{memberGender}
-    		, #{memberPhone}
-    		, #{memberTel}
-    		, #{memberEmail}
-    		, sysdate
-    		, 1
-    		, 'N'
-    		, #{memberSpam}
+    		#{memberId},
+    		#{memberPwd},
+    		#{memberName},
+    		#{memberBirth},
+    		#{memberGender},
+    		#{memberPhone},
+    		#{memberTel},
+    		#{memberEmail},
+    		#{memberSpam}
     	)
      ]]>	
     </insert>

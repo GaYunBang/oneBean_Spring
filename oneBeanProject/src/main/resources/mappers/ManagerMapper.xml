@@ -7,23 +7,23 @@
 	<!-- 상품 작성 -->
 	<insert id="insert" parameterType="productVO">
 		INSERT INTO SHOP_PRODUCT (
-			proIdx,
 			proType,
 			proName,
 			proPrice,
+			proPrice2,
 			proContents,
-			proDel,
+			proStock,
 			proImg,
 			proDetailImg,
 			newProYN,
 			newProThumb
 		) VALUES (
-			productSEQ.nextVal,
 			#{proType},
 			#{proName},
 			#{proPrice},
+			#{proPrice2},
 			#{proContents},
-			'N',
+			#{proStock},
 			#{proImg},
 			#{proDetailImg},
 			#{newProYN},

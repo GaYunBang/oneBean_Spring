@@ -218,7 +218,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="hidden" name="memberId" value="${memberId}">
+						<input type="hidden" name="midx" value="${midx}">
 						<input type="submit" value="등록">
 					</td>
 				</tr>

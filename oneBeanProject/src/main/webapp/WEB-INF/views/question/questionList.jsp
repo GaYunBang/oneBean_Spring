@@ -215,7 +215,7 @@
           <c:if test="${member != null}">
 	          <c:if test="${memberGrade eq 0 }">
 		          <c:forEach var="listAll" items="${listAll}">
-		          	<c:if test="${listAll.delYN eq 'N'}">
+		          	<c:if test="${listAll.quesDel eq 'N'}">
 			          <tr onclick="location.href='/Question/view.do?qidx=${listAll.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${listAll.qidx }</td>
 			            <td>${listAll.quesCate }</td>
@@ -233,7 +233,7 @@
 	          </c:if>
 	          
 	          	<c:forEach var="list2" items="${list}">
-	          		<c:if test="${list2.delYN eq 'N'}">
+	          		<c:if test="${list2.quesDel eq 'N'}">
 			          <tr onclick="location.href='/Question/view.do?qidx=${list2.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${list2.qidx }</td>
 			            <td>${list2.quesCate }</td>

@@ -44,7 +44,60 @@
 			if(total != checked) $("#cartAllCheck").prop("checked", false);
 			else $("#cartAllCheck").prop("checked", true); 
 		});
+		
+		var totalSum = 0;
+		var shipPrice = 3000;
+		var payPrice = 0;
+		$(".cart_table tbody tr").each(function(){
+			var count = $(this).find("option:selected").val();
+			var price = $(this).find(".onePrice");
+			var price_text = Number(price.text());
+			price.text((price_text*count).formatNumber()+"원");
+			totalSum += Number(price.text().replace("원","").replaceAll(",",""));
+		});
+		if(totalSum > 50000){
+			shipPrice = 0;
+		}
+		payPrice = totalSum + shipPrice;
+		$("#totalSum").text(totalSum.formatNumber()+"원");
+		$("#shipPrice").text(shipPrice.formatNumber()+"원");
+		$("#payPrice").text(payPrice.formatNumber()+"원");
+		/*
+		$(".select_option").on("change",function(){
+			var count = $(this).find("option:selected").val();
+			var price = $(this).parent().next().find(".onePrice")
+			var price_text = Number(price.text().replace("원","").replaceAll(",","").trim());
+			
+			for (var i=1;i<=10;i++){
+				if(count == i){
+					alert(count);
+					price.text((price_text*i).formatNumber()+"원");
+				}
+			}.
+			if(count == 1){
+				price.text((price_text+8000).formatNumber()+"원");
+			}else if(count == 2){
+				price = price+8000;
+			}else if(count == 3){
+				alert("ss")
+			}
+		});*/
 	});
+	function changeCount(price,obj) {
+		var count = $(obj).find("option:selected").val(); 
+		var priceSpan = $(obj).parent().next().find(".onePrice");
+		for (var i=1;i<=10;i++){
+			if(count == i){
+				alert(count);
+				priceSpan.text((price*i).formatNumber()+"원");
+			}
+		}
+		var totalSum = 0;
+		$(".cart_table tr").each(function(){
+			totalSum += Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+		});
+		$("#totalSum").text(totalSum);
+	}
 	function cartButtonDelete(cartIdx,obj) {
 		$.ajax({
 			url:"cartButtonDelete.do",
@@ -60,6 +113,34 @@
 			}
 		});
 	}
+	
+	function delAllItem(midx){
+		$.ajax({
+			url:"cartAllDelete.do",
+			data:"midx="+midx,
+			success:function(data){
+				var allCount = $("#allCount").text();
+				$("#allCount").text(0);
+				$(".orderform").remove();
+				var str = "<h2 class='cart_header'>장바구니</h2><div class='cartNoItem'>";
+					str +="<div class='cartNoItem2'></div>";
+					str +="<div class='cartNoItem3'>";
+					str +="<i class='bi bi-exclamation-circle exclamation'></i><br>";
+					str +="장바구니에 담겨 있는 상품이 없습니다.</div></div>";
+				$("h2").html(str);
+			},
+			error:function(){
+				alert("error");
+			}
+		});
+	}
+	Number.prototype.formatNumber = function(){
+	    if(this==0) return 0;
+	    let regex = /(^[+-]?\d+)(\d{3})/;
+	    let nstr = (this + '');
+	    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
+	    return nstr;
+	};
 </script>
 </head>
 <body>
@@ -117,7 +198,7 @@
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -169,9 +250,24 @@
 </header>
 <section>
 <h2 class="cart_header">장바구니</h2>
+<c:if test="${list.size()==0}">
+	<div class="cartNoItem">
+		<div class="cartNoItem2"></div>
+		<div class="cartNoItem3">
+			<i class="bi bi-exclamation-circle exclamation"></i><br>
+			장바구니에 담겨 있는 상품이 없습니다.
+		</div>
+	</div>
+	<div class="center_align">
+		<button class="buttongroup1 but_col2" onclick="location.href='/Product/proListAll.do'">쇼핑하기</button>
+		<button class="buttongroup1 but_col2" onclick="history.back()">돌아가기</button>
+	</div>
+</c:if>
+<c:if test="${list.size() != 0}">
 	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
 		<input type="hidden" name="cmd" value="order">
 		<table class="cart_table">
+			<thead>
 			<tr>
 				<th style="width: 8%;" class="check"><input id="cartAllCheck" type="checkbox"></th>
 				<th style="width: 20%;">이미지</th>
@@ -180,33 +276,34 @@
 				<th style="width: 24%;">가격</th>
 				<th style="width: 9%;">삭제</th>
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach var="list" items="${list}">
 				<tr>
 					<td class="check"><input class="check_item" type="checkbox"></td>
 					<td class="cartImg"><img src="${list.proImg}"/></td>
 					<td>${list.proName}</td>
 					<td>
-						<select class="select_option" name="cartCount">
+						<select class="select_option" name="cartCount" onchange="changeCount(${list.proPrice},this)">
 							<option value="${list.cartCount}" selected>${list.cartCount}</option>
-							<option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+							<% for (int i=1;i<=10;i++) {%>
+								<option value="<%=i%>"><%=i%></option>
+							<%}%>
 						</select>
 					</td>
-					<td><span style="font-size:13px; font-weight:bold;">
-							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
-							</span></td>
+					<td><span style="font-size:13px; font-weight:bold;" class="onePrice">${list.proPrice}</span></td>
 					<td><button class="cartSmallButton" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
 		<div class="right_align">
 			<button class="buttongroup cmd1">선택 상품 삭제</button>
-			<button class="buttongroup cmd">장바구니 비우기</button>
+			<button class="buttongroup cmd" onclick="delAllItem(${member.midx});">장바구니 비우기</button>
 		</div>
 
 		<div class="right_align">
-			<span><b style="font-size: 15px">상품 갯수 : </b></span><span class="val1" id="allCount">${count }</span>
+			<span><b style="font-size: 15px">상품 수 : </b></span><span class="val1" id="allCount">${count }</span>
 		</div><br>
 		<table class="totalBox">
 			<tr>
@@ -217,18 +314,19 @@
 				<th class="font_st">결제금액</th>
 			</tr>
 			<tr>
-				<td>상품가격 란<span class="val1">1111</span></td>
+				<td id="totalSum"></td>
 				<td><i class="fas fa-plus-circle"></i></td>
-				<td>배송비 란<span class="val1">1111</span></td>
+				<td id="shipPrice"></td>
 				<td><i class="fas fa-pause-circle aa"></i></td>
-				<td>합계<span class="val2">11111</span></td>
-			</tr> 
+				<td id="payPrice"></td>
+			</tr>
 		</table>
 		<div class="center_align">
 			<button class="buttongroup1 but_col1 cmd" onclick="location.href='order.do'">선택 상품 주문</button>
 			<button class="buttongroup1 but_col2 cmd1">계속 쇼핑하기</button>
 		</div>
 	</form>
+</c:if>
 </section>
 <br><br><br>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

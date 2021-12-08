@@ -14,7 +14,9 @@
 			proContents,
 			proDel,
 			proImg,
-			proDetailImg
+			proDetailImg,
+			newProYN,
+			newProThumb
 		) VALUES (
 			productSEQ.nextVal,
 			#{proType},
@@ -23,7 +25,9 @@
 			#{proContents},
 			'N',
 			#{proImg},
-			#{proDetailImg}
+			#{proDetailImg},
+			#{newProYN},
+			#{newProThumb}
 		)
 	</insert>
 	<!-- 상품 수정 -->
@@ -44,12 +48,7 @@
 			proIdx = #{proIdx}
 	</update>
 	<!-- 상품 삭제 -->
-	<update id="delete" parameterType="int">
-		UPDATE SHOP_PRODUCT
-		SET
-		 	proDel = 'Y'
-		WHERE
-			proIdx = #{proIdx}
-	</update>
-    
+	<delete id="delete" parameterType="int">
+		DELETE SHOP_PRODUCT WHERE proIdx = #{proIdx}
+	</delete>
 </mapper>

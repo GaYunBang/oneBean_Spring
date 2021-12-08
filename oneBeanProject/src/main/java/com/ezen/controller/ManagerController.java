@@ -27,18 +27,24 @@ public class ManagerController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
-	//게시글 작성 화면으로 이동
+	//상품 작성 화면으로 이동
 	@RequestMapping(value="proWrite.do", method=RequestMethod.GET)
 	public String write(Model model) {
 		return "manager/proWrite";
 	}
+	
+	@RequestMapping(value="regWrite.do", method=RequestMethod.GET)
+	public String regWrite(Model model) {
+		return "manager/regWrite";
+	}
 	// 게시글 작성 처리
 	@RequestMapping(value="proWrite.do", method=RequestMethod.POST)
-	public String write(ProductVO vo, MultipartFile file, MultipartFile detailFile) throws Exception {
+	public String write(ProductVO vo, MultipartFile file, MultipartFile detailFile, MultipartFile newFile) throws Exception {
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String yearPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 		String file2Name = null;
+		String file3Name = null;
 
 		if (file != null) {
 			fileName = UploadFileUtils.productImageUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), yearPath);
@@ -51,10 +57,19 @@ public class ManagerController {
 		} else {
 			file2Name = uploadPath + File.separator + "images" + File.separator + "detail" + File.separator + "none.png";
 		}
-
+		
+		if (newFile != null) {
+			file3Name = UploadFileUtils.eventImageUpload(imgUploadPath, newFile.getOriginalFilename(), newFile.getBytes(), yearPath);
+		}else {
+			file3Name = null;
+		}
 		vo.setProImg(File.separator + "imgUpload" + yearPath + File.separator + "product" + File.separator + fileName);
 		vo.setProDetailImg(File.separator + "imgUpload" + yearPath + File.separator + "detail" +File.separator + file2Name);
-
+		vo.setNewProThumb(File.separator + "imgUpload" + yearPath + File.separator + "event" +File.separator + file3Name);
+		if(vo.getNewProYN() == null) {
+			vo.setNewProYN("N");
+		}
+		
 		managerService.proWrite(vo);
 
 		return "redirect:/Product/proListAll.do";
@@ -107,5 +122,10 @@ public class ManagerController {
 	public String delete(int proIdx) throws Exception {
 		managerService.proDelete(proIdx);
 		return "redirect:/Product/proListAll.do";
+	}
+	
+	@RequestMapping(value="newProImg.do")
+	public String newProImg() throws Exception {
+		return "manager/newProImg";
 	}
 }

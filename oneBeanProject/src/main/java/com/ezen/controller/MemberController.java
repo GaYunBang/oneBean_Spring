@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,6 +43,13 @@ public class MemberController {
 		memberService.joinOK(vo);
 		
 		return "redirect:login.do";
+	}
+	
+	@RequestMapping(value="idCheck.do")
+	@ResponseBody
+	public int idCheck(MemberVO vo) throws Exception {
+		int idCheck = memberService.idCheck(vo);
+		return idCheck;
 	}
 	
 	@RequestMapping(value="login.do", method = RequestMethod.GET)

@@ -188,7 +188,7 @@
 	</div>
 	<div style="display:block; text-align:center;">
         	<c:if test="${paging.startPage != 1 }">
-        		<a href="/Question/question.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+        		<a href="/Product/proListAll.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
         	</c:if>
         	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
         		<c:choose>

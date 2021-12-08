@@ -30,12 +30,31 @@
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	function cartGO() {
-		
-		if(confirm("장바구니에 추가 했습니다.\n확인을 클릭하시면 장바구니로 이동합니다.")){
-			document.list_to_orderAction.action="/Purchase/addCart.do";
-			document.list_to_orderAction.submit();
+	function cartGO(idx) {
+		var count = $(".select_option").find("option:selected").val();
+		if (count == 0)
+			{alert("수량을 선택해주세요");
+			return;}
+		else
+			{
+			if(confirm("장바구니에 담으시겠습니까?")){
+				$.ajax({
+					url:"/Purchase/addCart.do",
+					data:{"proIdx":idx,"cartCount":count},
+					success:function(data){
+						if(confirm("확인을 클릭하시면 장바구니로 이동합니다.")){
+							location.href="/Purchase/cartList.do?midx="+${member.midx};
+						}
+					},
+					error:function(){
+						alert("error");
+					}
+				});
+				//document.list_to_orderAction.action="/Purchase/addCart.do";
+			//document.list_to_orderAction.submit();
+			}
 		}
+
 	}
 </script>
 </head>
@@ -176,9 +195,9 @@
                             <div class="row d-flex pt-3 justify-content-center">
                                 <select class="select_option" name="cartCount">
                                     <option value="0">수량</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    <% for (int i=1;i<=10;i++) {%>
+                                    	<option value="<%=i%>"><%=i%></option>
+                                    <%}%>
                                 </select>
                             </div>
                             <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
@@ -186,7 +205,7 @@
 									<a href="/Member/login.do" class="btn_ship">장바구니</a>
 								</c:if>
 								<c:if test="${member != null}">
-                               		<a href="javascript:cartGO()" class="btn_ship">장바구니</a>
+                               		<a href="javascript:cartGO(${dto.proIdx })" class="btn_ship">장바구니</a>
                                	</c:if>
                                 <button type="submit" class="btn_shop">주문하기</button>                                
                             </div>

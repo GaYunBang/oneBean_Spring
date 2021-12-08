@@ -1,0 +1,15 @@
+@charset "UTF-8";
+section{
+	margin-top: 330px;
+    margin-bottom: 100px;
+    width: 100%;
+}
+.write_table{
+    margin: 5px auto;
+}
+.write_table th, .write_table td{
+	border : solid 1px gray;
+}
+.butg{
+	text-align: center;
+}

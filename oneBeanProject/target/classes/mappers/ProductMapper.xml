@@ -23,62 +23,102 @@
 			proIdx DESC
 	</select>
 	
+	<!-- 커피 상품 리스트 -->
+	<select id="coffeeProList" resultType="productVO">
+		SELECT
+			proIdx,
+			proType,
+			proName,
+			proPrice,
+			proPrice2,
+			proContents,
+			proStock,
+			proDate,
+			proDel,
+			proImg,
+			proDetailImg
+		FROM SHOP_PRODUCT
+		WHERE proDel = 'N' and proType='커피'
+		ORDER BY 
+			proIdx DESC
+	</select>
+	
+	<!-- 사업자 상품 리스트 -->
+	<select id="buisnessProList" resultType="productVO">
+		SELECT
+			proIdx,
+			proType,
+			proName,
+			proPrice,
+			proPrice2,
+			proContents,
+			proStock,
+			proDate,
+			proDel,
+			proImg,
+			proDetailImg
+		FROM SHOP_PRODUCT
+		WHERE proDel = 'N' and proType='사업자'
+		ORDER BY 
+			proIdx DESC
+	</select>
+	
+	<!-- 샘플박스 상품 리스트 -->
+	<select id="sampleBoxList" resultType="productVO">
+		SELECT
+			proIdx,
+			proType,
+			proName,
+			proPrice,
+			proPrice2,
+			proContents,
+			proStock,
+			proDate,
+			proDel,
+			proImg,
+			proDetailImg
+		FROM SHOP_PRODUCT
+		WHERE proDel = 'N' and proType='샘플박스'
+		ORDER BY 
+			proIdx DESC
+	</select>
+	
+	<!-- 모든 상품 리스트 숫자 -->
 	<select id="proListAllCount" resultType="int">
 		SELECT COUNT(*) FROM SHOP_PRODUCT
 		WHERE proDel = 'N'
 	</select>
 	
-	<!-- 게시글 상세보기 -->
+	<!-- 커피용품 리스트 숫자 -->
+	<select id="coffeeProListCount" resultType="int">
+		SELECT COUNT(*) FROM SHOP_PRODUCT
+		WHERE proDel = 'N' and proType='커피'
+	</select>
+	
+	<!-- 사업자용품 리스트 숫자 -->
+	<select id="buisnessProListCount" resultType="int">
+		SELECT COUNT(*) FROM SHOP_PRODUCT
+		WHERE proDel = 'N' and proType='사업자'
+	</select>
+	
+	<!-- 샘플박스 리스트 숫자 -->
+	<select id="sampleBoxListCount" resultType="int">
+		SELECT COUNT(*) FROM SHOP_PRODUCT
+		WHERE proDel = 'N' and proType='샘플박스'
+	</select>
+	
+	<!-- 상품 상세보기 -->
 	<select id="proDetail" resultType="productVO" parameterType="int">
 		SELECT * FROM SHOP_PRODUCT
 		WHERE proIdx = #{proIdx}
 	</select>
 	
-	<!-- 게시글 작성 -->
-	<insert id="insert" parameterType="productVO">
-		INSERT INTO SHOP_PRODUCT (
-			proIdx,
-			proType,
-			proName,
-			proPrice,
-			proContents,
-			proDel,
-			proImg,
-			proDetailImg
-		) VALUES (
-			productSEQ.nextVal,
-			#{proType},
-			#{proName},
-			#{proPrice},
-			#{proContents},
-			'N',
-			#{proImg},
-			#{proDetailImg}
-		)
-	</insert>
-	<update id="modify" parameterType="productVO">
-		UPDATE SHOP_PRODUCT
-		SET
-			proName = #{proName}
-			,proPrice = #{proPrice}
-			,proType = #{proType}
-			,proContents = #{proContents}
-			<if test="!proImg.equals('')">
-				,proImg = #{proImg}
-			</if>
-			<if test="!proDetailImg.equals('')">
-				,proDetailImg = #{proDetailImg}
-			</if>
-		WHERE
-			proIdx = #{proIdx}
-	</update>
+	<select id="newPro" resultType="productVO">
+	 <![CDATA[
+		select * from
+		(select * from shop_product order by proIdx desc )
+		where newProYN = 'Y' and rownum <=1
+	]]>
+	</select>
 	
-	<update id="delete" parameterType="int">
-		UPDATE SHOP_PRODUCT
-		SET
-		 	proDel = 'Y'
-		WHERE
-			proIdx = #{proIdx}
-	</update>
-    
 </mapper>

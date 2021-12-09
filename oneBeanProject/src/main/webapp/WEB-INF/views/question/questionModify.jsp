@@ -131,7 +131,7 @@
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -219,7 +219,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="hidden" name="memberId" value="${memberId}">
+						<input type="hidden" name="midx" value="${midx}">
 						<input type="submit" value="확인">
 					</td>
 				</tr>

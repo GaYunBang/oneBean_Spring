@@ -60,12 +60,13 @@ public class ManagerController {
 		
 		if (newFile != null) {
 			file3Name = UploadFileUtils.eventImageUpload(imgUploadPath, newFile.getOriginalFilename(), newFile.getBytes(), yearPath);
+			vo.setNewProThumb(File.separator + "imgUpload" + yearPath + File.separator + "event" +File.separator + file3Name);
 		}else {
 			file3Name = null;
 		}
 		vo.setProImg(File.separator + "imgUpload" + yearPath + File.separator + "product" + File.separator + fileName);
 		vo.setProDetailImg(File.separator + "imgUpload" + yearPath + File.separator + "detail" +File.separator + file2Name);
-		vo.setNewProThumb(File.separator + "imgUpload" + yearPath + File.separator + "event" +File.separator + file3Name);
+		
 		if(vo.getNewProYN() == null) {
 			vo.setNewProYN("N");
 		}

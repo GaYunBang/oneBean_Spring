@@ -5,6 +5,7 @@ public class CartVO {
 	private int midx;
 	private int proIdx;
 	private int cartCount;
+	private int cartPrice;
 	
 	private String proName;
     private int proPrice;
@@ -45,7 +46,17 @@ public class CartVO {
 	public void setCartCount(int cartCount) {
 		this.cartCount = cartCount;
 	}
+	
+	public int getCartPrice() {
+		return cartPrice;
+	}
 
+	public void setCartPrice(int cartPrice) {
+		this.cartPrice = cartPrice;
+	}
+	
+	
+	//db에 없는 것
 	public String getProName() {
 		return proName;
 	}

@@ -32,6 +32,7 @@
 <script type="text/javascript">
 	function cartGO(idx) {
 		var count = $(".select_option").find("option:selected").val();
+		var cartPrice = $("#showPrice").text();
 		if (count == 0)
 			{alert("수량을 선택해주세요");
 			return;}
@@ -40,7 +41,7 @@
 			if(confirm("장바구니에 담으시겠습니까?")){
 				$.ajax({
 					url:"/Purchase/addCart.do",
-					data:{"proIdx":idx,"cartCount":count},
+					data:{"proIdx":idx,"cartCount":count,"cartPrice":cartPrice},
 					success:function(data){
 						if(confirm("확인을 클릭하시면 장바구니로 이동합니다.")){
 							location.href="/Purchase/cartList.do?midx="+${member.midx};
@@ -56,6 +57,14 @@
 		}
 
 	}
+	function showPriceFn(proPrice,obj){
+		var value = Number($(obj).find("option:selected").val());
+		var proPrice = Number(proPrice);
+		var totalPrice = value*proPrice;
+		$("#showPrice").text(totalPrice);
+	}
+	$(document).ready(function(){
+	});
 </script>
 </head>
 <body>
@@ -113,7 +122,7 @@
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -179,7 +188,7 @@
                                 <span class="price">판매가격 : </span>
                                 <span class="discount-rate"><span class="discount-rate2"></span><span>10%</span></span>
                                 <span><span class="price"><fmt:formatNumber value="${dto.proPrice}" pattern="###,###,### 원" /></span></span>
-                                <span class="consumer"><fmt:formatNumber value="${dto.proPrice+10000}" pattern="###,###,### 원" /></span>
+                                <span class="consumer"><fmt:formatNumber value="${dto.proPrice*1.1}" pattern="###,###,### 원" /></span>
                             </div>
                             <div class="op_box">
                                 <div class="">
@@ -193,13 +202,14 @@
                             </div>                                                        
                             <div class="btn_box">
                             <div class="row d-flex pt-3 justify-content-center">
-                                <select class="select_option" name="cartCount">
+                                <select class="select_option" name="cartCount" onchange="showPriceFn(${dto.proPrice},this)">
                                     <option value="0">수량</option>
-                                    <% for (int i=1;i<=10;i++) {%>
-                                    	<option value="<%=i%>"><%=i%></option>
-                                    <%}%>
+                                    <c:forEach var="i" begin="1" end="10">
+                                    	<option value="${i}">${i } (+ ${dto.proPrice*(i-1)})</option>
+                                    </c:forEach>
                                 </select>
                             </div>
+                            <span name="cartPrice" id="showPrice"></span>
                             <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
                                  <c:if test="${member == null}">
 									<a href="/Member/login.do" class="btn_ship">장바구니</a>

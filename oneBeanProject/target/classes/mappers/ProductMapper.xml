@@ -83,6 +83,7 @@
 			proIdx DESC
 	</select>
 	
+	
 	<!-- 모든 상품 리스트 숫자 -->
 	<select id="proListAllCount" resultType="int">
 		SELECT COUNT(*) FROM SHOP_PRODUCT
@@ -115,9 +116,9 @@
 	
 	<select id="newPro" resultType="productVO">
 	 <![CDATA[
-		select * from
-		(select * from shop_product order by proIdx desc )
-		where newProYN = 'Y' and rownum <=1
+		SELECT * FROM SHOP_PRODUCT
+		WHERE newProYN = 'Y'
+		ORDER BY proIdx DESC limit 1;
 	]]>
 	</select>
 	

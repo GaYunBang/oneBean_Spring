@@ -7,15 +7,15 @@
   	<!-- 카트 추가 -->
   	<insert id="addCart">
   		INSERT INTO shop_cart(
-  			cartIdx
-  			,midx
+  			 midx
   			,proIdx
   			,cartCount
+  			,cartPrice
   		)VALUES(
-  			cartSEQ.nextval
-  			,#{midx}
+  			 #{midx}
   			,#{proIdx}
   			,#{cartCount}
+  			,#{cartPrice}
   		)
   	</insert>
   	

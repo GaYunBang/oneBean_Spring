@@ -5,6 +5,7 @@ import java.util.Date;
 public class QuestionVO {
 
 	private int qidx;
+	private int midx;
 	private String quesCate;
 	private String quesSubject;
 	private String quesWriter;
@@ -12,33 +13,20 @@ public class QuestionVO {
 	private String quesContents;
 	private String memberId;
 	private int commentCnt;
-	private String delYN;
+	private String quesDel;
 	
 	
-	
-	public String getDelYN() {
-		return delYN;
-	}
-	public void setDelYN(String delYN) {
-		this.delYN = delYN;
-	}
-	public int getCommentCnt() {
-		return commentCnt;
-	}
-	public void setCommentCnt(int commentCnt) {
-		this.commentCnt = commentCnt;
-	}
-	public String getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
 	public int getQidx() {
 		return qidx;
 	}
 	public void setQidx(int qidx) {
 		this.qidx = qidx;
+	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
 	}
 	public String getQuesCate() {
 		return quesCate;
@@ -70,6 +58,22 @@ public class QuestionVO {
 	public void setQuesContents(String quesContents) {
 		this.quesContents = quesContents;
 	}
-	
-	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+	public String getQuesDel() {
+		return quesDel;
+	}
+	public void setQuesDel(String quesDel) {
+		this.quesDel = quesDel;
+	}
 }

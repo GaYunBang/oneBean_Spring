@@ -11,12 +11,10 @@
 	
 	<insert id="commentWrite" parameterType="commentVO">
 		INSERT INTO SHOP_QUESTION_COMMENT(
-			comIdx,
 			qidx,
 			comWriter,
 			comContents
 		) VALUES (
-			commentSEQ.nextval,
 			#{qidx},
 			#{comWriter},
 			#{comContents}

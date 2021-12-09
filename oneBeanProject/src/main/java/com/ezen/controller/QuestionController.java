@@ -48,7 +48,7 @@ public class QuestionController {
 		
 		model.addAttribute("paging", vo);
 		model.addAttribute("listAll", service.listAll(vo));
-		model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
+		model.addAttribute("list", service.list(vo,(String)session.getAttribute("midx")));
 		
 		return "question/questionList";
 	}

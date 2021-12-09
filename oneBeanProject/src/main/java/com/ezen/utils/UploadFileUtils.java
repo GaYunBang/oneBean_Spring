@@ -54,10 +54,14 @@ public class UploadFileUtils {
 	}
 	public static String eventImageUpload(String uploadPath, String fileName, byte[] fileData, String yearPath)
 			throws Exception {
+		
+		UUID uid = UUID.randomUUID();
+
+		String newEventImageFileName = uid + fileName;
 		String imgPath = uploadPath + yearPath + "/event";
 		makeDir(uploadPath + yearPath , "/event");  
 
-		File target = new File(imgPath, fileName);
+		File target = new File(imgPath, newEventImageFileName);
 		FileCopyUtils.copy(fileData, target);
 		return fileName;
 	}

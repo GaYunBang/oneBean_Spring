@@ -121,7 +121,7 @@
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -183,6 +183,7 @@
 				<th>상품타입</th>
 				<td>
 					<select name="proType">
+						<option value="원두">원두상품</option>
 						<option value="커피">커피상품</option>
 						<option value="사업자">사업자상품</option>
 						<option value="샘플박스">샘플박스상품</option>

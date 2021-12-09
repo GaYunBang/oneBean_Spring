@@ -291,7 +291,7 @@ var idCheckReset = false;
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>

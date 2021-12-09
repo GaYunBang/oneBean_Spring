@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ezen.mapper.ProductOrderMapper">
+  	
+  	<!-- 주문 추가 -->
+  	<insert id="addOrder" parameterType="productOrderVO">
+  		INSERT INTO shop_product_order(
+  			 midx
+  			,proIdx
+  			,orderCount
+  			,orderPrice
+  		)VALUES(
+  			 #{midx}
+  			,#{proIdx}
+  			,#{orderCount}
+  			,#{orderPrice}
+  		)
+  	</insert>
+  	<select id="one" parameterType="int" resultType="productOrderVO">
+  		SELECT
+  			 a.orderIdx
+  			,a.midx
+  			,a.proIdx
+  			,a.orderCount
+  			,a.orderPrice
+  			,b.proName
+  			,b.proPrice
+  			,b.proContents
+  			,b.proImg
+  		FROM shop_product_order a LEFT OUTER JOIN shop_product b
+  		ON a.proIdx = b.proIdx
+  		WHERE midx = #{midx} ORDER BY a.orderIdx DESC limit 1
+  	</select>
+  	<select id="orderSelect" parameterType="int" resultType="productOrderVO">
+  		SELECT
+  			 a.orderIdx
+  			,a.midx
+  			,a.proIdx
+  			,a.orderCount
+  			,a.orderPrice
+  			,b.proName
+  			,b.proPrice
+  			,b.proContents
+  			,b.proImg
+  		FROM shop_product_order a LEFT OUTER JOIN shop_product b
+  		ON a.proIdx = b.proIdx
+  		WHERE midx = #{midx} ORDER BY a.orderIdx
+  	</select>
+  </mapper>

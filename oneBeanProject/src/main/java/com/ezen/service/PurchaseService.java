@@ -15,4 +15,8 @@ public interface PurchaseService {
 	public void cartButtonDelete(int cartIdx) throws Exception;
 	
 	public void cartAllDelete(int midx) throws Exception;
+	
+	public void addOrder(ProductOrderVO vo) throws Exception;
+	
+	public ProductOrderVO one(int midx) throws Exception;
 }

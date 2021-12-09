@@ -231,7 +231,7 @@
 			          </c:if>
 		          </c:forEach>
 	          </c:if>
-	          
+	          <c:if test="${memberGrade ne 0 }">
 	          	<c:forEach var="list2" items="${list}">
 	          		<c:if test="${list2.quesDel eq 'N'}">
 			          <tr onclick="location.href='/Question/view.do?qidx=${list2.qidx}'" style="cursor: pointer;">
@@ -248,6 +248,7 @@
 			          </tr>
 			          </c:if>
 		        </c:forEach>
+		        </c:if>
       	</c:if>
            
         </table><br>
@@ -262,7 +263,7 @@
         </c:if>
         <div style="display:block; text-align:center;">
         	<c:if test="${paging.startPage != 1 }">
-        		<a href="/Question/question.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+        		<a href="/Question/list.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
         	</c:if>
         	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
         		<c:choose>
@@ -270,12 +271,12 @@
         				<b>${p }</b>
         			</c:when>
         			<c:when test="${p != paging.nowPage }">
-        				<a href="/Question/question.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+        				<a href="/Question/list.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
         			</c:when>
         		</c:choose>
         	</c:forEach>
         	<c:if test="${paging.endPage != paging.lastPage }">
-        		<a href="/Question/question.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
+        		<a href="/Question/list.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
         	</c:if><br><br>
         	
         </div>

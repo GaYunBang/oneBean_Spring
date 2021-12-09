@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -188,19 +189,21 @@
                                 <div class="shop_box2 d-flex align-items-center">
                                     <div class="d-flex align-self-start top_1 py-3">
                                         <div class="d-flex align-items-center ps-1 ps-lg-3 sum_box">
-                                            <img src="" width="80px">
+                                            <img src="${vo.proImg }" width="80px">
                                         </div>
                                         <div class="d-flex align-items-center con_box">
-                                            <span class="pro"></span>
+                                            <span class="pro">${vo.proName }<br>${vo.proContents }</span>
                                             <input type="hidden" name="pidx" value="">
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center flex-column top_3">
-                                        <span class="pro d-flex align-items-center"></span>
+                                        <span class="pro d-flex align-items-center">${vo.orderCount}</span>
                                             <input type="hidden" name="cvol" value="">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center flex-column top_3 mb_hide">
-                                        <span class="pro d-flex align-items-center"></span>
+                                        <span class="pro d-flex align-items-center">
+                                        	<fmt:formatNumber value="${vo.orderPrice}" pattern="###,###,### 원" />
+                                        </span>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center flex-column top_2">
                                         <span class="pro d-flex align-items-center"></span>

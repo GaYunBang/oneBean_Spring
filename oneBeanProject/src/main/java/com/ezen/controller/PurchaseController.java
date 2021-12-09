@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.service.PurchaseService;
 import com.ezen.vo.CartVO;
 import com.ezen.vo.MemberVO;
+import com.ezen.vo.ProductOrderVO;
 
 @Controller
 @RequestMapping(value="/Purchase/")
@@ -54,8 +56,42 @@ public class PurchaseController {
 		return "";
 	}
 	
+	@RequestMapping(value="orderOne.do")
+	@ResponseBody
+	public String order(Model model,ProductOrderVO vo ,HttpSession session) throws Exception {
+		MemberVO midx = (MemberVO)session.getAttribute("member");
+		vo.setMidx(midx.getMidx());
+		purchaseService.addOrder(vo);
+		return "";
+	}
+	
+	@RequestMapping(value="one.do")
+	public String order(Model model, HttpSession session) throws Exception {
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		int midx = member.getMidx();
+		ProductOrderVO vo = purchaseService.one(midx);
+		model.addAttribute("vo", vo);
+		return "purchase/payApply";
+	}
+	
 	@RequestMapping(value="order.do")
-	public String order() {
+	public String orderOne(Model model, HttpSession session) throws Exception {
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		int midx = member.getMidx();
+		ProductOrderVO vo = purchaseService.one(midx);
+		model.addAttribute("vo", vo);
+		System.out.println(vo.getProImg());
+		return "purchase/payApply";
+	}
+	
+	@RequestMapping(value="order.do", method=RequestMethod.POST)
+	public String orderSelect(Model model, ProductOrderVO vo, HttpSession session) throws Exception {
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		vo.setMidx(member.getMidx());
+		for(int i=0;i<vo.getCartIdxs().length;i++) {
+			purchaseService.addOrder(vo);
+		}
+		
 		return "purchase/payApply";
 	}
 	

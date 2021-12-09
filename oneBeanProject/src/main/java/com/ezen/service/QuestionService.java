@@ -10,7 +10,7 @@ public interface QuestionService {
 
 	public List<QuestionVO> listAll(PagingVO vo) throws Exception;
 	
-	public List<QuestionVO> list(PagingVO vo, String memberId) throws Exception;
+	public List<QuestionVO> list(PagingVO vo) throws Exception;
 	
 	public int listCount() throws Exception;
 	

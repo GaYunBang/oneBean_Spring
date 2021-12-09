@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ezen.service.CommentService;
 import com.ezen.service.QuestionService;
 import com.ezen.vo.CommentVO;
+import com.ezen.vo.MemberVO;
 import com.ezen.vo.PagingVO;
 import com.ezen.vo.QuestionVO;
 
@@ -45,10 +46,13 @@ public class QuestionController {
 			cntPerPage = "10";
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		
+		MemberVO midx = (MemberVO)session.getAttribute("member");
+		vo.setMidx(midx.getMidx());
+		System.out.println(vo.getStart());
+		System.out.println(vo.getEnd());
 		model.addAttribute("paging", vo);
 		model.addAttribute("listAll", service.listAll(vo));
-		model.addAttribute("list", service.list(vo,(String)session.getAttribute("midx")));
+		model.addAttribute("list", service.list(vo));
 		
 		return "question/questionList";
 	}
@@ -70,8 +74,8 @@ public class QuestionController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		model.addAttribute("paging", vo);
-		model.addAttribute("listAll", service.listAll(vo));
-		model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
+		//model.addAttribute("listAll", service.listAll(vo));
+		//model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
 		
 		return "question/deleteBoard";
 	}

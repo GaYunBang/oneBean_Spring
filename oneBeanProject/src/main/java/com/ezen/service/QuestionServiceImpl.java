@@ -22,14 +22,8 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	
 	@Override
-	public List<QuestionVO> list(PagingVO vo, String memberId) throws Exception {
-		
-		HashMap<String,String> hm = new HashMap<String, String>();		
-		hm.put("start",vo.getStart()+"");
-		hm.put("end", vo.getEnd()+"");
-		hm.put("memberId",memberId);
-		
-		return dao.list(hm);
+	public List<QuestionVO> list(PagingVO vo) throws Exception {
+		return dao.list(vo);
 	}
 
 	@Override

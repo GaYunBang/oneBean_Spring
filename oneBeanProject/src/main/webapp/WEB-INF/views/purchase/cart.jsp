@@ -134,6 +134,7 @@
 			}
 		});
 	}
+	
 	Number.prototype.formatNumber = function(){
 	    if(this==0) return 0;
 	    let regex = /(^[+-]?\d+)(\d{3})/;
@@ -264,8 +265,8 @@
 	</div>
 </c:if>
 <c:if test="${list.size() != 0}">
-	<form name="orderform" id="orderform" method="post" class="orderform" action="/Page" onsubmit="return false;">
-		<input type="hidden" name="cmd" value="order">
+	<form name="orderform" id="orderform" method="post" class="orderform" action="order.do">
+		
 		<table class="cart_table">
 			<thead>
 			<tr>
@@ -279,19 +280,20 @@
 			</thead>
 			<tbody>
 			<c:forEach var="list" items="${list}">
+			<input type="hidden" name="proIdx" value="${list.proIdx }">
 				<tr>
-					<td class="check"><input class="check_item" type="checkbox" checked></td>
+					<td class="check"><input class="check_item" type="checkbox" checked value="${list.cartIdx}" name="cartIdxs"></td>
 					<td class="cartImg"><img src="${list.proImg}"/></td>
 					<td>${list.proName}</td>
 					<td>
-						<select class="select_option" name="cartCount" onchange="changeCount(${list.proPrice},this)">
+						<select class="select_option" name="orderCount" onchange="changeCount(${list.proPrice},this)">
 							<option value="${list.cartCount}" selected>${list.cartCount}</option>
 							<% for (int i=1;i<=10;i++) {%>
 								<option value="<%=i%>"><%=i%></option>
 							<%}%>
 						</select>
 					</td>
-					<td><span style="font-size:13px; font-weight:bold;" class="onePrice">${list.proPrice}</span></td>
+					<td><span style="font-size:13px; font-weight:bold;" class="onePrice" name="orderPrice">${list.proPrice}</span></td>
 					<td><button class="cartSmallButton" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
 				</tr>
 			</c:forEach>
@@ -322,8 +324,9 @@
 			</tr>
 		</table>
 		<div class="center_align">
-			<button class="buttongroup1 but_col1 cmd" onclick="location.href='order.do'">선택 상품 주문</button>
-			<button class="buttongroup1 but_col2 cmd1">계속 쇼핑하기</button>
+			<input type="submit" class="buttongroup1 but_col1 cmd" value="선택 상품 주문">
+			
+			<input class="buttongroup1 but_col2 cmd1" value="계속 쇼핑하기" onclick="location.href='/Product/proListAll.do'">
 		</div>
 	</form>
 </c:if>

@@ -18,11 +18,11 @@ public class QuestionDAO {
 	SqlSession sql;
 	
 	public List<QuestionVO> listAll(PagingVO vo) throws Exception {
-		return sql.selectList("com.ezen.mapper.questionMapper.listAll", vo);
+		return sql.selectList("com.ezen.mapper.questionMapper.listAll",vo);
 	}
 	
-	public List<QuestionVO> list(HashMap<String,String> hm)throws Exception {
-		return sql.selectList("com.ezen.mapper.questionMapper.list", hm);
+	public List<QuestionVO> list(PagingVO vo)throws Exception {
+		return sql.selectList("com.ezen.mapper.questionMapper.list", vo);
 	}
 	
 	public int listCount() throws Exception {

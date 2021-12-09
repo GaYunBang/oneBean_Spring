@@ -4,6 +4,7 @@ public class PagingVO {
 
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
+	private int midx;
 	
 	
 	
@@ -80,7 +81,7 @@ public class PagingVO {
 		return start;
 	}
 	public void setStart(int start) {
-		this.start = start;
+		this.start = start-1;
 	}
 	public int getEnd() {
 		return end;
@@ -100,5 +101,13 @@ public class PagingVO {
 		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
 				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
 				+ ", cntPage=" + cntPage + "]";
+	}
+
+	public int getMidx() {
+		return midx;
+	}
+
+	public void setMidx(int midx) {
+		this.midx = midx;
 	}
 }

@@ -15,24 +15,17 @@
 		SELECT COUNT(*) FROM SHOP_MEMBER_QUESTION
 	</select>
 	
-	<select id="listAll" resultType="questionVO">
+	<select id="listAll" resultType="questionVO" parameterType="pagingVO">
 	<![CDATA[
-		select @rownum:=@rownum+1 rowNum,
-		m.* from SHOP_MEMBER_QUESTION m,
-		(select @rownum:=0) temp
-		order by qidx desc
-		limit #{start} offset #{end}
-		
-			]]>
+		select A.* from shop_member_question A limit #{start},#{end}
+	]]>
 	</select>
 	
-	<select id="list" parameterType="HashMap" resultType="questionVO">
+	<select id="list" parameterType="pagingVO" resultType="questionVO">
 	<![CDATA[
-		select @rownum:=@rownum+1 rowNum,
-		m.* from SHOP_MEMBER_QUESTION m,
-		(select @rownum:=0) temp
+		SELECT * FROM SHOP_MEMBER_QUESTION
 		where midx = #{midx} order by qidx desc
-		limit #{start} offset #{end}
+		LIMIT #{start}, #{end}
 	]]>
 	</select>
 

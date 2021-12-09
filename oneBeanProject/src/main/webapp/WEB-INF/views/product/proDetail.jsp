@@ -44,25 +44,53 @@
 					data:{"proIdx":idx,"cartCount":count,"cartPrice":cartPrice},
 					success:function(data){
 						if(confirm("확인을 클릭하시면 장바구니로 이동합니다.")){
-							location.href="/Purchase/cartList.do?midx="+${member.midx};
+							location.href="/Purchase/cartList.do";
 						}
 					},
 					error:function(){
 						alert("error");
 					}
 				});
-				//document.list_to_orderAction.action="/Purchase/addCart.do";
-			//document.list_to_orderAction.submit();
 			}
 		}
-
 	}
+	
+	function orderGO(proIdx) {
+		var count = $(".select_option").find("option:selected").val();
+		var orderPrice = $("#showPrice").text().replace("원","").replaceAll(",","");
+		if (count == 0){
+			alert("수량을 선택해주세요");
+			return;
+		}else{
+			if(confirm("주문하시겠습니까?")){
+				$.ajax({
+					url:"/Purchase/orderOne.do",
+					data:{"proIdx":proIdx,"orderCount":count,"orderPrice":orderPrice},
+					success:function(data){
+						location.href="/Purchase/one.do";
+					},
+					error:function(){
+						alert("error");
+					}
+				});
+			}
+		}
+	}
+	
 	function showPriceFn(proPrice,obj){
 		var value = Number($(obj).find("option:selected").val());
 		var proPrice = Number(proPrice);
 		var totalPrice = value*proPrice;
-		$("#showPrice").text(totalPrice);
+		$("#showPrice").text(totalPrice.formatNumber()+"원");
 	}
+	
+	Number.prototype.formatNumber = function(){
+	    if(this==0) return 0;
+	    let regex = /(^[+-]?\d+)(\d{3})/;
+	    let nstr = (this + '');
+	    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
+	    return nstr;
+	};
 	$(document).ready(function(){
 	});
 </script>
@@ -202,7 +230,7 @@
                             </div>                                                        
                             <div class="btn_box">
                             <div class="row d-flex pt-3 justify-content-center">
-                                <select class="select_option" name="cartCount" onchange="showPriceFn(${dto.proPrice},this)">
+                                <select class="select_option" name="cartCount" onchange="showPriceFn(${dto.proPrice},this);">
                                     <option value="0">수량</option>
                                     <c:forEach var="i" begin="1" end="10">
                                     	<option value="${i}">${i } (+ ${dto.proPrice*(i-1)})</option>
@@ -213,11 +241,12 @@
                             <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
                                  <c:if test="${member == null}">
 									<a href="/Member/login.do" class="btn_ship">장바구니</a>
+									<a href="/Member/login.do" class="btn_shop">주문하기</a>
 								</c:if>
 								<c:if test="${member != null}">
                                		<a href="javascript:cartGO(${dto.proIdx })" class="btn_ship">장바구니</a>
-                               	</c:if>
-                                <button type="submit" class="btn_shop">주문하기</button>                                
+                               		<a href="javascript:orderGO(${dto.proIdx })" class="btn_shop">주문하기</a>
+                               	</c:if> 
                             </div>
                             </div>                          
                         </form>

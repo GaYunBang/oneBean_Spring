@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.dao.PurchaseDAO;
 import com.ezen.vo.CartVO;
+import com.ezen.vo.ProductOrderVO;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService{
@@ -37,5 +38,15 @@ public class PurchaseServiceImpl implements PurchaseService{
 	@Override
 	public void cartAllDelete(int midx) throws Exception {
 		purchaseDAO.cartAllDelete(midx);
+	}
+
+	@Override
+	public void addOrder(ProductOrderVO vo) throws Exception {
+		purchaseDAO.addOrder(vo);
+	}
+
+	@Override
+	public ProductOrderVO one(int midx) throws Exception {
+		return purchaseDAO.one(midx);
 	}
 }

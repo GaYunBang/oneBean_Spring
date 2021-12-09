@@ -14,6 +14,7 @@ public class PurchaseDAO {
 	SqlSession sql;
 	
 	private static final String Namespace = "com.ezen.mapper.CartMapper";
+	private static final String Namespace2 = "com.ezen.mapper.ProductOrderMapper";
 	
 	public void addCart(CartVO cart) throws Exception {
 		sql.insert(Namespace+".addCart",cart);
@@ -27,11 +28,18 @@ public class PurchaseDAO {
 		return sql.selectOne(Namespace+".cartAllCount", midx);
 	}
 	
-	public void cartAllDelete(int midx) {
+	public void cartAllDelete(int midx) throws Exception{
 		sql.delete(Namespace+".cartAllDelete", midx);
 	}
 	
-	public void cartButtonDelete(int cartIdx) {
+	public void cartButtonDelete(int cartIdx) throws Exception{
 		sql.delete(Namespace+".cartButtonDelete", cartIdx);
+	}
+	
+	public void addOrder(ProductOrderVO vo) throws Exception{
+		sql.insert(Namespace2+".addOrder", vo);
+	}
+	public ProductOrderVO one(int midx) throws Exception{
+		return sql.selectOne(Namespace2+".one", midx);
 	}
 }

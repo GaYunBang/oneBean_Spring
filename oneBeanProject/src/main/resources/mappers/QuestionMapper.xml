@@ -17,20 +17,23 @@
 	
 	<select id="listAll" resultType="questionVO">
 	<![CDATA[
-		select * from (
-			select rowNum rn, a.* from (
-				select * from SHOP_MEMBER_QUESTION order by qidx desc) a
-			)where rn between #{start} and #{end}
+		select @rownum:=@rownum+1 rowNum,
+		m.* from SHOP_MEMBER_QUESTION m,
+		(select @rownum:=0) temp
+		order by qidx desc
+		limit #{start} offset #{end}
+		
 			]]>
 	</select>
 	
 	<select id="list" parameterType="HashMap" resultType="questionVO">
 	<![CDATA[
-		select * from (
-			select rowNum rn, a.* from (
-				select * from SHOP_MEMBER_QUESTION where memberId = #{memberId}) a
-			)where rn between #{start} and #{end}
-			]]>
+		select @rownum:=@rownum+1 rowNum,
+		m.* from SHOP_MEMBER_QUESTION m,
+		(select @rownum:=0) temp
+		where midx = #{midx} order by qidx desc
+		limit #{start} offset #{end}
+	]]>
 	</select>
 
 	<update id="commentCount" parameterType="questionVO">
@@ -41,15 +44,13 @@
 	
 	<insert id="write">
 		INSERT INTO SHOP_MEMBER_QUESTION(
-			qidx,
-			memberId,
+			midx,
 			quesCate,
 			quesSubject,
 			quesWriter,
 			quesContents
 		) VALUES (
-			questionSEQ.nextval,
-			#{memberId},
+			#{midx},
 			#{quesCate},
 			#{quesSubject},
 			#{quesWriter},
@@ -68,12 +69,12 @@
 			quesCate = #{quesCate}, 
 			quesSubject = #{quesSubject}, 
 			quesContents = #{quesContents}, 
-			quesDate = sysdate
+			quesDate = now()
 		where qidx = #{qidx}
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		update SHOP_MEMBER_QUESTION set delyn = 'Y' where qidx = #{qidx}
+		update SHOP_MEMBER_QUESTION set quesDel = 'Y' where qidx = #{qidx}
 	</delete>
 	
 </mapper>

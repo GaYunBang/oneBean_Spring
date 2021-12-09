@@ -84,7 +84,7 @@
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -135,7 +135,45 @@
 	</nav>
 </header>
 <section>
-정기구독 상품 디테일 페이지
+<div class="content pt-4 mb-5">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <img class="pt-0 p-sm-4" src="${dto.proImg}" width="100%">
+                </div>
+                <div class="col-12 col-md-7">
+                    <div>
+                        <form name="list_to_orderAction" method="post">
+                        <input type="hidden" name="proIdx" value="${dto.proIdx}">
+                            <span class="goods_subject p-4">${dto.proName}</span>
+                            <div class="price_box p-4">
+                                <span class="price">판매가격 : </span>
+                                <span class="discount-rate"><span class="discount-rate2"></span><span>10%</span></span>
+                                <span><span class="price"><fmt:formatNumber value="${dto.proPrice}" pattern="###,###,### 원" /></span></span>
+                                <span class="consumer"><fmt:formatNumber value="${dto.proPrice+10000}" pattern="###,###,### 원" /></span>
+                            </div>
+                            <div class="op_box">
+                                <div class="">
+	                                  <div class="row col-12 p-4">
+	                                    <div class="op_title">${dto.proContents}</div>	                                    
+                                    </div>
+                                    <div class="row col-12 p-4">
+	                                    <div class="op_title">로스팅일자 : 결제기준 3일 이내 로스팅 후 배송</div>	                                    
+                                    </div>
+                                </div>                                
+                            </div>                                                        
+                            <div class="btn_box">                           
+                            <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
+                                <button type="submit" class="btn_shop">구독하기</button>                                
+                            </div>
+                            </div>                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="foot_img" src="${dto.proDetailImg}">
 </section>
 <footer class="footer">
 	<div class="container">

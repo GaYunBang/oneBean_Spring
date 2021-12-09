@@ -6,6 +6,7 @@ public class CommentVO {
 
 	private int comidx;
 	private int qidx;
+	private int midx;
 	private String comWriter;
 	private String comContents;
 	private Date comDate;
@@ -22,6 +23,12 @@ public class CommentVO {
 	}
 	public void setQidx(int qidx) {
 		this.qidx = qidx;
+	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
 	}
 	public String getComWriter() {
 		return comWriter;
@@ -41,6 +48,4 @@ public class CommentVO {
 	public void setComDate(Date comDate) {
 		this.comDate = comDate;
 	}
-	
-	
 }

@@ -134,7 +134,7 @@
 						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeList.do">커피용품</a><hr class="line"></li>
+						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -215,7 +215,7 @@
           <c:if test="${member != null}">
 	          <c:if test="${memberGrade eq 0 }">
 		          <c:forEach var="listAll" items="${listAll}">
-		          	<c:if test="${listAll.delYN eq 'Y'}">
+		          	<c:if test="${listAll.quesDel eq 'Y'}">
 			          <tr onclick="location.href='/Question/view.do?qidx=${listAll.qidx}'" style="cursor: pointer;">
 			          	<td style="font-size:10px">${listAll.qidx }</td>
 			            <td>${listAll.quesCate }</td>

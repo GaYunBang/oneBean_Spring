@@ -269,7 +269,7 @@
 		<table class="cart_table">
 			<thead>
 			<tr>
-				<th style="width: 8%;" class="check"><input id="cartAllCheck" type="checkbox"></th>
+				<th style="width: 8%;" class="check"><input id="cartAllCheck" type="checkbox" checked></th>
 				<th style="width: 20%;">이미지</th>
 				<th style="width: 21%;">상품명</th>
 				<th style="width: 18%;">수량</th>
@@ -280,7 +280,7 @@
 			<tbody>
 			<c:forEach var="list" items="${list}">
 				<tr>
-					<td class="check"><input class="check_item" type="checkbox"></td>
+					<td class="check"><input class="check_item" type="checkbox" checked></td>
 					<td class="cartImg"><img src="${list.proImg}"/></td>
 					<td>${list.proName}</td>
 					<td>
@@ -298,8 +298,8 @@
 			</tbody>
 		</table>
 		<div class="right_align">
-			<button class="buttongroup cmd1">선택 상품 삭제</button>
-			<button class="buttongroup cmd" onclick="delAllItem(${member.midx});">장바구니 비우기</button>
+			<button class="buttongroup">선택 상품 삭제</button>
+			<button class="buttongroup" onclick="delAllItem(${member.midx});">장바구니 비우기</button>
 		</div>
 
 		<div class="right_align">

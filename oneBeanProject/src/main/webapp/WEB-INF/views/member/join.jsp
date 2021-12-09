@@ -25,6 +25,38 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script>
+
+var idCheckYN = false;
+var idCheckReset = false;
+
+
+		function idCheck(){
+			idCheckYN = true;
+			if($("#memberId").val() != ""){
+				$.ajax({
+					url : "idCheck.do",
+					type : "post",
+					dataType : "json",
+					data : {"memberId" : $("#memberId").val()},
+					success : function(data){
+						if(data > 0){
+							alert("중복된 아이디입니다.");
+						}else if(data == 0){
+							idUseYN = true;
+							alert("사용 가능한 아이디입니다.");
+						}
+					}
+				})
+			}else{
+				alert("아이디를 입력하세요.");
+			}
+		}
+		
+		function idCheckReset(){
+			idCheckYN = false;
+		}
+
+
 	 $(document).ready(function() {
 		//체크박스 모두 체크
 		$("#AgreeCheckAll").click(function() {
@@ -322,8 +354,8 @@
 					<tr>
 						<td class="col1">아이디<span class="red"> *</span></td>
 						<td class="col2">
-							<input type="text" name="memberId" maxlength="10" class="id check">
-							<input class='but1' type="button" value="중복확인" onclick="">
+							<input type="text" name="memberId" id="memberId" maxlength="10" class="id check">
+							<input class='but1' type="button" value="중복확인" onclick="idCheck()">
 						</td>
 					</tr>
 					<tr>

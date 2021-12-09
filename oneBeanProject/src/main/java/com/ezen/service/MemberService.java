@@ -11,4 +11,6 @@ public interface MemberService {
 	MemberVO login(MemberVO vo) throws Exception;
 	
 	public void gradeUP(MemberVO vo) throws Exception;
+	
+	public int idCheck(MemberVO vo) throws Exception;
 }

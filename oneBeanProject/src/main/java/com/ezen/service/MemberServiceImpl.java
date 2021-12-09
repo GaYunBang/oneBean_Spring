@@ -28,4 +28,10 @@ public class MemberServiceImpl implements MemberService{
 	public void gradeUP(MemberVO vo) throws Exception {
 		memberDao.gradeUP(vo);
 	}
+
+	@Override
+	public int idCheck(MemberVO vo) throws Exception {
+		int idCheck = memberDao.idCheck(vo);
+		return idCheck;
+	}
 }

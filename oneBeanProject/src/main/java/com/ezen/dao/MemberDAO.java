@@ -25,4 +25,9 @@ public class MemberDAO {
 	public void gradeUP(MemberVO vo) throws Exception {
 		sqlSession.update(Namespace+".gradeUP",vo);
 	}
+	
+	public int idCheck(MemberVO vo) throws Exception {
+		int idCheck = sqlSession.selectOne(Namespace+".idCheck", vo);
+		return idCheck;
+	}
 }

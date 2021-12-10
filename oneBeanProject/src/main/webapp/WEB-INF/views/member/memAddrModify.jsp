@@ -159,7 +159,7 @@
 	</nav>
 </header>
 <section>
-        <form method="post" action="">
+        <form method="post" action="addrListModify.do?midx=${midx}">
             <div class="container">
             <div class="insert">
             
@@ -168,27 +168,27 @@
             <tr>                
                 <td class="col1">우편번호</td>
                 <td class="col2">
-                  <input id="member_post"  class="deco1" name="roadAddrPart1" type="text" placeholder="우편 번호" readonly value="">
+                  <input id="member_post"  class="deco1" name="memberPostNum" type="text" placeholder="우편 번호" readonly value="">
                   <input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
                 </td>
             </tr>
             <tr>
                 <td class="col1">도로명/지번 주소</td>
                 <td class="col2">
-                  <input id="member_addr" name="roadAddrPart2" class="deco1" type="text" placeholder="도로명주소/지번주소" readonly value="">              
+                  <input id="member_addr" name="memberAddr" class="deco1" type="text" placeholder="도로명주소/지번주소" readonly value="">              
                 </td>
             </tr>
             <tr>
                 <td class="col1">상세 주소</td>
                 <td class="col2">
-                  <input id="member_detail_addr" class="deco1" name="addrDetail" type="text" placeholder="상세 주소를 입력해주세요." value="">              
+                  <input id="member_detail_addr" class="deco1" name="memberDetailAddr" type="text" placeholder="상세 주소를 입력해주세요." value="">              
                 </td>
             </tr>                                    
             </table>      
           </div>   
           <div class="create">
           	<input class="but3" type="button" value="수정취소" onclick="history.back()">
-            <input class="but4" type="button" value="수정완료" onclick="formCheck(this.form)">      
+            <input class="but4" type="submit" value="수정완료">      
           </div>
           </div>
           </form>

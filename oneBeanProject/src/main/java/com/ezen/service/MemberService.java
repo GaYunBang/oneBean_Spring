@@ -1,7 +1,6 @@
 package com.ezen.service;
 
-import javax.servlet.http.HttpSession;
-
+import com.ezen.vo.AddrVO;
 import com.ezen.vo.MemberVO;
 
 public interface MemberService {
@@ -13,4 +12,8 @@ public interface MemberService {
 	public void gradeUP(MemberVO vo) throws Exception;
 	
 	public int idCheck(MemberVO vo) throws Exception;
+	
+	public AddrVO addrView(int midx)throws Exception;
+	
+	public void addrModify(AddrVO vo)throws Exception;
 }

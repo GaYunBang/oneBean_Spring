@@ -30,9 +30,9 @@ public class BuisnessController {
 	}
 	
 	@RequestMapping(value="deliveryApply.do", method=RequestMethod.POST)
-	public String deliveryApply(MemberVO vo, HttpSession sesstion) throws Exception {
+	public String deliveryApply(MemberVO vo, HttpSession session) throws Exception {
 		MemberService.gradeUP(vo);
-		sesstion.setAttribute("memberGrade", vo.getMemberGrade());
+		session.setAttribute("memberGrade", vo.getMemberGrade());
 		return "redirect:/";
 	}
 	

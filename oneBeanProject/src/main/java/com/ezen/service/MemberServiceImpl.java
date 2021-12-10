@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.dao.MemberDAO;
+import com.ezen.vo.AddrVO;
 import com.ezen.vo.MemberVO;
 
 @Service
@@ -33,5 +34,15 @@ public class MemberServiceImpl implements MemberService{
 	public int idCheck(MemberVO vo) throws Exception {
 		int idCheck = memberDao.idCheck(vo);
 		return idCheck;
+	}
+
+	@Override
+	public AddrVO addrView(int midx) throws Exception {
+		return memberDao.addrView(midx);
+	}
+
+	@Override
+	public void addrModify(AddrVO vo) throws Exception {
+		memberDao.addrModify(vo);
 	}
 }

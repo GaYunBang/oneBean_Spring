@@ -52,4 +52,16 @@
     	WHERE
     		midx = #{midx}
     </update>
+    
+    <select id="addrView" resultType="addrVO">
+		select * from shop_member_addr where midx = #{midx}
+    </select>
+    
+    <update id="addrModify" parameterType="addrVO">
+    	update shop_member_addr set 
+    		memberPostNum = #{memberPostNum},
+    		memberAddr = #{memberAddr},
+    		memberDetailAddr = #{memberDetailAddr}
+    	where midx = #{midx}
+    </update>
 </mapper>

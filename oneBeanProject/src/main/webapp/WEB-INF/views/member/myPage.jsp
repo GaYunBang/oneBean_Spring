@@ -158,7 +158,7 @@
         </ul>
         <!-- 배송지목록 -->
         <ul class="box_list">
-            <a href="addrList.do">
+            <a href="addrList.do?midx=${midx }">
                 <li class="fas fa-truck fa-4x m_icon"></li>
                 <li>
                 <span class="txt_1">Address</span>

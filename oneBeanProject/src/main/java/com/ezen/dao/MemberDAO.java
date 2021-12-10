@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.vo.AddrVO;
 import com.ezen.vo.MemberVO;
 
 @Repository
@@ -29,5 +30,13 @@ public class MemberDAO {
 	public int idCheck(MemberVO vo) throws Exception {
 		int idCheck = sqlSession.selectOne(Namespace+".idCheck", vo);
 		return idCheck;
+	}
+	
+	public AddrVO addrView(int midx) throws Exception {
+		return sqlSession.selectOne(Namespace+".addrView", midx);
+	}
+	
+	public void addrModify(AddrVO vo) throws Exception {
+		sqlSession.update(Namespace+".addrModify", vo);
 	}
 }

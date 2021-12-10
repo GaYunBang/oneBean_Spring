@@ -142,18 +142,20 @@
             <caption><h2>배송 주소록</h2></caption>
             <tr>
                 <td class="col1">우편번호</td>
-                <td class="col2"><input type="text" class="deco1" name="roadAddrPart1" maxlength="5"></td>
+                <td class="col2">
+                	<input type="text" class="deco1" name="roadAddrPart1" maxlength="5" value="${addr.memberPostNum}" readonly>
+                </td>
             </tr>
             <tr>
                 <td class="col1">도로명 주소</td>
                 <td class="col2">
-                    <input type="text" class="deco1" name="roadAddrPart2" maxlength="10">              
+                    <input type="text" class="deco1" name="roadAddrPart2" maxlength="10" value="${addr.memberAddr}" readonly>              
                 </td>
             </tr>
             <tr>
                 <td class="col1">상세 주소</td>
                 <td class="col2">
-                    <input type="text" class="deco1" name="addrDetail" maxlength="10">              
+                    <input type="text" class="deco1" name="addrDetail" maxlength="10" value="${addr.memberDetailAddr}" readonly>              
                 </td>
             </tr>                                    
             </table>      

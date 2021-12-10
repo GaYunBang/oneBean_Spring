@@ -16,5 +16,6 @@
         <typeAlias type="com.ezen.vo.CommentVO" alias="commentVO"/>
         <typeAlias type="com.ezen.vo.PagingVO" alias="pagingVO"/>
         <typeAlias type="com.ezen.vo.CartVO" alias="cartVO"/>
+        <typeAlias type="com.ezen.vo.AddrVO" alias="addrVO"/>
     </typeAliases>
 </configuration>

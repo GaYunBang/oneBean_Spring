@@ -158,10 +158,10 @@
 	              <c:set var="year" value="${fn:substring(yearNum,0,4) }"/>
 	                <input type="text" class="birth1" name="birth1" value="${year }" readonly>년&nbsp;
 	              <c:set var="monthNum" value="${member.memberBirth }"/>
-	              <c:set var="month" value="${fn:substring(monthNum,4,6) }"/>
+	              <c:set var="month" value="${fn:substring(monthNum,5,7) }"/>
 	                <input type="text" class="birth2" name="birth2" value="${month }" readonly>월&nbsp;
 	              <c:set var="dayNum" value="${member.memberBirth }"/>
-	              <c:set var="day" value="${fn:substring(dayNum,6,8) }"/>
+	              <c:set var="day" value="${fn:substring(dayNum,8,10) }"/>
 	                <input type="text" class="birth3" name="birth3" value="${day }" readonly>일
               </td>
             </tr>                        
@@ -188,7 +188,7 @@
             </table>      
           </div>   
           <div class="create">
-            <a href="memInfoModify.do"><input class="but4" type="button" value="수정하기" onclick=""></a>      
+            <a href="memInfoModify.do"><input class="but4" type="button" value="수정하기"></a>      
           </div>
           </div>
           </form>

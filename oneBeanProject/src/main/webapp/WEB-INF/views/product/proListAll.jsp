@@ -169,9 +169,7 @@
 							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
 							</span><br>
 							<span style="font-size:12px; font-weight:bold;">
-							${list.proContents}</span><br>
-							<span style="font-size:12px; font-weight:bold;">
-							결제기준 3일 이내 로스팅 후 배송</span>
+							<pre>${list.proContents}</pre></span><br>
 							<c:if test="${member.memberGrade == 0}">
 								<button class="btn btn-light" onclick="location.href='/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
 								<button class="btn btn-light" onclick="deleteCheck(${list.proIdx})">삭제하기</button>

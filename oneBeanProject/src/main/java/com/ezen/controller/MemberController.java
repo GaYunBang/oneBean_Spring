@@ -98,9 +98,16 @@ public class MemberController {
 		return "member/memInfo";
 	}
 	
-	@RequestMapping(value="memInfoModify.do")
+	@RequestMapping(value="memInfoModify.do", method = RequestMethod.GET)
 	public String memInfoModify() {
 		return "member/memInfoModify";
+	}
+	
+	@RequestMapping(value="memInfoModify.do", method = RequestMethod.POST)
+	public String memInfoModify(MemberVO vo) throws Exception {
+		memberService.memberModify(vo);
+		System.out.println(vo.getMemberEmail());
+		return "redirect:memInfo.do";
 	}
 	
 	@RequestMapping(value="addrList.do")
@@ -119,5 +126,6 @@ public class MemberController {
 		memberService.addrModify(vo);
 		return "redirect:addrList.do?midx="+vo.getMidx();
 	}
+	
 
 }

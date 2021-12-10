@@ -45,4 +45,9 @@ public class MemberServiceImpl implements MemberService{
 	public void addrModify(AddrVO vo) throws Exception {
 		memberDao.addrModify(vo);
 	}
+
+	@Override
+	public void memberModify(MemberVO vo) throws Exception {
+		memberDao.memberModify(vo);
+	}
 }

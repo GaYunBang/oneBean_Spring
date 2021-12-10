@@ -64,4 +64,12 @@
     		memberDetailAddr = #{memberDetailAddr}
     	where midx = #{midx}
     </update>
+    
+    <update id="memberModify" parameterType="memberVO">
+    	update shop_member set
+    		memberPwd = #{memberPwd},
+    		memberEmail = #{memberEmail},
+    		memberPhone = #{memberPhone}
+    	where memberId= #{memberId}
+    </update>
 </mapper>

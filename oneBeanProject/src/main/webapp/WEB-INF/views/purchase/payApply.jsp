@@ -30,6 +30,10 @@
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script>
+	$(document).ready(function(){
+		var ship = $("#ship").text().replace(",","").replace("원","");
+		alert(ship);
+	});
       function findAddr(){
         new daum.Postcode({
               oncomplete: function(data) {
@@ -58,6 +62,12 @@
     		  alert("동의해야 함");
     		  return false;
     		}
+      }
+      function sameShip(){
+    	  var name = $("input[name='payName']").val();
+    	  var phone = $("input[name='payPhone']").val();
+    	  $("input[name='orderPostName']").val(name);
+    	  $("input[name='orderPostPhone']").val(phone);
       }
       </script>
       
@@ -180,10 +190,8 @@
 					<tr class="shop_box">
 						<th class="sum_box"></th>
 						<th class="top_1 "><span>상품/옵션 정보</span></th>
-						<th class="top_3"><span>수량</span></th>
-						<th class="top_3"><span>상품금액</span></th>
-						<th class="top_3"><span>배송비</span></th>
-						<th class="top_2"><span>합계금액</span></th>
+						<th class="top_2"><span>수량</span></th>
+						<th class="top_2"><span>상품금액</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -202,10 +210,6 @@
 					<td class="top_3">
 						<span class="pro"><fmt:formatNumber value="${vo.orderPrice}" pattern="###,###,### 원" /></span>
 					</td>
-					<td class="top_3">
-						<span class="pro"></span><input type="hidden" name="omoney" value="">
-					</td>
-					<td class="top_2"><span class="pro">0000원</span></td>
 				</tr>
 				</tbody>
 				</table>
@@ -236,16 +240,16 @@
 							<label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="기본배송지" class="mx-2" checked>기본 배송지</label>
 							<label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="최근배송지" class="mx-2">최근 배송지</label>
 							<label class="pe-3 d-flex align-items-center"><input type="radio" name="ship" value="직접입력" class="mx-2">직접 입력</label>
-							<a class="ship_btn">배송지 관리</a>
+							<button type="button" class="ship_btn" onclick="sameShip();">주문자 동일</button>
 						</div>
 					</div>
 					<div class="d-flex align-items-center pb-4">
 						<span class="px-3 name_subject">받으실 분<span class="color_red">*</span></span>
-						<input type="text" class="order_txt" name="orderPostName" value="">
+						<input type="text" class="order_txt" name="orderPostName">
 					</div>
 					<div class="d-flex align-items-center pb-4">
 						<span class="px-2 ms-1 px-sm-3 ms-sm-0  name_subject">휴대폰번호<span class="color_red">*</span></span>
-						<input type="text" class="order_txt" name="ootell" value="">
+						<input type="text" class="order_txt" name="orderPostPhone">
 					</div>
 					<div class="d-flex align-items-center pb-4 row">
 						<span class="px-4 ms-sm-3 ms-0 px-sm-3 name_subject pb-2 pb-sm-0 onesell">받으실 곳<span class="color_red">*</span></span>
@@ -253,19 +257,19 @@
 							<div class="d-flex">
 								<input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
 							</div>
-							<input id="member_post"  class="order_txt" name="roadAddrPart1" type="text" placeholder="우편 번호" readonly value="">
-							<input id="member_addr" class="order_txt" name="roadAddrPart2" type="text" placeholder="도로명주소/지번주소" readonly value=""><br>
-							<input id="member_detail_addr" class="order_txt" name="addrDetail" type="text" placeholder="상세 주소를 입력해주세요." value="">
+							<input id="member_post"  class="order_txt" name="roadAddrPart1" type="text" placeholder="우편 번호" readonly value="${addr.memberPostNum }">
+							<input id="member_addr" class="order_txt" name="roadAddrPart2" type="text" placeholder="도로명주소/지번주소" readonly value="${addr.memberAddr }"><br>
+							<input id="member_detail_addr" class="order_txt" name="addrDetail" type="text" placeholder="상세 주소를 입력해주세요." value="${addr.memberDetailAddr}">
 						</div>
 					</div>
 				</div>
 				
-				<span class="d-flex shop_bow_subject2 mt-5 mb-3">배송 선택</span>
+				<span class="d-flex shop_bow_subject2 mt-5 mb-3">배송</span>
 				<!-- 배송 선택 -->
 				<div class="shop_box mt-2 py-3">
 					<div class="d-flex align-items-center pb-4">
 						<span class="px-3 name_subject">배송방법<span class="color_red">*</span></span>
-						<span class="dv_ment1">배송비 3,000원 | 5만원 이상 무료배송</span>
+						<span class="dv_ment1">배송비 <span id="ship">3,000원</span> | 5만원 이상 무료배송</span>
 					</div>
 					<div class="d-flex align-items-center">
 						<span class="px-3 name_subject">배송메세지</span>

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ezen.service.MemberService;
 import com.ezen.service.PurchaseService;
+import com.ezen.vo.AddrVO;
 import com.ezen.vo.CartVO;
 import com.ezen.vo.MemberVO;
 import com.ezen.vo.ProductOrderVO;
@@ -22,6 +24,9 @@ public class PurchaseController {
 	
 	@Autowired
 	PurchaseService purchaseService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	//장바구니 추가
 	@RequestMapping(value="addCart.do")
@@ -76,6 +81,7 @@ public class PurchaseController {
 		int midx = member.getMidx();
 		ProductOrderVO vo = purchaseService.one(midx);
 		model.addAttribute("vo", vo);
+		model.addAttribute("addr", memberService.addrView(midx));
 		return "purchase/payApply";
 	}
 	
@@ -85,7 +91,7 @@ public class PurchaseController {
 		int midx = member.getMidx();
 		ProductOrderVO vo = purchaseService.one(midx);
 		model.addAttribute("vo", vo);
-		System.out.println(vo.getProImg());
+		//System.out.println(vo.getProImg());
 		return "purchase/payApply";
 	}
 	

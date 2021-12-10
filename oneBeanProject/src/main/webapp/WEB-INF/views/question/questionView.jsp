@@ -220,7 +220,6 @@
 						<td colspan="5">${cList.comContents }</td>
 						<td><fmt:formatDate value="${cList.comDate }" pattern="yyyy-MM-dd" /></td>
 					</tr>
-					
 				</c:forEach>
 				
 				

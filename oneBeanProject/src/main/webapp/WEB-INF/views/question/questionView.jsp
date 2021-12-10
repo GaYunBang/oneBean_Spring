@@ -218,7 +218,7 @@
 					<tr>
 						<td>${cList.comWriter }</td>
 						<td colspan="5">${cList.comContents }</td>
-						<td><fmt:formatDate value="${cList.comDate }" pattern="yyyy-MM-dd" /> </td>
+						<td><fmt:formatDate value="${cList.comDate }" pattern="yyyy-MM-dd" /></td>
 					</tr>
 				</c:forEach>
 				
@@ -228,7 +228,8 @@
 					<td colspan="7">
 						<div>
 							<form method="post" action="/Question/commentWrite.do">		
-							<input type="hidden" name="qidx" value="${view.qidx }">					
+							<input type="hidden" name="qidx" value="${view.qidx }">
+							<input type="hidden" name="midx" value="${view.midx }"> 					
 							<textarea name="comContents" rows="3" style="width:100%; resize:none;" spellcheck="false"></textarea>
 								댓글 작성자 : <input type="text" value="${memberName }" name="comWriter" readonly> 
 								<button type="submit">댓글 작성</button>

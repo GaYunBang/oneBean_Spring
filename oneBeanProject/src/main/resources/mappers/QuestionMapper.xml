@@ -21,14 +21,14 @@
 	
 	<select id="listAll" resultType="questionVO" parameterType="pagingVO">
 	<![CDATA[
-		select A.* from shop_member_question A limit #{start},#{end}
+		select A.* from shop_member_question A ORDER BY qidx DESC limit #{start},#{end}
 	]]>
 	</select>
 	
 	<select id="list" parameterType="pagingVO" resultType="questionVO">
 	<![CDATA[
 		SELECT * FROM SHOP_MEMBER_QUESTION
-		where midx = #{midx} 
+		where midx = #{midx} ORDER BY qidx DESC
 		LIMIT #{start}, #{end}
 	]]>
 	</select>

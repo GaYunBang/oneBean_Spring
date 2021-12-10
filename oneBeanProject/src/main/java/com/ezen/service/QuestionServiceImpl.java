@@ -30,6 +30,11 @@ public class QuestionServiceImpl implements QuestionService{
 	public int listCount() throws Exception {
 		return dao.listCount();
 	}
+	
+	@Override
+	public int listCountMember(PagingVO vo) throws Exception {
+		return dao.listCountMember(vo);
+	}
 
 	@Override
 	public void write(QuestionVO vo) throws Exception {
@@ -55,5 +60,4 @@ public class QuestionServiceImpl implements QuestionService{
 	public int commentCnt(QuestionVO vo) throws Exception {
 		return dao.commentCnt(vo);
 	}
-
 }

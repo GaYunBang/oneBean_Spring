@@ -36,7 +36,12 @@ public class QuestionController {
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage,HttpSession session) throws Exception{
 		
+		MemberVO midx = (MemberVO)session.getAttribute("member");
+		vo.setMidx(midx.getMidx());
+		
 		int total = service.listCount();
+		int totalMember = service.listCountMember(vo);
+		
 		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -46,13 +51,15 @@ public class QuestionController {
 			cntPerPage = "10";
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		MemberVO midx = (MemberVO)session.getAttribute("member");
-		vo.setMidx(midx.getMidx());
-		System.out.println(vo.getStart());
-		System.out.println(vo.getEnd());
+		PagingVO vo2 = new PagingVO(totalMember, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo2.setMidx(midx.getMidx());
+		//System.out.println(vo2.getStart());
+		//System.out.println(vo2.getEnd());
+		//System.out.println(vo2.getMidx());
 		model.addAttribute("paging", vo);
+		model.addAttribute("pagingMember", vo2);
 		model.addAttribute("listAll", service.listAll(vo));
-		model.addAttribute("list", service.list(vo));
+		model.addAttribute("list", service.list(vo2));
 		
 		return "question/questionList";
 	}

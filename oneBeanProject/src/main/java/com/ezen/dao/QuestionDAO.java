@@ -29,6 +29,10 @@ public class QuestionDAO {
 		return sql.selectOne("com.ezen.mapper.questionMapper.listCount");
 	}
 	
+	public int listCountMember(PagingVO vo) throws Exception {
+		return sql.selectOne("com.ezen.mapper.questionMapper.listCountMember",vo);
+	}
+	
 	public void write(QuestionVO vo) throws Exception {
 		sql.insert("com.ezen.mapper.questionMapper.write", vo);
 	}

@@ -25,7 +25,7 @@ public class PagingVO {
 	
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage +1);
+		setStart(getEnd() - cntPerPage);
 	}
 	
 	public PagingVO() {
@@ -81,7 +81,7 @@ public class PagingVO {
 		return start;
 	}
 	public void setStart(int start) {
-		this.start = start-1;
+		this.start = start;
 	}
 	public int getEnd() {
 		return end;

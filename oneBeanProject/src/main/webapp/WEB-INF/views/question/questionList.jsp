@@ -262,6 +262,7 @@
 	        </div>
         </c:if>
         <div style="display:block; text-align:center;">
+        <c:if test="${memberGrade eq 0 }">
         	<c:if test="${paging.startPage != 1 }">
         		<a href="/Question/list.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
         	</c:if>
@@ -278,7 +279,25 @@
         	<c:if test="${paging.endPage != paging.lastPage }">
         		<a href="/Question/list.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage }">&gt;</a>
         	</c:if><br><br>
-        	
+        </c:if>
+       	<c:if test="${memberGrade ne 0 }">
+       		<c:if test="${pagingMember.startPage != 1 }">
+        		<a href="/Question/list.do?nowPage=${pagingMember.startPage - 1 }&cntPerPage=${pagingMember.cntPerPage}">&lt;</a>
+        	</c:if>
+        	<c:forEach begin="${pagingMember.startPage }" end="${pagingMember.endPage }" var="p">
+        		<c:choose>
+        			<c:when test="${p == pagingMember.nowPage }">
+        				<b>${p }</b>
+        			</c:when>
+        			<c:when test="${p != pagingMember.nowPage }">
+        				<a href="/Question/list.do?nowPage=${p }&cntPerPage=${pagingMember.cntPerPage}">${p }</a>
+        			</c:when>
+        		</c:choose>
+        	</c:forEach>
+        	<c:if test="${pagingMember.endPage != pagingMember.lastPage }">
+        		<a href="/Question/list.do?nowPage=${pagingMember.endPage+1 }&cntPerPage=${pagingMember.cntPerPage }">&gt;</a>
+        	</c:if><br><br>
+       	</c:if>
         </div>
         
       </div>

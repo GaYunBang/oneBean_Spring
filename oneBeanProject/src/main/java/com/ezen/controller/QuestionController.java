@@ -106,7 +106,6 @@ public class QuestionController {
 		
 		List<CommentVO> commentList = cService.commentList(qvo.getQidx());
 		model.addAttribute("commentList", commentList);
-		
 		return mav;
 	}
 	

@@ -9,13 +9,17 @@
 		WHERE qidx = #{qidx}
 	</select>
 	
-	<insert id="commentWrite" parameterType="commentVO">
+	<insert id="commentWrite" parameterType="commentVO" useGeneratedKeys="true" keyProperty="comIdx">
 		INSERT INTO SHOP_QUESTION_COMMENT(
 			qidx,
+			midx,
+			comDate,
 			comWriter,
 			comContents
 		) VALUES (
 			#{qidx},
+			#{midx},
+			now(),
 			#{comWriter},
 			#{comContents}
 		)

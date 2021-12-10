@@ -288,9 +288,9 @@
 					<td>
 						<select class="select_option" name="orderCount" onchange="changeCount(${list.proPrice},this)">
 							<option value="${list.cartCount}" selected>${list.cartCount}</option>
-							<% for (int i=1;i<=10;i++) {%>
-								<option value="<%=i%>"><%=i%></option>
-							<%}%>
+							<c:forEach var="i" begin="1" end="10">
+								<option value="${i}">${i }</option>
+							</c:forEach>
 						</select>
 					</td>
 					<td><span style="font-size:13px; font-weight:bold;" class="onePrice" name="orderPrice">${list.proPrice}</span></td>

@@ -7,7 +7,7 @@ import com.ezen.vo.*;
 public interface ProductService {
 
 	//상품 리스트 불러오기
-	public List<ProductVO> proListAll() throws Exception;
+	public List<ProductVO> proListAll(PagingVO vo) throws Exception;
 	
 	public List<ProductVO> coffeeProList() throws Exception;
 	

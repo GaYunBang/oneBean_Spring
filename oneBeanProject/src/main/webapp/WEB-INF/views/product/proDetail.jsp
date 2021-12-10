@@ -32,7 +32,8 @@
 <script type="text/javascript">
 	function cartGO(idx) {
 		var count = $(".select_option").find("option:selected").val();
-		var cartPrice = $("#showPrice").text();
+		var cartPrice = $("#showPrice").text().replace("원","").replaceAll(",","");
+	
 		if (count == 0)
 			{alert("수량을 선택해주세요");
 			return;}

@@ -23,6 +23,7 @@ public class PurchaseController {
 	@Autowired
 	PurchaseService purchaseService;
 	
+	//장바구니 추가
 	@RequestMapping(value="addCart.do")
 	@ResponseBody
 	public String addCart(CartVO cart, HttpSession session) throws Exception {
@@ -32,6 +33,7 @@ public class PurchaseController {
 		return "";
 	}
 	
+	//장바구니 리스트
 	@RequestMapping(value="cartList.do")
 	public String cartList(Model model, HttpSession session) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("member");
@@ -42,6 +44,7 @@ public class PurchaseController {
 		return "purchase/cart";
 	}
 	
+	//장바구니 리스트에서 하나 삭제
 	@RequestMapping(value="cartButtonDelete.do")
 	@ResponseBody
 	public String cartButtonDelete(int cartIdx) throws Exception {
@@ -49,6 +52,7 @@ public class PurchaseController {
 		return "";
 	}
 	
+	//장바구니 전체 삭제
 	@RequestMapping(value="cartAllDelete.do")
 	@ResponseBody
 	public String cartAllDelete(int midx) throws Exception {
@@ -56,9 +60,10 @@ public class PurchaseController {
 		return "";
 	}
 	
+	//상품 하나 주문
 	@RequestMapping(value="orderOne.do")
 	@ResponseBody
-	public String order(Model model,ProductOrderVO vo ,HttpSession session) throws Exception {
+	public String order(Model model, ProductOrderVO vo ,HttpSession session) throws Exception {
 		MemberVO midx = (MemberVO)session.getAttribute("member");
 		vo.setMidx(midx.getMidx());
 		purchaseService.addOrder(vo);

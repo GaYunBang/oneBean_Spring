@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ezen.vo.ProductVO;
+import com.ezen.vo.*;
 
 @Repository
 public class ProductDAO {
@@ -16,8 +16,8 @@ public class ProductDAO {
 	
 	private static final String Namespace = "com.ezen.mapper.ProductMapper";
 	
-	public List<ProductVO> proListAll() throws Exception {
-		return sql.selectList(Namespace+".proListAll");
+	public List<ProductVO> proListAll(PagingVO vo) throws Exception {
+		return sql.selectList(Namespace+".proListAll",vo);
 	}
 	
 	public List<ProductVO> coffeeProList() throws Exception {

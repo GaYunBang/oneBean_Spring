@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.ezen.mapper.ProductMapper"> <!-- 호출할떄 사용할 mapper이름. -->
-	<select id="proListAll" resultType="productVO">
+	<select id="proListAll" resultType="productVO" parameterType="pagingVO">
 		SELECT
 			proIdx,
 			proType,
@@ -17,10 +17,9 @@
 			proDel,
 			proImg,
 			proDetailImg
-		FROM SHOP_PRODUCT
-		WHERE proDel = 'N'
-		ORDER BY 
-			proIdx DESC
+		FROM SHOP_PRODUCT WHERE proDel = 'N'
+		ORDER BY proIdx DESC
+		LIMIT #{start}, #{end}
 	</select>
 	
 	<!-- 커피 상품 리스트 -->

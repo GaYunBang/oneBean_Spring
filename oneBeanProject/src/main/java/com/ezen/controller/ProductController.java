@@ -37,7 +37,7 @@ public class ProductController {
 			cntPerPage = "10";
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		List<ProductVO> list = productService.proListAll();
+		List<ProductVO> list = productService.proListAll(vo);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("product/proListAll");
 		mav.addObject("list", list);

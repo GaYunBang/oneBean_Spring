@@ -2,6 +2,7 @@ package com.ezen.vo;
 
 public class ProductOrderVO {
 	private int orderIdx;
+	private int orderDetailIdx;
 	private int midx;
 	private int proIdx;
 	private int orderCount;
@@ -21,6 +22,12 @@ public class ProductOrderVO {
 	}
 	public void setOrderIdx(int orderIdx) {
 		this.orderIdx = orderIdx;
+	}
+	public int getOrderDetailIdx() {
+		return orderDetailIdx;
+	}
+	public void setOrderDetailIdx(int orderDetailIdx) {
+		this.orderDetailIdx = orderDetailIdx;
 	}
 	public int getMidx() {
 		return midx;

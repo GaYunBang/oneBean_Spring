@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.dao.ProductDAO;
+import com.ezen.vo.PagingVO;
 import com.ezen.vo.ProductVO;
 
 @Service
@@ -15,8 +16,8 @@ public class ProductServiceImpl implements ProductService{
 	ProductDAO productDao;
 	
 	@Override
-	public List<ProductVO> proListAll() throws Exception {
-		return productDao.proListAll();
+	public List<ProductVO> proListAll(PagingVO vo) throws Exception {
+		return productDao.proListAll(vo);
 	}
 
 	@Override

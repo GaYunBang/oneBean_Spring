@@ -38,6 +38,7 @@ public class PurchaseDAO {
 	
 	public void addOrder(ProductOrderVO vo) throws Exception{
 		sql.insert(Namespace2+".addOrder", vo);
+		sql.insert(Namespace2+".addOrderDetail",vo);
 	}
 	public ProductOrderVO one(int midx) throws Exception{
 		return sql.selectOne(Namespace2+".one", midx);

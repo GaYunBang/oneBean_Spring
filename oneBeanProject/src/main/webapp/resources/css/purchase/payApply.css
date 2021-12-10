@@ -4,11 +4,16 @@ body{
     background:#ffffff;
 }
 section{
-    margin-top: 400px;
+    margin-top: 253px;
     width: 100%;
     margin-bottom: 100px;        
 }
-
+.table_box{
+	width:100%;	
+}
+th{
+	background-color:rgb(233, 233, 233);
+}
 .mb_address {
 	position: relative; right: -110px; top: -32px;
 }
@@ -64,16 +69,16 @@ input[type=radio]
 }
 
 .top_1 {
-    width: calc(100% - 390px);
+    width: calc(100% - 390px);    
     /*calc함수는 괄호안에 식을 계산해서 적용*/
 }
 
 .top_2 {
-    width: 90px;
+    width: 90px;    
 }
 
 .top_3 {
-    width: 100px;
+    width: 100px;    
 }
 
 .sum_box {
@@ -96,10 +101,10 @@ input[type=radio]
 }
 
 input {
-    height: 40px;
+    height: 33px;
 }
 
-input[type='text'] {
+.order_txt{
     width: 330px;    
     color: #343434;
     font-size: 18px;
@@ -116,7 +121,7 @@ input[name='roadAddrPart2']{
 input[name='addrDetail']{
     width:400px;
 }
-input[type='text']:focus{
+.order_txt:focus{
 	outline: none;
 	border-bottom: 2px solid rgb(0, 0, 0);
 }
@@ -139,7 +144,6 @@ input[type='text']:focus{
 .color_red {
     color: red;
 }
-
 
 .btn_post_search {
     margin: 0 0 0 5px;
@@ -249,7 +253,7 @@ input[name='ootell']{
 	}
 	
 	.top_3 {
-	    width: 38px !important;
+	    width: 50px !important;
 	}
 	
 	.pro {
@@ -258,10 +262,6 @@ input[name='ootell']{
 	
 	.con_box {
 	    width: calc(100% - 95px) !important;
-	}
-	
-	.mb_hide {
-		display: none !important;
 	}
 	
 	.shop_box {

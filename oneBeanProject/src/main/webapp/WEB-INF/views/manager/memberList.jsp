@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -16,11 +17,11 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/member/myPage.css" rel="stylesheet" />
+<link href="/css/etc/about.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>MyPage</title>
+<title>회원 목록</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -28,6 +29,49 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<style>
+	section {
+        width: 100%;
+        margin-top: 350px;
+        margin-bottom: 200px;
+      }
+      .selectBox {
+        margin-left: 10%;
+        margin-bottom: 20px;
+      }
+      select {
+        width: 150px;
+      }
+
+      table, tr, th, td {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.39);
+        padding: 15px 0px;
+      }
+      table {
+        width: 85%;
+        height: 130px;
+        margin: auto;
+        text-align: center;
+        table-layout: fixed;
+      }
+      th {
+        background-color: rgba(212, 208, 208, 0.199);
+      }
+      h3 {
+        text-align: center;
+        margin: 100px;
+      }
+      .re {
+        background-color: rgba(181, 245, 187, 0.199);
+      }
+      .emmm{
+		  width: 100%;
+		  height: 100px;
+	}
+	h2 {
+		text-align : center;
+	}
+</style>
 </head>
 <body>
 <header class="fixed-top">
@@ -135,61 +179,119 @@
 	</nav>
 </header>
 <section>
-    <div class="page_box">
-        <!--  주문내역 -->
-        <ul class="box_list">
-            <a href="/Purchase/orderList.do">
-                <li class="far fa-file-alt fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Order</span><br>
-                <span class="txt_2">주문내역</span>
-                </li>
-            </a>
-        </ul>
-        <!-- 회원정보 -->
-        <ul class="box_list">
-            <a href="memInfo.do?midx=${midx }">
-                <li class="far fa-address-card fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Profile</span>
-                <p class="txt_2">회원정보</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 배송지목록 -->
-        <ul class="box_list">
-            <a href="addrList.do?midx=${midx }">
-                <li class="fas fa-truck fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Address</span>
-                <p class="txt_2">배송 주소록</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 정기구독관리 -->
-        <ul class="box_list">
-            <a href="">
-                <li class="far fa-calendar-check fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Subscription</span>
-                <p class="txt_2">정기구독관리</p>
-                </li>
-            </a>
-        </ul>
-        <c:if test="${memberGrade == 0 }">
-	        <ul class="box_list">
-	            <a href="/Manager/memberList.do">
-	                <li class="far fa-file-alt fa-4x m_icon"></li>
-	                <li>
-	                <span class="txt_1">Member List</span>
-	                <p class="txt_2">회원관리</p>
-	                </li>
-	            </a>
-	        </ul>
-        </c:if>
-    </div>
-</section>
-<!--메인 하단-->
+			
+      
+      <div class="outter">
+        <table>
+          <c:if test="${member != null}">
+	          <c:if test="${memberGrade eq 0 }">
+	          <h3>회원 목록</h3>
+		          <c:forEach var="memberList" items="${memberList}">
+		          	<tr>
+		          		<td>
+		          			회원 번호 
+		          		</td>
+		          		<td>
+		          			아이디
+		          		</td>
+		          		<td>
+		          			이름 
+		          		</td>
+		          		<td>
+		          			생년월일
+		          		</td>
+		          		<td>
+		          			성별 
+		          		</td>
+		          		<td>
+		          			휴대폰 
+		          		</td>
+		          		<td>
+		          			일반전화 
+		          		</td>
+		          		<td>
+		          			이메일 
+		          		</td>
+		          		<td>
+		          			광고 동의
+		          		</td>
+		          		<td>
+		          			사업자 번호
+		          		</td>
+		          		<td>
+		          			가입일 
+		          		</td>
+		          		<td>
+		          			탈퇴여부
+		          		</td>
+		          	</tr>
+		          	<tr>
+		          		<td>
+		          			${memberList.midx }
+		          		</td>
+		          		<td>
+		          			${memberList.memberId }
+		          		</td>
+		          		<td>
+		          			${memberList.memberName }
+		          		</td>
+		          		<td>
+		          			${memberList.memberBirth }
+		          		</td>
+		          		<td>
+		          			${memberList.memberGender }
+		          		</td>
+		          		<td>
+		          			${memberList.memberPhone }
+		          		</td>
+		          		<td>
+		          			${memberList.memberTel }
+		          		</td>
+		          		<td>
+		          			${memberList.memberEmail }
+		          		</td>
+		          		<td>
+		          			${memberList.memberSpam }
+		          		</td>
+		          		<td>
+		          			${memberList.memberBusinessNumber }
+		          		</td>
+		          		<td>
+		          			${memberList.memberJoinDay }
+		          		</td>
+		          		<td>
+		          			${memberList.memberUnJoin }
+		          		</td>
+		          	</tr>
+		          	<!-- 
+			          <tr onclick="location.href='/Question/view.do?qidx=${listAll.qidx}'" style="cursor: pointer;">
+			          	<td style="font-size:10px">${listAll.qidx }</td>
+			            <td>${listAll.quesCate }</td>
+			            <td>${listAll.quesSubject }
+			            	<c:if test="${listAll.commentCnt == 0}"></c:if>
+							<c:if test="${listAll.commentCnt != 0}">
+								[${listAll.commentCnt}]
+							</c:if>
+			            </td>
+			            <td>${listAll.quesWriter }</td>
+			            <td><fmt:formatDate value="${listAll.quesDate }" pattern="yyyy-MM-dd" /></td>
+			          </tr>
+			           -->
+		          </c:forEach>
+	          </c:if>
+	          <c:if test="${memberGrade ne 0 }">
+	          	<h2>페이지를 찾을 수 없습니다.</h2>
+	          </c:if>
+	      </c:if>
+	      <c:if test="${member == null}">
+	     	 <h2>페이지를 찾을 수 없습니다.</h2>
+	      </c:if>
+           
+        </table><br>
+        
+      </div>
+	</section>
+<!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">
 		<div class="row text-center frist_footer">

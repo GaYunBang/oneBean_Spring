@@ -18,13 +18,13 @@ public class QuestionDAO {
 	SqlSession sql;
 	
 	public List<QuestionVO> listAll(PagingVO vo) throws Exception {
-		return sql.selectList("com.ezen.mapper.questionMapper.listAll",vo);
+		return sql.selectList("com.ezen.mapper.questionMapper.listAll", vo);
 	}
 	
 	public List<QuestionVO> list(PagingVO vo)throws Exception {
 		return sql.selectList("com.ezen.mapper.questionMapper.list", vo);
 	}
-	
+	//°Ô½Ã¹° ÃÑ °¹¼ö
 	public int listCount() throws Exception {
 		return sql.selectOne("com.ezen.mapper.questionMapper.listCount");
 	}

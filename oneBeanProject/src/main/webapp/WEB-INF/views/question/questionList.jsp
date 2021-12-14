@@ -38,6 +38,7 @@
       .selectBox {
         margin-left: 10%;
         margin-bottom: 20px;
+        height: 30px;
       }
       select {
         width: 150px;
@@ -188,14 +189,20 @@
 			<h3>1:1 문의 게시판</h3>
       
       <div class="outter">
-      <!-- 
+      
         <div style="float:left; width:100%;">
-          <select class="selectBox">
-            <option>전체보기</option>
-            <option>상품문의</option>
-            <option>기타문의</option>
-          </select>
-        </div> -->
+	        <form>
+	          <select class="selectBox" name="searchType">
+	            <option value="quesSubject">제목</option>
+	            <option value="quescontents">내용</option>
+	            <option value="subject_contents">제목+내용</option>
+	            <option value="quesWriter">작성자</option>
+	          </select>
+	          <input type="text" name="keyword">
+	          <button type="button">검색</button>
+	        </form>
+        </div> 
+        
         <table>
           <tr>
           	<th width="5%"></th>
@@ -261,6 +268,7 @@
 	        	</c:if>
 	        </div>
         </c:if>
+        <!-- 페이징 -->
         <div style="display:block; text-align:center;">
         <c:if test="${memberGrade eq 0 }">
         	<c:if test="${paging.startPage != 1 }">
@@ -299,7 +307,7 @@
         	</c:if><br><br>
        	</c:if>
         </div>
-        
+         
       </div>
 	</section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

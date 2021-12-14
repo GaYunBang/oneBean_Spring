@@ -25,7 +25,7 @@ public class QuestionServiceImpl implements QuestionService{
 	public List<QuestionVO> list(PagingVO vo) throws Exception {
 		return dao.list(vo);
 	}
-
+	//°Ô½Ã¹° ÃÑ °¹¼ö
 	@Override
 	public int listCount() throws Exception {
 		return dao.listCount();

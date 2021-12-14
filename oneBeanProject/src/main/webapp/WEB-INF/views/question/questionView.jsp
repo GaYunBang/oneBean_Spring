@@ -197,6 +197,9 @@
 						<span class="board_sub_date"> 
 							작성일 : <fmt:formatDate value="${view.quesDate }" pattern="yyyy-MM-dd" /> 
 						</span>
+						<c:if test="${memberGrade == 0 }">
+							<span class="board_sub_date">작성자 번호 : ${view.midx}</span>
+						</c:if>
 					</td>
 				</tr>
 				<tr>

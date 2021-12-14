@@ -177,6 +177,12 @@
                 	<input type="text" name="memberPhone" class="deco" value="${member.memberPhone}" readonly>
                 </td>   
             </tr>
+            <tr>
+                <td class="col1">가입일</td>
+                <td class="col2">
+                	<input type="text" name="memberJoinDay" class="deco" value="${member.memberJoinDay}" readonly>
+                </td>   
+            </tr>
             </table>      
           </div>   
           <div class="create">

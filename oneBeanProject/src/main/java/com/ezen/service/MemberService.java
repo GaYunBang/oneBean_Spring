@@ -18,4 +18,6 @@ public interface MemberService {
 	public void addrModify(AddrVO vo)throws Exception;
 	
 	public void memberModify(MemberVO vo)throws Exception;
+	
+	public void pwdModify(MemberVO vo)throws Exception;
 }

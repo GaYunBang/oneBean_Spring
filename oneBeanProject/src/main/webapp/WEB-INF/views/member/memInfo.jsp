@@ -168,27 +168,19 @@
             <tr>
                 <td class="col1">이메일</td>
                 <td class="col2">
-	                    <input type="text" class="deco" name="mailid" value="${member.memberEmail }" readonly>
+	                    <input type="text" class="deco" name="memberEmail" value="${member.memberEmail }" readonly>
                 </td>
             </tr>
             <tr>
                 <td class="col1">전화번호</td>
                 <td class="col2">
-                <c:set var="Num" value="${member.memberPhone }"/>
-	            <c:set var="pNum1" value="${fn:substring(Num,0,3) }"/>
-                  <input type="text" class="phone1" name="phone1" maxlength="4" value="${pNum1 }" readonly>  
-                <c:set var="Num2" value="${member.memberPhone }"/>
-	            <c:set var="pNum2" value="${fn:substring(Num2,3,7) }"/>
-                  <input type="text" class="phone2" name="phone2" maxlength="4" value="${pNum2 }" readonly>
-                <c:set var="Num3" value="${member.memberPhone }"/>
-	            <c:set var="pNum3" value="${fn:substring(Num3,7,11) }"/>
-                  <input type="text" class="phone3" name="phone3" maxlength="4" value="${pNum3 }" readonly>
+                	<input type="text" name="memberPhone" class="deco" value="${member.memberPhone}" readonly>
                 </td>   
             </tr>
             </table>      
           </div>   
           <div class="create">
-            <a href="memInfoModify.do"><input class="but4" type="button" value="수정하기"></a>      
+            <a href="memInfoModify.do?midx=${midx}"><input class="but4" type="button" value="수정하기"></a>      
           </div>
           </div>
           </form>

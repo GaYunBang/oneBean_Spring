@@ -43,4 +43,8 @@ public class MemberDAO {
 	public void memberModify(MemberVO vo) throws Exception {
 		sqlSession.update(Namespace+".memberModify", vo);
 	}
+	
+	public void pwdModify(MemberVO vo)throws Exception {
+		sqlSession.update(Namespace+".pwdModify", vo);
+	}
 }

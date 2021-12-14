@@ -50,4 +50,9 @@ public class MemberServiceImpl implements MemberService{
 	public void memberModify(MemberVO vo) throws Exception {
 		memberDao.memberModify(vo);
 	}
+
+	@Override
+	public void pwdModify(MemberVO vo) throws Exception {
+		memberDao.pwdModify(vo);
+	}
 }

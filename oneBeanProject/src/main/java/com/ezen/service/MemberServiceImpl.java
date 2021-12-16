@@ -45,4 +45,14 @@ public class MemberServiceImpl implements MemberService{
 	public void addrModify(AddrVO vo) throws Exception {
 		memberDao.addrModify(vo);
 	}
+
+	@Override
+	public int addrCount(int midx) throws Exception {
+		return memberDao.addrCount(midx);
+	}
+
+	@Override
+	public void addrPlus(AddrVO vo) throws Exception {
+		memberDao.addrPlus(vo);
+	}
 }

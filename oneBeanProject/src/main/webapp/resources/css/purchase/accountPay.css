@@ -1,0 +1,94 @@
+section{
+    margin-top: 243px;
+    width: 100%;
+    margin-bottom: 200px;  
+}    
+
+.create{
+    width: 900px;
+    text-align: center;
+    padding: 30px;
+    border-bottom: 2px solid black;
+    margin: auto;
+    }
+ 
+table{
+    height: 300px;
+    width: 900px;
+    border-top: 2px solid black;
+    margin-right: auto;
+    margin-left: auto;
+    caption-side: top;
+    }
+ 
+td{
+    border-bottom: 1px dotted black;
+    }
+ 
+caption{
+    text-align: center;
+    color:black;
+    }
+.deco1{
+    outline: none;
+    border-style: none;
+    width: 100%;
+}    
+.deco{
+    border-style: none;
+	border-bottom: 1px solid black;
+    outline: none;
+}
+.deco:focus{
+    outline: none;
+	border-bottom: 2px solid rgb(0, 0, 0);
+} 
+.col1 {
+    background-color: #e8e8e8;
+    padding: 10px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 0.8em;
+    }
+ 
+.col2 {
+    text-align: left;
+    padding: 5px;
+    }
+
+ 
+.btn {
+    width: 20%;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(48, 48, 48);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;    
+    border:none;   
+}
+     
+.btn:hover {
+	background-color: #b9b9b9;
+	color: rgb(0, 0, 0);
+}
+
+@media only screen and (max-width: 991px) {
+	table{
+		width: 100%;
+	}
+	.create{
+		width:100%;
+	}
+}    
+
+@media only screen and (max-width:550px){
+	.btn{
+		width:15%;
+		height: 35px;
+		font-size: 12px;
+	}
+	.deco1{
+		font-size: 12px;
+	}
+}

@@ -39,4 +39,12 @@ public class MemberDAO {
 	public void addrModify(AddrVO vo) throws Exception {
 		sqlSession.update(Namespace+".addrModify", vo);
 	}
+	
+	public int addrCount(int midx) throws Exception {
+		return sqlSession.update(Namespace+".addrCount", midx);
+	}
+	
+	public void addrPlus(AddrVO vo) throws Exception{
+		sqlSession.insert(Namespace+".addrPlus", vo);
+	}
 }

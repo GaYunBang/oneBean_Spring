@@ -21,18 +21,18 @@
   	
   	<!-- 카트 목록 확인 -->
   	<select id="cartList" resultType="cartVO" parameterType="int">
-  		SELECT
-  			 a.cartIdx
-  			,a.midx
-  			,a.proIdx
-  			,a.cartCount
-  			,b.proName
-  			,b.proPrice
-  			,b.proImg
+  		SELECT * 
   		FROM shop_cart a LEFT OUTER JOIN shop_product b
   		ON a.proIdx = b.proIdx
   		WHERE midx = #{midx}
   	</select>
+  	
+  	<update id="cartUpdate" parameterType="cartVO">
+  		UPDATE shop_cart SET
+  		cartCount = #{cartCount}
+  		,cartPrice = #{cartPrice}
+  		WHERE cartIdx = #{cartIdx}
+  	</update>
   	
   	<!-- 카트 리스트 갯수 -->
   	<select id="cartAllCount" resultType="int" parameterType="int">

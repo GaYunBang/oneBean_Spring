@@ -53,8 +53,12 @@
     		midx = #{midx}
     </update>
     
-    <select id="addrView" resultType="addrVO">
+    <select id="addrView" resultType="addrVO" parameterType="int">
 		select * from shop_member_addr where midx = #{midx}
+    </select>
+    
+    <select id="addrCount" resultType="int" parameterType="int">
+		select count(*) from shop_member_addr where midx = #{midx}
     </select>
     
     <update id="addrModify" parameterType="addrVO">
@@ -64,4 +68,17 @@
     		memberDetailAddr = #{memberDetailAddr}
     	where midx = #{midx}
     </update>
+    <insert id="addrPlus" parameterType="addrVO">
+    	INSERT INTO shop_member_addr(
+    		midx,
+    		memberPostNum,
+    		memberAddr,
+    		memberDetailAddr
+    	)VALUES(
+    		#{midx},
+    		#{memberPostNum},
+    		#{memberAddr},
+    		#{memberDetailAddr}
+    	)
+    </insert>
 </mapper>

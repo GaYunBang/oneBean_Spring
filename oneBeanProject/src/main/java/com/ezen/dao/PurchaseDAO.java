@@ -14,7 +14,7 @@ public class PurchaseDAO {
 	SqlSession sql;
 	
 	private static final String Namespace = "com.ezen.mapper.CartMapper";
-	private static final String Namespace2 = "com.ezen.mapper.ProductOrderMapper";
+	private static final String Namespace2 = "com.ezen.mapper.PayPostMapper";
 	
 	public void addCart(CartVO cart) throws Exception {
 		sql.insert(Namespace+".addCart",cart);
@@ -22,6 +22,10 @@ public class PurchaseDAO {
 	
 	public List<CartVO> cartList(int midx) throws Exception {
 		return sql.selectList(Namespace+".cartList",midx);
+	}
+	
+	public void cartUpdate(CartVO vo) throws Exception {
+		sql.update(Namespace+".cartUpdate", vo);
 	}
 	
 	public int cartAllCount(int midx) throws Exception {
@@ -36,11 +40,22 @@ public class PurchaseDAO {
 		sql.delete(Namespace+".cartButtonDelete", cartIdx);
 	}
 	
-	public void addOrder(ProductOrderVO vo) throws Exception{
-		sql.insert(Namespace2+".addOrder", vo);
-		sql.insert(Namespace2+".addOrderDetail",vo);
+	public List<TempVO> cartProduct(CartVO vo) throws Exception {
+		return sql.selectList(Namespace2+".cartProduct",vo);
 	}
-	public ProductOrderVO one(int midx) throws Exception{
-		return sql.selectOne(Namespace2+".one", midx);
+	
+	public PayPostVO viewPay(PayPostVO vo) throws Exception {
+		sql.insert(Namespace2+".addPay", vo);
+		sql.insert(Namespace2+".addPayDetail", vo);
+		sql.insert(Namespace2+".addPost",vo);
+		return sql.selectOne(Namespace2+".viewPay", vo);
+	}
+	
+	
+	public PayPostVO viewPayMulti(PayPostVO vo) throws Exception {
+		sql.insert(Namespace2+".addPay", vo);
+		sql.insert(Namespace2+".addPayMultiDetail", vo);
+		sql.insert(Namespace2+".addPost",vo);
+		return sql.selectOne(Namespace2+".viewPay", vo);
 	}
 }

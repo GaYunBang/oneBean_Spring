@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.ezen.mapper.PayPostMapper">
+	<!-- 장바구니에서 주문하기 눌렀을때 목록 불러오기 -->
+	<select id="cartProduct" parameterType="cartVO" resultType="tempVO">
+  		SELECT 
+  			a.cartIdx,
+  			a.cartCount as orderCount,
+  			a.cartPrice as orderPrice,
+  			b.proIdx,
+  			b.proImg,
+  			b.proType,
+  			b.proName,
+  			b.proPrice,
+  			b.proPrice2,
+  			b.proContents
+  		FROM shop_cart a
+  		INNER JOIN shop_product b on a.proidx = b.proidx  where cartIdx in
+  		<foreach collection="cartIdxs" item="cartIdx" open="(" close=")" separator=",">
+  			#{cartIdx}
+  		</foreach>
+  	</select>
+
+	<!-- 주문하기 눌렀을때 -->
+	<insert id="addPay" parameterType="payPostVO" useGeneratedKeys="true" keyProperty="payIdx">
+  		INSERT INTO shop_pay(
+  			 midx,
+  			 payTotalPrice,
+  			 payType,
+  			 payName,
+  			 payPhone,
+  			 payEmail
+  		)VALUES(
+  			 #{midx},
+  			 #{payTotalPrice},
+  			 #{payType},
+  			 #{payName},
+  			 #{payPhone},
+  			 #{payEmail}
+  		)
+  	</insert>
+  	<!-- 주문하기 눌렀을때 상세(바로주문)-->
+  	<insert id="addPayDetail" parameterType="payPostVO">
+  		INSERT INTO shop_pay_detail (
+  			payIdx,
+  			proIdx,
+  			payOneCount,
+  			payOnePrice
+  		)VALUES(
+  			#{payIdx},
+  			#{proIdx},
+  			#{payOneCount},
+  			#{payOnePrice}  			
+  		)
+  	</insert>
+  	<!-- 주문하기 눌렀을때 상세-->
+  	<insert id="addPayMultiDetail" parameterType="payPostVO">
+  		INSERT INTO shop_pay_detail (
+  			payIdx,
+  			proIdx,
+  			payOneCount,
+  			payOnePrice
+  		)SELECT
+  			#{payIdx} as payIdx,
+  			proIdx,
+  			cartCount,
+  			cartPrice
+  		FROM shop_cart where cartIdx in
+  		<foreach collection="cartIdxs" item="cartIdx" open="(" close=")" separator=",">
+  			#{cartIdx}
+  		</foreach>
+  	</insert>
+  	
+  	<!-- 배송지 추가 -->
+  	<insert id="addPost" parameterType="payPostVO" useGeneratedKeys="true" keyProperty="postIdx">
+  		INSERT INTO shop_product_post(
+  			 payIdx
+  			,midx
+  			,postMemo
+  			,postName
+  			,postPhone
+  			,postNum
+  			,postAddr
+  			,postDetailAddr
+  		)VALUES(
+  		 	 #{payIdx}
+  		 	,#{midx}
+  			,#{postMemo}
+  			,#{postName}
+  			,#{postPhone}
+  			,#{postNum}
+  			,#{postAddr}
+  			,#{postDetailAddr}
+  		)
+  	</insert>
+  	
+  	<!-- 입금가능일 보이게 하려고 만든것 -->
+  	<select id="viewPay" parameterType="payPostVO" resultType="payPostVO">
+  		SELECT
+  			date_add(a.payDate,INTERVAL 3 day) as payDate,
+  			a.payName,
+  			b.payIdx,
+  			a.payTotalPrice
+  		FROM shop_pay a
+		INNER JOIN shop_product_post b
+  		on a.payIdx = b.payIdx
+  		WHERE b.postIdx = #{postIdx}
+  	</select>
+</mapper>

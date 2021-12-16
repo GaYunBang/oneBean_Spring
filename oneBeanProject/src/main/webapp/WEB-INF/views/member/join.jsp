@@ -25,39 +25,36 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script>
-
-var idCheckYN = false;
-var idCheckReset = false;
-
-
-		function idCheck(){
-			idCheckYN = true;
-			if($("#memberId").val() != ""){
-				$.ajax({
-					url : "idCheck.do",
-					type : "post",
-					dataType : "json",
-					data : {"memberId" : $("#memberId").val()},
-					success : function(data){
-						if(data > 0){
-							alert("중복된 아이디입니다.");
-						}else if(data == 0){
-							idUseYN = true;
-							alert("사용 가능한 아이디입니다.");
-						}
+	var idCheckYN = false;
+	var idCheckReset = false;
+	
+	function idCheck(){
+		idCheckYN = true;
+		if($("#memberId").val() != ""){
+			$.ajax({
+				url : "idCheck.do",
+				type : "post",
+				dataType : "json",
+				data : {"memberId" : $("#memberId").val()},
+				success : function(data){
+					if(data > 0){
+						alert("중복된 아이디입니다.");
+					}else if(data == 0){
+						idUseYN = true;
+						alert("사용 가능한 아이디입니다.");
 					}
-				})
-			}else{
-				alert("아이디를 입력하세요.");
-			}
+				}
+			})
+		}else{
+			alert("아이디를 입력하세요.");
 		}
-		
-		function idCheckReset(){
-			idCheckYN = false;
-		}
-
-
-	 $(document).ready(function() {
+	}
+	
+	function idCheckReset(){
+		idCheckYN = false;
+	}
+	
+	$(document).ready(function() {
 		//체크박스 모두 체크
 		$("#AgreeCheckAll").click(function() {
 			if($("#AgreeCheckAll").prop("checked"))
@@ -169,7 +166,7 @@ var idCheckReset = false;
 			}else if(useCheck==false){
 				alert("이용약관을 체크해야 함");
 				return false;
-			}			
+			}		
 			
 			var check=true;
 			var first;

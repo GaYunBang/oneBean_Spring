@@ -16,4 +16,8 @@ public interface MemberService {
 	public AddrVO addrView(int midx)throws Exception;
 	
 	public void addrModify(AddrVO vo)throws Exception;
+	
+	public int addrCount(int midx)throws Exception;
+	
+	public void addrPlus(AddrVO vo)throws Exception;
 }

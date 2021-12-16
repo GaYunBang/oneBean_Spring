@@ -29,49 +29,140 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
-<script>
+<!--결제API-->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript">
 	$(document).ready(function(){
-		var ship = $("#ship").text().replace(",","").replace("원","");
-		alert(ship);
+		var ship = Number($("#ship").text().replace(",","").replace("원",""));
+		var totalPrice=0;
+		$(".table_box tbody tr").each(function(){
+			var onePrice = $(this).find(".price").text().replace(",","").replace("원","");
+			totalPrice += Number(onePrice);
+		});
+		if(totalPrice > 50000){
+			$("#ship").text("0원");
+		}
+		totalPrice += ship;
+		$("input[name='payTotalPrice']").val(totalPrice);
+		$("#totalSettlePrice").text(totalPrice.formatNumber());
+		
+		$("#check01").click(function() {
+			if($("#check01").prop("checked"))
+				$(".check_item").prop("checked", true);
+			else $(".check_item").prop("checked", false);
+		});
+		
+		$(".check_item").click(function() {
+			var total = $(".check_item").length;
+			var checked = $(".check_item:checked").length;
+			
+			if(total != checked) $("#check01").prop("checked", false);
+			else $("#check01").prop("checked", true); 
+		});
+		
+		console.log($("[name='cartIdxs']"));
+		console.log($("[name='proIdx']"));
 	});
-      function findAddr(){
-        new daum.Postcode({
-              oncomplete: function(data) {
-                
-                console.log(data);
-                
-                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-                  // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                  var roadAddr = data.roadAddress; // 도로명 주소 변수
-                  var jibunAddr = data.jibunAddress; // 지번 주소 변수
-                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                  document.getElementById('member_post').value = data.zonecode;
-                  if(roadAddr !== ''){
-                      document.getElementById("member_addr").value = roadAddr;
-                  } 
-                  else if(jibunAddr !== ''){
-                      document.getElementById("member_addr").value = jibunAddr;
-                  }
-              }
-          }).open();
-      }
-      function requestPay(){
-    	  var agreeCheeck = $("#cheeck01").is(":checked");
-    	  if(agreeCheeck==false){
-    		  alert("동의해야 함");
-    		  return false;
-    		}
-      }
-      function sameShip(){
-    	  var name = $("input[name='payName']").val();
-    	  var phone = $("input[name='payPhone']").val();
-    	  $("input[name='orderPostName']").val(name);
-    	  $("input[name='orderPostPhone']").val(phone);
-      }
-      </script>
-      
-      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	function findAddr(){
+		new daum.Postcode({
+			oncomplete: function(data) {
+				console.log(data);
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+				// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+				var jibunAddr = data.jibunAddress; // 지번 주소 변수
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById('member_post').value = data.zonecode;
+				if(roadAddr !== ''){
+					document.getElementById("member_addr").value = roadAddr;
+				}else if(jibunAddr !== ''){
+					document.getElementById("member_addr").value = jibunAddr;
+				}
+			}
+		}).open();
+	}
+	function requestPay(){
+		var agreeCheck = $("#check01").is(":checked");
+		var form = $("[name='order_form']");
+		
+		if(agreeCheck==false){
+			alert("필수 사항을 동의해야 합니다.");
+		}else{
+			if (form.find("[name='postName']").val()==""){
+				alert("받으실분을 입력해 주십시오.");
+				form.find("[name='postName']").focus();
+				
+			}else if(form.find("[name='postPhone']").val()==""){
+				alert("받으실분의 연락처를 입력해 주십시오.");
+				form.find("[name='postPhone']").focus();
+				
+			}else if(form.find("#member_post").val()==""){
+				alert("우편번호를 입력해 주십시오.");
+				$("#member_post").focus();
+				
+			}else if(form.find("#member_addr").val()==""){
+				alert("도로명/지번주소를 입력해 주십시오.");
+				$("#member_addr").focus();
+				
+			}else if(form.find("#member_detail_addr").val()==""){
+				alert("상세주소를 입력해 주십시오.");
+				$("#member_detail_addr").focus();
+				
+			}
+		}
+		if(document.getElementById('scard').checked) {
+			//가맹점 식별코드
+			IMP.init('imp85121355');
+			IMP.request_pay({
+				pg : 'kcp',
+				pay_method : 'card',
+				merchant_uid : 'merchant_' + new Date().getTime(),
+				name : '상품1' , //결제창에서 보여질 이름
+				amount : 100, //실제 결제되는 가격
+				buyer_email : 'iamport@siot.do',
+				buyer_name : '구매자이름',
+				buyer_tel : '010-1234-5678',
+				buyer_addr : '서울 강남구 도곡동',
+				buyer_postcode : '123-456'
+			}, function(rsp) {
+				console.log(rsp);
+				if ( rsp.success ) {
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+				}else{
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+				}alert(msg);
+			});
+		}else if(document.getElementById('mootong').checked){
+			form.submit();
+		}
+		
+	}
+	
+	//주문자와 동일 버튼 눌렀을 때
+	function sameShip(){
+		var name = $("input[name='payName']").val();
+		var phone = $("input[name='payPhone']").val();
+		$("input[name='postName']").val(name);
+		$("input[name='postPhone']").val(phone);
+	}
+	
+	Number.prototype.formatNumber = function(){
+		if(this==0) return 0;
+		let regex = /(^[+-]?\d+)(\d{3})/;
+		let nstr = (this + '');
+		while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
+		return nstr;
+	};
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 <header class="fixed-top">
@@ -180,7 +271,8 @@
 </header>
 <section>
 	<center><img src="/images/주문결제.png"></center>
-	<form name="order_form" method="post" action ="" onsubmit="return check2();">
+	<form name="order_form" method="post" action="accountPay.do" onsubmit="requestPay();return false;">
+		<input type="hidden" name="payTotalPrice">
 		<div class="content pt-4">
 			<div class="container-xxl">
 				<span class="d-flex shop_bow_subject2 mt-5 mb-3">주문 상품</span>
@@ -196,21 +288,27 @@
 				</thead>
 				<tbody>
 				<!-- 상품 부분 -->
+				<c:forEach var="list" items="${list}">
+				<c:if test="${list.cartIdx != 0 }">
+					<input type="hidden" value="${list.cartIdx }" name="cartIdxs">
+				</c:if>
+				<input type="hidden" value="${list.proIdx }" name="proIdx">
 				<tr class="shop_box2">
 					<td class="sum_box">
-						<img src="${vo.proImg }" width="80px">
+						<img src="${list.proImg }" width="80px">
 					</td>
 					<td class="con_box">
-						<span class="pro">${vo.proName }<br>${vo.proContents }</span>
-						<input type="hidden" name="pidx" value="">
+						<span class="pro">${list.proName }<br>${list.proContents }</span>
 					</td>
 					<td class="top_3">
-						<span class="pro">${vo.orderCount}</span><input type="hidden" name="cvol" value="">
+						<span class="pro">${list.orderCount}</span><input type="hidden" name="payOneCount" value="${list.orderCount}">
 					</td>
 					<td class="top_3">
-						<span class="pro"><fmt:formatNumber value="${vo.orderPrice}" pattern="###,###,### 원" /></span>
+						<span class="pro price"><fmt:formatNumber value="${list.orderPrice}" pattern="###,###,### 원" /></span>
+						<input type="hidden" name="payOnePrice" value="${list.orderPrice}">
 					</td>
 				</tr>
+				</c:forEach>
 				</tbody>
 				</table>
 				
@@ -245,11 +343,11 @@
 					</div>
 					<div class="d-flex align-items-center pb-4">
 						<span class="px-3 name_subject">받으실 분<span class="color_red">*</span></span>
-						<input type="text" class="order_txt" name="orderPostName">
+						<input type="text" class="order_txt" name="postName">
 					</div>
 					<div class="d-flex align-items-center pb-4">
 						<span class="px-2 ms-1 px-sm-3 ms-sm-0  name_subject">휴대폰번호<span class="color_red">*</span></span>
-						<input type="text" class="order_txt" name="orderPostPhone">
+						<input type="text" class="order_txt" name="postPhone">
 					</div>
 					<div class="d-flex align-items-center pb-4 row">
 						<span class="px-4 ms-sm-3 ms-0 px-sm-3 name_subject pb-2 pb-sm-0 onesell">받으실 곳<span class="color_red">*</span></span>
@@ -257,9 +355,9 @@
 							<div class="d-flex">
 								<input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
 							</div>
-							<input id="member_post"  class="order_txt" name="roadAddrPart1" type="text" placeholder="우편 번호" readonly value="${addr.memberPostNum }">
-							<input id="member_addr" class="order_txt" name="roadAddrPart2" type="text" placeholder="도로명주소/지번주소" readonly value="${addr.memberAddr }"><br>
-							<input id="member_detail_addr" class="order_txt" name="addrDetail" type="text" placeholder="상세 주소를 입력해주세요." value="${addr.memberDetailAddr}">
+							<input id="member_post"  class="order_txt" name="postNum" type="text" placeholder="우편 번호" readonly value="${addr.memberPostNum }">
+							<input id="member_addr" class="order_txt" name="postAddr" type="text" placeholder="도로명주소/지번주소" readonly value="${addr.memberAddr }"><br>
+							<input id="member_detail_addr" class="order_txt" name="postDetailAddr" type="text" placeholder="상세 주소를 입력해주세요." value="${addr.memberDetailAddr}">
 						</div>
 					</div>
 				</div>
@@ -273,7 +371,7 @@
 					</div>
 					<div class="d-flex align-items-center">
 						<span class="px-3 name_subject">배송메세지</span>
-						<input type="text" class="order_txt" name="dv_ment" placeholder="배송 메시지를 선택해 주세요.">
+						<input type="text" class="order_txt" name="postMemo" placeholder="배송 메시지를 입력해 주세요.">
 					</div>
 				</div>
 				
@@ -282,19 +380,19 @@
 				<div class="shop_box mt-2 py-3 mb-3">
 					<div class="d-flex align-items-center">
 						<span class="px-1 px-sm-3 name_subject">일반결제</span>
-						<label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 무통장 입금</label>
-						<label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 신용카드</label>
-						<label class="pe-3 d-flex align-items-center"><input type="radio" name="pay" value="기본배송지" class="mx-2" checked> 계좌이체</label>
+						<label class="pe-3 d-flex align-items-center"><input type="radio" name="payType" value="무통장입금" class="mx-2" id="mootong" checked> 무통장 입금</label>
+						<label class="pe-3 d-flex align-items-center"><input type="radio" name="payType" value="신용카드" class="mx-2" id="scard"> 신용카드</label>
+						<label class="pe-3 d-flex align-items-center"><input type="radio" name="payType" value="계좌이체" class="mx-2" id="eche"> 계좌이체</label>
 					</div>
 				</div>
 				<div id="checkWrap">
-					<label for="cheeck01"><input type="checkbox" id="cheeck01" />전체 동의합니다.</label>
-					<label for="cheeck02"><input type="checkbox" id="cheeck02" />(필수) 개인정보 제공 동의</label>
-					<label for="cheeck03"><input type="checkbox" id="cheeck03" />(필수) 주문 상품정보에 동의</label>
-					<label for="cheeck04"><input type="checkbox" id="cheeck04" />(필수) 결제대행 서비스 이용을 위한 개인정보 제3자 제공 및 위탁동의</label>
+					<label for="check01"><input type="checkbox" id="check01" />전체 동의합니다.</label>
+					<label for="check02"><input type="checkbox" id="check02" class="check_item"/>(필수) 개인정보 제공 동의</label>
+					<label for="check03"><input type="checkbox" id="check03" class="check_item"/>(필수) 주문 상품정보에 동의</label>
+					<label for="check04"><input type="checkbox" id="check04" class="check_item"/>(필수) 결제대행 서비스 이용을 위한 개인정보 제3자 제공 및 위탁동의</label>
 				</div>
-				<button class="order_main_btn" type="button"  onclick="requestPay()">
-				<span id="totalSettlePrice"></span>원 결제하기</button>
+				<button class="order_main_btn">
+				<span id="totalSettlePrice"></span> 원 결제하기</button>
 			</div>
 		</div>
 	</form>
@@ -346,6 +444,5 @@
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
 <script src="/js/hamber.js"></script>
-<script src="/js/payApply.js"></script>
 </body>
 </html>

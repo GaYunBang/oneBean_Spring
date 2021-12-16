@@ -49,11 +49,9 @@
 		var shipPrice = 3000;
 		var payPrice = 0;
 		$(".cart_table tbody tr").each(function(){
-			var count = $(this).find("option:selected").val();
-			var price = $(this).find(".onePrice");
-			var price_text = Number(price.text());
-			price.text((price_text*count).formatNumber()+"원");
-			totalSum += Number(price.text().replace("원","").replaceAll(",",""));
+			var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+			
+			totalSum += price;
 		});
 		if(totalSum > 50000){
 			shipPrice = 0;
@@ -62,41 +60,44 @@
 		$("#totalSum").text(totalSum.formatNumber()+"원");
 		$("#shipPrice").text(shipPrice.formatNumber()+"원");
 		$("#payPrice").text(payPrice.formatNumber()+"원");
-		/*
-		$(".select_option").on("change",function(){
-			var count = $(this).find("option:selected").val();
-			var price = $(this).parent().next().find(".onePrice")
-			var price_text = Number(price.text().replace("원","").replaceAll(",","").trim());
-			
-			for (var i=1;i<=10;i++){
-				if(count == i){
-					alert(count);
-					price.text((price_text*i).formatNumber()+"원");
-				}
-			}.
-			if(count == 1){
-				price.text((price_text+8000).formatNumber()+"원");
-			}else if(count == 2){
-				price = price+8000;
-			}else if(count == 3){
-				alert("ss")
-			}
-		});*/
 	});
-	function changeCount(price,obj) {
+	
+	function changeCount(price,obj,cartIdx) {
 		var count = $(obj).find("option:selected").val(); 
 		var priceSpan = $(obj).parent().next().find(".onePrice");
+		var priceSpan_text
 		for (var i=1;i<=10;i++){
 			if(count == i){
-				alert(count);
+				priceSpan_text = price*i;
 				priceSpan.text((price*i).formatNumber()+"원");
 			}
 		}
-		var totalSum = 0;
-		$(".cart_table tr").each(function(){
-			totalSum += Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+		
+		$.ajax({
+			url:"cartUpdate.do",
+			data:{"cartIdx":cartIdx,"cartCount":count,"cartPrice":priceSpan_text},
+			success:function(data){
+			},
+			error:function(){
+				alert("error");
+			}
 		});
-		$("#totalSum").text(totalSum);
+		
+		var totalSum = 0;
+		var shipPrice = 3000;
+		var payPrice = 0;
+		$(".cart_table tbody tr").each(function(){
+			var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+			
+			totalSum += price;
+		});
+		if(totalSum > 50000){
+			shipPrice = 0;
+		}
+		payPrice = totalSum + shipPrice;
+		$("#totalSum").text(totalSum.formatNumber()+"원");
+		$("#shipPrice").text(shipPrice.formatNumber()+"원");
+		$("#payPrice").text(payPrice.formatNumber()+"원");
 	}
 	function cartButtonDelete(cartIdx,obj) {
 		$.ajax({
@@ -107,11 +108,28 @@
 				test.parent().parent().remove();
 				var allCount = $("#allCount").text();
 				$("#allCount").text(allCount-1);
+				var totalSum = 0;
+				var shipPrice = 3000;
+				var payPrice = 0;
+				$(".cart_table tbody tr").each(function(){
+					var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+			
+					totalSum += price;
+				});
+				if(totalSum > 50000){
+					shipPrice = 0;
+				}
+				payPrice = totalSum + shipPrice;
+				$("#totalSum").text(totalSum.formatNumber()+"원");
+				$("#shipPrice").text(shipPrice.formatNumber()+"원");
+				$("#payPrice").text(payPrice.formatNumber()+"원");
 			},
 			error:function(){
 				alert("error");
 			}
 		});
+		
+		
 	}
 	
 	function delAllItem(midx){
@@ -133,6 +151,43 @@
 				alert("error");
 			}
 		});
+	}
+	
+	function delCheckItem(){
+		$(".cart_table tbody tr").each(function(){
+			var check_item = $(this).find(".check_item");
+			var cartIdx = $(this).find(".check_item").val();
+			if (check_item.is(":checked")){
+				$.ajax({
+					url:"cartButtonDelete.do",
+					data:"cartIdx="+cartIdx,
+					success:function(data){
+						check_item.parent().parent().remove();
+						var allCount = $("#allCount").text();
+						$("#allCount").text(allCount-1);
+						var totalSum = 0;
+						var shipPrice = 3000;
+						var payPrice = 0;
+						$(".cart_table tbody tr").each(function(){
+							var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+					
+							totalSum += price;
+						});
+						if(totalSum > 50000){
+							shipPrice = 0;
+						}
+						payPrice = totalSum + shipPrice;
+						$("#totalSum").text(totalSum.formatNumber()+"원");
+						$("#shipPrice").text(shipPrice.formatNumber()+"원");
+						$("#payPrice").text(payPrice.formatNumber()+"원");
+					},
+					error:function(){
+						alert("error");
+					}
+				});
+			}
+		});
+		
 	}
 	
 	Number.prototype.formatNumber = function(){
@@ -250,7 +305,7 @@
 	</nav>
 </header>
 <section>
-<h2 class="cart_header">장바구니</h2>
+<center><img src="/images/장바구니.png"></center>
 <c:if test="${list.size()==0}">
 	<div class="cartNoItem">
 		<div class="cartNoItem2"></div>
@@ -286,22 +341,23 @@
 					<td class="cartImg"><img src="${list.proImg}"/></td>
 					<td>${list.proName}</td>
 					<td>
-						<select class="select_option" name="orderCount" onchange="changeCount(${list.proPrice},this)">
+						<select class="select_option" name="orderCount" onchange="changeCount(${list.proPrice},this,${list.cartIdx})">
 							<option value="${list.cartCount}" selected>${list.cartCount}</option>
 							<c:forEach var="i" begin="1" end="10">
 								<option value="${i}">${i }</option>
 							</c:forEach>
 						</select>
 					</td>
-					<td><span style="font-size:13px; font-weight:bold;" class="onePrice" name="orderPrice">${list.proPrice}</span></td>
-					<td><button class="cartSmallButton" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
+					<td><span style="font-size:13px; font-weight:bold;" class="onePrice">
+					<fmt:formatNumber value="${list.cartPrice}" pattern="###,###,### 원" /></span></td>
+					<td><button class="cartSmallButton" type="button" onclick="cartButtonDelete(${list.cartIdx},this)">삭제</button></td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
 		<div class="right_align">
-			<button class="buttongroup">선택 상품 삭제</button>
-			<button class="buttongroup" onclick="delAllItem(${member.midx});">장바구니 비우기</button>
+			<button class="buttongroup" type="button" onclick="delCheckItem();">선택 상품 삭제</button>
+			<button class="buttongroup" type="button" onclick="delAllItem(${member.midx});">장바구니 비우기</button>
 		</div>
 
 		<div class="right_align">
@@ -330,6 +386,7 @@
 		</div>
 	</form>
 </c:if>
+<center><img class="f_img" src="/images/바구니푸터.png"></center>
 </section>
 <br><br><br>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->

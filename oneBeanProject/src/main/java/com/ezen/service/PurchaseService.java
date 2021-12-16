@@ -10,13 +10,18 @@ public interface PurchaseService {
 	
 	public List<CartVO> cartList(int midx) throws Exception;
 	
+	public void cartUpdate(CartVO vo) throws Exception;
+	
 	public int cartAllCount(int midx) throws Exception;
 	
 	public void cartButtonDelete(int cartIdx) throws Exception;
 	
 	public void cartAllDelete(int midx) throws Exception;
 	
-	public void addOrder(ProductOrderVO vo) throws Exception;
+	public List<TempVO> cartProduct(CartVO vo) throws Exception;
 	
-	public ProductOrderVO one(int midx) throws Exception;
+	public PayPostVO viewPay(PayPostVO vo) throws Exception;
+	
+	public PayPostVO viewPayMulti(PayPostVO vo) throws Exception;
+	
 }

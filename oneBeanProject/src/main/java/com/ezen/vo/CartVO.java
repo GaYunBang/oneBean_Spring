@@ -6,6 +6,7 @@ public class CartVO {
 	private int proIdx;
 	private int cartCount;
 	private int cartPrice;
+	private String[] cartIdxs;
 	
 	private String proName;
     private int proPrice;
@@ -102,5 +103,13 @@ public class CartVO {
 		return "CartDTO [cartIdx=" + cartIdx + ", midx=" + midx + ", proIdx=" + proIdx + ", cartCount="
 				+ cartCount + ", proName=" + proName + ", proPrice=" + proPrice + ", proPrice2=" + proPrice2
 				+ ", totalPrice=" + totalPrice + "]";
+	}
+
+	public String[] getCartIdxs() {
+		return cartIdxs;
+	}
+
+	public void setCartIdxs(String[] cartIdxs) {
+		this.cartIdxs = cartIdxs;
 	}
 }

@@ -64,16 +64,7 @@
 			return;
 		}else{
 			if(confirm("주문하시겠습니까?")){
-				$.ajax({
-					url:"/Purchase/orderOne.do",
-					data:{"proIdx":proIdx,"orderCount":count,"orderPrice":orderPrice},
-					success:function(data){
-						location.href="/Purchase/one.do";
-					},
-					error:function(){
-						alert("error");
-					}
-				});
+				location.href="/Purchase/order.do?proIdx="+proIdx+"&orderCount="+count+"&orderPrice="+orderPrice;
 			}
 		}
 	}

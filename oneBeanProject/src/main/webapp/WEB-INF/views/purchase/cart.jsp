@@ -43,6 +43,24 @@
 			
 			if(total != checked) $("#cartAllCheck").prop("checked", false);
 			else $("#cartAllCheck").prop("checked", true); 
+			
+			var totalSum = 0;
+			var shipPrice = 3000;
+			var payPrice = 0;
+			$(".cart_table tbody tr").each(function(){
+				var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
+				if ($(this).find(".check_item").is(":checked")){
+					console.log($(this).find(".check_item").val());
+					totalSum += price;
+				}
+			});
+			if(totalSum > 50000){
+				shipPrice = 0;
+			}
+			payPrice = totalSum + shipPrice;
+			$("#totalSum").text(totalSum.formatNumber()+"원");
+			$("#shipPrice").text(shipPrice.formatNumber()+"원");
+			$("#payPrice").text(payPrice.formatNumber()+"원");
 		});
 		
 		var totalSum = 0;
@@ -50,8 +68,10 @@
 		var payPrice = 0;
 		$(".cart_table tbody tr").each(function(){
 			var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
-			
-			totalSum += price;
+			if ($(this).find(".check_item").is(":checked")){
+				console.log($(this).find(".check_item").val());
+				totalSum += price;
+			}
 		});
 		if(totalSum > 50000){
 			shipPrice = 0;
@@ -60,6 +80,7 @@
 		$("#totalSum").text(totalSum.formatNumber()+"원");
 		$("#shipPrice").text(shipPrice.formatNumber()+"원");
 		$("#payPrice").text(payPrice.formatNumber()+"원");
+		
 	});
 	
 	function changeCount(price,obj,cartIdx) {
@@ -88,8 +109,10 @@
 		var payPrice = 0;
 		$(".cart_table tbody tr").each(function(){
 			var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
-			
-			totalSum += price;
+			if ($(this).find(".check_item").is(":checked")){
+				console.log($(this).find(".check_item").val());
+				totalSum += price;
+			}
 		});
 		if(totalSum > 50000){
 			shipPrice = 0;
@@ -113,8 +136,10 @@
 				var payPrice = 0;
 				$(".cart_table tbody tr").each(function(){
 					var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
-			
-					totalSum += price;
+					if ($(this).find(".check_item").is(":checked")){
+						console.log($(this).find(".check_item").val());
+						totalSum += price;
+					}
 				});
 				if(totalSum > 50000){
 					shipPrice = 0;
@@ -170,8 +195,10 @@
 						var payPrice = 0;
 						$(".cart_table tbody tr").each(function(){
 							var price = Number($(this).find(".onePrice").text().replace("원","").replaceAll(",",""));
-					
-							totalSum += price;
+							if ($(this).find(".check_item").is(":checked")){
+								console.log($(this).find(".check_item").val());
+								totalSum += price;
+							}
 						});
 						if(totalSum > 50000){
 							shipPrice = 0;

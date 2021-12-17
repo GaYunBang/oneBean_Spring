@@ -176,6 +176,17 @@
                 </li>
             </a>
         </ul>
+        <c:if test="${memberGrade == 0 }">
+	        <ul class="box_list">
+	            <a href="/Manager/memberList.do">
+	                <li class="far fa-file-alt fa-4x m_icon"></li>
+	                <li>
+	                <span class="txt_1">Member List</span>
+	                <p class="txt_2">회원관리</p>
+	                </li>
+	            </a>
+	        </ul>
+        </c:if>
     </div>
 </section>
 <!--메인 하단-->

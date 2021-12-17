@@ -135,83 +135,96 @@
 	</nav>
 </header>
 <section>
-      <form method="post" action="">
-      <div class="container">
-      <div class="insert">
-      
-      <table>
-      <caption><h2>회원정보 수정</h2></caption>
-      <tr>
-          <td class="col1">이름</td>
-          <td class="col2"><input type="text" class="deco1" name="memberName" maxlength="5" value="${member.memberName }"></td>
-      </tr>
-      <tr>
-          <td class="col1">아이디</td>
-          <td class="col2">
-              <input type="text" class="deco1" name="id" maxlength="10" value="${member.memberId }">              
-          </td>
-      </tr>
-      <tr>
-        <td class="col1">생년월일</td>
-        <td class="col2">
-        	<c:set var="yearNum" value="${member.memberBirth }"/>
-	    	<c:set var="year" value="${fn:substring(yearNum,0,4) }"/>
-	    		<input type="text" class="birth1" name="birth1" value="${year }" >년&nbsp;
-	        <c:set var="monthNum" value="${member.memberBirth }"/>
-	        <c:set var="month" value="${fn:substring(monthNum,4,6) }"/>
-	            <input type="text" class="birth2" name="birth2" value="${month }" >월&nbsp;
-	        <c:set var="dayNum" value="${member.memberBirth }"/>
-	        <c:set var="day" value="${fn:substring(dayNum,6,8) }"/>
-	            <input type="text" class="birth3" name="birth3" value="${day }" >일
-        </td>
-      </tr>
-      <tr>
-          <td class="col1">비밀번호</td>
-          <td class="col2">
-              <input type="password" class="deco" name="pwd" maxlength="16">
-              <input class='but1' type="button" value="수정하기" onclick="">
-              <p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
-              8 ~ 15자리</span>로 입력이 가능합니다.</p>
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">비밀번호 확인</td>
-          <td class="col2"><input type="password" class="deco" name="pwdCheck" maxlength="16"></td>
-      </tr>            
-      <tr>
-          <td class="col1">이메일</td>
-          <td class="col2">
-              <input type="text" class="deco" name="mailid" value="${member.memberEmail }" >          
-              <input class='but1' type="button" value="수정하기" onclick="">
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">전화번호</td>
-          <td class="col2"><select name="phone">
-              <option value="slc1" selected>선택</option>
-              <option value="g1">010</option>
-              <option value="g2">016</option>
-              <option value="g3">011</option>
-              <option value="g4">018</option>
-          </select>
-            	<c:set var="Num2" value="${member.memberPhone }"/>
-	            <c:set var="pNum2" value="${fn:substring(Num2,3,7) }"/>
-                  <input type="text" class="phone2" name="phone2" maxlength="4" value="${pNum2 }" >
-                <c:set var="Num3" value="${member.memberPhone }"/>
-	            <c:set var="pNum3" value="${fn:substring(Num3,7,11) }"/>
-                  <input type="text" class="phone3" name="phone3" maxlength="4" value="${pNum3 }" >
-            <input class='but1' type="button" value="수정하기" onclick="">                                 
-          </td>   
-      </tr>
-      </table>      
-    </div>   
-    <div class="create">      
-      <input class="but3" type="button" value="수정취소" onclick="history.back()">
-      <input class="but4" type="button" value="수정완료" onclick="formCheck(this.form)">      
-    </div>
-    </div>
-    </form>
-    </section>
+		<form method="post" action="memInfoModify.do?midx=${midx}">
+			<div class="container">
+				<div class="insert">
+					<table>
+						<caption>
+							<h2>회원정보 수정</h2>
+						</caption>
+						<tr>
+							<td class="col1">이름</td>
+							<td class="col2"><input type="text" class="deco1"
+								name="memberName" maxlength="5" value="${member.memberName }"
+								readonly></td>
+						</tr>
+						<tr>
+							<td class="col1">아이디</td>
+							<td class="col2"><input type="text" class="deco1"
+								name="memberId" maxlength="10" value="${member.memberId }"
+								readonly></td>
+						</tr>
+						<tr>
+							<td class="col1">생년월일</td>
+							<td class="col2">
+							<c:set var="yearNum" value="${member.memberBirth }" /> 
+								<c:set var="year" value="${fn:substring(yearNum,0,4) }" /> 
+								<input type="text" class="birth1" name="birth1" value="${year }" readonly>년&nbsp;
+								
+								<c:set var="monthNum" value="${member.memberBirth }" /> 
+								<c:set var="month" value="${fn:substring(monthNum,5,7) }" /> 
+								<input type="text" class="birth2" name="birth2" value="${month }" readonly>월&nbsp;
+								 
+								<c:set var="dayNum" value="${member.memberBirth }" /> 
+								<c:set var="day" value="${fn:substring(dayNum,8,10) }" /> 
+								<input type="text" class="birth3" name="birth3" value="${day }" readonly>일
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">비밀번호</td>
+							<td class="col2">
+							<input class='but2' type="button" value="비밀번호 변경" onclick="location.href='pwdModify.do'"> 
+							<!-- <input type="password"
+								class="deco pwd check" name="memberPwd" id="memberPwd"
+								maxlength="16">
+								<p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합 8 ~
+										15자리</span>로 입력이 가능합니다.
+								</p></td>
+						</tr>
+						<tr>
+							<td class="col1">비밀번호 확인</td>
+							<td class="col2"><input type="password"
+								class="deco pwdCheck check" name="memberPwdCheck" maxlength="16"></td>
+						</tr> -->
+						<tr>
+							<td class="col1">이메일</td>
+							<td class="col2">
+								<input type="text" class="deco"
+									name="memberEmail" value="${member.memberEmail }">
+								<!-- <input class='but1' type="button" value="수정하기" onclick=""> -->
+							</td>
+						</tr>
+						<tr>
+							<td class="col1">전화번호</td>
+							<td class="col2" name="memberPhone">
+							<input type="text" name="memberPhone" value="${member.memberPhone }" class="deco">
+								<!--<c:set var="Num" value="${member.memberPhone }"/>
+	            				<c:set var="pNum1" value="${fn:substring(Num,0,3) }"/>
+                  				<input type="text" class="phone2" name="phone1" maxlength="4" 
+                  					value="${pNum1 }" >
+								<c:set var="Num2" value="${member.memberPhone }" /> 
+								<c:set var="pNum2" value="${fn:substring(Num2,3,7) }" /> 
+								<input type="text" class="phone2" name="phone2" maxlength="4"
+									value="${pNum2 }"> 
+								<c:set var="Num3" value="${member.memberPhone }" /> 
+								<c:set var="pNum3" value="${fn:substring(Num3,7,11) }" /> 
+								<input type="text"
+									class="phone3" name="phone3" maxlength="4" value="${pNum3 }">
+									<!-- <input class='but1' type="button" value="수정하기" onclick="">  -->
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="create">
+					<input class="but3" type="button" value="수정취소"
+						onclick="history.back()"> 
+					<input class="but4"
+						type="submit" value="수정완료"><br>
+						수정완료 시 로그아웃 되며, 로그인 페이지로 이동합니다
+				</div>
+			</div>
+		</form>
+	</section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">
 	<div class="container">

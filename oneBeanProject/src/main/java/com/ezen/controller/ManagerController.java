@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.service.ManagerService;
+import com.ezen.service.*;
 import com.ezen.utils.UploadFileUtils;
-import com.ezen.vo.ProductVO;
+import com.ezen.vo.*;
 
 @Controller
 @RequestMapping(value="/Manager/")
@@ -124,9 +124,10 @@ public class ManagerController {
 		managerService.proDelete(proIdx);
 		return "redirect:/Product/proListAll.do";
 	}
-	
-	@RequestMapping(value="newProImg.do")
-	public String newProImg() throws Exception {
-		return "manager/newProImg";
-	}
+	//회원 리스트 페이지 이동
+		@RequestMapping(value="memberList.do")
+		public String memberList(MemberVO vo, Model model) throws Exception {
+			model.addAttribute("memberList", managerService.memberList(vo));
+			return "manager/memberList";
+		}
 }

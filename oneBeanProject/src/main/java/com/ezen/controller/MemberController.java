@@ -98,9 +98,27 @@ public class MemberController {
 		return "member/memInfo";
 	}
 	
-	@RequestMapping(value="memInfoModify.do")
+	@RequestMapping(value="memInfoModify.do", method = RequestMethod.GET)
 	public String memInfoModify() {
 		return "member/memInfoModify";
+	}
+	
+	@RequestMapping(value="memInfoModify.do", method = RequestMethod.POST)
+	public String memInfoModify(MemberVO vo, HttpSession session) throws Exception {
+		memberService.memberModify(vo);
+		session.invalidate();
+		return "redirect:login.do";
+	}
+	
+	@RequestMapping(value="pwdModify.do", method = RequestMethod.GET)
+	public String pwdModify() throws Exception {
+		return "member/pwdModify";
+	}
+	
+	@RequestMapping(value="pwdModify.do", method = RequestMethod.POST)
+	public String pwdModify(MemberVO vo) throws Exception {
+		memberService.pwdModify(vo);
+		return "redirect:memInfoModify.do?midx="+vo.getMidx();
 	}
 	
 	@RequestMapping(value="addrList.do")

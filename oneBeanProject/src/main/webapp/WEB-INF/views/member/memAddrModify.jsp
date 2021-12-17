@@ -159,7 +159,7 @@
 	</nav>
 </header>
 <section>
-        <form method="post" action="addrListModify.do?midx=${midx}">
+       <form method="post" action="addrListModify.do?midx=${midx}">
             <div class="container">
             <div class="insert">
             
@@ -168,22 +168,22 @@
             <tr>                
                 <td class="col1">우편번호</td>
                 <td class="col2">
-                  <input id="member_post"  class="deco1" name="memberPostNum" type="text" placeholder="우편 번호" readonly value="">
+                  <input id="member_post"  class="deco1" name="memberPostNum" type="text" placeholder="우편 번호">
                   <input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
                 </td>
             </tr>
             <tr>
                 <td class="col1">도로명/지번 주소</td>
                 <td class="col2">
-                  <input id="member_addr" name="memberAddr" class="deco1" type="text" placeholder="도로명주소/지번주소" readonly value="">              
+                  <input id="member_addr" name="memberAddr" class="deco1" type="text" placeholder="도로명주소/지번주소">              
                 </td>
             </tr>
             <tr>
                 <td class="col1">상세 주소</td>
                 <td class="col2">
-                  <input id="member_detail_addr" class="deco1" name="memberDetailAddr" type="text" placeholder="상세 주소를 입력해주세요." value="">              
+                  <input id="member_detail_addr" class="deco1" name="memberDetailAddr" type="text" placeholder="상세 주소를 입력해주세요.">              
                 </td>
-            </tr>                                    
+            </tr>
             </table>      
           </div>   
           <div class="create">

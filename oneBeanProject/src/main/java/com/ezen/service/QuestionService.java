@@ -13,6 +13,7 @@ public interface QuestionService {
 	public List<QuestionVO> list(PagingVO vo) throws Exception;
 	
 	public int listCount() throws Exception;
+	
 	public int listCountMember(PagingVO vo) throws Exception;
 	
 	public void write(QuestionVO vo) throws Exception;

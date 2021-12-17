@@ -1,10 +1,12 @@
 package com.ezen.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ezen.vo.ProductVO;
+import com.ezen.vo.*;
 
 @Repository
 public class ManagerDAO {
@@ -28,5 +30,8 @@ public class ManagerDAO {
 	
 	public void proDelete(int proIdx) throws Exception {
 		sql.delete(Namespace+".delete",proIdx);
+	}
+	public List<MemberVO> memberList(MemberVO vo) throws Exception {
+		return sql.selectList(Namespace+".memberList", vo);
 	}
 }

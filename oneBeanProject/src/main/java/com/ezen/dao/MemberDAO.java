@@ -4,8 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ezen.vo.AddrVO;
-import com.ezen.vo.MemberVO;
+import com.ezen.vo.*;
 
 @Repository
 public class MemberDAO {
@@ -38,6 +37,14 @@ public class MemberDAO {
 	
 	public void addrModify(AddrVO vo) throws Exception {
 		sqlSession.update(Namespace+".addrModify", vo);
+	}
+	
+	public void memberModify(MemberVO vo) throws Exception {
+		sqlSession.update(Namespace+".memberModify", vo);
+	}
+	
+	public void pwdModify(MemberVO vo)throws Exception {
+		sqlSession.update(Namespace+".pwdModify", vo);
 	}
 	
 	public int addrCount(int midx) throws Exception {

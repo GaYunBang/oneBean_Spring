@@ -149,13 +149,13 @@
             <tr>
                 <td class="col1">도로명 주소</td>
                 <td class="col2">
-                    <input type="text" class="deco1" name="roadAddrPart2" maxlength="10" value="${addr.memberAddr}" readonly>              
+                    <input type="text" class="deco1" name="roadAddrPart2" maxlength="30" value="${addr.memberAddr}" readonly>              
                 </td>
             </tr>
             <tr>
                 <td class="col1">상세 주소</td>
                 <td class="col2">
-                    <input type="text" class="deco1" name="addrDetail" maxlength="10" value="${addr.memberDetailAddr}" readonly>              
+                    <input type="text" class="deco1" name="addrDetail" maxlength="20" value="${addr.memberDetailAddr}" readonly>              
                 </td>
             </tr>                                    
             </table>      

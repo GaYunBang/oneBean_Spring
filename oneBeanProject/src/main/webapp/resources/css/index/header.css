@@ -33,9 +33,19 @@ header{
 	border-bottom: solid 1px lightgray;
 }
 section{
-	margin-top:253px;
+	margin-top:243px; 
 }
 
+#section{
+    width: 100%;   
+    margin-bottom: 130px;
+    margin-top:243px;   
+}
+
+.title_image{
+	display:block;
+	margin:0px auto;
+}
 /*맨 위에 배너*/
 .top__banner {
 	text-align: center;

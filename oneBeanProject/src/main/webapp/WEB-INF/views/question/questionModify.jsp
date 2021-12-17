@@ -213,11 +213,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="board_sub_text" colspan="2">비밀번호 : 
-						<input type="password" name="quesPwd">
-					</td>
-				</tr>
-				<tr>
 					<td>
 						<input type="hidden" name="midx" value="${midx}">
 						<input type="submit" value="확인">

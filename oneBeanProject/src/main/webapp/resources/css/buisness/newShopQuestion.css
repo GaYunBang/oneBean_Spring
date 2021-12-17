@@ -1,39 +1,25 @@
 @charset "EUC-KR";
-body{
-    margin:0px;
-    background:#ffffff;    
+.btn_zone{
+	width: 900px;
+	text-align: center;
+	padding: 30px;
+	border-bottom: 2px solid black;
+	margin: auto;
 }
 
-#sec{
-    width: 100%;   
-    margin-bottom: 100px;
-    margin-top:243px;   
+.openTable{
+	height: 220px;
+	width: 900px;
+	border-top: 2px solid black;
+	margin-right: auto;
+	margin-left: auto;
+	caption-side: top;
 }
-
-div.create{
-    width: 900px;
-    text-align: center;
-    padding: 30px;
-    border-bottom: 2px solid black;
-    margin: auto;
-    }
-
-table{
-    height: 220px;
-    width: 900px;
-    border-top: 2px solid black;
-    margin-right: auto;
-    margin-left: auto;
-    caption-side: top;
-    }
  
-td{
-    border-bottom: 1px dotted black;
-    }
- 
-caption{
-   
+.openTable td{
+	border-bottom: 1px dotted black;
 }
+
 .cap1{
 	text-align:left;
 	color:rgb(71, 71, 71);
@@ -46,104 +32,59 @@ caption{
 	padding:15px 15px 15px 15px;
 	margin:10px 0 30px 0;
 }
-.deco1{
-    outline: none;
-    border-style: none;
-    border-bottom: 1px solid black;
-}    
+  
 .deco{
-    border-style: none;
+	border-style: none;
 	border-bottom: 1px solid black;
-    outline: none;
+	outline: none;
 }
 .deco:focus{
-    outline: none;
+	outline: none;
 	border-bottom: 2px solid rgb(0, 0, 0);
 }
-.deco1:focus{
-    outline: none;
-	border-bottom: 2px solid rgb(0, 0, 0);
-}  
+
 .col1 {
-    background-color: #e8e8e8;
-    padding: 10px;
-    text-align: right;
-    font-weight: bold;
-    font-size: 0.8em;
-    }
+	background-color: #e8e8e8;
+	padding: 10px;
+	text-align: right;
+	font-weight: bold;
+	font-size: 0.8em;
+}
  
 .col2 {
-    text-align: left;
-    padding: 5px;
-    }
+	text-align: left;
+	padding: 5px;
+}
 
-.phone2, .phone3{
-        width:80px;
-        height:27px;
-        border-style: none;
-        border-bottom: 1px solid black;
-        outline: none;
-    }
-.phone2:focus, .phone3:focus{
-    outline: none;
-	border-bottom: 2px solid rgb(0, 0, 0);
-} 
-
-.but4{
-    width: 20%;
-    height: 40px;
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 217, 0);
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;    
-    border:none;
-    }
+.btn{
+	width: 20%;
+	height: 40px;
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 217, 0);
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+	border:none;
+}
      
-.but4:hover {
-    background-color: rgb(255, 217, 0);
-    color: white;
-    }
-    
-p{
-    font-size: 0.7em;
-    }
- 
-.g{
-    font-size: 0.7em;
-    }
- 
-.c{
-    font-size: 0.7em;
-    }
- 
-.a{
-    font-size: 1.3em;
-    }
-    
-.num{
-    color: red;
-    }
+.btn:hover {
+	background-color: rgb(255, 217, 0);
+	color: white;
+}
 
-    @media only screen and (max-width: 991px) {
-         table{
-            width: 100%;
-        }
-        div.create{
-            width:100%;
-        }
-        input[name='mailid']{
-            width: 100px;
-        }
-        input[name='email']{
-            width: 100px;
-        }	
-    }    
+@media only screen and (max-width: 991px) {
+	.openTable{
+		width: 100%;
+	}
+	.btn_zone{
+		width:100%;
+	}
+}    
 
-    @media only screen and (max-width:550px){
-        .but4{
-            width:15%;
-            height: 35px;
-            font-size: 12px;
-        }
-    }
+@media only screen and (max-width:550px){
+	.btn{
+		width:15%;
+		height: 35px;
+		font-size: 12px;
+	}
+}

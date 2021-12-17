@@ -186,6 +186,15 @@
 	                </li>
 	            </a>
 	        </ul>
+	        <ul class="box_list">
+	            <a href="/Manager/openList.do">
+	                <li class="far fa-file-alt fa-4x m_icon"></li>
+	                <li>
+	                <span class="txt_1">New Shop Open List</span>
+	                <p class="txt_2">명단관리</p>
+	                </li>
+	            </a>
+	        </ul>
         </c:if>
     </div>
 </section>

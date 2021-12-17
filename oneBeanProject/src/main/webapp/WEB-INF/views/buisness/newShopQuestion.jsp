@@ -29,6 +29,37 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function openCheck() {
+		var name = $("[name='openName']").val;
+		var phone = $("[name='openPhone']").val;
+		var email = $("[name='openEmail']").val;
+		
+		var checkName = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+		var checkPhone = /^[0-9]/g;
+		var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/g;
+		
+		if (!checkName.test(name)){
+			alert("이름을 정확하게 입력해주세요");
+			
+			if(!checkPhone.test(phone)){
+				alert("연락처를 정확하게 입력해주세요");
+				
+			}else(!checkEmail.test(email)){
+				alert("이메일을 정확하게 입력해주세요");
+				
+			}
+			
+		}else(!checkPhone.test(phone)){
+			alert("연락처를 정확하게 입력해주세요");
+			
+			if(!checkEmail.test(email)){
+				alert("이메일을 정확하게 입력해주세요");
+				
+			}
+		}
+	}
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -135,42 +166,35 @@
 		</form>
 	</nav>
 </header>
-<section id="sec">
-	<form method="post" action="">
-      <div class="container">
-      <div class="insert">         
-      <table>
-      <caption><center><img src="/images/창업문의.png"></center></caption>
-      <caption class="cap1">
-     저희 원빈 커피는 전주에서 가장 신선한 원두를 가져와 볶아 최상품의 원두를 판매하고,
-    또 한 카페 창업을 희망하시는 분들을 위해서 창업도 함께 지원하고 있습니다.<br> 
-    카페 창업을 시작할 생각이 있으시지만 창업이 어려우신 분들에게 최고의 창업파트너가 되어드리겠습니다.
-    </caption> 
-      <tr>
-          <td class="col1">이름</td>
-          <td class="col2"><input type="text" class="deco1" name="name" maxlength="5"></td>
-      </tr>                  
-      <tr>
-          <td class="col1">이메일</td>
-          <td class="col2">
-              <input type="email" class="deco" name="email">              
-          </td>
-      </tr>
-      <tr>
-          <td class="col1">전화번호</td>
-          <td class="col2">
-            <input type="text" class="phone2" name="phone1" maxlength="4">
-            <input type="text" class="phone2" name="phone2" maxlength="4">
-            <input type="text" class="phone3" name="phone3" maxlength="4">                               
-          </td>   
-      </tr>
-      </table>      
-    </div>   
-    <div class="create">      
-      <input class="but4" type="button" value="창업문의" onclick="formCheck(this.form)">      
-    </div>
-    </div>
-    </form>
+<section id="section">
+<img class="title_image" src="/images/창업문의.png">
+	<form method="post" action="newShopQuestion.do">
+		<div class="container insert">
+		<table class="openTable">
+			<caption class="cap1">
+				저희 원빈 커피는 전주에서 가장 신선한 원두를 가져와 볶아 최상품의 원두를 판매하고 있습니다.<br>
+				또한 카페 창업을 희망하시는 분들을 위해서 창업도 함께 지원하고 있습니다.<br>
+				카페 창업을 시작할 생각이 있으시지만 창업이 어려우신 분들에게 최고의 창업 파트너가 되어드리겠습니다.<br>
+				연락처를 남겨주시면 추후에 연락드리겠습니다.
+			</caption>
+			<tr>
+				<td class="col1">이름</td>
+				<td class="col2"><input type="text" class="deco" name="openName" maxlength="5"></td>
+			</tr>
+			<tr>
+				<td class="col1">전화번호</td>
+				<td class="col2"><input type="text" class="deco" name="openPhone"></td>
+			</tr>
+			<tr>
+				<td class="col1">Email</td>
+				<td class="col2"><input type="email" class="deco" name="openEmail"></td>
+			</tr>
+		</table>
+		<div class="btn_zone">
+			<button class="btn">창업문의</button>
+		</div>
+		</div>
+	</form>
 </section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">

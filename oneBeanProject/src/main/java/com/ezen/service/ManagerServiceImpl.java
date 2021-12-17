@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.dao.ManagerDAO;
 import com.ezen.vo.MemberVO;
+import com.ezen.vo.OpenVO;
 import com.ezen.vo.ProductVO;
 
 @Service
@@ -39,5 +40,15 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 	public List<MemberVO> memberList(MemberVO vo) throws Exception {
 		return managerDao.memberList(vo);
+	}
+
+	@Override
+	public List<OpenVO> openList() throws Exception {
+		return managerDao.openList();
+	}
+
+	@Override
+	public void changeCall(OpenVO vo) throws Exception {
+		managerDao.changeCall(vo);
 	}
 }

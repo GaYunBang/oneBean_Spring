@@ -19,7 +19,7 @@ import com.ezen.vo.*;
 public class BuisnessController {
 	
 	@Autowired
-	MemberService MemberService;
+	MemberService memberService;
 	
 	@Autowired
 	ProductService productService;
@@ -31,11 +31,20 @@ public class BuisnessController {
 	
 	@RequestMapping(value="deliveryApply.do", method=RequestMethod.POST)
 	public String deliveryApply(MemberVO vo, HttpSession session) throws Exception {
-		MemberService.gradeUP(vo);
+		memberService.gradeUP(vo);
 		session.setAttribute("memberGrade", vo.getMemberGrade());
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="newShopQuestion.do")
+	public String newShopQuestion() {
+		return "buisness/newShopQuestion";
+	}
+	@RequestMapping(value="newShopQuestion.do", method=RequestMethod.POST)
+	public String newShopQuestion(OpenVO vo, HttpSession session) throws Exception {
+		memberService.newShopQuestion(vo);
+		return "redirect:/";
+	}
 	@RequestMapping(value="buisnessProductList.do")
 	public String buisnessProductList(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
@@ -56,8 +65,5 @@ public class BuisnessController {
 		return "buisness/buisnessProductList";
 	}
 	
-	@RequestMapping(value="newShopQuestion.do")
-	public String newShopQuestion() {
-		return "buisness/newShopQuestion";
-	}
+	
 }

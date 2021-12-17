@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ezen.dao.MemberDAO;
 import com.ezen.vo.AddrVO;
 import com.ezen.vo.MemberVO;
+import com.ezen.vo.OpenVO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -64,5 +65,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void addrPlus(AddrVO vo) throws Exception {
 		memberDao.addrPlus(vo);
+	}
+
+	@Override
+	public void newShopQuestion(OpenVO vo) throws Exception {
+		memberDao.newShopQuestion(vo);
 	}
 }

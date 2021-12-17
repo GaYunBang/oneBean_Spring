@@ -125,9 +125,22 @@ public class ManagerController {
 		return "redirect:/Product/proListAll.do";
 	}
 	//회원 리스트 페이지 이동
-		@RequestMapping(value="memberList.do")
-		public String memberList(MemberVO vo, Model model) throws Exception {
-			model.addAttribute("memberList", managerService.memberList(vo));
-			return "manager/memberList";
-		}
+	@RequestMapping(value="memberList.do")
+	public String memberList(MemberVO vo, Model model) throws Exception {
+		model.addAttribute("memberList", managerService.memberList(vo));
+		return "manager/memberList";
+	}
+	
+	//창업문의 리스트 페이지 이동
+	@RequestMapping(value="openList.do")
+	public String openList(OpenVO vo, Model model) throws Exception {
+		model.addAttribute("openList",managerService.openList());
+		return "manager/openList";
+	}
+	
+	@RequestMapping(value="changeCall.do")
+	public String changeCall(OpenVO vo) throws Exception {
+		managerService.changeCall(vo);
+		return "redirect:/Manager/openList.do";
+	}
 }

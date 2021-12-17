@@ -14,4 +14,8 @@ public interface ManagerService {
 	public void proDelete(int proIdx) throws Exception;
 	
 	public List<MemberVO> memberList(MemberVO vo) throws Exception;
+	
+	public List<OpenVO> openList() throws Exception;
+	
+	public void changeCall(OpenVO vo) throws Exception;
 }

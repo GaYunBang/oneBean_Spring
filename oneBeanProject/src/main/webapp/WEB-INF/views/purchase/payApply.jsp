@@ -391,8 +391,7 @@
 					<label for="check03"><input type="checkbox" id="check03" class="check_item"/>(필수) 주문 상품정보에 동의</label>
 					<label for="check04"><input type="checkbox" id="check04" class="check_item"/>(필수) 결제대행 서비스 이용을 위한 개인정보 제3자 제공 및 위탁동의</label>
 				</div>
-				<button class="order_main_btn">
-				<span id="totalSettlePrice"></span> 원 결제하기</button>
+				<button class="order_main_btn"><span id="totalSettlePrice"></span> 원 결제하기</button>
 			</div>
 		</div>
 	</form>

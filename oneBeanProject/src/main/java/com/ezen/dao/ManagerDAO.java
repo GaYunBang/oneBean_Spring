@@ -34,4 +34,10 @@ public class ManagerDAO {
 	public List<MemberVO> memberList(MemberVO vo) throws Exception {
 		return sql.selectList(Namespace+".memberList", vo);
 	}
+	public List<OpenVO> openList() throws Exception {
+		return sql.selectList(Namespace+".openList");
+	}
+	public void changeCall (OpenVO vo) throws Exception {
+		sql.update(Namespace+".changeCall", vo);
+	}
 }

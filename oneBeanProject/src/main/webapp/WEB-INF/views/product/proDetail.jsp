@@ -213,10 +213,7 @@
                             <div class="op_box">
                                 <div class="">
 	                                  <div class="row col-12 p-4">
-	                                    <div class="op_title">${dto.proContents}</div>	                                    
-                                    </div>
-                                    <div class="row col-12 p-4">
-	                                    <div class="op_title">로스팅일자 : 결제기준 3일 이내 로스팅 후 배송</div>	                                    
+	                                    <div class="op_title"><pre>${dto.proContents}</pre></div>	                                    
                                     </div>
                                 </div>                                
                             </div>                                                        

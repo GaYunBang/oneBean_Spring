@@ -225,7 +225,9 @@
 								[${listAll.commentCnt}]
 							</c:if>
 			            </td>
-			            <td>${listAll.quesWriter }</td>
+			            <td>
+			            	${listAll.quesWriter } 
+			            </td>
 			            <td><fmt:formatDate value="${listAll.quesDate }" pattern="yyyy-MM-dd" /></td>
 			          </tr>
 			          </c:if>

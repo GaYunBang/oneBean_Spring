@@ -94,4 +94,18 @@
     		memberPwd = #{memberPwd}
     	where midx=#{midx}
     </update>
+    
+    <insert id="newShopQuestion" parameterType="openVO">
+    	INSERT INTO shop_open (
+    		<if test="midx != 0">midx,</if>
+    		openName,
+    		openPhone,
+    		openEmail
+    	)VALUES(
+    		<if test="midx != 0">#{midx},</if>
+    		#{openName},
+    		#{openPhone},
+    		#{openEmail}
+    	)
+    </insert>
 </mapper>

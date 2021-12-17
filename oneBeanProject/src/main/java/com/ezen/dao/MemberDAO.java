@@ -54,4 +54,8 @@ public class MemberDAO {
 	public void addrPlus(AddrVO vo) throws Exception{
 		sqlSession.insert(Namespace+".addrPlus", vo);
 	}
+	
+	public void newShopQuestion(OpenVO vo) throws Exception {
+		sqlSession.insert(Namespace+".newShopQuestion",vo);
+	}
 }

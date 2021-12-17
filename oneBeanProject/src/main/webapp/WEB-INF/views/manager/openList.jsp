@@ -21,7 +21,7 @@
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
-<title>문의사항</title>
+<title>회원 목록</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
@@ -29,42 +29,58 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function changeCall(openIdx,obj) {
+		var value = $(obj).val();
+		if (value == 'N'){
+			value = 'Y';
+		}else if(value == 'Y'){
+			value = 'N';
+		}
+		location.href='changeCall.do?openIdx='+openIdx+"&openCallYN="+value;
+	}
+</script>
 <style>
-	table {
-		width : 60%;
-		margin: auto;
-		table-layout : fixed;
+	section {
+        width: 100%;
+        margin-top: 350px;
+        margin-bottom: 200px;
+      }
+      .selectBox {
+        margin-left: 10%;
+        margin-bottom: 20px;
+      }
+      select {
+        width: 150px;
+      }
+
+      table, tr, th, td {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.39);
+        padding: 15px 0px;
+      }
+      table {
+        width: 85%;
+        height: 130px;
+        margin: auto;
+        text-align: center;
+        table-layout: fixed;
+      }
+      th {
+        background-color: rgba(212, 208, 208, 0.199);
+      }
+      h3 {
+        text-align: center;
+        margin: 100px;
+      }
+      .re {
+        background-color: rgba(181, 245, 187, 0.199);
+      }
+      .emmm{
+		  width: 100%;
+		  height: 100px;
 	}
-	tr, td {
-		border-style: none;
-		border-bottom: 1px solid #aca9a996; 
-		height: 50px;
-	}
-	.board_subject {
-		background-color: rgba(212, 208, 208, 0.199);
-		font-weight: bold;
-		font-size: 20px;
-		border-radius: 5px;
-	}
-	.board_sub_date {
-		padding-left: 50px;
-	}
-	.detail {
-		min-height: 40vh; 
-	}
-	h3 {
-		text-align: center;
-		margin-bottom: 100px;
-	}
-	.bottom-hr {
-		margin:100px 0 80px 0;
-	}
-	.board_sub_text {
-		font-size: 12px;
-	}
-	pre {
-		word-wrap: break-word;
-  		white-space: pre-wrap; 
+	h2 {
+		text-align : center;
 	}
 </style>
 </head>
@@ -173,77 +189,44 @@
 		</form>
 	</nav>
 </header>
-		<div class="emmm"></div>
-	<hr>
-	<section class="py-5">
-		<h3>1:1 문의 게시판</h3>
-		<table>
-			<caption style="display:none;">게시판 상세</caption>
-			<tbody>
-				<tr>
-					<td class="board_subject" colspan="7">
-						(${view.quesCate}) ${view.quesSubject } 
-						<c:if test="${view.commentCnt == 0}">
-							
-						</c:if>
-						<c:if test="${view.commentCnt != 0}">
-							[${view.commentCnt}]
-						</c:if>
-						
-					</td>
-				</tr>
-				<tr>
-					<td class="board_sub_text" colspan="7">작성자 : ${view.quesWriter }
-					<c:if test="${memberGrade == 0 }">(${view.midx})</c:if>
-						<span class="board_sub_date"> 
-							작성일 : <fmt:formatDate value="${view.quesDate }" pattern="yyyy-MM-dd" /> 
-						</span>
-						
-					</td>
-				</tr>
-				<tr>
-					<td colspan="7">
-						<div class="detail">
-							<pre>${view.quesContents }</pre>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="7">
-						<input type="button" value="수정" onclick="location.href='/Question/modify.do?qidx=${view.qidx}'">
-						<input type="button" value="삭제" onclick="location.href='/Question/Del.do?qidx=${view.qidx}'">
-						<input type="button" value="목록" onclick="location.href='/Question/list.do'">
-					</td>
-				</tr>
-				
-				<c:forEach items="${commentList }" var="cList">
-					<tr>
-						<td>${cList.comWriter }</td>
-						<td colspan="5">${cList.comContents }</td>
-						<td><fmt:formatDate value="${cList.comDate }" pattern="yyyy-MM-dd" /></td>
-					</tr>
-				</c:forEach>
-				
-				
-				<tr style="height:10px;"></tr>
-				<tr>  
-					<td colspan="7">
-						<div>
-							<form method="post" action="/Question/commentWrite.do">		
-							<input type="hidden" name="qidx" value="${view.qidx }">
-							<input type="hidden" name="midx" value="${view.midx }"> 					
-							<textarea name="comContents" rows="3" style="width:100%; resize:none;" spellcheck="false"></textarea>
-								댓글 작성자 : <input type="text" value="${memberName }" name="comWriter" readonly> 
-								<button type="submit">댓글 작성</button>
-							</form>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<!-- 댓글 시작 -->
-		
-		<!-- 댓글 끝 -->
+<section>
+			
+      
+      <div class="outter">
+        <table>
+          <c:if test="${member != null}">
+	          <c:if test="${memberGrade eq 0 }">
+	          <h3>창업문의 목록</h3>
+	          	<tr>
+	          		<td>문의번호</td>
+	          		<td>문의자</td>
+	          		<td>연락처</td>
+	          		<td>이메일</td>
+	          		<td>문의날짜</td>
+	          		<td>연락여부</td>
+	          	</tr>
+	          	<c:forEach var="openList" items="${openList}">
+	          	<tr>
+	          		<td>${openList.openIdx }</td>
+	          		<td>${openList.openName }</td>
+	          		<td>${openList.openPhone }</td>
+	          		<td>${openList.openEmail }</td>
+	          		<td>${openList.openDate }</td>
+	          		<td class="change"><button class="btn btn-dark" type="button" onclick="changeCall(${openList.openIdx },this)" value="${openList.openCallYN }" >${openList.openCallYN }</button></td>
+	          	</tr>
+	          	</c:forEach>
+	          </c:if>
+	          <c:if test="${memberGrade ne 0 }">
+	          	<h2>페이지를 찾을 수 없습니다.</h2>
+	          </c:if>
+	      </c:if>
+	      <c:if test="${member == null}">
+	     	 <h2>페이지를 찾을 수 없습니다.</h2>
+	      </c:if>
+           
+        </table><br>
+        
+      </div>
 	</section>
 <!--메인 하단/ 회사소개 css는 style.css에 458줄 확인-->
 <footer class="footer">

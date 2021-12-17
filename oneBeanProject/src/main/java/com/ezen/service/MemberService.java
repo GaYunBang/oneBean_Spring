@@ -2,6 +2,7 @@ package com.ezen.service;
 
 import com.ezen.vo.AddrVO;
 import com.ezen.vo.MemberVO;
+import com.ezen.vo.OpenVO;
 
 public interface MemberService {
 	
@@ -24,4 +25,6 @@ public interface MemberService {
 	public int addrCount(int midx)throws Exception;
 	
 	public void addrPlus(AddrVO vo)throws Exception;
+	
+	public void newShopQuestion(OpenVO vo) throws Exception;
 }

@@ -55,4 +55,17 @@
 	<select id="memberList" resultType="memberVO">
 		select * from shop_member order by memberJoinDay desc
 	</select>
+	
+	<!-- 창업문의 목록 보기 -->
+	<select id="openList" resultType="openVO">
+		select * from shop_open order by openDate desc
+	</select>
+	<!-- 창업 연락 여부 바꾸기 -->
+	<update id="changeCall" parameterType="openVO">
+		UPDATE shop_open
+		SET
+			openCallYN = #{openCallYN}
+		WHERE
+			openIdx = #{openIdx}
+	</update>
 </mapper>

@@ -25,8 +25,16 @@ public class QuestionDAO {
 		return sql.selectList("com.ezen.mapper.questionMapper.list", vo);
 	}
 	
+	public List<QuestionVO> deleteList(PagingVO vo) throws Exception {
+		return sql.selectList("com.ezen.mapper.questionMapper.deleteList", vo);
+	}
+	
 	public int listCount() throws Exception {
 		return sql.selectOne("com.ezen.mapper.questionMapper.listCount");
+	}
+	
+	public int deleteListCount() throws Exception {
+		return sql.selectOne("com.ezen.mapper.questionMapper.deleteListCount");
 	}
 	
 	public int listCountMember(PagingVO vo) throws Exception {

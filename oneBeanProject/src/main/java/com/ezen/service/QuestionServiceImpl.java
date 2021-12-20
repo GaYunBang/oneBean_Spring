@@ -25,10 +25,20 @@ public class QuestionServiceImpl implements QuestionService{
 	public List<QuestionVO> list(PagingVO vo) throws Exception {
 		return dao.list(vo);
 	}
+	
+	@Override
+	public List<QuestionVO> deleteList(PagingVO vo) throws Exception {
+		return dao.deleteList(vo);
+	}
 
 	@Override
 	public int listCount() throws Exception {
 		return dao.listCount();
+	}
+	
+	@Override
+	public int deleteListCount() throws Exception {
+		return dao.deleteListCount();
 	}
 	
 	@Override
@@ -60,4 +70,6 @@ public class QuestionServiceImpl implements QuestionService{
 	public int commentCnt(QuestionVO vo) throws Exception {
 		return dao.commentCnt(vo);
 	}
+
+	
 }

@@ -32,6 +32,16 @@
 		LIMIT #{start}, #{end}
 	]]>
 	</select>
+	
+	<select id="deleteListCount" resultType="int">
+		SELECT COUNT(if(quesDel='Y',quesDel,null)) FROM SHOP_MEMBER_QUESTION
+	</select>
+	
+	<select id="deleteList" resultType="questionVO" parameterType="pagingVO">
+		SELECT * FROM SHOP_MEMBER_QUESTION
+		where quesDel = 'Y' ORDER BY qidx DESC
+		LIMIT #{start}, #{end}
+	</select>
 
 	<update id="commentCount" parameterType="questionVO">
 		update shop_member_question set commentCnt = 

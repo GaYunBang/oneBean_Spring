@@ -12,7 +12,11 @@ public interface QuestionService {
 	
 	public List<QuestionVO> list(PagingVO vo) throws Exception;
 	
+	public List<QuestionVO> deleteList(PagingVO vo) throws Exception;
+	
 	public int listCount() throws Exception;
+	
+	public int deleteListCount() throws Exception;
 	
 	public int listCountMember(PagingVO vo) throws Exception;
 	

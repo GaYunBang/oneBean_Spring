@@ -29,6 +29,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function but() {
+		
+	}
+</script>
 <style>
 	section {
         width: 100%;
@@ -73,10 +78,6 @@
       .re {
         background-color: rgba(181, 245, 187, 0.199);
       }
-      .emmm{
-		  width: 100%;
-		  height: 100px;
-	}
 </style>
 </head>
 <body>
@@ -186,16 +187,7 @@
 </header>
 <section>
 			<h3>1:1 문의 게시판</h3>
-      
       <div class="outter">
-      <!-- 
-        <div style="float:left; width:100%;">
-          <select class="selectBox">
-            <option>전체보기</option>
-            <option>상품문의</option>
-            <option>기타문의</option>
-          </select>
-        </div> -->
         <table>
           <tr>
           	<th width="5%"></th>

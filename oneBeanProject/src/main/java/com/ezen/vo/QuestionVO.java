@@ -14,6 +14,7 @@ public class QuestionVO {
 	private String memberId;
 	private int commentCnt;
 	private String quesDel;
+	private String serch;
 	
 	
 	public int getQidx() {

@@ -53,9 +53,6 @@ public class QuestionController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		PagingVO vo2 = new PagingVO(totalMember, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		vo2.setMidx(midx.getMidx());
-		//System.out.println(vo2.getStart());
-		//System.out.println(vo2.getEnd());
-		//System.out.println(vo2.getMidx());
 		model.addAttribute("paging", vo);
 		model.addAttribute("pagingMember", vo2);
 		model.addAttribute("listAll", service.listAll(vo));
@@ -69,6 +66,8 @@ public class QuestionController {
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage,HttpSession session) throws Exception{
 		
+		MemberVO midx = (MemberVO)session.getAttribute("member");
+		vo.setMidx(midx.getMidx());
 		int total = service.listCount();
 		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -81,7 +80,7 @@ public class QuestionController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		model.addAttribute("paging", vo);
-		//model.addAttribute("listAll", service.listAll(vo));
+		model.addAttribute("listAll", service.listAll(vo));
 		//model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
 		
 		return "question/deleteBoard";
@@ -135,8 +134,4 @@ public class QuestionController {
 		
 		return "redirect:/Question/view.do?qidx=" + vo.getQidx();
 	}
-	
-	
-	
-	
 }

@@ -26,4 +26,5 @@ public interface QuestionService {
 	
 	public int commentCnt(QuestionVO vo) throws Exception;
 	
+	
 }

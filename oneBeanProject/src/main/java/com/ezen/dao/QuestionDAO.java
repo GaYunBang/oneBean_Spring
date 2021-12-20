@@ -18,17 +18,21 @@ public class QuestionDAO {
 	SqlSession sql;
 	
 	public List<QuestionVO> listAll(PagingVO vo) throws Exception {
-		return sql.selectList("com.ezen.mapper.questionMapper.listAll",vo);
+		return sql.selectList("com.ezen.mapper.questionMapper.listAll", vo);
 	}
 	
 	public List<QuestionVO> list(PagingVO vo)throws Exception {
 		return sql.selectList("com.ezen.mapper.questionMapper.list", vo);
 	}
+<<<<<<< HEAD
 	
 	public List<QuestionVO> deleteList(PagingVO vo) throws Exception {
 		return sql.selectList("com.ezen.mapper.questionMapper.deleteList", vo);
 	}
 	
+=======
+	//°Ô½Ã¹° ÃÑ °¹¼ö
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 	public int listCount() throws Exception {
 		return sql.selectOne("com.ezen.mapper.questionMapper.listCount");
 	}

@@ -65,6 +65,12 @@
 			});
 	});
 </script>
+<style>
+	textarea {
+		resize :none;
+		width: 100%;
+	}
+</style>
 </head>
 <body>
 <header class="fixed-top">
@@ -205,7 +211,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="proContents" id="proContents"></textarea></td>
+				<td><textarea name="proContents" id="proContents" rows="5"  spellcheck="false"></textarea></td>
 			</tr>
 			<tr>
 				<th>상품 이미지</th>

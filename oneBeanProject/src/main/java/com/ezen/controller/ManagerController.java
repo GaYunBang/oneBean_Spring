@@ -1,6 +1,7 @@
 package com.ezen.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
@@ -15,7 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.service.*;
 import com.ezen.utils.UploadFileUtils;
+<<<<<<< HEAD
 import com.ezen.vo.*;
+=======
+import com.ezen.vo.MemberVO;
+import com.ezen.vo.ProductVO;
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 
 @Controller
 @RequestMapping(value="/Manager/")
@@ -142,5 +148,12 @@ public class ManagerController {
 	public String changeCall(OpenVO vo) throws Exception {
 		managerService.changeCall(vo);
 		return "redirect:/Manager/openList.do";
+	}
+	
+	//회원 리스트 페이지 이동
+	@RequestMapping(value="memberList.do")
+	public String memberList(MemberVO vo, Model model) throws Exception {
+		model.addAttribute("memberList", managerService.memberList(vo));
+		return "manager/memberList";
 	}
 }

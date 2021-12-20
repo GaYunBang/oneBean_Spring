@@ -8,6 +8,8 @@ import com.ezen.vo.QuestionVO;
 
 public interface QuestionService {
 
+	//public List<QuestionVO> listAll() throws Exception;
+	
 	public List<QuestionVO> listAll(PagingVO vo) throws Exception;
 	
 	public List<QuestionVO> list(PagingVO vo) throws Exception;
@@ -16,8 +18,11 @@ public interface QuestionService {
 	
 	public int listCount() throws Exception;
 	
+<<<<<<< HEAD
 	public int deleteListCount() throws Exception;
 	
+=======
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 	public int listCountMember(PagingVO vo) throws Exception;
 	
 	public void write(QuestionVO vo) throws Exception;

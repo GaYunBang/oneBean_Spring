@@ -10,21 +10,22 @@
 			from test_question
 	</select>
 	-->
-
+	
+	<!-- 게시물 총 갯수 -->
 	<select id="listCount" resultType="int">
 		SELECT COUNT(*) FROM SHOP_MEMBER_QUESTION
 	</select>
+	<!-- 회원 게시물 총 갯수 -->
 	<select id="listCountMember" resultType="int" parameterType="int">
 		SELECT COUNT(*) FROM SHOP_MEMBER_QUESTION
 		WHERE midx = #{midx}
 	</select>
 	
 	<select id="listAll" resultType="questionVO" parameterType="pagingVO">
-	<![CDATA[
-		select A.* from shop_member_question A ORDER BY qidx DESC limit #{start},#{end}
-	]]>
+		select A.* from shop_member_question A 
+		ORDER BY qidx DESC limit #{start},#{end}
 	</select>
-	
+	 
 	<select id="list" parameterType="pagingVO" resultType="questionVO">
 	<![CDATA[
 		SELECT * FROM SHOP_MEMBER_QUESTION

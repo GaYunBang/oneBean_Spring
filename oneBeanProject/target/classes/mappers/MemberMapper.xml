@@ -68,6 +68,7 @@
     		memberDetailAddr = #{memberDetailAddr}
     	where midx = #{midx}
     </update>
+<<<<<<< HEAD
     <insert id="addrPlus" parameterType="addrVO">
     	INSERT INTO shop_member_addr(
     		midx,
@@ -108,4 +109,19 @@
     		#{openEmail}
     	)
     </insert>
+=======
+    
+    <update id="memberModify" parameterType="memberVO">
+    	update shop_member set
+		    		memberEmail = #{memberEmail},
+		    		memberPhone = #{memberPhone}
+		    	where midx= #{midx}
+    </update>
+    
+    <update id="pwdModify" parameterType="memberVO">
+    	update shop_member set
+    		memberPwd = #{memberPwd}
+    	where midx=#{midx}
+    </update>
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 </mapper>

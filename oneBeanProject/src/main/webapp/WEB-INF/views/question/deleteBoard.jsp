@@ -185,17 +185,9 @@
 	</nav>
 </header>
 <section>
-			<h3>1:1 문의 게시판</h3>
+			<h3>삭제 게시판</h3>
       
       <div class="outter">
-      <!-- 
-        <div style="float:left; width:100%;">
-          <select class="selectBox">
-            <option>전체보기</option>
-            <option>상품문의</option>
-            <option>기타문의</option>
-          </select>
-        </div> -->
         <table>
           <tr>
           	<th width="5%"></th>

@@ -25,12 +25,16 @@ public class QuestionServiceImpl implements QuestionService{
 	public List<QuestionVO> list(PagingVO vo) throws Exception {
 		return dao.list(vo);
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public List<QuestionVO> deleteList(PagingVO vo) throws Exception {
 		return dao.deleteList(vo);
 	}
 
+=======
+	//°Ô½Ã¹° ÃÑ °¹¼ö
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 	@Override
 	public int listCount() throws Exception {
 		return dao.listCount();

@@ -46,6 +46,7 @@ public class MemberServiceImpl implements MemberService{
 	public void addrModify(AddrVO vo) throws Exception {
 		memberDao.addrModify(vo);
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public void memberModify(MemberVO vo) throws Exception {
@@ -70,5 +71,16 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void newShopQuestion(OpenVO vo) throws Exception {
 		memberDao.newShopQuestion(vo);
+=======
+
+	@Override
+	public void memberModify(MemberVO vo) throws Exception {
+		memberDao.memberModify(vo);
+	}
+
+	@Override
+	public void pwdModify(MemberVO vo) throws Exception {
+		memberDao.pwdModify(vo);
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 	}
 }

@@ -213,7 +213,11 @@
                             <div class="op_box">
                                 <div class="">
 	                                  <div class="row col-12 p-4">
+<<<<<<< HEAD
 	                                    <div class="op_title"><pre>${dto.proContents}</pre></div>	                                    
+=======
+	                                    <div class="op_title">${dto.proContents}</div>	                                    
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
                                     </div>
                                 </div>                                
                             </div>                                                        

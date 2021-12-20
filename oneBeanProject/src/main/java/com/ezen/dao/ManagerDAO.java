@@ -6,7 +6,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 import com.ezen.vo.*;
+=======
+import com.ezen.vo.MemberVO;
+import com.ezen.vo.ProductVO;
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 
 @Repository
 public class ManagerDAO {
@@ -31,6 +36,7 @@ public class ManagerDAO {
 	public void proDelete(int proIdx) throws Exception {
 		sql.delete(Namespace+".delete",proIdx);
 	}
+<<<<<<< HEAD
 	public List<MemberVO> memberList(MemberVO vo) throws Exception {
 		return sql.selectList(Namespace+".memberList", vo);
 	}
@@ -39,5 +45,10 @@ public class ManagerDAO {
 	}
 	public void changeCall (OpenVO vo) throws Exception {
 		sql.update(Namespace+".changeCall", vo);
+=======
+	
+	public List<MemberVO> memberList(MemberVO vo) throws Exception {
+		return sql.selectList(Namespace+".memberList", vo);
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 	}
 }

@@ -19,7 +19,7 @@
 <link href="/css/member/memAddrModify.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon" href="/images/titlelogo.png" />
-<title>로그인</title>
+<title>배송 주소록 수정</title>
 <!--주소검색-->          
     <script>
       function findAddr(){

@@ -21,10 +21,13 @@ public interface MemberService {
 	public void memberModify(MemberVO vo)throws Exception;
 	
 	public void pwdModify(MemberVO vo)throws Exception;
+<<<<<<< HEAD
 	
 	public int addrCount(int midx)throws Exception;
 	
 	public void addrPlus(AddrVO vo)throws Exception;
 	
 	public void newShopQuestion(OpenVO vo) throws Exception;
+=======
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 }

@@ -148,7 +148,7 @@
         </ul>
         <!-- 회원정보 -->
         <ul class="box_list">
-            <a href="memInfo.do">
+            <a href="memInfo.do?midx=${midx }">
                 <li class="far fa-address-card fa-4x m_icon"></li>
                 <li>
                 <span class="txt_1">Profile</span>
@@ -186,6 +186,7 @@
 	                </li>
 	            </a>
 	        </ul>
+<<<<<<< HEAD
 	        <ul class="box_list">
 	            <a href="/Manager/openList.do">
 	                <li class="far fa-file-alt fa-4x m_icon"></li>
@@ -195,6 +196,8 @@
 	                </li>
 	            </a>
 	        </ul>
+=======
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
         </c:if>
     </div>
 </section>

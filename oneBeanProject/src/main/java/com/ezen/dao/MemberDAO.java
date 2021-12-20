@@ -46,6 +46,7 @@ public class MemberDAO {
 	public void pwdModify(MemberVO vo)throws Exception {
 		sqlSession.update(Namespace+".pwdModify", vo);
 	}
+<<<<<<< HEAD
 	
 	public int addrCount(int midx) throws Exception {
 		return sqlSession.update(Namespace+".addrCount", midx);
@@ -58,4 +59,6 @@ public class MemberDAO {
 	public void newShopQuestion(OpenVO vo) throws Exception {
 		sqlSession.insert(Namespace+".newShopQuestion",vo);
 	}
+=======
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 }

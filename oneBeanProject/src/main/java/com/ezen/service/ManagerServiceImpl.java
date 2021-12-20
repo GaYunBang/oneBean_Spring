@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.dao.ManagerDAO;
 import com.ezen.vo.MemberVO;
+<<<<<<< HEAD
 import com.ezen.vo.OpenVO;
+=======
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 import com.ezen.vo.ProductVO;
 
 @Service
@@ -41,6 +44,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public List<MemberVO> memberList(MemberVO vo) throws Exception {
 		return managerDao.memberList(vo);
 	}
+<<<<<<< HEAD
 
 	@Override
 	public List<OpenVO> openList() throws Exception {
@@ -51,4 +55,6 @@ public class ManagerServiceImpl implements ManagerService{
 	public void changeCall(OpenVO vo) throws Exception {
 		managerDao.changeCall(vo);
 	}
+=======
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
 }

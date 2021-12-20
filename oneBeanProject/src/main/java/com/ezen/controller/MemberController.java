@@ -76,7 +76,7 @@ public class MemberController {
 			session.setAttribute("memberId", memberId);
 			session.setAttribute("memberGrade", memberGrade);
 			session.setAttribute("midx", midx);
-			System.out.println(login.getMemberBirth());
+			//System.out.println(login.getMemberBirth());
 			session.setAttribute("member", login);
 			return "redirect:/";
 		}
@@ -137,5 +137,6 @@ public class MemberController {
 		memberService.addrModify(vo);
 		return "redirect:addrList.do?midx="+vo.getMidx();
 	}
+	
 
 }

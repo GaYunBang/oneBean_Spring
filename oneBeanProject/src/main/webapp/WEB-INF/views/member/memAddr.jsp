@@ -154,7 +154,11 @@
             </tr>
             <tr>
                 <td class="col1">상세 주소</td>
+<<<<<<< HEAD
                 <td class="col2">
+=======
+                <td class="col3">
+>>>>>>> branch 'dh' of https://github.com/GaYunBang/oneBean_Spring.git
                     <input type="text" class="deco1" name="addrDetail" maxlength="20" value="${addr.memberDetailAddr}" readonly>              
                 </td>
             </tr>                                    

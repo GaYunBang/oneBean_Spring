@@ -153,12 +153,12 @@
 			<c:if test="${memberGrade eq 0 }">
 				<thead>
 					<tr>
-						<td>문의번호</td>
-						<td>문의자</td>
-						<td>연락처</td>
-						<td>이메일</td>
-						<td>문의날짜</td>
-						<td>연락여부</td>
+						<th>문의번호</th>
+						<th>문의자</th>
+						<th>연락처</th>
+						<th>이메일</th>
+						<th>문의날짜</th>
+						<th>연락여부</th>
 					</tr>
 				</thead>
 				<c:forEach var="openList" items="${openList}">

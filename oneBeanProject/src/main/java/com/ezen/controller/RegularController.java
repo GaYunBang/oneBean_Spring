@@ -66,7 +66,7 @@ public class RegularController {
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		vo.setMidx(member.getMidx());
 		regularService.addRegular(vo);
-		return "member/regOrderList";
+		return "redirect:/Member/regOrderList.do?midx="+vo.getMidx();
 	}
 	
 	@RequestMapping(value="test.do")

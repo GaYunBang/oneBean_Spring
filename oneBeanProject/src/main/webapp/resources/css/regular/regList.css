@@ -1,0 +1,77 @@
+@charset "EUC-KR";
+body{
+    margin:0px;
+    background:#ffffff;
+}
+section{
+    margin-top: 247px;
+    width: 100%;
+    margin-bottom: 100px;        
+}
+
+.title_image{
+    text-align: center;
+    padding-bottom:30px;    
+}
+table#productInfo{
+    border:1px solid #e0e0eb;
+    border-collapse: collapse;
+    background-color: #f3f3f3;
+    width: 80%;
+    font-size: 10pt;
+    margin: 0 auto;
+    
+}
+table#productInfo th{
+    border:1px solid #e0e0eb;
+    text-align: center;
+    padding:20px 0;
+}
+table#productInfo td{
+    border:1px solid #e0e0eb;
+    background-color: white;
+    text-align: center;
+    padding:20px 0;
+}
+
+.sub_esc{
+    width: 90px;
+    height: 36px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(48, 48, 48);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;    
+    border:none;   
+    }
+.sub_esc:hover {
+        background-color: #b9b9b9;
+        color: rgb(0, 0, 0); 
+        }
+
+@media only screen and (max-width: 1400px){
+    table#productInfo{
+        font-size: 3pt;
+    }
+    .pr_info{
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 995px){
+    table#productInfo{
+        font-size: 3pt;
+    }
+    .pr_info{
+        width: 150px;
+    }
+    .txt_wd{
+        width:120px;
+    }
+    .sub_esc{
+        width: 70px;
+        height: 30px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+}

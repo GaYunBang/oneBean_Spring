@@ -55,19 +55,22 @@
 		)
 	</insert>
 	
-	<insert id="autoAddDelivery" parameterType="regPayPostVO">
+	<insert id="autoAddRegular" parameterType="regPayPostVO">
 		INSERT INTO shop_regular_order(
 			regPayIdx,
-			midx,
-			regComPostNum
+			midx
 		)VALUES(
 			#{regPayIdx},
-			#{midx},
-			#{regComPostNum}
+			#{midx}
 		)
 	</insert>
 	
 	<select id="autoSelect" parameterType="String" resultType="regPayPostVO">
-		SELECT * FROM shop_regular_pay WHERE regPayDay like CONCAT('%', #{today}, '%')
+		SELECT * FROM shop_regular_pay WHERE date_format(regStartDay,'%e') like #{day};
+	</select>
+	
+	<select id="regularOrderList" parameterType="int" resultType="regPayPostVO">
+		SELECT * FROM shop_regular_pay a INNER JOIN shop_regular_order b ON a.regPayIdx = b.regPayIdx
+		INNER JOIN shop_regular c ON a.regIdx = c.regIdx where b.midx = #{midx}
 	</select>
 </mapper>

@@ -12,6 +12,8 @@ public interface RegularService {
 	
 	public List<RegularPayPostVO> autoSelect(String today) throws Exception;
 	
+	public List<RegularPayPostVO> regularOrderList(int midx) throws Exception;
+	
 	//페이징을 위한 상품 갯수 세기
 	public int regCount() throws Exception;
 	

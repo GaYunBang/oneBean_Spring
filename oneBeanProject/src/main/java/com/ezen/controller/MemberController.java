@@ -1,5 +1,6 @@
 package com.ezen.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.service.MemberService;
+import com.ezen.service.RegularService;
 import com.ezen.vo.AddrVO;
 import com.ezen.vo.MemberVO;
+import com.ezen.vo.PayPostVO;
+import com.ezen.vo.RegularPayPostVO;
 
 
 @RequestMapping(value="/Member/")
@@ -23,6 +27,9 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	RegularService regularService;
 	
 		
 	@RequestMapping(value="join.do", method = RequestMethod.GET)
@@ -139,7 +146,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="regOrderList.do")
-	public String regOrderList() throws Exception {
+	public String regOrderList(Model model, HttpSession session) throws Exception {
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		int midx = member.getMidx();
+		List<RegularPayPostVO> list = regularService.regularOrderList(midx);
+		model.addAttribute("list", list);
 		return "member/regOrderList";
 	}
 

@@ -1,16 +1,11 @@
 @charset "UTF-8";
-section{
-    margin-top: 250px;
-    margin-bottom: 10px;
-    width: 100%;
-}
 .cartNoItem{
 	background-color : lightgray;
 	width: 85%;
 	height: 300px;
 	margin: 0px auto;
 	text-align: center;
-vertical-align:middle;
+	vertical-align:middle;
 }
 .cartNoItem2{
 	width: 120px;
@@ -107,19 +102,16 @@ vertical-align:middle;
 .center_align{
     text-align: center;
 }
-
-/*
-.val1{
-    color:blue;
-}
-.val2{
-    color:red;
-}
-*/
 .totalBox{
     width: 85%;
     margin: 15px auto;
-    text-align: center;
+    text-align: center;       
+}
+.f_img{
+	display:block;
+	margin:0px auto;
+   width:100%;
+   padding:40px 140px 0 140px;
 }
 
 .font_st{
@@ -128,21 +120,24 @@ vertical-align:middle;
     max-width: 250px;
 }
 
-.aa{
-    transform: rotate(90deg);
-}
 @media screen and (max-width:700px) {
     .right_align{
         padding:0px;
         text-align: center;
     }
     .f_img{
-    	padding:40px 0 0 0;
+       padding:40px 0 0 0;
     }
 }
 
 @media screen and (max-width:950px){
-	.f_img{
-		padding:40px 0 0 0;
-	}
+   .f_img{
+      padding:40px 0 0 0;
+   }
+}
+
+@media screen and (max-width:1350px){
+   .f_img{
+      padding:40px 10px 0 10px;
+   }
 }

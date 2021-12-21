@@ -165,7 +165,7 @@
 				<div>
 					<p class="cs_title">COMPANY</p>
 					<p>상호 (주)원빈커피&nbsp;&nbsp;&nbsp; 대표 홍길동&nbsp;&nbsp;&nbsp; 사업자등록번호 11111111<br>
-					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#">[사업자정보확인]</a><br>
+					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#none">[사업자정보확인]</a><br>
 					       주소 전라북도 전주시 덕진구 백제대로 572 5층 503호<br>
 					       개인정보관리책임자 아무개 (ezen@ezen.com)<br>
 					       전화 063.245.1324

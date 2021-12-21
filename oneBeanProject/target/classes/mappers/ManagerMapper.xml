@@ -49,7 +49,7 @@
 	</update>
 	<!-- 상품 삭제 -->
 	<delete id="delete" parameterType="int">
-		DELETE SHOP_PRODUCT WHERE proIdx = #{proIdx}
+		DELETE FROM SHOP_PRODUCT WHERE proIdx = #{proIdx}
 	</delete>
 	<!-- 회원 목록 보기 -->
 	<select id="memberList" resultType="memberVO">

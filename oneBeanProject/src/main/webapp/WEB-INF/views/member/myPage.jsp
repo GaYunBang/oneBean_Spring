@@ -134,7 +134,7 @@
 		</form>
 	</nav>
 </header>
-<section id="section">
+<section id="section_center">
 	<img class="title_image" src="<%=request.getContextPath() %>/images/mypage.png">
 	<div class="page_box">
 		<!--  주문내역 -->

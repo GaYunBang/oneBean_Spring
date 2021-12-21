@@ -34,11 +34,15 @@ public class RegularDAO {
 		sql.insert(Namespace+".addRegular", vo);
 	}
 	
-	public void autoAddDelivery(RegularPayPostVO vo) throws Exception {
-		sql.insert(Namespace+".autoAddDelivery", vo);
+	public void autoAddRegular(RegularPayPostVO vo) throws Exception {
+		sql.insert(Namespace+".autoAddRegular", vo);
 	}
 	
-	public List<RegularPayPostVO> autoSelect(String today) throws Exception {
-		return sql.selectList(Namespace+".autoSelect", today);
+	public List<RegularPayPostVO> autoSelect(String day) throws Exception {
+		return sql.selectList(Namespace+".autoSelect", day);
+	}
+	
+	public List<RegularPayPostVO> regularOrderList(int midx) throws Exception {
+		return sql.selectList(Namespace+".regularOrderList", midx);
 	}
 }

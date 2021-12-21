@@ -22,13 +22,15 @@ public class Scheduler {
 		//오늘날짜에 해당하는 날짜포맷
 		Calendar cal = Calendar.getInstance();
 		String today = cal.get(Calendar.YEAR)+"-"+new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1)+ "-"+new DecimalFormat("00").format(cal.get(Calendar.DATE));
-		List<RegularPayPostVO> list = regularDAO.autoSelect(today);
-		System.out.println("tt"+today);
+		String day = new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		System.out.println(day);
+		List<RegularPayPostVO> list = regularDAO.autoSelect(day);
+		System.out.println("today"+today);
 		for(RegularPayPostVO vo:list) {
-			Random rand = new Random();
+			//Random rand = new Random();
 			
-			vo.setRegComPostNum(rand.nextInt(888888) + 111111);
-			regularDAO.autoAddDelivery(vo);
+			//vo.setRegComPostNum(rand.nextInt(888888) + 111111);
+			regularDAO.autoAddRegular(vo);
 		}
 	}
 }

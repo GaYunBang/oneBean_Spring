@@ -31,6 +31,10 @@ public class PayPostVO {
 	private String postAddr;
 	private String postDetailAddr;
 	
+	private String proName;
+	private String proContents;
+	
+	
 	
 	public int getPayIdx() {
 		return payIdx;
@@ -192,4 +196,17 @@ public class PayPostVO {
 	public void setPostDetailAddr(String postDetailAddr) {
 		this.postDetailAddr = postDetailAddr;
 	}
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+	public String getProContents() {
+		return proContents;
+	}
+	public void setProContents(String proContents) {
+		this.proContents = proContents;
+	}
+	
 }

@@ -16,6 +16,111 @@
 <script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<header class="fixed-top">
+	<div class="top__banner">
+		<a href="<%=request.getContextPath() %>/Regular/regularList.do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
+	</div>
+	<div class="titleLogo">
+		<a href="<%=request.getContextPath() %>/"><img src="<%=request.getContextPath() %>/images/maintitle.png" /></a>
+	</div>
+	<nav class="navigation">
+		<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
+		<a href="#none" class="navbar_toggleBtn"> <span></span></a>
+		<ul class="first_nav">
+			<li class="change">
+				<a class="eng" href="<%=request.getContextPath() %>/Etc/about.do">ABOUT</a>
+				<a class="kor" href="<%=request.getContextPath() %>/Etc/about.do">회사소개</a>
+			</li>
+			<li class="change">
+				<a class="eng" href="#none">SHOP</a>
+				<a class="kor" href="#none">상품</a>
+				<ul class="under_view">
+					<li><a href="<%=request.getContextPath() %>/Product/proListAll.do">모든상품</a></li>
+					<li><a href="<%=request.getContextPath() %>/Regular/regularList.do">정기구독</a></li>
+					<li><a href="<%=request.getContextPath() %>/Product/coffeeProList.do">커피용품</a>
+					<hr class="line"></li>
+				</ul>
+			</li>
+			<li class="change">
+				<a class="eng" href="#none">EVENT</a>
+				<a class="kor" href="#none">이벤트</a>
+				<ul class="under_view">
+					<li><a href="<%=request.getContextPath() %>/Product/newProduct.do">새상품</a></li>
+					<li><a href="<%=request.getContextPath() %>/Product/sampleBoxList.do">샘플BOX</a>
+					<hr class="line"></li>
+				</ul>
+			</li>
+			<li class="change">
+				<a class="eng" href="#none">WHOLESALE</a>
+				<a class="kor" href="#none">도매</a>
+				<ul class="under_view">
+					<c:if test="${member == null}">
+						<li><a href="<%=request.getContextPath() %>/Member/login.do">납품신청</a></li>
+					</c:if>
+					<c:if test="${member != null}">
+						<c:if test="${memberGrade == 1}">
+							<li><a href="<%=request.getContextPath() %>/Buisness/deliveryApply.do">납품신청</a></li>
+						</c:if>
+						<c:if test="${memberGrade != 1}">
+							<li><a href="<%=request.getContextPath() %>/Buisness/buisnessProductList.do">납품신청</a></li>
+						</c:if>
+					</c:if>
+					<li><a href="<%=request.getContextPath() %>/Buisness/newShopQuestion.do">창업문의</a></li>
+					<c:if test="${member == null }">
+						<li><a href="<%=request.getContextPath() %>/Member/login.do">커피용품</a><hr class="line"></li>
+					</c:if>
+					<c:if test="${member != null }">
+						<li><a href="<%=request.getContextPath() %>/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
+					</c:if>
+				</ul>
+			</li>
+			<li><a href="#none">고객센터</a>
+				<ul class="under_view">
+					<!-- 로그인 안했을때 -->
+					<c:if test="${member == null}">
+						<li><a href="<%=request.getContextPath() %>/Etc/faq.do">Q&A</a></li>
+						<li><a href="<%=request.getContextPath() %>/Member/login.do" title="">문의사항</a><hr class="line"></li>
+					</c:if>
+					<!-- 로그인 했을때 -->
+					<c:if test="${member != null}">
+						<li><a href="<%=request.getContextPath() %>/Etc/faq.do">Q&A</a></li>
+						<li><a href="<%=request.getContextPath() %>/Question/list.do">문의사항</a><hr class="line"></li>
+					</c:if>
+				</ul>
+			</li>
+		</ul>
+		<form class="search_form" name="frm" action="" method="get">
+			<ul id="right_nav">
+				<li class="icon"><a href="#none"><i class="bi bi-person" style="font-size: 30px;"></i></a>
+					<ul class="under_view">
+						<!-- 로그인 안했을때 -->
+						<c:if test="${member == null}">
+							<li><a href="<%=request.getContextPath() %>/Member/login.do" title="">로그인</a></li>
+							<li><a href="<%=request.getContextPath() %>/Member/join.do" title="">회원가입</a></li>
+						</c:if>
+						<!-- 로그인 했을때 -->
+						<c:if test="${member != null}">
+							<li><b>${member.memberName}님</b></li>
+							<li><a href="<%=request.getContextPath() %>/Member/logout.do" title="">로그아웃</a></li>
+							<li><a href="<%=request.getContextPath() %>/Member/myPage.do" title="">마이페이지</a></li>
+							<li><a href="<%=request.getContextPath() %>/Purchase/orderList.do" title="">주문조회</a></li>
+						</c:if>
+					</ul></li>
+				<c:if test="${member == null}">
+					<li class="icons"><a href="<%=request.getContextPath() %>/Member/login.do"><i class="bi bi-cart3"></i></a></li>
+				</c:if>
+				<c:if test="${member != null}">
+					<li class="icons"><a href="<%=request.getContextPath() %>/Purchase/cartList.do"><i class="bi bi-cart3"></i></a></li>
+				</c:if>
+				<li class="search_box">
+					<input type="text" class="search_txt" name="keyword" placeholder="Type to search" maxlength="20">
+					<button class="icons search_btn"><i class="bi bi-search"></i></button>
+				</li>
+			</ul>
+		</form>
+	</nav>
+</header>
+<section>
 <form name="form1" method="post" action="proModify.do" enctype="multipart/form-data">
 <input type="hidden" value="${product.proIdx}" name="proIdx">
 상품이름 : <input type="text" value="${product.proName}" name="proName"><br>
@@ -74,6 +179,6 @@
 
 <input type="submit" value="수정">
 </form>
-
+</section>
 </body>
 </html>

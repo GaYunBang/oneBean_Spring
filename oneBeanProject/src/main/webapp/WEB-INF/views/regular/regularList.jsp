@@ -142,12 +142,12 @@
 				<div class="col mb-5">
 					<div class="card h-100">
 						<!-- Product image-->
-						<a href="<%=request.getContextPath() %>regDetail.do?regIdx=${list.regIdx}">
+						<a href="<%=request.getContextPath() %>/Regular/regDetail.do?regIdx=${list.regIdx}">
 						<img src="<%=request.getContextPath() %>${list.regImg}" class="card-img-top" height="250px"></a>
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<!-- Product name-->
-							<a href="<%=request.getContextPath() %>regDetail.do?regIdx=${list.regIdx}">
+							<a href="<%=request.getContextPath() %>/Regular/regDetail.do?regIdx=${list.regIdx}">
 							<span style="font-size:15px; font-weight:bold;">
 								<c:out value="${list.regName}" /></span>
 							</a><hr>
@@ -208,7 +208,7 @@
 				<div>
 					<p class="cs_title">COMPANY</p>
 					<p>상호 (주)원빈커피&nbsp;&nbsp;&nbsp; 대표 홍길동&nbsp;&nbsp;&nbsp; 사업자등록번호 11111111<br>
-					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#">[사업자정보확인]</a><br>
+					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#none">[사업자정보확인]</a><br>
 					       주소 전라북도 전주시 덕진구 백제대로 572 5층 503호<br>
 					       개인정보관리책임자 아무개 (ezen@ezen.com)<br>
 					       전화 063.245.1324
@@ -240,6 +240,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
-<script src="/js/hamber.js"></script>
+<script src="<%=request.getContextPath() %>/js/hamber.js"></script>
 </body>
 </html>

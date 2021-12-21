@@ -35,6 +35,10 @@ public class RegularServiceImpl implements RegularService{
 	public List<RegularPayPostVO> autoSelect(String today) throws Exception {
 		return regularDAO.autoSelect(today);
 	}
+	@Override
+	public List<RegularPayPostVO> regularOrderList(int midx) throws Exception {
+		return regularDAO.regularOrderList(midx);
+	}
 
 	
 	

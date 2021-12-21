@@ -23,7 +23,8 @@ a {
 }
 
 a:hover {
-	color: rgb(255, 102, 0);
+	/*color: rgb(255, 102, 0);*/
+	color: black;
 }
 
 ul, li {
@@ -37,6 +38,12 @@ section{
 }
 
 #section{
+    width: 100%;   
+    margin-bottom: 130px;
+    margin-top:243px;
+}
+
+#section_center{
     width: 100%;   
     margin-bottom: 130px;
     margin-top:243px;

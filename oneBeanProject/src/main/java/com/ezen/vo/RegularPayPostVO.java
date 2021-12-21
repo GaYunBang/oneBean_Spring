@@ -18,10 +18,14 @@ public class RegularPayPostVO {
 	private String regPostName;
 	private String regPostPhone;
 	private String regTest;
+	private String regStartDay;
 	
 	private int regOrderIdx;
 	private String regOrderPostDay;
 	
+	private String regName;
+	private String regContents;
+	private int regPrice;
 	
 	public int getMidx() {
 		return midx;
@@ -132,6 +136,30 @@ public class RegularPayPostVO {
 	}
 	public void setRegOrderPostDay(String regOrderPostDay) {
 		this.regOrderPostDay = regOrderPostDay;
+	}
+	public String getRegStartDay() {
+		return regStartDay;
+	}
+	public void setRegStartDay(String regStartDay) {
+		this.regStartDay = regStartDay;
+	}
+	public String getRegName() {
+		return regName;
+	}
+	public void setRegName(String regName) {
+		this.regName = regName;
+	}
+	public String getRegContents() {
+		return regContents;
+	}
+	public void setRegContents(String regContents) {
+		this.regContents = regContents;
+	}
+	public int getRegPrice() {
+		return regPrice;
+	}
+	public void setRegPrice(int regPrice) {
+		this.regPrice = regPrice;
 	}
 	
 }

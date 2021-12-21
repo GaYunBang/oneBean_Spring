@@ -109,4 +109,10 @@
   		on a.payIdx = b.payIdx
   		WHERE b.postIdx = #{postIdx}
   	</select>
+  	
+  	<!-- 주문 리스트 보기 -->
+  	<select id="searchOrder" parameterType="payPostVO" resultType="payPostVO">
+  		SELECT * FROM shop_pay a INNER JOIN shop_pay_detail b on a.payIdx = b.payIdx
+  		WHERE payDate BETWEEN (#{beforeDate}) AND (#{afterDate}) AND midx = #{midx}
+  	</select>
 </mapper>

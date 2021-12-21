@@ -19,5 +19,6 @@
         <typeAlias type="com.ezen.vo.AddrVO" alias="addrVO"/>
         <typeAlias type="com.ezen.vo.TempVO" alias="tempVO"/>
         <typeAlias type="com.ezen.vo.OpenVO" alias="openVO"/>
+        <typeAlias type="com.ezen.vo.RegularPayPostVO" alias="regPayPostVO"/>
     </typeAliases>
 </configuration>

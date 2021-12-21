@@ -10,6 +10,9 @@ public class PayPostVO {
 	private String payPhone;
 	private String payEmail;
 	private char payDel;
+	private String beforeDate;
+	private String afterDate;
+	
 	
 	private String[] cartIdxs;
 	private int payDetailIdx;
@@ -82,6 +85,18 @@ public class PayPostVO {
 	}
 	public void setPayDel(char payDel) {
 		this.payDel = payDel;
+	}
+	public String getBeforeDate() {
+		return beforeDate;
+	}
+	public void setBeforeDate(String beforeDate) {
+		this.beforeDate = beforeDate;
+	}
+	public String getAfterDate() {
+		return afterDate;
+	}
+	public void setAfterDate(String afterDate) {
+		this.afterDate = afterDate;
 	}
 	
 	

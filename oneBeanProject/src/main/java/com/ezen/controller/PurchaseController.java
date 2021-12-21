@@ -1,6 +1,7 @@
 package com.ezen.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -103,6 +104,17 @@ public class PurchaseController {
 	@RequestMapping(value="orderList.do")
 	public String orderList() {
 		return "member/orderList";
+	}
+	
+	@RequestMapping(value="searchOrder.do")
+	@ResponseBody
+	public HashMap<String,Object> searchOrder(PayPostVO vo, HttpSession session) throws Exception {	
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		vo.setMidx(member.getMidx());
+		List<PayPostVO> list = purchaseService.searchOrder(vo);
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		hm.put("list", list);
+		return hm;
 	}
 	
 	@RequestMapping(value="accountPay.do")

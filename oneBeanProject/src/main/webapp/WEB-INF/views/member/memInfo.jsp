@@ -134,13 +134,13 @@
 		</form>
 	</nav>
 </header>
-<section>
+<section id="section">
+<img class="title_image" src="/images/memInfoLogo.png">
         <form method="post" action="">
             <div class="container">
             <div class="insert">
             
             <table>
-            <caption><img src="/images/memInfoLogo.png"></caption>
             <tr>
                 <td class="col1">이름</td>
                 <td class="col2"><input type="text" class="deco1" name="memberName" value="${member.memberName }" maxlength="5" readonly></td>

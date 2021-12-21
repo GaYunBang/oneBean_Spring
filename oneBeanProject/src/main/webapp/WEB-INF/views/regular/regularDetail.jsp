@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/etc/about.css" rel="stylesheet" />
+<link href="/css/product/proDetail.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
@@ -103,7 +104,7 @@
 				</ul>
 			</li>
 		</ul>
-		<form class="search_form" name="frm" action="" method="get">
+		<form class="search_form" name="frm" action="regOrder.do" method="get">
 			<ul id="right_nav">
 				<li class="icon"><a href="#none"><i class="bi bi-person" style="font-size: 30px;"></i></a>
 					<ul class="under_view">
@@ -139,23 +140,23 @@
         <div class="container-xxl">
             <div class="row">
                 <div class="col-12 col-md-4">
-                    <img class="pt-0 p-sm-4" src="${dto.proImg}" width="100%">
+                    <img class="pt-0 p-sm-4" src="${dto.regImg}" width="100%">
                 </div>
                 <div class="col-12 col-md-7">
                     <div>
-                        <form name="list_to_orderAction" method="post">
-                        <input type="hidden" name="proIdx" value="${dto.proIdx}">
-                            <span class="goods_subject p-4">${dto.proName}</span>
+                        <form name="list_to_orderAction" method="post" action="regOrder.do">
+                        <input type="hidden" name="regIdx" value="${dto.regIdx}">
+                            <span class="goods_subject p-4">${dto.regName}</span>
                             <div class="price_box p-4">
                                 <span class="price">판매가격 : </span>
                                 <span class="discount-rate"><span class="discount-rate2"></span><span>10%</span></span>
-                                <span><span class="price"><fmt:formatNumber value="${dto.proPrice}" pattern="###,###,### 원" /></span></span>
-                                <span class="consumer"><fmt:formatNumber value="${dto.proPrice+10000}" pattern="###,###,### 원" /></span>
+                                <span><span class="price"><fmt:formatNumber value="${dto.regPrice}" pattern="###,###,### 원" /></span></span>
+                                <span class="consumer"><fmt:formatNumber value="${dto.regPrice+10000}" pattern="###,###,### 원" /></span>
                             </div>
                             <div class="op_box">
                                 <div class="">
 	                                  <div class="row col-12 p-4">
-	                                    <div class="op_title">${dto.proContents}</div>	                                    
+	                                    <div class="op_title">${dto.regContents}</div>	                                    
                                     </div>
                                     <div class="row col-12 p-4">
 	                                    <div class="op_title">로스팅일자 : 결제기준 3일 이내 로스팅 후 배송</div>	                                    
@@ -173,7 +174,7 @@
             </div>
         </div>
     </div>
-    <img class="foot_img" src="${dto.proDetailImg}">
+    <img class="foot_img" src="${dto.regDetailImg}">
 </section>
 <footer class="footer">
 	<div class="container">

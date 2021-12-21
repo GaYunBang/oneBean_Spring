@@ -13,13 +13,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
 <!-- 스타일css 링크추가 -->
-<link href="/css/index/header.css" rel="stylesheet" />
-<link href="/css/index/footer.css" rel="stylesheet" />
-<link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/member/myPage.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/header.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/footer.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/search.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/member/myPage.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
-	href="/images/titlelogo.png" />
+	href="<%=request.getContextPath() %>/images/titlelogo.png" />
 <title>MyPage</title>
 
 <!-- fontawesome 주소 -->
@@ -27,31 +27,31 @@
 <!--햄버거 제이쿼리-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
-<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <header class="fixed-top">
 	<div class="top__banner">
-		<a href="/Regular/regularList.do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
+		<a href="<%=request.getContextPath() %>/Regular/regularList.do"> 매주 월요일 신성한 원두로 홈카페! <span class="colchange">정기구독 하러 가기~♪</span></a>
 	</div>
 	<div class="titleLogo">
-		<a href="/"><img src="/images/maintitle.png" /></a>
+		<a href="<%=request.getContextPath() %>/"><img src="<%=request.getContextPath() %>/images/maintitle.png" /></a>
 	</div>
 	<nav class="navigation">
 		<!--햄버거 설정 class="bar" / "fa-2x"->사이즈 조절-->
 		<a href="#none" class="navbar_toggleBtn"> <span></span></a>
 		<ul class="first_nav">
 			<li class="change">
-				<a class="eng" href="/Etc/about.do">ABOUT</a>
-				<a class="kor" href="/Etc/about.do">회사소개</a>
+				<a class="eng" href="<%=request.getContextPath() %>/Etc/about.do">ABOUT</a>
+				<a class="kor" href="<%=request.getContextPath() %>/Etc/about.do">회사소개</a>
 			</li>
 			<li class="change">
 				<a class="eng" href="#none">SHOP</a>
 				<a class="kor" href="#none">상품</a>
 				<ul class="under_view">
-					<li><a href="/Product/proListAll.do">모든상품</a></li>
-					<li><a href="/Regular/regularList.do">정기구독</a></li>
-					<li><a href="/Product/coffeeProList.do">커피용품</a>
+					<li><a href="<%=request.getContextPath() %>/Product/proListAll.do">모든상품</a></li>
+					<li><a href="<%=request.getContextPath() %>/Regular/regularList.do">정기구독</a></li>
+					<li><a href="<%=request.getContextPath() %>/Product/coffeeProList.do">커피용품</a>
 					<hr class="line"></li>
 				</ul>
 			</li>
@@ -59,8 +59,8 @@
 				<a class="eng" href="#none">EVENT</a>
 				<a class="kor" href="#none">이벤트</a>
 				<ul class="under_view">
-					<li><a href="/Product/newProduct.do">새상품</a></li>
-					<li><a href="/Product/sampleBoxList.do">샘플BOX</a>
+					<li><a href="<%=request.getContextPath() %>/Product/newProduct.do">새상품</a></li>
+					<li><a href="<%=request.getContextPath() %>/Product/sampleBoxList.do">샘플BOX</a>
 					<hr class="line"></li>
 				</ul>
 			</li>
@@ -69,22 +69,22 @@
 				<a class="kor" href="#none">도매</a>
 				<ul class="under_view">
 					<c:if test="${member == null}">
-						<li><a href="/Member/login.do">납품신청</a></li>
+						<li><a href="<%=request.getContextPath() %>/Member/login.do">납품신청</a></li>
 					</c:if>
 					<c:if test="${member != null}">
 						<c:if test="${memberGrade == 1}">
-							<li><a href="/Buisness/deliveryApply.do">납품신청</a></li>
+							<li><a href="<%=request.getContextPath() %>/Buisness/deliveryApply.do">납품신청</a></li>
 						</c:if>
 						<c:if test="${memberGrade != 1}">
-							<li><a href="/Buisness/buisnessProductList.do">납품신청</a></li>
+							<li><a href="<%=request.getContextPath() %>/Buisness/buisnessProductList.do">납품신청</a></li>
 						</c:if>
 					</c:if>
-					<li><a href="/Buisness/newShopQuestion.do">창업문의</a></li>
+					<li><a href="<%=request.getContextPath() %>/Buisness/newShopQuestion.do">창업문의</a></li>
 					<c:if test="${member == null }">
-						<li><a href="/Member/login.do">커피용품</a><hr class="line"></li>
+						<li><a href="<%=request.getContextPath() %>/Member/login.do">커피용품</a><hr class="line"></li>
 					</c:if>
 					<c:if test="${member != null }">
-						<li><a href="/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
+						<li><a href="<%=request.getContextPath() %>/Product/coffeeProList.do">커피용품</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -92,13 +92,13 @@
 				<ul class="under_view">
 					<!-- 로그인 안했을때 -->
 					<c:if test="${member == null}">
-						<li><a href="/Member/login.do" title="">Q&A</a></li>
-						<li><a href="/Member/login.do" title="">문의사항</a><hr class="line"></li>
+						<li><a href="<%=request.getContextPath() %>/Etc/faq.do">Q&A</a></li>
+						<li><a href="<%=request.getContextPath() %>/Member/login.do" title="">문의사항</a><hr class="line"></li>
 					</c:if>
 					<!-- 로그인 했을때 -->
 					<c:if test="${member != null}">
-						<li><a href="/Etc/faq.do">Q&A</a></li>
-						<li><a href="/Question/list.do">문의사항</a><hr class="line"></li>
+						<li><a href="<%=request.getContextPath() %>/Etc/faq.do">Q&A</a></li>
+						<li><a href="<%=request.getContextPath() %>/Question/list.do">문의사항</a><hr class="line"></li>
 					</c:if>
 				</ul>
 			</li>
@@ -109,22 +109,22 @@
 					<ul class="under_view">
 						<!-- 로그인 안했을때 -->
 						<c:if test="${member == null}">
-							<li><a href="/Member/login.do" title="">로그인</a></li>
-							<li><a href="/Member/join.do" title="">회원가입</a></li>
+							<li><a href="<%=request.getContextPath() %>/Member/login.do" title="">로그인</a></li>
+							<li><a href="<%=request.getContextPath() %>/Member/join.do" title="">회원가입</a></li>
 						</c:if>
 						<!-- 로그인 했을때 -->
 						<c:if test="${member != null}">
 							<li><b>${member.memberName}님</b></li>
-							<li><a href="/Member/logout.do" title="">로그아웃</a></li>
-							<li><a href="/Member/myPage.do" title="">마이페이지</a></li>
-							<li><a href="/Purchase/orderList.do" title="">주문조회</a></li>
+							<li><a href="<%=request.getContextPath() %>/Member/logout.do" title="">로그아웃</a></li>
+							<li><a href="<%=request.getContextPath() %>/Member/myPage.do" title="">마이페이지</a></li>
+							<li><a href="<%=request.getContextPath() %>/Purchase/orderList.do" title="">주문조회</a></li>
 						</c:if>
 					</ul></li>
 				<c:if test="${member == null}">
-					<li class="icons"><a href="/Member/login.do"><i class="bi bi-cart3"></i></a></li>
+					<li class="icons"><a href="<%=request.getContextPath() %>/Member/login.do"><i class="bi bi-cart3"></i></a></li>
 				</c:if>
 				<c:if test="${member != null}">
-					<li class="icons"><a href="/Purchase/cartList.do"><i class="bi bi-cart3"></i></a></li>
+					<li class="icons"><a href="<%=request.getContextPath() %>/Purchase/cartList.do"><i class="bi bi-cart3"></i></a></li>
 				</c:if>
 				<li class="search_box">
 					<input type="text" class="search_txt" name="keyword" placeholder="Type to search" maxlength="20">
@@ -134,69 +134,63 @@
 		</form>
 	</nav>
 </header>
-<section>
-    <div class="page_box">
-        <!--  주문내역 -->
-        <ul class="box_list">
-            <a href="/Purchase/orderList.do">
-                <li class="far fa-file-alt fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Order</span><br>
-                <span class="txt_2">주문내역</span>
-                </li>
-            </a>
-        </ul>
-        <!-- 회원정보 -->
-        <ul class="box_list">
-            <a href="memInfo.do">
-                <li class="far fa-address-card fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Profile</span>
-                <p class="txt_2">회원정보</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 배송지목록 -->
-        <ul class="box_list">
-            <a href="addrList.do?midx=${midx }">
-                <li class="fas fa-truck fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Address</span>
-                <p class="txt_2">배송 주소록</p>
-                </li>
-            </a>
-        </ul>
-        <!-- 정기구독관리 -->
-        <ul class="box_list">
-            <a href="">
-                <li class="far fa-calendar-check fa-4x m_icon"></li>
-                <li>
-                <span class="txt_1">Subscription</span>
-                <p class="txt_2">정기구독관리</p>
-                </li>
-            </a>
-        </ul>
-        <c:if test="${memberGrade == 0 }">
-	        <ul class="box_list">
-	            <a href="/Manager/memberList.do">
-	                <li class="far fa-file-alt fa-4x m_icon"></li>
-	                <li>
-	                <span class="txt_1">Member List</span>
-	                <p class="txt_2">회원관리</p>
-	                </li>
-	            </a>
-	        </ul>
-	        <ul class="box_list">
-	            <a href="/Manager/openList.do">
-	                <li class="far fa-file-alt fa-4x m_icon"></li>
-	                <li>
-	                <span class="txt_1">New Shop Open List</span>
-	                <p class="txt_2">명단관리</p>
-	                </li>
-	            </a>
-	        </ul>
-        </c:if>
-    </div>
+<section id="section">
+	<img class="title_image" src="<%=request.getContextPath() %>/images/mypage.png">
+	<div class="page_box">
+		<!--  주문내역 -->
+		<div class="box_list">
+			<a href="<%=request.getContextPath() %>/Purchase/orderList.do">
+				<i class="far fa-file-alt fa-4x m_icon"></i><br>
+				<span class="txt_1">Order</span><br>
+				<span class="txt_2">주문내역</span>
+			</a>
+		</div>
+		
+		<!-- 회원정보 -->
+		<div class="box_list">
+			<a href="<%=request.getContextPath() %>/Member/memInfo.do">
+				<i class="far fa-address-card fa-4x m_icon"></i><br>
+				<span class="txt_1">Profile</span><br>
+				<span class="txt_2">회원정보</span>
+			</a>
+		</div>
+		
+		<!-- 배송지목록 -->
+		<div class="box_list">
+			<a href="<%=request.getContextPath() %>/Member/addrList.do?midx=${midx }">
+				<i class="fas fa-truck fa-4x m_icon"></i><br>
+				<span class="txt_1">Address</span><br>
+				<span class="txt_2">배송 주소록</span>
+			</a>
+		</div>
+		
+		<!-- 정기구독관리 -->
+		<div class="box_list">
+			<a href="<%=request.getContextPath() %>/Member/regOrderList.do?midx=${midx }">
+				<i class="far fa-calendar-check fa-4x m_icon"></i><br>
+				<span class="txt_1">Subscription</span><br>
+				<span class="txt_2">정기구독관리</span>
+			</a>
+		</div>
+		
+		<!-- 관리자 메뉴 -->
+		<c:if test="${memberGrade == 0 }">
+			<div class="box_list">
+				<a href="<%=request.getContextPath() %>/Manager/memberList.do">
+					<i class="far fa-file-alt fa-4x m_icon"></i><br>
+					<span class="txt_1">Member List</span><br>
+					<span class="txt_2">회원관리</span>
+				</a>
+			</div>
+			<div class="box_list">
+				<a href="<%=request.getContextPath() %>/Manager/openList.do">
+					<i class="far fa-file-alt fa-4x m_icon"></i><br>
+					<span class="txt_1">New Shop Open List</span><br>
+					<span class="txt_2">창업명단관리</span>
+				</a>
+			</div>
+		</c:if>
+	</div>
 </section>
 <!--메인 하단-->
 <footer class="footer">
@@ -213,7 +207,7 @@
 				<div>
 					<p class="cs_title">COMPANY</p>
 					<p>상호 (주)원빈커피&nbsp;&nbsp;&nbsp; 대표 홍길동&nbsp;&nbsp;&nbsp; 사업자등록번호 11111111<br>
-					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#">[사업자정보확인]</a><br>
+					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#none">[사업자정보확인]</a><br>
 					       주소 전라북도 전주시 덕진구 백제대로 572 5층 503호<br>
 					       개인정보관리책임자 아무개 (ezen@ezen.com)<br>
 					       전화 063.245.1324
@@ -245,6 +239,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
-<script src="/js/hamber.js"></script>
+<script src="<%=request.getContextPath() %>/js/hamber.js"></script>
 </body>
 </html>

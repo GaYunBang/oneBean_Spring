@@ -2,6 +2,7 @@
 
 .loginFrm {
 	text-align: center;
+	padding: 50px 0px;
 }
 
 .login {
@@ -14,8 +15,4 @@
 .login:focus {
 	outline: none;
 	border-bottom: 3px solid black;
-}
-
-section form {
-	padding: 150px 0px;
 }

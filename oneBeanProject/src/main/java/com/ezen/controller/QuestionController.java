@@ -69,7 +69,7 @@ public class QuestionController {
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage,HttpSession session) throws Exception{
 		
-		int total = service.listCount();
+		int total = service.deleteListCount();
 		if(nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -81,7 +81,7 @@ public class QuestionController {
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		
 		model.addAttribute("paging", vo);
-		//model.addAttribute("listAll", service.listAll(vo));
+		model.addAttribute("listAll", service.deleteList(vo));
 		//model.addAttribute("list", service.list(vo,(String)session.getAttribute("memberId")));
 		
 		return "question/deleteBoard";

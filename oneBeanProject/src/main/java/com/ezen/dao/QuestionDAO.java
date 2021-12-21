@@ -52,4 +52,12 @@ public class QuestionDAO {
 	public int commentCnt(QuestionVO vo) throws Exception {
 		return sql.update("com.ezen.mapper.questionMapper.commentCount", vo);
 	}
+	
+	public List<QuestionVO> deleteList(PagingVO vo) throws Exception {
+		return sql.selectList("com.ezen.mapper.questionMapper.deleteList", vo);
+	}
+	
+	public int deleteListCount() throws Exception {
+		return sql.selectOne("com.ezen.mapper.questionMapper.deleteListCount");
+	}
 }

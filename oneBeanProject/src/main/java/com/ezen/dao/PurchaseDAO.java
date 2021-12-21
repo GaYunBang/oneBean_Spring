@@ -58,4 +58,8 @@ public class PurchaseDAO {
 		sql.insert(Namespace2+".addPost",vo);
 		return sql.selectOne(Namespace2+".viewPay", vo);
 	}
+	
+	public List<PayPostVO> searchOrder(PayPostVO vo) throws Exception {
+		return sql.selectList(Namespace2+".searchOrder", vo);
+	}
 }

@@ -1,12 +1,4 @@
 @charset "UTF-8";
-body{
-    margin:0px;
-    background:#ffffff;
-}
-section{
-    margin-top: 300px;
-    width: 100%;      
-}
 .title_1{
     font-size: 17pt;
     font-weight: bold;

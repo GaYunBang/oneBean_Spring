@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
 <!-- 스타일 -->
-<link href="/css/index/header.css" rel="stylesheet" />
-<link href="/css/index/footer.css" rel="stylesheet" />
-<link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/member/login.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/header.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/footer.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/search.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/member/login.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon" href="/images/titlelogo.png" />
 <title>로그인</title>
@@ -134,6 +134,7 @@
 	</nav>
 </header>
 <section>
+	<img class="title_image" src="/images/로그인.png">
 	<div class="frmbox">
 		<form method="post" action="login.do" class="loginFrm" name="login">
 			<div class="form-group">

@@ -59,4 +59,9 @@ public class PurchaseServiceImpl implements PurchaseService{
 		return purchaseDAO.viewPayMulti(vo);
 	}
 
+	@Override
+	public List<PayPostVO> searchOrder(PayPostVO vo) throws Exception {
+		return purchaseDAO.searchOrder(vo);
+	}
+
 }

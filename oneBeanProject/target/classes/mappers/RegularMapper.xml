@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.ezen.mapper.RegularMapper"> <!-- 호출할떄 사용할 mapper이름. -->
-	<select id="regularList" resultType="regularVO">
+	<select id="regularList" resultType="regularVO" parameterType="pagingVO">
 		SELECT
 			regIdx,
 			regName,
@@ -13,23 +13,61 @@
 			regDate,
 			regDel,
 			regImg,
-			regDetailImg
+			regDetailImg,
+			regContents
 		FROM SHOP_REGULAR
 		WHERE regDel = 'N'
 		ORDER BY 
-			regIdx DESC
+			regIdx DESC LIMIT #{start}, #{end}
 	</select>
 	
-	<select id="regularCount" resultType="int">
+	<select id="regCount" resultType="int">
 		SELECT COUNT(*) FROM SHOP_REGULAR
 		WHERE regDel = 'N'
 	</select>
 	
-	<!-- 상품 상세보기 -->
+	<!-- 정기구독 상품 상세보기 -->
 	<select id="regDetail" resultType="regularVO" parameterType="int">
 		SELECT * FROM SHOP_REGULAR
 		WHERE regIdx = #{regIdx}
 	</select>
+	<insert id="addRegular" parameterType="regPayPostVO">
+		INSERT INTO shop_regular_pay(
+			regIdx,
+			midx,
+			regPayPrice,
+			regPayName,
+			regPayPhone,
+			regPayEmail,
+			regPostMemo,
+			regPostName,
+			regPostPhone
+		)VALUES(
+			#{regIdx},
+			#{midx},
+			#{regPayPrice},
+			#{regPayName},
+			#{regPayPhone},
+			#{regPayEmail},
+			#{regPostMemo},
+			#{regPostName},
+			#{regPostPhone}
+		)
+	</insert>
 	
+	<insert id="autoAddDelivery" parameterType="regPayPostVO">
+		INSERT INTO shop_regular_order(
+			regPayIdx,
+			midx,
+			regComPostNum
+		)VALUES(
+			#{regPayIdx},
+			#{midx},
+			#{regComPostNum}
+		)
+	</insert>
 	
+	<select id="autoSelect" parameterType="String" resultType="regPayPostVO">
+		SELECT * FROM shop_regular_pay WHERE regPayDay like CONCAT('%', #{today}, '%')
+	</select>
 </mapper>

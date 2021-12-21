@@ -26,4 +26,8 @@ public interface QuestionService {
 	
 	public int commentCnt(QuestionVO vo) throws Exception;
 	
+	public List<QuestionVO> deleteList(PagingVO vo) throws Exception;
+	
+	public int deleteListCount() throws Exception;
+	
 }

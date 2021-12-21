@@ -9,6 +9,7 @@ import com.ezen.dao.ManagerDAO;
 import com.ezen.vo.MemberVO;
 import com.ezen.vo.OpenVO;
 import com.ezen.vo.ProductVO;
+import com.ezen.vo.RegularVO;
 
 @Service
 public class ManagerServiceImpl implements ManagerService{
@@ -19,12 +20,6 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 	public void proWrite(ProductVO vo) throws Exception {
 		managerDao.proWrite(vo);
-	}
-
-	@Override
-	public ProductVO proDetail(int proIdx) throws Exception {
-		
-		return managerDao.proDetail(proIdx);
 	}
 
 	@Override
@@ -50,5 +45,22 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 	public void changeCall(OpenVO vo) throws Exception {
 		managerDao.changeCall(vo);
+	}
+
+	
+	//정기구독
+	@Override
+	public void regWrite(RegularVO vo) throws Exception {
+		managerDao.regWrite(vo);
+	}
+
+	@Override
+	public void regModify(RegularVO vo) throws Exception {
+		managerDao.regModify(vo);
+	}
+
+	@Override
+	public void regDelete(int regIdx) throws Exception {
+		managerDao.regDelete(regIdx);
 	}
 }

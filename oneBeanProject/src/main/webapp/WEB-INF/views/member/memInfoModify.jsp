@@ -135,13 +135,11 @@
 	</nav>
 </header>
 <section>
+	<img class="title_image" src="/images/mem_info.png">
 		<form method="post" action="memInfoModify.do?midx=${midx}">
 			<div class="container">
 				<div class="insert">
 					<table>
-						<caption>
-							<h2>회원정보 수정</h2>
-						</caption>
 						<tr>
 							<td class="col1">이름</td>
 							<td class="col2"><input type="text" class="deco1"

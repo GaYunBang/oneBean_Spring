@@ -28,6 +28,34 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function searchOrder() {
+		var beforeDate = $("#beforeDate").val();
+		var afterDate = $("#afterDate").val();
+		console.log(beforeDate);
+		console.log(afterDate);
+		$.ajax({
+			url:"searchOrder.do",
+			data:{"beforeDate":beforeDate,"afterDate":afterDate},
+			success:function(data){
+				var list = data.list.length;
+				var tr;
+				console.log(list);
+				if (list != 0 ){
+					$("#non").remove();
+					$.each(data.list , function(i){ 
+						tr += '<tr><td>' + data.list[i].payName + '</td></tr>'; 
+						});
+					$("#productInfo tbody").append(tr);
+				}
+				
+			},
+			error:function(){
+				alert("error");
+			}
+		});
+	}
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -134,15 +162,11 @@
 		</form>
 	</nav>
 </header>
-<section>
+<section id="section">
+	<img class="title_image" src="/images/order.png">
 	<div id="backbody">
 		<div id="frame">
 			<form class="frm_under">
-				<div id="frame2">
-					<span class="title_1">주문조회</span>
-					<span class="home">Home > order</span>
-					<span> </span>
-				</div><br>
 				<div class="title_2">주문내역조회</div><br>
 				<div id="search">
 					<div class="title_3">
@@ -156,9 +180,9 @@
 							<option>교환</option>
 							<option>반품</option>
 						</select>&nbsp;
-						<input type="date" class="txt_wd" style="padding:3px;"/> ~ 
-						<input type="date" class="txt_wd" style="padding:3px;"/>&nbsp;
-						<button class="title_4" onclick="">조회</button>
+						<input type="date" id="beforeDate" class="txt_wd" style="padding:3px;"/> ~ 
+						<input type="date" id="afterDate" class="txt_wd" style="padding:3px;"/>&nbsp;
+						<button class="title_4" type="button" onclick="searchOrder()">조회</button>
 					</div>
 					<ol style="padding:10px 20px; font-size:10pt; color:gray;">
 						<li>*기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
@@ -178,14 +202,12 @@
 							<th>취소/교환/반품</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody style="background-color: white;">
+						<tr id="non">
+							<th colspan="7">주문 내역이 없습니다.</th>
 						</tr>
 					</tbody>
 				</table>
-				<div align="center">
-					<span class="title_6">주문 내역이 없습니다.</span>
-				</div>
 			</form>
 		</div>
 	</div>

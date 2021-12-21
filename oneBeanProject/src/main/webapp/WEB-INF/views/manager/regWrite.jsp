@@ -16,6 +16,7 @@
 <link href="/css/index/header.css" rel="stylesheet" />
 <link href="/css/index/footer.css" rel="stylesheet" />
 <link href="/css/index/search.css" rel="stylesheet" />
+<link href="/css/etc/write.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="/images/titlelogo.png" />
@@ -27,6 +28,32 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#file").change(
+				function() {
+					if (this.files && this.files[0]) {
+						var reader = new FileReader;
+						reader.onload = function(data) {
+							$(".select_img img").attr("src",
+									data.target.result).width(500);
+						}
+						reader.readAsDataURL(this.files[0]);
+					}
+				});
+		$("#detailFile").change(
+				function() {
+					if (this.files && this.files[0]) {
+						var reader = new FileReader;
+						reader.onload = function(data) {
+							$(".select_img2 img").attr("src",
+									data.target.result).width(500);
+						}
+						reader.readAsDataURL(this.files[0]);
+					}
+				});
+	});
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -135,61 +162,42 @@
 </header>
 <section>
 	<!-- D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources-->
- 	<form name="form1" method="post" action="proWrite.do" enctype="multipart/form-data">
-		<div>
-			상품명 <input name="regName" id="regName">
-		</div>
-		<div>
-			가격 <input name="regPrice" id="regPrice"><br>
-			재고<input name="regStock" id="regStock">
-		</div>
-		<div>
-			내용
-			<textarea name="regContents" id="regContents"></textarea>
-		</div>
-		
-		<div class="inputArea">
-			<label for="regImg">상품이미지</label> 
-			<input type="file" id="file" name="file" />
-			<div class="select_img">
-				<img src="" />
-			</div>
-			<label for="regDetailImg">상세이미지</label> 
-			<input type="file" id="detailFile" name="detailFile" />
-			<div class="select_img2">
-				<img src="" />
-			</div>
-
-			<script>
-				$("#file").change(
-						function() {
-							if (this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img img").attr("src",
-											data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
-							}
-						});
-				$("#detailFile").change(
-						function() {
-							if (this.files && this.files[0]) {
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img2 img").attr("src",
-											data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
-							}
-						});
-			</script>
-		</div>
-		<div>
-			<input type="submit" value="확인!">
+ 	<form name="form1" method="post" action="regWrite.do" enctype="multipart/form-data">
+		<table class="write_table">
+			<tr>
+				<th>상품명</th>
+				<td><input name="regName" id="regName"></td>
+			</tr>
+			<tr>
+				<th>가격</th>
+				<td><input name="regPrice" id="regPrice"></td>
+			</tr>
+			<tr>
+				<th>재고</th>
+				<td><input name="regStock" id="regStock"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="regContents" id="regContents"></textarea></td>
+			</tr>
+			<tr>
+				<th>상품 이미지</th>
+				<td><input type="file" id="file" name="file">
+					<div class="select_img"><img src=""></div>
+				</td>
+			</tr>
+			<tr>
+				<th>상품 상세 이미지</th>
+				<td><input type="file" id="detailFile" name="detailFile">
+					<div class="select_img2"><img src=""></div>
+				</td>
+			</tr>
+		</table>
+		<div class="butg">
+			<input type="submit" value="등록">
 			<input type="button" value="취소" onclick="history.back()">
 		</div>
-	</form>	
+	</form>
 </section>
 <!--footer-->
 <footer class="footer">

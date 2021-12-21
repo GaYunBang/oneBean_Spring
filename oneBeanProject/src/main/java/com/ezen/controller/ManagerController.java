@@ -23,6 +23,9 @@ public class ManagerController {
 	
 	@Autowired
 	ManagerService managerService;
+	
+	@Autowired
+	ProductService productService;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -33,11 +36,7 @@ public class ManagerController {
 		return "manager/proWrite";
 	}
 	
-	@RequestMapping(value="regWrite.do", method=RequestMethod.GET)
-	public String regWrite(Model model) {
-		return "manager/regWrite";
-	}
-	// 게시글 작성 처리
+	//상품 등록 처리
 	@RequestMapping(value="proWrite.do", method=RequestMethod.POST)
 	public String write(ProductVO vo, MultipartFile file, MultipartFile detailFile, MultipartFile newFile) throws Exception {
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -76,14 +75,15 @@ public class ManagerController {
 		return "redirect:/Product/proListAll.do";
 	}
 	
-	//게시글 수정 화면으로 이동
+	//상품 수정 화면으로 이동
 	@RequestMapping(value="proModify.do", method=RequestMethod.GET)
 	public String modify(Locale locale, Model model, int proIdx) throws Exception {
-		ProductVO product = managerService.proDetail(proIdx);
+		ProductVO product = productService.proDetail(proIdx);
 		model.addAttribute("product", product);
 		return "manager/proModify";
 	}
 	
+	//상품 수정 기능
 	@RequestMapping(value="proModify.do", method=RequestMethod.POST)
 	public String modify(ProductVO vo, MultipartFile file, MultipartFile detailFile, HttpServletRequest req) throws Exception {
 		
@@ -119,6 +119,7 @@ public class ManagerController {
 		return "redirect:/Product/proListAll.do";
 	}
 	
+	//상품 삭제
 	@RequestMapping(value="proDelete.do")
 	public String delete(int proIdx) throws Exception {
 		managerService.proDelete(proIdx);
@@ -142,5 +143,39 @@ public class ManagerController {
 	public String changeCall(OpenVO vo) throws Exception {
 		managerService.changeCall(vo);
 		return "redirect:/Manager/openList.do";
+	}
+	
+	//정기구독 상품 등록
+	@RequestMapping(value="regWrite.do", method=RequestMethod.GET)
+	public String regWrite(Model model) {
+		return "manager/regWrite";
+	}
+	
+	//정기구독 상품 등록 기능 
+	@RequestMapping(value="regWrite.do", method=RequestMethod.POST)
+	public String regWrite(RegularVO vo, MultipartFile file, MultipartFile detailFile) throws Exception {
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String yearPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		String file2Name = null;
+
+		if (file != null) {
+			fileName = UploadFileUtils.productImageUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), yearPath);
+		} else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "product" + File.separator + "none.png";
+		}
+		
+		if (detailFile != null) {
+			file2Name = UploadFileUtils.productDetailImageUpload(imgUploadPath, detailFile.getOriginalFilename(), detailFile.getBytes(), yearPath);
+		} else {
+			file2Name = uploadPath + File.separator + "images" + File.separator + "detail" + File.separator + "none.png";
+		}
+		
+		vo.setRegImg(File.separator + "imgUpload" + yearPath + File.separator + "product" + File.separator + fileName);
+		vo.setRegDetailImg(File.separator + "imgUpload" + yearPath + File.separator + "detail" +File.separator + file2Name);
+		
+		managerService.regWrite(vo);
+		
+		return "redirect:/Regular/regularList.do";
 	}
 }

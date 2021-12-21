@@ -1,6 +1,7 @@
 package com.ezen.vo;
 
 public class RegularVO {
+	private int midx;
 	private int regIdx;
 	private String regName;
 	private int regPrice;
@@ -9,6 +10,7 @@ public class RegularVO {
 	private char regDel;
 	private String regImg;
 	private String regDetailImg;
+	private String regContents;
 	
 	
 	public int getRegIdx() {
@@ -58,5 +60,17 @@ public class RegularVO {
 	}
 	public void setRegDetailImg(String regDetailImg) {
 		this.regDetailImg = regDetailImg;
+	}
+	public String getRegContents() {
+		return regContents;
+	}
+	public void setRegContents(String regContents) {
+		this.regContents = regContents;
+	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
 	}	
 }

@@ -39,7 +39,8 @@ section{
 #section{
     width: 100%;   
     margin-bottom: 130px;
-    margin-top:243px;   
+    margin-top:243px;
+    text-align: center;
 }
 
 .title_image{

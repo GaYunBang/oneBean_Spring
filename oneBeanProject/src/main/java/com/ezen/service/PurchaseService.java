@@ -24,4 +24,6 @@ public interface PurchaseService {
 	
 	public PayPostVO viewPayMulti(PayPostVO vo) throws Exception;
 	
+	public List<PayPostVO> searchOrder(PayPostVO vo) throws Exception;
+	
 }

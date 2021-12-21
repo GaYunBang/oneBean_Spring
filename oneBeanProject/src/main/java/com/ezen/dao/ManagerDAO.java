@@ -20,10 +20,6 @@ public class ManagerDAO {
 		sql.insert(Namespace+".insert", vo);
 	}
 	
-	public ProductVO proDetail(int proIdx) throws Exception {
-		return sql.selectOne("com.ezen.mapper.ProductMapper.proDetail", proIdx);
-	}
-	
 	public void proModify(ProductVO vo) throws Exception {
 		sql.update(Namespace+".modify", vo);
 	}
@@ -39,5 +35,17 @@ public class ManagerDAO {
 	}
 	public void changeCall (OpenVO vo) throws Exception {
 		sql.update(Namespace+".changeCall", vo);
+	}
+	
+	//정기구독
+	public void regWrite(RegularVO vo) throws Exception {
+		sql.insert(Namespace+".regInsert", vo);
+	}
+	public void regModify(RegularVO vo) throws Exception {
+		sql.update(Namespace+".regModify", vo);
+	}
+	
+	public void regDelete(int regIdx) throws Exception {
+		sql.delete(Namespace+".regDelete",regIdx);
 	}
 }

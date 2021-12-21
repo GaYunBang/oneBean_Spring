@@ -137,5 +137,10 @@ public class MemberController {
 		memberService.addrModify(vo);
 		return "redirect:addrList.do?midx="+vo.getMidx();
 	}
+	
+	@RequestMapping(value="regOrderList.do")
+	public String regOrderList() throws Exception {
+		return "member/regOrderList";
+	}
 
 }

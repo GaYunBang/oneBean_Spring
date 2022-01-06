@@ -31,18 +31,18 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> coffeeProList() throws Exception {
-		return productDao.coffeeProList();
+	public List<ProductVO> coffeeProList(PagingVO vo) throws Exception {
+		return productDao.coffeeProList(vo);
 	}
 
 	@Override
-	public List<ProductVO> buisnessProList() throws Exception {
-		return productDao.buisnessProList();
+	public List<ProductVO> buisnessProList(PagingVO vo) throws Exception {
+		return productDao.buisnessProList(vo);
 	}
 
 	@Override
-	public List<ProductVO> sampleBoxList() throws Exception {
-		return productDao.sampleBoxList();
+	public List<ProductVO> sampleBoxList(PagingVO vo) throws Exception {
+		return productDao.sampleBoxList(vo);
 	}
 
 	@Override

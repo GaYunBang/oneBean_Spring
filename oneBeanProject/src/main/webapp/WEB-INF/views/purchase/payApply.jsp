@@ -90,27 +90,32 @@
 		
 		if(agreeCheck==false){
 			alert("필수 사항을 동의해야 합니다.");
+			return;
 		}else{
 			if (form.find("[name='postName']").val()==""){
 				alert("받으실분을 입력해 주십시오.");
 				form.find("[name='postName']").focus();
+				return;
 				
 			}else if(form.find("[name='postPhone']").val()==""){
 				alert("받으실분의 연락처를 입력해 주십시오.");
 				form.find("[name='postPhone']").focus();
+				return;
 				
 			}else if(form.find("#member_post").val()==""){
 				alert("우편번호를 입력해 주십시오.");
 				$("#member_post").focus();
+				return;
 				
 			}else if(form.find("#member_addr").val()==""){
 				alert("도로명/지번주소를 입력해 주십시오.");
 				$("#member_addr").focus();
+				return;
 				
 			}else if(form.find("#member_detail_addr").val()==""){
 				alert("상세주소를 입력해 주십시오.");
 				$("#member_detail_addr").focus();
-				
+				return;
 			}
 		}
 		if(document.getElementById('scard').checked) {
@@ -143,7 +148,7 @@
 		}else if(document.getElementById('mootong').checked){
 			form.submit();
 		}
-		
+		return;
 	}
 	
 	//주문자와 동일 버튼 눌렀을 때
@@ -270,7 +275,7 @@
 	</nav>
 </header>
 <section>
-	<img class="title_image" src="/images/주문결제.png">
+	<img class="title_image" src="<%=request.getContextPath() %>/images/주문결제.png">
 	<form name="order_form" method="post" action="<%=request.getContextPath() %>/Purchase/accountPay.do" onsubmit="requestPay();return false;">
 		<input type="hidden" name="payTotalPrice">
 		<div class="content pt-4">

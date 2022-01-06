@@ -95,7 +95,7 @@
 		}
 		
 		$.ajax({
-			url:"cartUpdate.do",
+			url:"<%=request.getContextPath() %>/Purchase/cartUpdate.do",
 			data:{"cartIdx":cartIdx,"cartCount":count,"cartPrice":priceSpan_text},
 			success:function(data){
 			},
@@ -124,7 +124,7 @@
 	}
 	function cartButtonDelete(cartIdx,obj) {
 		$.ajax({
-			url:"cartButtonDelete.do",
+			url:"<%=request.getContextPath() %>/Purchase/cartButtonDelete.do",
 			data:"cartIdx="+cartIdx,
 			success:function(data){
 				var test = $(obj);
@@ -159,7 +159,7 @@
 	
 	function delAllItem(midx){
 		$.ajax({
-			url:"cartAllDelete.do",
+			url:"<%=request.getContextPath() %>/Purchase/cartAllDelete.do",
 			data:"midx="+midx,
 			success:function(data){
 				var allCount = $("#allCount").text();
@@ -184,7 +184,7 @@
 			var cartIdx = $(this).find(".check_item").val();
 			if (check_item.is(":checked")){
 				$.ajax({
-					url:"cartButtonDelete.do",
+					url:"<%=request.getContextPath() %>/Purchase/cartButtonDelete.do",
 					data:"cartIdx="+cartIdx,
 					success:function(data){
 						check_item.parent().parent().remove();
@@ -409,7 +409,7 @@
 		<div class="center_align">
 			<input type="submit" class="buttongroup1 but_col1 cmd" value="선택 상품 주문">
 			
-			<input class="buttongroup1 but_col2 cmd1" value="계속 쇼핑하기" onclick="location.href='<%=request.getContextPath() %>/Product/proListAll.do'">
+			<input type="button" class="buttongroup1 but_col2 cmd1" value="계속 쇼핑하기" onclick="location.href='<%=request.getContextPath() %>/Product/proListAll.do'">
 		</div>
 	</form>
 </c:if>

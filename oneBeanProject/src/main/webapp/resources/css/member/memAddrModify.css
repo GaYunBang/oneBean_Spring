@@ -1,16 +1,4 @@
 @charset "EUC-KR";
-body{
-    margin:0px;
-    background:#ffffff;    
-}
-
-section{
-    margin-top: 350px;
-    width: 100%;
-    margin-bottom: 100px;
-    
-}    
-
 div.create{
     width: 900px;
     text-align: center;

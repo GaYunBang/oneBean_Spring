@@ -155,12 +155,12 @@
 				<div class="col mb-5">
 					<div class="card h-100">
 						<!-- Product image-->
-						<a href="proDetail.do?proIdx=${list.proIdx}">
+						<a href="<%=request.getContextPath() %>/Product/proDetail.do?proIdx=${list.proIdx}">
 						<img src="<%=request.getContextPath() %>${list.proImg}" class="card-img-top" height="250px"></a>
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<!-- Product name-->
-							<a href="<%=request.getContextPath() %>proDetail.do?proIdx=${list.proIdx}">
+							<a href="<%=request.getContextPath() %>/Product/proDetail.do?proIdx=${list.proIdx}">
 							<span style="font-size:15px; font-weight:bold;">
 								<c:out value="${list.proName}" /></span>
 							</a><hr>
@@ -168,8 +168,7 @@
 							<span style="font-size:13px; font-weight:bold; color:green;">
 							<fmt:formatNumber value="${list.proPrice}" pattern="###,###,### 원" />
 							</span><br>
-							<span style="font-size:12px; font-weight:bold;">
-							<pre>${list.proContents}</pre></span><br>
+							<pre style="font-size:12px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">${list.proContents}</pre><br>
 							<c:if test="${member.memberGrade == 0}">
 								<button class="btn btn-light" onclick="location.href='<%=request.getContextPath() %>/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
 								<button class="btn btn-light" onclick="deleteCheck(${list.proIdx})">삭제하기</button>
@@ -220,7 +219,7 @@
 				<div>
 					<p class="cs_title">COMPANY</p>
 					<p>상호 (주)원빈커피&nbsp;&nbsp;&nbsp; 대표 홍길동&nbsp;&nbsp;&nbsp; 사업자등록번호 11111111<br>
-					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#">[사업자정보확인]</a><br>
+					       통신판매업 신고 2020-용인기흥-1464호 &nbsp;&nbsp;&nbsp;<a href="#none">[사업자정보확인]</a><br>
 					       주소 전라북도 전주시 덕진구 백제대로 572 5층 503호<br>
 					       개인정보관리책임자 아무개 (ezen@ezen.com)<br>
 					       전화 063.245.1324

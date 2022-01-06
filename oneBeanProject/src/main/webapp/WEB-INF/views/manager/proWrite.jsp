@@ -17,7 +17,7 @@
 <link href="<%=request.getContextPath() %>/css/index/header.css" rel="stylesheet" />
 <link href="<%=request.getContextPath() %>/css/index/footer.css" rel="stylesheet" />
 <link href="<%=request.getContextPath() %>/css/index/search.css" rel="stylesheet" />
-<link href="<%=request.getContextPath() %>/css/etc/write.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/manager/write.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="<%=request.getContextPath() %>/images/titlelogo.png" />
@@ -171,13 +171,14 @@
 		</form>
 	</nav>
 </header>
-<section>
+<section id="section">
 <!-- D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources -->
+	<img class="title_image" src="<%=request.getContextPath() %>/images/상품등록.png">
 	<form name="form1" class="frm" method="post" action="<%=request.getContextPath() %>/Manager/proWrite.do" enctype="multipart/form-data">
 		<table class="write_table">
 			<tr>
 				<th>상품명</th>
-				<td><input name="proName" id="proName"></td>
+				<td><input name="proName" id="proName" class="inp"></td>
 			</tr>
 			<tr>
 				<th>상품타입</th>
@@ -187,35 +188,34 @@
 						<option value="커피">커피상품</option>
 						<option value="사업자">사업자상품</option>
 						<option value="샘플박스">샘플박스상품</option>
-						<option value="이벤트">이벤트</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><input name="proPrice" id="proPrice"></td>
+				<td><input name="proPrice" id="proPrice" class="inp"></td>
 			</tr>
 			<tr>
 				<th>사업자 가격</th>
-				<td><input name="proPrice2" id="proPrice2"></td>
+				<td><input name="proPrice2" id="proPrice2" class="inp"></td>
 			</tr>
 			<tr>
 				<th>재고</th>
-				<td><input name="proStock" id="proStock"></td>
+				<td><input name="proStock" id="proStock" class="inp"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="proContents" id="proContents"></textarea></td>
+				<td><textarea name="proContents" id="proContents" class="inp"></textarea></td>
 			</tr>
 			<tr>
 				<th>상품 이미지</th>
-				<td><input type="file" id="file" name="file">
+				<td><input type="file" id="file" name="file" class="mid">
 					<div class="select_img"><img src=""></div>
 				</td>
 			</tr>
 			<tr>
 				<th>상품 상세 이미지</th>
-				<td><input type="file" id="detailFile" name="detailFile">
+				<td><input type="file" id="detailFile" name="detailFile" class="mid">
 					<div class="select_img2"><img src=""></div>
 				</td>
 			</tr>
@@ -227,8 +227,8 @@
 			</tr>
 		</table>
 		<div class="butg">
-			<input type="submit" value="등록">
-			<input type="button" value="취소" onclick="history.back()">
+			<input type="submit" class="but4" value="등록">
+			<input type="button" class="but3" value="취소" onclick="history.back()">
 		</div>
 	</form>
 </section>

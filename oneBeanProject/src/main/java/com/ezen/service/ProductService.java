@@ -9,11 +9,11 @@ public interface ProductService {
 	//상품 리스트 불러오기
 	public List<ProductVO> proListAll(PagingVO vo) throws Exception;
 	
-	public List<ProductVO> coffeeProList() throws Exception;
+	public List<ProductVO> coffeeProList(PagingVO vo) throws Exception;
 	
-	public List<ProductVO> buisnessProList() throws Exception;
+	public List<ProductVO> buisnessProList(PagingVO vo) throws Exception;
 	
-	public List<ProductVO> sampleBoxList() throws Exception;
+	public List<ProductVO> sampleBoxList(PagingVO vo) throws Exception;
 	
 	//상품 상세보기
 	public ProductVO proDetail(int proIdx) throws Exception;

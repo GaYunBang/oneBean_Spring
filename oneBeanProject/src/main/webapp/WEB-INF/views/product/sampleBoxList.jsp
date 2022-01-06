@@ -27,6 +27,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function deleteCheck(item){
+		if(confirm("삭제?")){
+			alert(item);
+			location.href="<%=request.getContextPath() %>/Manager/proDelete.do?proIdx="+item;
+			
+			
+		}else{
+			return;
+		}
+	}
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -160,7 +172,7 @@
 							<span style="font-size:12px; font-weight:bold;">
 							결제기준 3일 이내 로스팅 후 배송</span>
 							<c:if test="${member.memberGrade == 0}">
-								<button class="btn btn-light" onclick="location.href='/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
+								<button class="btn btn-light" onclick="location.href='<%=request.getContextPath() %>/Manager/proModify.do?proIdx=${list.proIdx}'">수정하기</button>
 								<button class="btn btn-light" onclick="deleteCheck(${list.proIdx})">삭제하기</button>
 							</c:if>
 						</div>
@@ -170,7 +182,7 @@
 			</c:forEach>
 		</div>
 		<c:if test="${member.memberGrade == 0}">
-			<button class="btn btn-light" onclick="location.href='/Manager/proWrite.do'">상품등록</button>
+			<button class="btn btn-light" onclick="location.href='<%=request.getContextPath() %>/Manager/proWrite.do'">상품등록</button>
 		</c:if>
 	</div>
 	<div style="display:block; text-align:center;">

@@ -238,7 +238,7 @@
         <c:if test="${member != null}">
 	        <div style="padding-left:85%;">
 	        	<c:if test="${memberGrade eq 0 }">
-	        	<button class="btn btn-light" onclick="location.href='/Question/list.do'">나가기</button>
+	        	<button class="btn btn-light" onclick="location.href='<%=request.getContextPath() %>/Question/list.do'">나가기</button>
 	        	</c:if>
 	        </div>
         </c:if>

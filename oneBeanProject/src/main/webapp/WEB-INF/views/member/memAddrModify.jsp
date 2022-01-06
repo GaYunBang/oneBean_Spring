@@ -158,7 +158,8 @@
 		</form>
 	</nav>
 </header>
-<section>
+<section id="section">
+<img class="title_image" src="<%=request.getContextPath() %>/images/mem_addr.png">
        <form method="post" action="<%=request.getContextPath() %>/Member/addrListModify.do?midx=${midx}">
             <div class="container">
             <div class="insert">
@@ -168,20 +169,20 @@
             <tr>                
                 <td class="col1">우편번호</td>
                 <td class="col2">
-                  <input id="member_post"  class="deco1" name="memberPostNum" type="text" placeholder="우편 번호">
+                  <input id="member_post"  class="deco1" name="memberPostNum" type="text" value="${addr.memberPostNum }">
                   <input type="button" value="우편번호 검색" onclick="findAddr();" class="btn_post_search">
                 </td>
             </tr>
             <tr>
                 <td class="col1">도로명/지번 주소</td>
                 <td class="col2">
-                  <input id="member_addr" name="memberAddr" class="deco1" type="text" placeholder="도로명주소/지번주소">              
+                  <input id="member_addr" name="memberAddr" class="deco1" type="text" value="${addr.memberAddr }">              
                 </td>
             </tr>
             <tr>
                 <td class="col1">상세 주소</td>
                 <td class="col2">
-                  <input id="member_detail_addr" class="deco1" name="memberDetailAddr" type="text" placeholder="상세 주소를 입력해주세요.">              
+                  <input id="member_detail_addr" class="deco1" name="memberDetailAddr" type="text" value="${addr.memberDetailAddr}">              
                 </td>
             </tr>
             </table>      

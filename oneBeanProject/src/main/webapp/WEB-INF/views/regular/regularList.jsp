@@ -27,6 +27,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function deleteCheck(item){
+		if(confirm("삭제?")){
+			alert(item);
+			location.href="<%=request.getContextPath() %>/Manager/regDelete.do?regIdx="+item;
+			
+			
+		}else{
+			return;
+		}
+	}
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -170,7 +182,7 @@
 			</c:forEach>
 		</div>
 		<c:if test="${member.memberGrade == 0}">
-			<button class="btn btn-light" onclick="location.href='/Manager/regWrite.do'">상품등록</button>
+			<button class="btn btn-light" onclick="location.href='<%=request.getContextPath() %>/Manager/regWrite.do'">상품등록</button>
 		</c:if>
 	</div>
 	<div style="display:block; text-align:center;">

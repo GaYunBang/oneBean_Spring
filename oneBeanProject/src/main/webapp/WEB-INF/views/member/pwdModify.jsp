@@ -201,14 +201,12 @@ $(document).ready(function() {
 		</form>
 	</nav>
 </header>
-	<section>
+<section>
+	<img class="title_image" src="<%=request.getContextPath() %>/images/pwdModi.png">
 		<form method="post" name="frm" action="<%=request.getContextPath() %>/Member/pwdModify.do?midx=${midx}">
 			<div class="container">
 				<div class="insert">
 					<table>
-						<caption>
-							<h2>비밀번호 변경</h2>
-						</caption>
 						<tr>
 							<td class="col1">비밀번호<span class="red"> *</span></td>
 							<td class="col2"><input type="password" id="memberPwd" class="deco pwd check"

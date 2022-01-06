@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.service.*;
 import com.ezen.vo.*;
@@ -60,9 +61,18 @@ public class BuisnessController {
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging",vo);
-		List<ProductVO> list = productService.buisnessProList();
+		List<ProductVO> list = productService.buisnessProList(vo);
 		model.addAttribute("list", list);
 		return "buisness/buisnessProductList";
+	}
+	
+	// 상세페이지
+	@RequestMapping(value="proDetail.do")
+	public ModelAndView proDetail(int proIdx, ModelAndView mav) throws Exception {
+
+		mav.setViewName("buisness/proDetail");
+		mav.addObject("dto", productService.proDetail(proIdx));
+		return mav;
 	}
 	
 	

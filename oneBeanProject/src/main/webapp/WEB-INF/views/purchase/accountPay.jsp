@@ -134,7 +134,7 @@
 		</form>
 	</nav>
 </header>
-<section>
+<section id="section">
 	<img class="title_image" src="<%=request.getContextPath() %>/images/무통.png">
 	<div class="container">
 		<div class="insert">
@@ -167,7 +167,8 @@
 			</table>
 		</div>
 		<div class="create">
-			<input class="btn" type="button" value="확인" onclick="">
+			<input type="button" class="btn" value="쇼핑하기" onclick="location.href='<%=request.getContextPath() %>/Product/proListAll.do'">
+			<input class="btn" type="button" value="주문조회" onclick="location.href='<%=request.getContextPath() %>/Purchase/orderList.do'">
 		</div>
 	</div>
 </section>

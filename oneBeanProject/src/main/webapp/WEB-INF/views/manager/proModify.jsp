@@ -3,17 +3,57 @@
 <%@ page import="com.ezen.vo.*"%>
 <%@ page session="true"%>
 <!DOCTYPE html>
-<html>
+<html lang="kr">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+	  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+<!-- 스타일css 링크추가 -->
+<link href="<%=request.getContextPath() %>/css/index/header.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/footer.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/search.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/manager/write.css" rel="stylesheet" />
+
+<link rel="shortcut icon" type="image/x-icon"
+	href="<%=request.getContextPath() %>/images/titlelogo.png" />
 <title>상품수정</title>
-<style type="text/css">
-	.box{
-		width: 200px;
-		height: 200px;
-	}
-</style>
-<script src="/js/jquery-3.6.0.min.js"></script>
+
+<!-- fontawesome 주소 -->
+<script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
+<!--햄버거 제이쿼리-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<!-- jquery 불러오기 -->
+<script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#file").change(
+				function() {
+					if (this.files && this.files[0]) {
+						var reader = new FileReader;
+						reader.onload = function(data) {
+							$(".select_img img").attr("src",
+									data.target.result).width(500);
+						}
+						reader.readAsDataURL(this.files[0]);
+					}
+				});
+		$("#detailFile").change(
+				function() {
+					if (this.files && this.files[0]) {
+						var reader = new FileReader;
+						reader.onload = function(data) {
+							$(".select_img2 img").attr("src",
+									data.target.result).width(500);
+						}
+						reader.readAsDataURL(this.files[0]);
+					}
+				});
+	});
+</script>
 </head>
 <body>
 <header class="fixed-top">
@@ -120,65 +160,62 @@
 		</form>
 	</nav>
 </header>
-<section>
-<form name="form1" method="post" action="proModify.do" enctype="multipart/form-data">
-<input type="hidden" value="${product.proIdx}" name="proIdx">
-상품이름 : <input type="text" value="${product.proName}" name="proName"><br>
-상품가격 : <input type="text" value="${product.proPrice}" name="proPrice"><br>
-사업자 상품 가격 : <input type="text" value="${product.proPrice2}" name="proPrice2"><br>
-재고 : <input type="text" value="${product.proStock}" name="proStock"><br>
-<div>상품타입
-	<select name="proType">
-		<option value="${proType}" selected>${product.proType}</option>
-		<option value="일반">일반상품</option>
-		<option value="사업자">사업자상품</option>
-		<option value="샘플박스">샘플박스상품</option>
-		<option value="이벤트">이벤트</option>
-	</select>
-</div>
-내용 <textarea name="proContents" id="proContents">${product.proContents}</textarea><br>
-<hr>이미지 자리<br>
-<div class="inputArea">
- <label for="proImg">상품이미지</label>
- 	<input type="file" id="file" name="file" />
-	 <div class="select_img">
-	  <img src="${product.proImg}" class="box"/>
-	  <input type="hidden" name="file" value="${product.proImg}" />
-	 </div>
-	 <label for="proDetailImg">상품상세이미지</label>
-	 <input type="file" id="detailFile" name="detailFile" />
-	 <div class="select_img2">
-	  <img src="${product.proDetailImg}" class="box"/>
-	  <input type="hidden" name="detailFile" value="${product.proDetailImg}" /> 
-	 </div>
- 
- <script>
-  $("#file").change(function(){
-   if(this.files && this.files[0]) {
-    var reader = new FileReader;
-    reader.onload = function(data) {
-     $(".select_img img").attr("src", data.target.result).width(500);        
-    }
-    reader.readAsDataURL(this.files[0]);
-   }
-  });
-  
-  $("#detailFile").change(function(){
-	   if(this.files && this.files[0]) {
-	    var reader = new FileReader;
-	    reader.onload = function(data) {
-	     $(".select_img2 img").attr("src", data.target.result).width(500);        
-	    }
-	    reader.readAsDataURL(this.files[0]);
-	   }
-	  });
- </script>
- <%=request.getRealPath("/") %>
-</div>
-
-
-<input type="submit" value="수정">
-</form>
+<section id="section">
+<!-- D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources -->
+<img class="title_image" src="<%=request.getContextPath() %>/images/상품등록.png">
+	<form name="form1" class="frm" method="post" action="<%=request.getContextPath() %>/Manager/proModify.do" enctype="multipart/form-data">
+		<input type="hidden" value="${product.proIdx}" name="proIdx">
+		<table class="write_table">
+			<tr>
+				<th>상품명</th>
+				<td><input type="text" value="${product.proName}" name="proName" class="inp"></td>
+			</tr>
+			<tr>
+				<th>상품타입</th>
+				<td>
+					<select name="proType">
+						<option value="${proType}" selected>${product.proType}</option>
+						<option value="원두">원두상품</option>
+						<option value="커피">커피상품</option>
+						<option value="사업자">사업자상품</option>
+						<option value="샘플박스">샘플박스상품</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>가격</th>
+				<td><input name="proPrice" id="proPrice" value="${product.proPrice}" class="inp"></td>
+			</tr>
+			<tr>
+				<th>사업자 가격</th>
+				<td><input name="proPrice2" id="proPrice2" value="${product.proPrice2}" class="inp"></td>
+			</tr>
+			<tr>
+				<th>재고</th>
+				<td><input name="proStock" id="proStock" value="${product.proStock}" class="inp"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="proContents" id="proContents" class="inp">${product.proContents}</textarea></td>
+			</tr>
+			<tr>
+				<th>상품 이미지</th>
+				<td><input type="file" id="file" name="file" class="mid" value="<%=request.getContextPath() %>${product.proImg}">
+					<div class="select_img"><img src="<%=request.getContextPath() %>${product.proImg}"></div>
+				</td>
+			</tr>
+			<tr>
+				<th>상품 상세 이미지</th>
+				<td><input type="file" id="detailFile" name="detailFile" class="mid" value="<%=request.getContextPath() %>${product.proDetailImg}">
+					<div class="select_img2"><img src="<%=request.getContextPath() %>${product.proDetailImg}"></div>
+				</td>
+			</tr>
+		</table>
+		<div class="butg">
+			<input type="submit" class="but4" value="수정">
+			<input type="button" class="but3" value="취소" onclick="history.back()">
+		</div>
+	</form>
 </section>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.service.MemberService;
 import com.ezen.service.RegularService;
 import com.ezen.vo.*;
 
@@ -22,6 +23,9 @@ public class RegularController {
 	
 	@Autowired
 	RegularService regularService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value="regularList.do")
 	public String regularList(PagingVO vo, Model model
@@ -54,7 +58,9 @@ public class RegularController {
 
 	//정기구독 주문
 	@RequestMapping(value="regOrder.do")
-	public String regOrder(Model model,RegularVO vo) throws Exception {
+	public String regOrder(Model model,RegularVO vo, HttpSession session) throws Exception {
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		model.addAttribute("addr", memberService.addrView(member.getMidx()));
 		vo = regularService.regDetail(vo.getRegIdx());
 		
 		model.addAttribute("vo", vo);

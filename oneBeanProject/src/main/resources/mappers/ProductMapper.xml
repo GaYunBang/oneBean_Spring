@@ -17,13 +17,13 @@
 			proDel,
 			proImg,
 			proDetailImg
-		FROM SHOP_PRODUCT WHERE proDel = 'N'
+		FROM SHOP_PRODUCT WHERE proDel = 'N' and proType != '샘플박스'
 		ORDER BY proIdx DESC
 		LIMIT #{start}, #{end}
 	</select>
 	
 	<!-- 커피 상품 리스트 -->
-	<select id="coffeeProList" resultType="productVO">
+	<select id="coffeeProList" resultType="productVO" parameterType="pagingVO">
 		SELECT
 			proIdx,
 			proType,
@@ -39,11 +39,11 @@
 		FROM SHOP_PRODUCT
 		WHERE proDel = 'N' and proType='커피'
 		ORDER BY 
-			proIdx DESC
+			proIdx DESC LIMIT #{start}, #{end}
 	</select>
 	
 	<!-- 사업자 상품 리스트 -->
-	<select id="buisnessProList" resultType="productVO">
+	<select id="buisnessProList" resultType="productVO" parameterType="pagingVO">
 		SELECT
 			proIdx,
 			proType,
@@ -57,13 +57,13 @@
 			proImg,
 			proDetailImg
 		FROM SHOP_PRODUCT
-		WHERE proDel = 'N' and proType='사업자'
+		WHERE proDel = 'N' and proType='원두'
 		ORDER BY 
-			proIdx DESC
+			proIdx DESC LIMIT #{start}, #{end}
 	</select>
 	
 	<!-- 샘플박스 상품 리스트 -->
-	<select id="sampleBoxList" resultType="productVO">
+	<select id="sampleBoxList" resultType="productVO" parameterType="pagingVO">
 		SELECT
 			proIdx,
 			proType,
@@ -79,14 +79,14 @@
 		FROM SHOP_PRODUCT
 		WHERE proDel = 'N' and proType='샘플박스'
 		ORDER BY 
-			proIdx DESC
+			proIdx DESC LIMIT #{start}, #{end}
 	</select>
 	
 	
 	<!-- 모든 상품 리스트 숫자 -->
 	<select id="proListAllCount" resultType="int">
 		SELECT COUNT(*) FROM SHOP_PRODUCT
-		WHERE proDel = 'N'
+		WHERE proDel = 'N' and proType != '샘플박스'
 	</select>
 	
 	<!-- 커피용품 리스트 숫자 -->
@@ -98,7 +98,7 @@
 	<!-- 사업자용품 리스트 숫자 -->
 	<select id="buisnessProListCount" resultType="int">
 		SELECT COUNT(*) FROM SHOP_PRODUCT
-		WHERE proDel = 'N' and proType='사업자'
+		WHERE proDel = 'N' and proType='원두'
 	</select>
 	
 	<!-- 샘플박스 리스트 숫자 -->

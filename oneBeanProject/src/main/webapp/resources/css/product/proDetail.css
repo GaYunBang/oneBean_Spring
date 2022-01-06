@@ -20,9 +20,35 @@ section{
 .goods_subject {font-size: 35px; color: #242424; font-weight: 450; float: left; width:100%; 
                 border-bottom: 1px solid #e9e9e9; text-align: left;}
 
-.op_title {color: #666;}
+.op_title {
+	color: #666;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 .select_option {width: 90%; height: 50px; font-size: 17px; font-weight: 600;}
+
+#showPrice{
+	padding:15px 10px 10px 10px;	
+	width:100%;
+	} 
+.txt0{
+	font-size:30px;
+	font-weight:bold;
+	color:gray;
+}
+.txt1{
+	font-size:17px;
+}
+.txt2{
+	font-size:30px;
+	font-weight:bold;
+}
+.txt3{
+	font-size:22px;
+}
+.text_right{
+	text-align: right;
+}
 
 .btn_ship{
     width: 42%;

@@ -29,7 +29,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
 <script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function openCheck() {
 		var name = $("[name='openName']").val;
 		var phone = $("[name='openPhone']").val;
@@ -59,7 +59,7 @@
 			}
 		}
 	}
-</script>
+</script> -->
 </head>
 <body>
 <header class="fixed-top">

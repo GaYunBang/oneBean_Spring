@@ -20,16 +20,16 @@ public class ProductDAO {
 		return sql.selectList(Namespace+".proListAll",vo);
 	}
 	
-	public List<ProductVO> coffeeProList() throws Exception {
-		return sql.selectList(Namespace+".coffeeProList");
+	public List<ProductVO> coffeeProList(PagingVO vo) throws Exception {
+		return sql.selectList(Namespace+".coffeeProList",vo);
 	}
 	
-	public List<ProductVO> buisnessProList() throws Exception {
-		return sql.selectList(Namespace+".buisnessProList");
+	public List<ProductVO> buisnessProList(PagingVO vo) throws Exception {
+		return sql.selectList(Namespace+".buisnessProList",vo);
 	}
 	
-	public List<ProductVO> sampleBoxList() throws Exception {
-		return sql.selectList(Namespace+".sampleBoxList");
+	public List<ProductVO> sampleBoxList(PagingVO vo) throws Exception {
+		return sql.selectList(Namespace+".sampleBoxList",vo);
 	}
 	
 	public ProductVO proDetail(int proIdx) throws Exception {

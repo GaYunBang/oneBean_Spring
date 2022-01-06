@@ -13,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ezen.service.*;
+import com.ezen.service.ManagerService;
+import com.ezen.service.ProductService;
+import com.ezen.service.RegularService;
 import com.ezen.utils.UploadFileUtils;
-import com.ezen.vo.*;
+import com.ezen.vo.MemberVO;
+import com.ezen.vo.OpenVO;
+import com.ezen.vo.ProductVO;
+import com.ezen.vo.RegularVO;
 
 @Controller
 @RequestMapping(value="/Manager/")
@@ -26,6 +31,9 @@ public class ManagerController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	RegularService regularService;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -176,6 +184,50 @@ public class ManagerController {
 		
 		managerService.regWrite(vo);
 		
+		return "redirect:/Regular/regularList.do";
+	}
+	
+	//정기구독 상품 수정 화면으로 이동
+	@RequestMapping(value="regModify.do", method=RequestMethod.GET)
+	public String regModify(Locale locale, Model model, int regIdx) throws Exception {
+		RegularVO regular = regularService.regDetail(regIdx);
+		model.addAttribute("regular", regular);
+		return "manager/regModify";
+	}
+	
+	//정기구독 상품 수정 기능
+	@RequestMapping(value="regModify.do", method=RequestMethod.POST)
+	public String regModify(RegularVO vo, MultipartFile file, MultipartFile detailFile, HttpServletRequest req) throws Exception {
+		
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String yearPath = UploadFileUtils.calcPath(imgUploadPath);
+		
+		//상품 이미지에 새로운 파일이 등록되었는지 확인(새로운 파일일 경우)
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			//기존 파일을 삭제
+			new File(uploadPath + req.getParameter("regImg")).delete();
+			
+			//새로 첨부한 파일을 등록
+			String fileName = UploadFileUtils.productImageUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), yearPath);
+			
+			vo.setRegImg(File.separator + "imgUpload" + yearPath + File.separator + "product" + File.separator + fileName);
+		}else {
+			vo.setRegImg("");
+		}
+		
+		//상품 이미지에 새로운 파일이 등록되었는지 확인(새로운 파일일 경우)
+		if(detailFile.getOriginalFilename() != null && detailFile.getOriginalFilename() != "") {
+			//기존 파일을 삭제
+			new File(uploadPath + req.getParameter("regDetailImg")).delete();
+			
+			//새로 첨부한 파일을 등록
+			String file2Name = UploadFileUtils.productDetailImageUpload(imgUploadPath, detailFile.getOriginalFilename(), detailFile.getBytes(), yearPath);
+			
+			vo.setRegDetailImg(File.separator + "imgUpload" + yearPath + File.separator + "detail" +File.separator + file2Name);
+		}else {
+			vo.setRegDetailImg("");
+		}
+		managerService.regModify(vo);
 		return "redirect:/Regular/regularList.do";
 	}
 }

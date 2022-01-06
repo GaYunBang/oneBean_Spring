@@ -70,7 +70,7 @@ public class ProductController {
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
-		List<ProductVO> list = productService.coffeeProList();
+		List<ProductVO> list = productService.coffeeProList(vo);
 		model.addAttribute("list", list);
 		return "product/coffeeProList";
 	}
@@ -90,7 +90,7 @@ public class ProductController {
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
-		List<ProductVO> list = productService.sampleBoxList();
+		List<ProductVO> list = productService.sampleBoxList(vo);
 		model.addAttribute("list", list);
 		return "product/sampleBoxList";
 	}

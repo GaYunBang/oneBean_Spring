@@ -40,7 +40,7 @@
 	<context:annotation-config />
 	<!-- 업로드 패스 설정 -->
 	<beans:bean class="java.lang.String" id="uploadPath">
-		<beans:constructor-arg value="C:\tomcat\webapps\oneBean\src\main\webapp\resources" />
+		<beans:constructor-arg value="C:\tomcat\webapps\oneBeanProject\resources" />
 	</beans:bean>
 
 	

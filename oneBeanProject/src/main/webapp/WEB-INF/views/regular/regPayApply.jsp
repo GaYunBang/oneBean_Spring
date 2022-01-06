@@ -77,34 +77,38 @@
 			}
 		}).open();
 	}
-	/*
 	function requestPay(){
 		var agreeCheck = $("#check01").is(":checked");
 		var form = $("[name='order_form']");
 		
 		if(agreeCheck==false){
 			alert("필수 사항을 동의해야 합니다.");
+			return;
 		}else{
 			if (form.find("[name='regPostName']").val()==""){
 				alert("받으실분을 입력해 주십시오.");
 				form.find("[name='regPostName']").focus();
+				return;
 				
 			}else if(form.find("[name='regPostPhone']").val()==""){
 				alert("받으실분의 연락처를 입력해 주십시오.");
 				form.find("[name='regPostPhone']").focus();
+				return;
 				
 			}else if(form.find("#member_post").val()==""){
 				alert("우편번호를 입력해 주십시오.");
 				$("#member_post").focus();
+				return;
 				
 			}else if(form.find("#member_addr").val()==""){
 				alert("도로명/지번주소를 입력해 주십시오.");
 				$("#member_addr").focus();
+				return;
 				
 			}else if(form.find("#member_detail_addr").val()==""){
 				alert("상세주소를 입력해 주십시오.");
 				$("#member_detail_addr").focus();
-				
+				return;
 			}
 		}
 		if(document.getElementById('scard').checked) {
@@ -137,8 +141,8 @@
 		}else if(document.getElementById('mootong').checked){
 			form.submit();
 		}
-		
-	}*/
+		return;
+	}
 	
 	//주문자와 동일 버튼 눌렀을 때
 	function sameShip(){
@@ -264,8 +268,8 @@
 	</nav>
 </header>
 <section>
-	<img class="title_images" src="/images/주문결제.png">
-	<form name="order_form" method="post" action="regularPay.do" onsubmit="requestPay();return false;">
+	<img class="title_image" src="<%=request.getContextPath() %>/images/주문결제.png">
+	<form name="order_form" method="post" action="<%=request.getContextPath() %>/Regular/regularPay.do" onsubmit="requestPay();return false;">
 		<div class="content pt-4">
 			<div class="container-xxl">
 				<span class="d-flex shop_bow_subject2 mt-5 mb-3">주문 상품</span>
@@ -275,8 +279,7 @@
 					<tr class="shop_box">
 						<th class="sum_box"></th>
 						<th class="top_1 "><span>상품/옵션 정보</span></th>
-						<th class="top_2"><span>수량</span></th>
-						<th class="top_2"><span>test</span></th>
+						<th class="top_2"><span>가격</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -292,7 +295,6 @@
 						<span class="pro price"><fmt:formatNumber value="${vo.regPrice}" pattern="###,###,### 원" /></span>
 						<input type="hidden" name="regPayPrice" value="${vo.regPrice}">
 					</td>
-					<td></td>
 				</tr>
 				</tbody>
 				</table>

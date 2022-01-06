@@ -63,7 +63,7 @@ public class UploadFileUtils {
 
 		File target = new File(imgPath, newEventImageFileName);
 		FileCopyUtils.copy(fileData, target);
-		return fileName;
+		return newEventImageFileName;
 	}
 	
 	/*

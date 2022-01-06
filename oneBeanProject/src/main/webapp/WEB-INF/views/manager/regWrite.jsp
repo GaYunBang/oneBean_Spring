@@ -13,21 +13,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
 <!-- 스타일css 링크추가 -->
-<link href="/css/index/header.css" rel="stylesheet" />
-<link href="/css/index/footer.css" rel="stylesheet" />
-<link href="/css/index/search.css" rel="stylesheet" />
-<link href="/css/etc/write.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/header.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/footer.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/index/search.css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/manager/write.css" rel="stylesheet" />
 
 <link rel="shortcut icon" type="image/x-icon"
-	href="/images/titlelogo.png" />
-<title>ONEBEAN</title>
+	href="<%=request.getContextPath() %>/images/titlelogo.png" />
+<title>상품등록</title>
 
 <!-- fontawesome 주소 -->
 <script src="https://kit.fontawesome.com/be3783bb1d.js" crossorigin="anonymous"></script>
 <!--햄버거 제이쿼리-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <!-- jquery 불러오기 -->
-<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#file").change(
@@ -160,42 +160,43 @@
 		</form>
 	</nav>
 </header>
-<section>
+<section id="section">
+	<img class="title_image" src="<%=request.getContextPath() %>/images/상품등록.png">
 	<!-- D:\git\oneBean_Spring\oneBeanProject\src\main\webapp\resources-->
- 	<form name="form1" method="post" action="regWrite.do" enctype="multipart/form-data">
+ 	<form name="form1" method="post" action="<%=request.getContextPath() %>/Manager/regWrite.do" enctype="multipart/form-data">
 		<table class="write_table">
 			<tr>
 				<th>상품명</th>
-				<td><input name="regName" id="regName"></td>
+				<td><input name="regName" id="regName" class="inp"></td>
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><input name="regPrice" id="regPrice"></td>
+				<td><input name="regPrice" id="regPrice" class="inp"></td>
 			</tr>
 			<tr>
 				<th>재고</th>
-				<td><input name="regStock" id="regStock"></td>
+				<td><input name="regStock" id="regStock" class="inp"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="regContents" id="regContents"></textarea></td>
+				<td><textarea name="regContents" id="regContents" class="inp"></textarea></td>
 			</tr>
 			<tr>
-				<th>상품 이미지</th>
-				<td><input type="file" id="file" name="file">
+				<th>구독상품 이미지</th>
+				<td><input type="file" id="file" name="file" class="mid">
 					<div class="select_img"><img src=""></div>
 				</td>
 			</tr>
 			<tr>
-				<th>상품 상세 이미지</th>
-				<td><input type="file" id="detailFile" name="detailFile">
+				<th>구독상품 상세 이미지</th>
+				<td><input type="file" id="detailFile" name="detailFile" class="mid">
 					<div class="select_img2"><img src=""></div>
 				</td>
 			</tr>
 		</table>
 		<div class="butg">
-			<input type="submit" value="등록">
-			<input type="button" value="취소" onclick="history.back()">
+			<input type="submit" class="but4" value="등록">
+			<input type="button" class="but3" value="취소" onclick="history.back()">
 		</div>
 	</form>
 </section>

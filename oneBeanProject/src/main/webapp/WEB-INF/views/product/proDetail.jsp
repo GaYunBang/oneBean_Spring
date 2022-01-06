@@ -41,11 +41,11 @@
 			{
 			if(confirm("장바구니에 담으시겠습니까?")){
 				$.ajax({
-					url:"/Purchase/addCart.do",
+					url:"<%=request.getContextPath() %>/Purchase/addCart.do",
 					data:{"proIdx":idx,"cartCount":count,"cartPrice":cartPrice},
 					success:function(data){
 						if(confirm("확인을 클릭하시면 장바구니로 이동합니다.")){
-							location.href="/Purchase/cartList.do";
+							location.href="<%=request.getContextPath() %>/Purchase/cartList.do";
 						}
 					},
 					error:function(){
@@ -213,7 +213,7 @@
                             <div class="op_box">
                                 <div class="">
 	                                  <div class="row col-12 p-4">
-	                                    <div class="op_title"><pre>${dto.proContents}</pre></div>	                                    
+	                                    <pre class="op_title">${dto.proContents}</pre>	                                    
                                     </div>
                                 </div>                                
                             </div>                                                        
@@ -226,11 +226,14 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <span name="cartPrice" id="showPrice"></span>
+                            <div class="text_right">
+                            <span class="txt0">『</span>
+                            <span class="txt1">총 상품 금액(수량) : </span><span name="cartPrice" id="showPrice" class="txt2"></span>
+                            <span class="txt0">』</span></div>
                             <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
                                  <c:if test="${member == null}">
-									<a href="/Member/login.do" class="btn_ship">장바구니</a>
-									<a href="/Member/login.do" class="btn_shop">주문하기</a>
+									<a href="<%=request.getContextPath() %>/Member/login.do" class="btn_ship">장바구니</a>
+									<a href="<%=request.getContextPath() %>/Member/login.do" class="btn_shop">주문하기</a>
 								</c:if>
 								<c:if test="${member != null}">
                                		<a href="javascript:cartGO(${dto.proIdx })" class="btn_ship">장바구니</a>

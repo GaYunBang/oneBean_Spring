@@ -135,7 +135,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="addrListModify.do", method = RequestMethod.GET)
-	public String addrListModify() {
+	public String addrListModify(Model model, HttpSession session) throws Exception {
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		model.addAttribute("addr", memberService.addrView(vo.getMidx()));
 		return "member/memAddrModify";
 	}
 	

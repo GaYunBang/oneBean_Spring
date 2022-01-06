@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-12 col-md-7">
                     <div>
-                        <form name="list_to_orderAction" method="post" action="regOrder.do">
+                        <form name="list_to_orderAction" method="post" action="<%=request.getContextPath() %>/Regular/regOrder.do">
                         <input type="hidden" name="regIdx" value="${dto.regIdx}">
                             <span class="goods_subject p-4">${dto.regName}</span>
                             <div class="price_box p-4">
@@ -164,9 +164,14 @@
                                 </div>                                
                             </div>                                                        
                             <div class="btn_box">                           
-                            <div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
-                                <button type="submit" class="btn_shop">구독하기</button>                                
-                            </div>
+                            	<div class="row d-flex justify-content-evenly mt-3 pt-1"> <!--mt는 버튼 사이 간격/pt는 위아래 간겨-->
+	                                 <c:if test="${member == null}">
+										<a href="<%=request.getContextPath() %>/Member/login.do" class="btn_shop">구독하기</a>
+									</c:if>
+									<c:if test="${member != null}">
+	                               		<button type="submit" class="btn_shop">구독하기</button>
+	                               	</c:if> 
+	                            </div>
                             </div>                          
                         </form>
                     </div>
